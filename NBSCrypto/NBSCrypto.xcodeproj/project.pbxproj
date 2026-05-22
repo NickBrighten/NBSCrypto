@@ -389,9 +389,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1D3975E42FC084DA00A89D90 /* SECURITY.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = SECURITY.md; path = ../SECURITY.md; sourceTree = "<group>"; };
-		1D3975E52FC084DA00A89D90 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
-		1D3975E62FC084DA00A89D90 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		1D419CD22FC0651B003A7B83 /* NBSCrypto.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NBSCrypto.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D419CD52FC0651B003A7B83 /* NBSCrypto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBSCrypto.h; sourceTree = "<group>"; tabWidth = 8; };
 		1D419CE12FC066EF003A7B83 /* NBSCrypto.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NBSCrypto.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -535,9 +532,6 @@
 		1D419CC82FC0651A003A7B83 = {
 			isa = PBXGroup;
 			children = (
-				1D3975E62FC084DA00A89D90 /* LICENSE */,
-				1D3975E52FC084DA00A89D90 /* README.md */,
-				1D3975E42FC084DA00A89D90 /* SECURITY.md */,
 				1D419CD42FC0651B003A7B83 /* NBSCrypto */,
 				1D419CD32FC0651B003A7B83 /* Products */,
 			);
