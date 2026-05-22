@@ -167,4 +167,60 @@ Please have a look [here](https://help.github.com/articles/approving-a-pull-requ
 - __CRC-64__
     - BIT-LENGTH: `64`
     - VARIATIONS: `ECMA-182` `GO-ECMA` `GO-ISO` `ISO-3309` `MS` `NVME` `REDIS` `WE` `XZ`
+- __ECHO__
+    - BIT-LENGTH: `224` `256` `384` `512`
+- __FNV1-32 / FNV1a-32__
+    - BIT-LENGTH: `32`
+- __FNV1-64 / FNV1a-64__
+    - BIT-LENGTH: `64`
+- __GOST / GOST-CRYPTO__
+    - BIT-LENGTH: `256`
+- __GROESTL__
+    - BIT-LENGTH: `224` `256` `384` `512`
+- __HAMSI__
+    - BIT-LENGTH: `224` `256` `384` `512`
+- __HAVAL-3 / HAVAL-4 / HAVAL-5__
+    - BIT-LENGTH: `128` `160` `192` `224` `256`
+- __JH__
+    - BIT-LENGTH: `224` `256` `384` `512`
+- __JOAAT__
+    - BIT-LENGTH: `32`
+- __KECCAK__
+    - BIT-LENGTH: `224` `256` `384` `512`
+- __LANE__
+    - BIT-LENGTH: `224` `256` `384` `512`
+- __LESAMNTA__
+    - BIT-LENGTH: `224` `256` `384` `512`
+- __LUFFA__
+    - BIT-LENGTH: `224` `256` `384` `512`
+- __MD2 / MD4 / MD5__
+    - BIT-LENGTH: `128`
+- __MURMUR3A__
+    - BIT-LENGTH: `32`
+- __MURMUR3C / MURMUR3F__
+    - BIT-LENGTH: `128`
+- __RIPEMD__
+    - BIT-LENGTH: `128` `160` `256` `320`
+- __SHA-1__
+    - BIT-LENGTH: `160`
+- __SHA-2__
+    - BIT-LENGTH: `224` `256` `384` `512`
+- __SHA-3__
+    - BIT-LENGTH: `224` `256` `384` `512`
+- __SHABAL__
+    - BIT-LENGTH: `192` `224` `256` `384` `512`
+- __SHAKE__
+    - BIT-LENGTH: `128` `256`
+- __SM3__
+    - BIT-LENGTH: `256`
+- __SNEFRU__
+    - BIT-LENGTH: `256`
+- __STREEBOG / GOST-R34112012__
+    - BIT-LENGTH: `256` `512`
+- __TIGER / TIGER-2__
+    - BIT-LENGTH: `128` `160` `192`
+- __WHIRPOOL__
+    - BIT-LENGTH: `512`
+- __XXH__
+    - BIT-LENGTH: `32` `64` `128`
 #
