@@ -1,9 +1,13 @@
 # NBSCrypto
 NBSCrypto is an ultra lightweight crytopgraphy framework for iOS, iPadOS, macOS, tvOS and watchOS.
 
-Builds will be soon available as single target `.framework` or as multiple tagets `.xcframework` for production/deployment and simulator.
-
+The repository include the whole Xcode project with all targets, ready to build.\
 NSCrypto is written in `Objective-C` and `C`.
+
+It is possible to use the `.framework` or `.xcframework` in both Objective-C and Swift.\
+To integrate the framework into an Objective-C project, you can use our guide: [Integrate NBSCrypto to an Objective-C Project](https://localhost) and to integrate it into a Swift project, you can use our guide: [Integrate NBSCrypto to an Swift Project](https://localhost).
+
+Precompiled Builds will be soon available as single target `.framework` or as multiple tagets `.xcframework` for production/deployment and simulators.
 #
 
 
@@ -68,6 +72,75 @@ Please have a look [here](https://help.github.com/articles/approving-a-pull-requ
 - __CHACHA20__
     - BIT-LENGTH: `128` `256`
     - MODES: `CHACHA20POLY1305`
+- __DES__
+    - BIT-LENGTH: `64`
+    - MODES: `CBC` `CFB` `CTR` `EAX` `ECB` `F8` `OCB` `OFB`
+- __DES-EDE / DES-EDE2__
+    - BIT-LENGTH: `128`
+    - MODES: `CBC` `CFB` `CTR` `EAX` `ECB` `F8` `OCB` `OFB`
+- __DES3 / DES-EDE3__
+    - BIT-LENGTH: `192`
+    - MODES: `CBC` `CFB` `CTR` `EAX` `ECB` `F8` `OCB` `OFB`
+- __IDEA__
+    - BIT-LENGTH: `128`
+    - MODES: `CBC` `CFB` `CTR` `EAX` `ECB` `F8` `OCB` `OFB`
+- __KASUMI__
+    - BIT-LENGTH: `128`
+    - MODES: `CBC` `CFB` `CTR` `EAX` `ECB` `F8` `OCB` `OFB`
+- __KHAZAD__
+    - BIT-LENGTH: `128`
+    - MODES: `CBC` `CFB` `CTR` `EAX` `ECB` `F8` `OCB` `OFB`
+- __LEA__
+    - BIT-LENGTH: `128` `192` `256`
+    - MODES: `CBC` `CCM` `CFB` `CTR` `EAX` `ECB` `F8` `GCM` `LRW` `OCB` `OCB3` `OFB` `XTS`
+- __MARS__
+    - BIT-LENGTH: `128` `160` `192` `224` `256` `288` `320` `352` `384` `416` `448`
+    - MODES: `CBC` `CCM` `CFB` `CTR` `EAX` `ECB` `F8` `GCM` `LRW` `OCB` `OCB3` `OFB` `XTS`
+- __NOEKEON__
+    - BIT-LENGTH: `128`
+    - MODES: `CBC` `CCM` `CFB` `CTR` `EAX` `ECB` `F8` `GCM` `LRW` `OCB` `OCB3` `OFB` `XTS`
+- __PRESENT__
+    - BIT-LENGTH: `80` `128`
+    - MODES: `CBC` `CFB` `CTR` `EAX` `ECB` `F8` `OCB` `OFB`
+- __RC2__
+    - BIT-LENGTH: `1024`
+    - MODES: `CBC` `CFB` `CTR` `EAX` `ECB` `F8` `OCB` `OFB`
+- __RC4__
+    - BIT-LENGTH: `2048`
+    - MODES: `none`
+- __RC6__
+    - BIT-LENGTH: `256`
+    - MODES: `CBC` `CCM` `CFB` `CTR` `EAX` `ECB` `F8` `GCM` `LRW` `OCB` `OCB3` `OFB` `XTS`
+- __SAFER-K64 / SAFER-SK64__
+    - BIT-LENGTH: `64`
+    - MODES: `CBC` `CFB` `CTR` `EAX` `ECB` `F8` `OCB` `OFB`
+- __SAFER-K128 / SAFER-SK128__
+    - BIT-LENGTH: `128`
+    - MODES: `CBC` `CFB` `CTR` `EAX` `ECB` `F8` `OCB` `OFB`
+- __SAFER+__
+    - BIT-LENGTH: `128` `192` `256`
+    - MODES: `CBC` `CCM` `CFB` `CTR` `EAX` `ECB` `F8` `GCM` `LRW` `OCB` `OCB3` `OFB` `XTS`
+- __SEED__
+    - BIT-LENGTH: `128`
+    - MODES: `CBC` `CCM` `CFB` `CTR` `EAX` `ECB` `F8` `GCM` `LRW` `OCB` `OCB3` `OFB` `XTS`
+- __SERPENT__
+    - BIT-LENGTH: `128` `192` `256`
+    - MODES: `CBC` `CCM` `CFB` `CTR` `EAX` `ECB` `F8` `GCM` `LRW` `OCB` `OCB3` `OFB` `XTS`
+- __SKIPJACK__
+    - BIT-LENGTH: `128`
+    - MODES: `CBC` `CFB` `CTR` `EAX` `ECB` `F8` `OCB` `OFB`
+- __SM4__
+    - BIT-LENGTH: `128`
+    - MODES: `CBC` `CCM` `CFB` `CTR` `EAX` `ECB` `F8` `GCM` `LRW` `OCB` `OCB3` `OFB` `XTS`
+- __TEA__
+    - BIT-LENGTH: `128`
+    - MODES: `CBC` `CFB` `CTR` `EAX` `ECB` `F8` `OCB` `OFB`
+- __TWOFISH__
+    - BIT-LENGTH: `128` `192` `256`
+    - MODES: `CBC` `CCM` `CFB` `CTR` `EAX` `ECB` `F8` `GCM` `LRW` `OCB` `OCB3` `OFB` `XTS`
+- __XTEA__
+    - BIT-LENGTH: `128`
+    - MODES: `CBC` `CFB` `CTR` `EAX` `ECB` `F8` `OCB` `OFB`
 #
 
 
