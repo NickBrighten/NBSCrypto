@@ -1,0 +1,189 @@
+//
+//	skipjack.c
+//	Authors / Developers		: U.S. National Security Agency
+//	Last Modified (Original)	: June 1998
+//
+
+#include "nbs_crypto.h"
+
+
+#pragma mark DESCRIPTOR
+const struct cipher_descriptor skipjack_desc =
+{
+    "skipjack",
+    29,
+    10, 10, 8, 32,
+    &skipjack_setup,
+    &skipjack_encrypt,
+    &skipjack_decrypt,
+    &skipjack_done
+};
+
+
+
+
+#pragma mark - DEFINES
+
+#define A					\
+    tmp	= _g_func(w1, &kp, cs->skipjack.k);	\
+    w1	= tmp ^ w4 ^ x;				\
+    w4	= w3;					\
+    w3	= w2;					\
+    w2	= tmp;
+
+#define B					\
+    tmp = _g_func(w1, &kp, cs->skipjack.k);	\
+    tmp1= w4;					\
+    w4	= w3;					\
+    w3	= w1 ^ w2 ^ x;				\
+    w1	= tmp1;					\
+    w2	= tmp;
+
+#define A1					\
+    tmp	= w1 ^ w2 ^ x;				\
+    w1	= _ig_func(w2, &kp, cs->skipjack.k);	\
+    w2	= w3;					\
+    w3	= w4;					\
+    w4	= tmp;
+
+#define B1					\
+    tmp	= _ig_func(w2, &kp, cs->skipjack.k);	\
+    w2	= tmp ^ w3 ^ x;				\
+    w3  = w4;					\
+    w4	= w1;					\
+    w1	= tmp;
+
+
+static const unsigned char sbox[256] =
+{
+    0xa3,0xd7,0x09,0x83,0xf8,0x48,0xf6,0xf4,0xb3,0x21,0x15,0x78,0x99,0xb1,0xaf,0xf9,
+    0xe7,0x2d,0x4d,0x8a,0xce,0x4c,0xca,0x2e,0x52,0x95,0xd9,0x1e,0x4e,0x38,0x44,0x28,
+    0x0a,0xdf,0x02,0xa0,0x17,0xf1,0x60,0x68,0x12,0xb7,0x7a,0xc3,0xe9,0xfa,0x3d,0x53,
+    0x96,0x84,0x6b,0xba,0xf2,0x63,0x9a,0x19,0x7c,0xae,0xe5,0xf5,0xf7,0x16,0x6a,0xa2,
+    0x39,0xb6,0x7b,0x0f,0xc1,0x93,0x81,0x1b,0xee,0xb4,0x1a,0xea,0xd0,0x91,0x2f,0xb8,
+    0x55,0xb9,0xda,0x85,0x3f,0x41,0xbf,0xe0,0x5a,0x58,0x80,0x5f,0x66,0x0b,0xd8,0x90,
+    0x35,0xd5,0xc0,0xa7,0x33,0x06,0x65,0x69,0x45,0x00,0x94,0x56,0x6d,0x98,0x9b,0x76,
+    0x97,0xfc,0xb2,0xc2,0xb0,0xfe,0xdb,0x20,0xe1,0xeb,0xd6,0xe4,0xdd,0x47,0x4a,0x1d,
+    0x42,0xed,0x9e,0x6e,0x49,0x3c,0xcd,0x43,0x27,0xd2,0x07,0xd4,0xde,0xc7,0x67,0x18,
+    0x89,0xcb,0x30,0x1f,0x8d,0xc6,0x8f,0xaa,0xc8,0x74,0xdc,0xc9,0x5d,0x5c,0x31,0xa4,
+    0x70,0x88,0x61,0x2c,0x9f,0x0d,0x2b,0x87,0x50,0x82,0x54,0x64,0x26,0x7d,0x03,0x40,
+    0x34,0x4b,0x1c,0x73,0xd1,0xc4,0xfd,0x3b,0xcc,0xfb,0x7f,0xab,0xe6,0x3e,0x5b,0xa5,
+    0xad,0x04,0x23,0x9c,0x14,0x51,0x22,0xf0,0x29,0x79,0x71,0x7e,0xff,0x8c,0x0e,0xe2,
+    0x0c,0xef,0xbc,0x72,0x75,0x6f,0x37,0xa1,0xec,0xd3,0x8e,0x62,0x8b,0x86,0x10,0xe8,
+    0x08,0x77,0x11,0xbe,0x92,0x4f,0x24,0xc5,0x32,0x36,0x9d,0xcf,0xf3,0xa6,0xbb,0xac,
+    0x5e,0x6c,0xa9,0x13,0x57,0x25,0xb5,0xe3,0xbd,0xa8,0x3a,0x01,0x05,0x59,0x2a,0x46
+};
+
+static const int keystep[] =  { 1, 2, 3, 4, 5, 6, 7, 8, 9, 0 };
+static const int ikeystep[] = { 9, 0, 1, 2, 3, 4, 5, 6, 7, 8 };
+
+
+
+
+#pragma mark - INLINE
+static inline unsigned _g_func(unsigned w, int *kp, const unsigned char *key)
+{
+    unsigned char g1,g2;
+
+    g1 = (w >> 8) & 255; g2 = w & 255;
+    g1 ^= sbox[g2^key[*kp]]; *kp = keystep[*kp];
+    g2 ^= sbox[g1^key[*kp]]; *kp = keystep[*kp];
+    g1 ^= sbox[g2^key[*kp]]; *kp = keystep[*kp];
+    g2 ^= sbox[g1^key[*kp]]; *kp = keystep[*kp];
+    return ((unsigned)g1<<8)|(unsigned)g2;
+}
+
+static inline unsigned _ig_func(unsigned w, int *kp, const unsigned char *key)
+{
+    unsigned char g1,g2;
+
+    g1 = (w >> 8) & 255; g2 = w & 255;
+    *kp = ikeystep[*kp]; g2 ^= sbox[g1^key[*kp]];
+    *kp = ikeystep[*kp]; g1 ^= sbox[g2^key[*kp]];
+    *kp = ikeystep[*kp]; g2 ^= sbox[g1^key[*kp]];
+    *kp = ikeystep[*kp]; g1 ^= sbox[g2^key[*kp]];
+    return ((unsigned)g1<<8)|(unsigned)g2;
+}
+
+
+
+
+#pragma mark - FUNCTIONS
+
+int skipjack_setup(const unsigned char *key, int keylen, int num_rounds, cipher_state *cs)
+{
+    int x;
+
+    if (keylen != 10) {
+	return NBSCrypto_ERROR;
+    }
+
+    if (num_rounds != 32 && num_rounds != 0) {
+	return NBSCrypto_ERROR;
+    }
+
+    for (x = 0; x < 10; x++) {
+	cs->skipjack.k[x] = key[x] & 255;
+    }
+
+    return NBSCrypto_OK;
+}
+
+int skipjack_encrypt(const unsigned char *pt, unsigned char *ct, const cipher_state *cs)
+{
+    unsigned w1,w2,w3,w4,tmp,tmp1;
+    int x, kp;
+
+    w1 = ((unsigned)pt[0]<<8)|pt[1];
+    w2 = ((unsigned)pt[2]<<8)|pt[3];
+    w3 = ((unsigned)pt[4]<<8)|pt[5];
+    w4 = ((unsigned)pt[6]<<8)|pt[7];
+
+    for (x=1,kp=0;x<9;x++){A;}
+    for (;x<17;x++){B;}
+    for (;x<25;x++){A;}
+    for(;x<33;x++){B;}
+
+    ct[0] = (w1>> 8)&255;
+    ct[1] =  w1&255;
+    ct[2] = (w2>> 8)&255;
+    ct[3] =  w2&255;
+    ct[4] = (w3>> 8)&255;
+    ct[5] =  w3&255;
+    ct[6] = (w4>> 8)&255;
+    ct[7] =  w4&255;
+
+    return NBSCrypto_OK;
+}
+
+int skipjack_decrypt(const unsigned char *ct, unsigned char *pt, const cipher_state *cs)
+{
+    unsigned w1,w2,w3,w4,tmp;
+    int x, kp;
+
+    w1 = ((unsigned)ct[0]<<8)|ct[1];
+    w2 = ((unsigned)ct[2]<<8)|ct[3];
+    w3 = ((unsigned)ct[4]<<8)|ct[5];
+    w4 = ((unsigned)ct[6]<<8)|ct[7];
+
+    for (x=32,kp=8;x>24;x--){B1;}
+    for (;x>16;x--){A1;}
+    for (;x>8;x--){B1;}
+    for (;x>0;x--){A1;}
+
+    pt[0] = (w1>> 8)&255;
+    pt[1] =  w1&255;
+    pt[2] = (w2>> 8)&255;
+    pt[3] =  w2&255;
+    pt[4] = (w3>> 8)&255;
+    pt[5] =  w3&255;
+    pt[6] = (w4>> 8)&255;
+    pt[7] =  w4&255;
+
+    return NBSCrypto_OK;
+}
+
+void skipjack_done(cipher_state *cs)
+{
+    zeromem(cs, sizeof(cs->skipjack));
+}
