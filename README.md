@@ -14,8 +14,8 @@ Precompiled Builds will be soon available as single target `.framework` or as mu
 
 # Table of Content
 - [Collaboration](#collaboration)
-- [Supported Cipher-Algorithms](#collaboration)
-- [Supported Hash-Algorithms](#collaboration)
+- [Supported Cipher-Algorithms](#supported-cipher-algorithms)
+- [Supported Hash-Algorithms](#supported-hash-algorithms)
 #
 
 
