@@ -21,12 +21,15 @@ Feel free and collaborate with us and others to bring up this repository.\
 Please keep in mind a few important things to ensure smooth collaboration.
 
 ## Branches
-Please be aware, that all branches besides `main` can and will be force-pushed, rebased and/or removed!\
+>[!CAUTION]
+>Please be aware, that all branches besides `main` can and will be force-pushed, rebased and/or removed!
+
 If you want to rely on such an unstable branch, create your own fork of this repository to make sure nothing breaks for you.
 
 ## Submitting Patches & Reviews
-Please branch off from `dev` if you want to submit a patch.\
-Patch integration will be faster if tests and documentation are included.
+>[!IMPORTANT]
+>Please branch off from `dev` if you want to submit a patch.\
+>Patch integration will be faster if tests and documentation are included.
 
 We're using Pull Request reviews to make sure that the code is in line with the existing code base.\
 Please have a look [here](https://help.github.com/articles/approving-a-pull-request-with-required-reviews/) to get an idea of the approach.
@@ -35,6 +38,36 @@ Please have a look [here](https://help.github.com/articles/approving-a-pull-requ
 
 
 # Supported Cipher-Algorithms
+- __AES__
+    - BIT-LENGTH: `128` `192` `256`
+    - MODES: `CBC` `CCM` `CFB` `CTR` `EAX` `ECB` `F8` `GCM` `LRW` `OCB` `OCB3` `OFB` `XTS`
+- __ANUBIS / ANUBIS-TWEAK__
+    - BIT-LENGTH: `128` `160` `192` `224` `256` `288` `320`
+    - MODES: `CBC` `CCM` `CFB` `CTR` `EAX` `ECB` `F8` `GCM` `LRW` `OCB` `OCB3` `OFB` `XTS`
+- __ARIA__
+    - BIT-LENGTH: `128` `192` `256`
+    - MODES: `CBC` `CCM` `CFB` `CTR` `EAX` `ECB` `F8` `GCM` `LRW` `OCB` `OCB3` `OFB` `XTS`
+- __BLOWFISH__
+    - BIT-LENGTH: `128` up to `576`
+    - MODES: `CBC` `CFB` `CTR` `EAX` `ECB` `F8` `OCB` `OFB`
+- __CAMELLIA__
+    - BIT-LENGTH: `128` `192` `256`
+    - MODES: `CBC` `CCM` `CFB` `CTR` `EAX` `ECB` `F8` `GCM` `LRW` `OCB` `OCB3` `OFB` `XTS`
+- __CAST-5__
+    - BIT-LENGTH: `128`
+    - MODES: `CBC` `CFB` `CTR` `EAX` `ECB` `F8` `OCB` `OFB`
+- __CAST-6__
+    - BIT-LENGTH: `128` `160` `192` `224` `256`
+    - MODES: `CBC` `CCM` `CFB` `CTR` `EAX` `ECB` `F8` `GCM` `LRW` `OCB` `OCB3` `OFB` `XTS`
+- __CHACHA8__
+    - BIT-LENGTH: `128` `256`
+    - MODES: `CHACHA8POLY1305`
+- __CHACHA12__
+    - BIT-LENGTH: `128` `256`
+    - MODES: `CHACHA12POLY1305`
+- __CHACHA20__
+    - BIT-LENGTH: `128` `256`
+    - MODES: `CHACHA20POLY1305`
 #
 
 
