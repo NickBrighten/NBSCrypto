@@ -11,6 +11,42 @@
 		1D419CE72FC06723003A7B83 /* NBSCrypto.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D419CD52FC0651B003A7B83 /* NBSCrypto.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1D419CF32FC06814003A7B83 /* NBSCrypto.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D419CD52FC0651B003A7B83 /* NBSCrypto.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1D419CFF2FC06833003A7B83 /* NBSCrypto.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D419CD52FC0651B003A7B83 /* NBSCrypto.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1D419D0A2FC0695B003A7B83 /* NBSCryptoCrypt.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D419D012FC0695A003A7B83 /* NBSCryptoCrypt.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1D419D0B2FC0695B003A7B83 /* NBSCryptoCrypt.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D419D012FC0695A003A7B83 /* NBSCryptoCrypt.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1D419D0C2FC0695B003A7B83 /* NBSCryptoCrypt.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D419D012FC0695A003A7B83 /* NBSCryptoCrypt.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1D419D0D2FC0695B003A7B83 /* NBSCryptoCrypt.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D419D012FC0695A003A7B83 /* NBSCryptoCrypt.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1D419D0E2FC0695B003A7B83 /* NBSCryptoDefines_Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D419D022FC0695A003A7B83 /* NBSCryptoDefines_Internal.h */; };
+		1D419D0F2FC0695B003A7B83 /* NBSCryptoDefines_Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D419D022FC0695A003A7B83 /* NBSCryptoDefines_Internal.h */; };
+		1D419D102FC0695B003A7B83 /* NBSCryptoDefines_Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D419D022FC0695A003A7B83 /* NBSCryptoDefines_Internal.h */; };
+		1D419D112FC0695B003A7B83 /* NBSCryptoDefines_Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D419D022FC0695A003A7B83 /* NBSCryptoDefines_Internal.h */; };
+		1D419D122FC0695B003A7B83 /* NBSCryptoBases.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D419D032FC0695B003A7B83 /* NBSCryptoBases.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1D419D132FC0695B003A7B83 /* NBSCryptoBases.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D419D032FC0695B003A7B83 /* NBSCryptoBases.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1D419D142FC0695B003A7B83 /* NBSCryptoBases.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D419D032FC0695B003A7B83 /* NBSCryptoBases.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1D419D152FC0695B003A7B83 /* NBSCryptoBases.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D419D032FC0695B003A7B83 /* NBSCryptoBases.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1D419D162FC0695B003A7B83 /* NBSCryptoCrypt.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D419D042FC0695B003A7B83 /* NBSCryptoCrypt.m */; };
+		1D419D172FC0695B003A7B83 /* NBSCryptoCrypt.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D419D042FC0695B003A7B83 /* NBSCryptoCrypt.m */; };
+		1D419D182FC0695B003A7B83 /* NBSCryptoCrypt.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D419D042FC0695B003A7B83 /* NBSCryptoCrypt.m */; };
+		1D419D192FC0695B003A7B83 /* NBSCryptoCrypt.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D419D042FC0695B003A7B83 /* NBSCryptoCrypt.m */; };
+		1D419D1A2FC0695B003A7B83 /* NBSCryptoBases.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D419D052FC0695B003A7B83 /* NBSCryptoBases.m */; };
+		1D419D1B2FC0695B003A7B83 /* NBSCryptoBases.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D419D052FC0695B003A7B83 /* NBSCryptoBases.m */; };
+		1D419D1C2FC0695B003A7B83 /* NBSCryptoBases.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D419D052FC0695B003A7B83 /* NBSCryptoBases.m */; };
+		1D419D1D2FC0695B003A7B83 /* NBSCryptoBases.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D419D052FC0695B003A7B83 /* NBSCryptoBases.m */; };
+		1D419D1E2FC0695B003A7B83 /* NBSCryptoCrypt_Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D419D062FC0695B003A7B83 /* NBSCryptoCrypt_Internal.h */; };
+		1D419D1F2FC0695B003A7B83 /* NBSCryptoCrypt_Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D419D062FC0695B003A7B83 /* NBSCryptoCrypt_Internal.h */; };
+		1D419D202FC0695B003A7B83 /* NBSCryptoCrypt_Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D419D062FC0695B003A7B83 /* NBSCryptoCrypt_Internal.h */; };
+		1D419D212FC0695B003A7B83 /* NBSCryptoCrypt_Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D419D062FC0695B003A7B83 /* NBSCryptoCrypt_Internal.h */; };
+		1D419D222FC0695B003A7B83 /* NBSCryptoHash.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D419D072FC0695B003A7B83 /* NBSCryptoHash.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1D419D232FC0695B003A7B83 /* NBSCryptoHash.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D419D072FC0695B003A7B83 /* NBSCryptoHash.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1D419D242FC0695B003A7B83 /* NBSCryptoHash.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D419D072FC0695B003A7B83 /* NBSCryptoHash.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1D419D252FC0695B003A7B83 /* NBSCryptoHash.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D419D072FC0695B003A7B83 /* NBSCryptoHash.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1D419D262FC0695B003A7B83 /* NBSCryptoDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D419D082FC0695B003A7B83 /* NBSCryptoDefines.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1D419D272FC0695B003A7B83 /* NBSCryptoDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D419D082FC0695B003A7B83 /* NBSCryptoDefines.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1D419D282FC0695B003A7B83 /* NBSCryptoDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D419D082FC0695B003A7B83 /* NBSCryptoDefines.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1D419D292FC0695B003A7B83 /* NBSCryptoDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D419D082FC0695B003A7B83 /* NBSCryptoDefines.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1D419D2A2FC0695B003A7B83 /* NBSCryptoHash.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D419D092FC0695B003A7B83 /* NBSCryptoHash.m */; };
+		1D419D2B2FC0695B003A7B83 /* NBSCryptoHash.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D419D092FC0695B003A7B83 /* NBSCryptoHash.m */; };
+		1D419D2C2FC0695B003A7B83 /* NBSCryptoHash.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D419D092FC0695B003A7B83 /* NBSCryptoHash.m */; };
+		1D419D2D2FC0695B003A7B83 /* NBSCryptoHash.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D419D092FC0695B003A7B83 /* NBSCryptoHash.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +55,15 @@
 		1D419CE12FC066EF003A7B83 /* NBSCrypto.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NBSCrypto.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D419CED2FC067B3003A7B83 /* NBSCrypto.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NBSCrypto.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D419CF92FC06829003A7B83 /* NBSCrypto.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NBSCrypto.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1D419D012FC0695A003A7B83 /* NBSCryptoCrypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBSCryptoCrypt.h; sourceTree = "<group>"; tabWidth = 8; };
+		1D419D022FC0695A003A7B83 /* NBSCryptoDefines_Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBSCryptoDefines_Internal.h; sourceTree = "<group>"; tabWidth = 8; };
+		1D419D032FC0695B003A7B83 /* NBSCryptoBases.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBSCryptoBases.h; sourceTree = "<group>"; tabWidth = 8; };
+		1D419D042FC0695B003A7B83 /* NBSCryptoCrypt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBSCryptoCrypt.m; sourceTree = "<group>"; tabWidth = 8; };
+		1D419D052FC0695B003A7B83 /* NBSCryptoBases.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBSCryptoBases.m; sourceTree = "<group>"; tabWidth = 8; };
+		1D419D062FC0695B003A7B83 /* NBSCryptoCrypt_Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBSCryptoCrypt_Internal.h; sourceTree = "<group>"; tabWidth = 8; };
+		1D419D072FC0695B003A7B83 /* NBSCryptoHash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBSCryptoHash.h; sourceTree = "<group>"; tabWidth = 8; };
+		1D419D082FC0695B003A7B83 /* NBSCryptoDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBSCryptoDefines.h; sourceTree = "<group>"; tabWidth = 8; };
+		1D419D092FC0695B003A7B83 /* NBSCryptoHash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBSCryptoHash.m; sourceTree = "<group>"; tabWidth = 8; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,9 +120,26 @@
 		1D419CD42FC0651B003A7B83 /* NBSCrypto */ = {
 			isa = PBXGroup;
 			children = (
+				1D419D002FC0692C003A7B83 /* classes */,
 				1D419CD52FC0651B003A7B83 /* NBSCrypto.h */,
 			);
 			path = NBSCrypto;
+			sourceTree = "<group>";
+		};
+		1D419D002FC0692C003A7B83 /* classes */ = {
+			isa = PBXGroup;
+			children = (
+				1D419D032FC0695B003A7B83 /* NBSCryptoBases.h */,
+				1D419D052FC0695B003A7B83 /* NBSCryptoBases.m */,
+				1D419D062FC0695B003A7B83 /* NBSCryptoCrypt_Internal.h */,
+				1D419D012FC0695A003A7B83 /* NBSCryptoCrypt.h */,
+				1D419D042FC0695B003A7B83 /* NBSCryptoCrypt.m */,
+				1D419D022FC0695A003A7B83 /* NBSCryptoDefines_Internal.h */,
+				1D419D082FC0695B003A7B83 /* NBSCryptoDefines.h */,
+				1D419D072FC0695B003A7B83 /* NBSCryptoHash.h */,
+				1D419D092FC0695B003A7B83 /* NBSCryptoHash.m */,
+			);
+			path = classes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -87,7 +149,13 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1D419D122FC0695B003A7B83 /* NBSCryptoBases.h in Headers */,
+				1D419D0A2FC0695B003A7B83 /* NBSCryptoCrypt.h in Headers */,
+				1D419D262FC0695B003A7B83 /* NBSCryptoDefines.h in Headers */,
+				1D419D222FC0695B003A7B83 /* NBSCryptoHash.h in Headers */,
+				1D419D1E2FC0695B003A7B83 /* NBSCryptoCrypt_Internal.h in Headers */,
 				1D419CD62FC0651B003A7B83 /* NBSCrypto.h in Headers */,
+				1D419D0E2FC0695B003A7B83 /* NBSCryptoDefines_Internal.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -95,7 +163,13 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1D419D132FC0695B003A7B83 /* NBSCryptoBases.h in Headers */,
+				1D419D0B2FC0695B003A7B83 /* NBSCryptoCrypt.h in Headers */,
+				1D419D272FC0695B003A7B83 /* NBSCryptoDefines.h in Headers */,
+				1D419D232FC0695B003A7B83 /* NBSCryptoHash.h in Headers */,
+				1D419D1F2FC0695B003A7B83 /* NBSCryptoCrypt_Internal.h in Headers */,
 				1D419CE72FC06723003A7B83 /* NBSCrypto.h in Headers */,
+				1D419D0F2FC0695B003A7B83 /* NBSCryptoDefines_Internal.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -103,7 +177,13 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1D419D142FC0695B003A7B83 /* NBSCryptoBases.h in Headers */,
+				1D419D0C2FC0695B003A7B83 /* NBSCryptoCrypt.h in Headers */,
+				1D419D282FC0695B003A7B83 /* NBSCryptoDefines.h in Headers */,
+				1D419D242FC0695B003A7B83 /* NBSCryptoHash.h in Headers */,
+				1D419D202FC0695B003A7B83 /* NBSCryptoCrypt_Internal.h in Headers */,
 				1D419CF32FC06814003A7B83 /* NBSCrypto.h in Headers */,
+				1D419D102FC0695B003A7B83 /* NBSCryptoDefines_Internal.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -111,7 +191,13 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1D419D152FC0695B003A7B83 /* NBSCryptoBases.h in Headers */,
+				1D419D0D2FC0695B003A7B83 /* NBSCryptoCrypt.h in Headers */,
+				1D419D292FC0695B003A7B83 /* NBSCryptoDefines.h in Headers */,
+				1D419D252FC0695B003A7B83 /* NBSCryptoHash.h in Headers */,
+				1D419D212FC0695B003A7B83 /* NBSCryptoCrypt_Internal.h in Headers */,
 				1D419CFF2FC06833003A7B83 /* NBSCrypto.h in Headers */,
+				1D419D112FC0695B003A7B83 /* NBSCryptoDefines_Internal.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -269,6 +355,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1D419D162FC0695B003A7B83 /* NBSCryptoCrypt.m in Sources */,
+				1D419D1A2FC0695B003A7B83 /* NBSCryptoBases.m in Sources */,
+				1D419D2A2FC0695B003A7B83 /* NBSCryptoHash.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,6 +365,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1D419D172FC0695B003A7B83 /* NBSCryptoCrypt.m in Sources */,
+				1D419D1B2FC0695B003A7B83 /* NBSCryptoBases.m in Sources */,
+				1D419D2B2FC0695B003A7B83 /* NBSCryptoHash.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -283,6 +375,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1D419D182FC0695B003A7B83 /* NBSCryptoCrypt.m in Sources */,
+				1D419D1C2FC0695B003A7B83 /* NBSCryptoBases.m in Sources */,
+				1D419D2C2FC0695B003A7B83 /* NBSCryptoHash.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -290,6 +385,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1D419D192FC0695B003A7B83 /* NBSCryptoCrypt.m in Sources */,
+				1D419D1D2FC0695B003A7B83 /* NBSCryptoBases.m in Sources */,
+				1D419D2D2FC0695B003A7B83 /* NBSCryptoHash.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
