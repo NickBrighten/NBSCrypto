@@ -42,7 +42,7 @@ Please have a look [here](https://help.github.com/articles/approving-a-pull-requ
 
 
 # Supported Cipher-Algorithms
-- __AES__
+- __AES / RIJNDAEL__
     - BIT-LENGTH: `128` `192` `256`
     - MODES: `CBC` `CCM` `CFB` `CTR` `EAX` `ECB` `F8` `GCM` `LRW` `OCB` `OCB3` `OFB` `XTS`
 - __ANUBIS / ANUBIS-TWEAK__
@@ -84,7 +84,7 @@ Please have a look [here](https://help.github.com/articles/approving-a-pull-requ
 - __IDEA__
     - BIT-LENGTH: `128`
     - MODES: `CBC` `CFB` `CTR` `EAX` `ECB` `F8` `OCB` `OFB`
-- __KASUMI__
+- __KASUMI / A5-3__
     - BIT-LENGTH: `128`
     - MODES: `CBC` `CFB` `CTR` `EAX` `ECB` `F8` `OCB` `OFB`
 - __KHAZAD__
