@@ -193,6 +193,10 @@
 	case NBSCrypto_HASH_SNEFRU:			{r=&snefru_desc;break;}
 	case NBSCrypto_HASH_STREEBOG_256:		{r=&streebog_256_desc;break;}
 	case NBSCrypto_HASH_STREEBOG_512:		{r=&streebog_512_desc;break;}
+	case NBSCrypto_HASH_SWIFFTX_224:		{r=&swifftx_224_desc;break;}
+	case NBSCrypto_HASH_SWIFFTX_256:		{r=&swifftx_256_desc;break;}
+	case NBSCrypto_HASH_SWIFFTX_384:		{r=&swifftx_384_desc;break;}
+	case NBSCrypto_HASH_SWIFFTX_512:		{r=&swifftx_512_desc;break;}
 	case NBSCrypto_HASH_TIGER1_128_3:		{r=&tiger1_128_3_desc;break;}
 	case NBSCrypto_HASH_TIGER1_160_3:		{r=&tiger1_160_3_desc;break;}
 	case NBSCrypto_HASH_TIGER1_192_3:		{r=&tiger1_192_3_desc;break;}

@@ -177,15 +177,15 @@ struct md5_state{
 };
 
 struct murmur3a_state{
+    unsigned len;
     unsigned h;
     unsigned carry;
-    unsigned len;
 };
 
 struct murmur3c_state{
+    unsigned len;
     unsigned h[4];
     unsigned carry[4];
-    unsigned len;
 };
 
 struct murmur3f_state{
@@ -269,15 +269,25 @@ struct snefru_state{
     unsigned char buf[32];
 };
 
-union streebog512{unsigned long long QWORD[8];} __attribute__((__aligned__(16)));
+__attribute__ ((__aligned__(16))) union streebog512{unsigned long long QWORD[8];}streebog512;
 struct streebog_state{
-    unsigned char buffer[64]	__attribute__((__aligned__(16)));
-    union streebog512 hash	__attribute__((__aligned__(16)));
-    union streebog512 h		__attribute__((__aligned__(16)));
-    union streebog512 N		__attribute__((__aligned__(16)));
-    union streebog512 Sigma	__attribute__((__aligned__(16)));
+    __attribute__ ((__aligned__(16))) unsigned char buffer[64];
+    __attribute__ ((__aligned__(16))) union streebog512 hash;
+    __attribute__ ((__aligned__(16))) union streebog512 h;
+    __attribute__ ((__aligned__(16))) union streebog512 N;
+    __attribute__ ((__aligned__(16))) union streebog512 Sigma;
     unsigned long bufsize;
     unsigned int digest_size;
+};
+
+struct swifftx_state{
+    unsigned int remainingSize;
+    unsigned short hashbitlen;
+    unsigned char remaining[175 + 1];
+    unsigned char currOutputBlock[65];
+    unsigned char numOfBitsChar[8];
+    unsigned char salt[8];
+    bool wasUpdated;
 };
 
 struct tiger_state{
@@ -342,6 +352,7 @@ typedef union hash_state{
     struct sm3_state		sm3;
     struct snefru_state		snefru;
     struct streebog_state	streebog;
+    struct swifftx_state	swifftx;
     struct tiger_state 		tiger;
     struct whirlpool_state 	whirlpool;
     struct xxhash_state 	xxh;
@@ -916,6 +927,19 @@ int streebog_process(hash_state *hs, const unsigned char *in, unsigned long inle
 int streebog_done(hash_state *hs, unsigned char *out);
 extern const struct hash_descriptor streebog_256_desc;
 extern const struct hash_descriptor streebog_512_desc;
+
+
+#pragma mark SWIFFTX
+int swifftx_224_init(hash_state *hs);
+int swifftx_256_init(hash_state *hs);
+int swifftx_384_init(hash_state *hs);
+int swifftx_512_init(hash_state *hs);
+int swifftx_process(hash_state *hs, const unsigned char *in, unsigned long inlen);
+int swifftx_done(hash_state *hs, unsigned char *out);
+extern const struct hash_descriptor swifftx_224_desc;
+extern const struct hash_descriptor swifftx_256_desc;
+extern const struct hash_descriptor swifftx_384_desc;
+extern const struct hash_descriptor swifftx_512_desc;
 
 
 #pragma mark TIGER

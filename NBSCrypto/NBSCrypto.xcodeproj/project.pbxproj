@@ -386,6 +386,10 @@
 		1D419EE72FC06DC9003A7B83 /* base32.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D419ED92FC06DC9003A7B83 /* base32.c */; };
 		1D419EE82FC06DC9003A7B83 /* base32.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D419ED92FC06DC9003A7B83 /* base32.c */; };
 		1D419EE92FC06DC9003A7B83 /* base32.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D419ED92FC06DC9003A7B83 /* base32.c */; };
+		1D4B76012FC5EFAD00159BB6 /* swifftx.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D4B76002FC5EFAD00159BB6 /* swifftx.c */; };
+		1D4B76022FC5EFAD00159BB6 /* swifftx.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D4B76002FC5EFAD00159BB6 /* swifftx.c */; };
+		1D4B76032FC5EFAD00159BB6 /* swifftx.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D4B76002FC5EFAD00159BB6 /* swifftx.c */; };
+		1D4B76042FC5EFAD00159BB6 /* swifftx.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D4B76002FC5EFAD00159BB6 /* swifftx.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -495,6 +499,7 @@
 		1D419ED72FC06DC8003A7B83 /* base_convert.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = base_convert.c; sourceTree = "<group>"; tabWidth = 8; };
 		1D419ED82FC06DC8003A7B83 /* base64.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = base64.c; sourceTree = "<group>"; tabWidth = 8; };
 		1D419ED92FC06DC9003A7B83 /* base32.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = base32.c; sourceTree = "<group>"; tabWidth = 8; };
+		1D4B76002FC5EFAD00159BB6 /* swifftx.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = swifftx.c; sourceTree = "<group>"; tabWidth = 8; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -677,6 +682,7 @@
 				1D419DA82FC06C94003A7B83 /* sm3.c */,
 				1D419DA72FC06C94003A7B83 /* snefru.c */,
 				1D419DBC2FC06C96003A7B83 /* streebog.c */,
+				1D4B76002FC5EFAD00159BB6 /* swifftx.c */,
 				1D419DAC2FC06C95003A7B83 /* tiger.c */,
 				1D419DBD2FC06C96003A7B83 /* whirpool.c */,
 				1D419DAF2FC06C95003A7B83 /* xxhash.c */,
@@ -1007,6 +1013,7 @@
 				1D419DDA2FC06C96003A7B83 /* sm3.c in Sources */,
 				1D419DD62FC06C96003A7B83 /* snefru.c in Sources */,
 				1D419E2A2FC06C97003A7B83 /* streebog.c in Sources */,
+				1D4B76012FC5EFAD00159BB6 /* swifftx.c in Sources */,
 				1D419DEA2FC06C97003A7B83 /* tiger.c in Sources */,
 				1D419E2E2FC06C97003A7B83 /* whirpool.c in Sources */,
 				1D419DF62FC06C97003A7B83 /* xxhash.c in Sources */,
@@ -1101,6 +1108,7 @@
 				1D419DDB2FC06C96003A7B83 /* sm3.c in Sources */,
 				1D419DD72FC06C96003A7B83 /* snefru.c in Sources */,
 				1D419E2B2FC06C97003A7B83 /* streebog.c in Sources */,
+				1D4B76022FC5EFAD00159BB6 /* swifftx.c in Sources */,
 				1D419DEB2FC06C97003A7B83 /* tiger.c in Sources */,
 				1D419E2F2FC06C97003A7B83 /* whirpool.c in Sources */,
 				1D419DF72FC06C97003A7B83 /* xxhash.c in Sources */,
@@ -1195,6 +1203,7 @@
 				1D419DDC2FC06C96003A7B83 /* sm3.c in Sources */,
 				1D419DD82FC06C96003A7B83 /* snefru.c in Sources */,
 				1D419E2C2FC06C97003A7B83 /* streebog.c in Sources */,
+				1D4B76032FC5EFAD00159BB6 /* swifftx.c in Sources */,
 				1D419DEC2FC06C97003A7B83 /* tiger.c in Sources */,
 				1D419E302FC06C98003A7B83 /* whirpool.c in Sources */,
 				1D419DF82FC06C97003A7B83 /* xxhash.c in Sources */,
@@ -1289,6 +1298,7 @@
 				1D419DDD2FC06C96003A7B83 /* sm3.c in Sources */,
 				1D419DD92FC06C96003A7B83 /* snefru.c in Sources */,
 				1D419E2D2FC06C97003A7B83 /* streebog.c in Sources */,
+				1D4B76042FC5EFAD00159BB6 /* swifftx.c in Sources */,
 				1D419DED2FC06C97003A7B83 /* tiger.c in Sources */,
 				1D419E312FC06C98003A7B83 /* whirpool.c in Sources */,
 				1D419D952FC06C5D003A7B83 /* f9.c in Sources */,
@@ -1379,7 +1389,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 20E2CEH0;
+				CURRENT_PROJECT_VERSION = 20E92E5F;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 2VUNR4Y3UN;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -1411,7 +1421,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 20E2CEH0;
+				CURRENT_PROJECT_VERSION = 20E92E5F;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 2VUNR4Y3UN;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -1440,7 +1450,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 20E2CEH0;
+				CURRENT_PROJECT_VERSION = 20E92E5F;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 2VUNR4Y3UN;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -1471,7 +1481,7 @@
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = NO;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 20E2CEH0;
+				CURRENT_PROJECT_VERSION = 20E92E5F;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 2VUNR4Y3UN;
 				DYLIB_COMPATIBILITY_VERSION = 1;
