@@ -1,7 +1,7 @@
 //
 //	simd.c
-//	Authors / Developers		: ???
-//	Last Modified (Original)	: ???
+//	Authors / Developers		: Gaëtan Leurent, Charles Bouillaguet, Pierre-Alain Fouque
+//	Last Modified (Original)	: 2008
 //
 
 #include "nbs_crypto.h"
