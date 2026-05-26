@@ -217,6 +217,8 @@ Please have a look [here](https://help.github.com/articles/approving-a-pull-requ
     - BIT-LENGTH: `256`
 - __STREEBOG / GOST-R34112012__
     - BIT-LENGTH: `256` `512`
+- __SWIFFTX__
+    - BIT-LENGTH: `224` `256` `384` `512`
 - __TIGER / TIGER-2__
     - BIT-LENGTH: `128` `160` `192`
 - __WHIRPOOL__
