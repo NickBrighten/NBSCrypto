@@ -1,5 +1,7 @@
 //
 //	ocb.c
+//	Authors / Developers		: Phillip Rogaway, Mihir Bellare, John Black, Ted Krovetz
+//	Last Modified (Original)	: 2001
 //
 
 #include "nbs_crypto.h"

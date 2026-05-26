@@ -1,5 +1,7 @@
 //
 //	xts.c
+//	Authors / Developers		: Phillip Rogaway
+//	Last Modified (Original)	: 2004
 //
 
 #include "nbs_crypto.h"

@@ -1,5 +1,7 @@
 //
 //	chachapoly1305.c
+//	Authors / Developers		: Daniel J. Bernstein
+//	Last Modified (Original)	: 2008
 //
 
 #include "nbs_crypto.h"

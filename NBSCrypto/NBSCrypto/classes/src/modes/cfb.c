@@ -1,5 +1,7 @@
 //
 //	cfb.c
+//	Authors / Developers		: Morris J. Dworkin
+//	Last Modified (Original)	: 1980
 //
 
 #include "nbs_crypto.h"

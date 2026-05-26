@@ -1,5 +1,7 @@
 //
 //	ofb.c
+//	Authors / Developers		: Carl M. Campbell Jr.
+//	Last Modified (Original)	: 1977
 //
 
 #include "nbs_crypto.h"

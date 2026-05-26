@@ -1,5 +1,7 @@
 //
 //	eax.c
+//	Authors / Developers		: Mihir Bellare, Phillip Rogaway, David Wagner
+//	Last Modified (Original)	: 2003
 //
 
 #include "nbs_crypto.h"

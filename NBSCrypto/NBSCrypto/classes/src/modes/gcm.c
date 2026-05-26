@@ -1,5 +1,7 @@
 //
 //	gcm.c
+//	Authors / Developers		: David A. McGrew, John Viega
+//	Last Modified (Original)	: 2004
 //
 
 #include "nbs_crypto.h"

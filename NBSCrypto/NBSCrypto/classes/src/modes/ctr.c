@@ -1,5 +1,7 @@
 //
 //	ctr.c
+//	Authors / Developers		: Whitfield Diffie, Martin Hellman
+//	Last Modified (Original)	: 1979
 //
 
 #include "nbs_crypto.h"

@@ -1,5 +1,7 @@
 //
 //	lrw.c
+//	Authors / Developers		: Moses Liskov, Ronald L. Rivest, David Wagner
+//	Last Modified (Original)	: 2002
 //
 
 #include "nbs_crypto.h"

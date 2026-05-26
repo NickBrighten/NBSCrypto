@@ -1,5 +1,7 @@
 //
 //	ocb3.c
+//	Authors / Developers		: Ted Krovetz, Phillip Rogaway
+//	Last Modified (Original)	: 2011
 //
 
 #include "nbs_crypto.h"
