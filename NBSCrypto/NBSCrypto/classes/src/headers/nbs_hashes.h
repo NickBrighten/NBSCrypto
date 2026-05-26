@@ -269,13 +269,13 @@ struct snefru_state{
     unsigned char buf[32];
 };
 
-__attribute__ ((__aligned__(16))) union streebog512{unsigned long long QWORD[8];}streebog512;
+union streebog512{unsigned long long QWORD[8];} __attribute__((__aligned__(16)));
 struct streebog_state{
-    __attribute__ ((__aligned__(16))) unsigned char buffer[64];
-    __attribute__ ((__aligned__(16))) union streebog512 hash;
-    __attribute__ ((__aligned__(16))) union streebog512 h;
-    __attribute__ ((__aligned__(16))) union streebog512 N;
-    __attribute__ ((__aligned__(16))) union streebog512 Sigma;
+    unsigned char buffer[64]	__attribute__((__aligned__(16)));
+    union streebog512 hash	__attribute__((__aligned__(16)));
+    union streebog512 h		__attribute__((__aligned__(16)));
+    union streebog512 N		__attribute__((__aligned__(16)));
+    union streebog512 Sigma	__attribute__((__aligned__(16)));
     unsigned long bufsize;
     unsigned int digest_size;
 };
