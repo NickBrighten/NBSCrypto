@@ -293,65 +293,11 @@ static inline void _process_last_msgs(hash_state *hs)
 
     i++;
 
-    /*
-    for(i;i<32;i++){
-	((unsigned char*)hs->luffa.buffer)[i] = 0;
-    }
-     */
-
     for(i=0;i<8;i++) {
 	hs->luffa.buffer[i] = BYTES_SWAP32((hs->luffa.buffer[i]));
     }
     for(i=0;i<hs->luffa.width*2;i++) c[i] = CNS[i];
     _rnd(hs, c);
-
-    /*    switch(state->limit) {
-     case 1:
-     if(tail_len < MSG_BLOCK_BIT_LEN - 64) {
-     state->buffer[6] = (uint32) (state->bitlen[0]>>32);
-     state->buffer[7] = (uint32) state->bitlen[0];
-     for(i=0;i<state->width*2;i++) c[i] = CNS[i];
-     rnd(state, c);
-     }
-     else {
-     for(i=0;i<state->width*2;i++) c[i] = CNS[i];
-     rnd(state, c);
-
-     for(i=0;i<6;i++) state->buffer[i] = 0;
-     state->buffer[6] = (uint32) (state->bitlen[0]>>32);
-     state->buffer[7] = (uint32) state->bitlen[0];
-     for(i=0;i<state->width*2;i++) c[i] = CNS[i];
-
-     rnd(state, c);
-     }
-     break;
-     case 2:
-     if(tail_len < MSG_BLOCK_BIT_LEN - 2*64) {
-     state->buffer[4] = (uint32) (state->bitlen[0]>>32);
-     state->buffer[5] = (uint32) state->bitlen[0];
-     state->buffer[6] = (uint32) (state->bitlen[1]>>32);
-     state->buffer[7] = (uint32) state->bitlen[1];
-     for(i=0;i<state->width*2;i++) c[i] = CNS[i];
-     rnd(state, c);
-     }
-     else {
-     for(i=0;i<state->width*2;i++) c[i] = CNS[i];
-     rnd(state, c);
-
-     for(i=0;i<4;i++) state->buffer[i] = 0;
-     state->buffer[4] = (uint32) (state->bitlen[0]>>32);
-     state->buffer[5] = (uint32) state->bitlen[0];
-     state->buffer[6] = (uint32) (state->bitlen[1]>>32);
-     state->buffer[7] = (uint32) state->bitlen[1];
-     for(i=0;i<state->width*2;i++) c[i] = CNS[i];
-
-     rnd(state, c);
-     }
-     break;
-     default:
-     break;
-     }*/
-
 }
 
 static inline void _finalization(hash_state *hs, unsigned int *b)
