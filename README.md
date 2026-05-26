@@ -7,7 +7,7 @@ NSCrypto is written in `Objective-C` and `C`.
 It is possible to use the `.framework` or `.xcframework` in both Objective-C and Swift.\
 To integrate the framework into an Objective-C project, you can use our guide: [Integrate NBSCrypto to an Objective-C Project](https://localhost) and to integrate it into a Swift project, you can use our guide: [Integrate NBSCrypto to an Swift Project](https://localhost).
 
-Precompiled Builds will be available as single target `.framework` or as multiple tagets `.xcframework` for production/deployment and simulators [here](https://github.com/NickBrighten/NBSCrypto/releases).
+Precompiled Builds will be available as multiple tagets `.xcframework` for production/deployment and simulators [here](https://github.com/NickBrighten/NBSCrypto/releases).
 #
 
 
