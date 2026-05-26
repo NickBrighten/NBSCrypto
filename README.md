@@ -211,6 +211,8 @@ Please have a look [here](https://help.github.com/articles/approving-a-pull-requ
     - BIT-LENGTH: `192` `224` `256` `384` `512`
 - __SHAKE__
     - BIT-LENGTH: `128` `256`
+- __SIMD__
+    - BIT-LENGTH: `224` `256` `384` `512`
 - __SM3__
     - BIT-LENGTH: `256`
 - __SNEFRU__
