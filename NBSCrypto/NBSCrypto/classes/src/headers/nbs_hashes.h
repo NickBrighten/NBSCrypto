@@ -269,6 +269,7 @@ struct snefru_state{
     unsigned char buf[32];
 };
 
+
 union streebog512{unsigned long long QWORD[8];} __attribute__((__aligned__(16)));
 struct streebog_state{
     unsigned char buffer[64]	__attribute__((__aligned__(16)));
