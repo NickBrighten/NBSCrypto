@@ -521,7 +521,9 @@ unsigned char SBox[256] = {
 
 
 
-static void AddToCurrInBase256(unsigned char value[HAIFA_NUM_OF_BITS_SIZE], unsigned short toAdd)
+
+#pragma mark - INLINE
+static inline void _swifftx_addToCurrInBase256(unsigned char value[HAIFA_NUM_OF_BITS_SIZE], unsigned short toAdd)
 {
     unsigned char remainder = 0;
     short i;
@@ -548,7 +550,7 @@ static void AddToCurrInBase256(unsigned char value[HAIFA_NUM_OF_BITS_SIZE], unsi
     }
 }
 
-int16_t TranslateToBase256(int32_t input[EIGHTH_N], unsigned char output[EIGHTH_N])
+static inline int16_t _swifftx_translateToBase256(int32_t input[EIGHTH_N], unsigned char output[EIGHTH_N])
 {
     int32_t pairs[EIGHTH_N / 2];
     int i;
@@ -575,7 +577,7 @@ int16_t TranslateToBase256(int32_t input[EIGHTH_N], unsigned char output[EIGHTH_
     return (pairs[EIGHTH_N/2 - 1] >> 16);
 }
 
-int BitReverse(int index)
+static inline int _swifftx_bitreverse(int index)
 {
     int reversed = 0, bit;
 
@@ -586,8 +588,8 @@ int BitReverse(int index)
     return reversed;
 }
 
-void CalcOmegaPowers(void);
-void CalcOmegaPowers()
+void _swifftx_calc_omega_powers(void);
+void _swifftx_calc_omega_powers()
 {
     int i;
     omegaPowers[0] = 1;
@@ -597,7 +599,7 @@ void CalcOmegaPowers()
     }
 }
 
-void DFT(int input[N], int output[N])
+static inline void _swifftx_dft(int input[N], int output[N])
 {
     int k, i;
 
@@ -612,13 +614,13 @@ void DFT(int input[N], int output[N])
     }
 }
 
-void InitializeSWIFFTX(void);
-void InitializeSWIFFTX()
+static inline void _swifftx_initialize(void);
+static inline void _swifftx_initialize()
 {
-    CalcOmegaPowers();
+    _swifftx_calc_omega_powers();
 }
 
-void ComputeSingleSWIFFT(unsigned char *input, unsigned short m, unsigned char output[SWIFFTX_OUTPUT_BLOCK_SIZE], const int16_t *a)
+static inline void _swifft_compute_single(unsigned char *input, unsigned short m, unsigned char output[SWIFFTX_OUTPUT_BLOCK_SIZE], const int16_t *a)
 {
     int i, j;
     uint8_t carry = 0;
@@ -635,14 +637,14 @@ void ComputeSingleSWIFFT(unsigned char *input, unsigned short m, unsigned char o
 	}
 
 	for(i = 0; i < N; ++i){
-	    reversedInputBits[i] = inputBits[BitReverse(i)];
+	    reversedInputBits[i] = inputBits[_swifftx_bitreverse(i)];
 	}
 
 	for(i = 0; i < N; ++i){
 	    reversedInputBits[i] *= omegaPowers[i];
 	}
 
-	DFT(reversedInputBits, dft);
+	_swifftx_dft(reversedInputBits, dft);
 
 	for(i = 0; i < N; ++i){
 	    result[i] += dft[i] * a[i];
@@ -654,26 +656,26 @@ void ComputeSingleSWIFFT(unsigned char *input, unsigned short m, unsigned char o
     }
 
     for(i = 0; i < 8; ++i){
-	int carryBit = TranslateToBase256(result + (8 * i), output + (8 * i));
+	int carryBit = _swifftx_translateToBase256(result + (8 * i), output + (8 * i));
 	carry |= carryBit << i;
     }
 
     output[N] = carry;
 }
 
-void ComputeSingleSWIFFTX(unsigned char input[SWIFFTX_INPUT_BLOCK_SIZE], unsigned char output[SWIFFTX_OUTPUT_BLOCK_SIZE], bool doSmooth)
+static inline void _swifftx_compute_single(unsigned char input[SWIFFTX_INPUT_BLOCK_SIZE], unsigned char output[SWIFFTX_OUTPUT_BLOCK_SIZE], bool doSmooth)
 {
     int i;
     unsigned char intermediate[N * 3 + 8];
     unsigned char carry0, carry1, carry2;
 
-    ComputeSingleSWIFFT(input, M, intermediate, As);
+    _swifft_compute_single(input, M, intermediate, As);
     carry0 = intermediate[N];
 
-    ComputeSingleSWIFFT(input, M, intermediate + N, As + (N * M));
+    _swifft_compute_single(input, M, intermediate + N, As + (N * M));
     carry1 = intermediate[2 * N];
 
-    ComputeSingleSWIFFT(input, M, intermediate + (2 * N), As + (2 * N * M));
+    _swifft_compute_single(input, M, intermediate + (2 * N), As + (2 * N * M));
     carry2 = intermediate[3 * N];
 
     intermediate[3 * N] = carry0;
@@ -686,7 +688,7 @@ void ComputeSingleSWIFFTX(unsigned char input[SWIFFTX_INPUT_BLOCK_SIZE], unsigne
 	intermediate[i] = SBox[intermediate[i]];
     }
 
-    ComputeSingleSWIFFT(intermediate, (3 * EIGHTH_N) + 1 , output, As);
+    _swifft_compute_single(intermediate, (3 * EIGHTH_N) + 1 , output, As);
 
     if(doSmooth){
 	uint8_t outputBits[(N + 1) * 8];
@@ -747,106 +749,108 @@ static inline int _swifftx_init(hash_state *state, int hashbitlen)
     memset(state->swifftx.numOfBitsChar, 0, HAIFA_NUM_OF_BITS_SIZE);
     memcpy(state->swifftx.salt, saltValueChar, HAIFA_SALT_SIZE);
 
-    InitializeSWIFFTX();
+    _swifftx_initialize();
 
     return NBSCrypto_OK;
 }
 
 
 
+
+#pragma mark - FUNCTIONS
 
 int swifftx_224_init(hash_state *hs){return _swifftx_init(hs, 224);}
 int swifftx_256_init(hash_state *hs){return _swifftx_init(hs, 256);}
 int swifftx_384_init(hash_state *hs){return _swifftx_init(hs, 384);}
 int swifftx_512_init(hash_state *hs){return _swifftx_init(hs, 512);}
 
-int swifftx_process(hash_state *state, const unsigned char *data, unsigned long databitlen)
+int swifftx_process(hash_state *hs, const unsigned char *in, unsigned long inlen)
 {
     int sizeOfInputAfterRemaining = 0;
     unsigned char currInputBlock[SWIFFTX_INPUT_BLOCK_SIZE] = {0};
     bool wasSingleBlockHandled = false;
 
-    state->swifftx.wasUpdated = true;
+    hs->swifftx.wasUpdated = true;
 
-    if(databitlen == 0){
+    if(inlen == 0){
 	return NBSCrypto_OK;
     }
 
-    if(state->swifftx.remainingSize % 8){
+    if(hs->swifftx.remainingSize % 8){
 	return NBSCrypto_ERROR;
     }
 
-    state->swifftx.remainingSize /= 8;
+    hs->swifftx.remainingSize /= 8;
 
-    while (((databitlen / 8) + state->swifftx.remainingSize) >= HAIFA_INPUT_BLOCK_SIZE){
-	memcpy(currInputBlock, state->swifftx.currOutputBlock, SWIFFTX_OUTPUT_BLOCK_SIZE);
+    while (((inlen / 8) + hs->swifftx.remainingSize) >= HAIFA_INPUT_BLOCK_SIZE){
+	memcpy(currInputBlock, hs->swifftx.currOutputBlock, SWIFFTX_OUTPUT_BLOCK_SIZE);
 
-	if (state->swifftx.remainingSize){
-	    memcpy(currInputBlock + SWIFFTX_OUTPUT_BLOCK_SIZE, state->swifftx.remaining, state->swifftx.remainingSize);
+	if (hs->swifftx.remainingSize){
+	    memcpy(currInputBlock + SWIFFTX_OUTPUT_BLOCK_SIZE, hs->swifftx.remaining, hs->swifftx.remainingSize);
 	}
 
-	sizeOfInputAfterRemaining = SWIFFTX_INPUT_BLOCK_SIZE - SWIFFTX_OUTPUT_BLOCK_SIZE - ((int) state->swifftx.remainingSize) - HAIFA_NUM_OF_BITS_SIZE - HAIFA_SALT_SIZE;
+	sizeOfInputAfterRemaining = SWIFFTX_INPUT_BLOCK_SIZE - SWIFFTX_OUTPUT_BLOCK_SIZE - ((int) hs->swifftx.remainingSize) - HAIFA_NUM_OF_BITS_SIZE - HAIFA_SALT_SIZE;
 
-	memcpy(currInputBlock + SWIFFTX_OUTPUT_BLOCK_SIZE + state->swifftx.remainingSize, data, sizeOfInputAfterRemaining);
-	memcpy(currInputBlock + SWIFFTX_OUTPUT_BLOCK_SIZE + state->swifftx.remainingSize + sizeOfInputAfterRemaining, state->swifftx.numOfBitsChar, HAIFA_NUM_OF_BITS_SIZE);
-	memcpy(currInputBlock + SWIFFTX_OUTPUT_BLOCK_SIZE + state->swifftx.remainingSize + sizeOfInputAfterRemaining + HAIFA_NUM_OF_BITS_SIZE, state->swifftx.salt, HAIFA_SALT_SIZE);
+	memcpy(currInputBlock + SWIFFTX_OUTPUT_BLOCK_SIZE + hs->swifftx.remainingSize, in, sizeOfInputAfterRemaining);
+	memcpy(currInputBlock + SWIFFTX_OUTPUT_BLOCK_SIZE + hs->swifftx.remainingSize + sizeOfInputAfterRemaining, hs->swifftx.numOfBitsChar, HAIFA_NUM_OF_BITS_SIZE);
+	memcpy(currInputBlock + SWIFFTX_OUTPUT_BLOCK_SIZE + hs->swifftx.remainingSize + sizeOfInputAfterRemaining + HAIFA_NUM_OF_BITS_SIZE, hs->swifftx.salt, HAIFA_SALT_SIZE);
 
-	ComputeSingleSWIFFTX(currInputBlock, state->swifftx.currOutputBlock, false);
-	AddToCurrInBase256(state->swifftx.numOfBitsChar, HAIFA_INPUT_BLOCK_SIZE * 8);
+	_swifftx_compute_single(currInputBlock, hs->swifftx.currOutputBlock, false);
+	_swifftx_addToCurrInBase256(hs->swifftx.numOfBitsChar, HAIFA_INPUT_BLOCK_SIZE * 8);
 
 	wasSingleBlockHandled = true;
-	data += sizeOfInputAfterRemaining;
-	databitlen -= (sizeOfInputAfterRemaining * 8);
-	state->swifftx.remainingSize = 0;
+	in += sizeOfInputAfterRemaining;
+	inlen -= (sizeOfInputAfterRemaining * 8);
+	hs->swifftx.remainingSize = 0;
     }
 
     if(wasSingleBlockHandled){
-	state->swifftx.remainingSize = (unsigned int) databitlen;
-	if (state->swifftx.remainingSize){
-	    memcpy(state->swifftx.remaining, data, (state->swifftx.remainingSize + 7) / 8);
+	hs->swifftx.remainingSize = (unsigned int)inlen;
+	if (hs->swifftx.remainingSize){
+	    memcpy(hs->swifftx.remaining, in, (hs->swifftx.remainingSize + 7) / 8);
 	}
     }else{
-	memcpy(state->swifftx.remaining + state->swifftx.remainingSize, data, (size_t) (databitlen + 7) / 8);
-	state->swifftx.remainingSize = (state->swifftx.remainingSize * 8) + (unsigned short) databitlen;
+	memcpy(hs->swifftx.remaining + hs->swifftx.remainingSize, in, (size_t)(inlen + 7) / 8);
+	hs->swifftx.remainingSize = (hs->swifftx.remainingSize * 8) + (unsigned short)inlen;
     }
 
     return NBSCrypto_OK;
 }
 
-int swifftx_done(hash_state *state, unsigned char *hashval)
+int swifftx_done(hash_state *hs, unsigned char *out)
 {
     int i;
     bool toAddFinalBlock = false;
-    unsigned short sizeOfLastInputBlock = (state->swifftx.remainingSize + 1 + 7) / 8;
+    unsigned short sizeOfLastInputBlock = (hs->swifftx.remainingSize + 1 + 7) / 8;
 
     short numOfZeroBytesInPadding = (short) SWIFFTX_INPUT_BLOCK_SIZE - SWIFFTX_OUTPUT_BLOCK_SIZE - sizeOfLastInputBlock - (2 * HAIFA_NUM_OF_BITS_SIZE) - 2 - HAIFA_SALT_SIZE;
 
     unsigned char currInputBlock[SWIFFTX_INPUT_BLOCK_SIZE] = {0};
     unsigned char messageLengthChar[HAIFA_NUM_OF_BITS_SIZE] = {0};
-    unsigned char digestSizeLSB = state->swifftx.hashbitlen % 256;
-    unsigned char digestSizeMSB = (state->swifftx.hashbitlen - digestSizeLSB) / 256;
+    unsigned char digestSizeLSB = hs->swifftx.hashbitlen % 256;
+    unsigned char digestSizeMSB = (hs->swifftx.hashbitlen - digestSizeLSB) / 256;
 
     if(numOfZeroBytesInPadding < 1){
 	toAddFinalBlock = true;
     }
 
-    memcpy(currInputBlock, state->swifftx.currOutputBlock, SWIFFTX_OUTPUT_BLOCK_SIZE);
+    memcpy(currInputBlock, hs->swifftx.currOutputBlock, SWIFFTX_OUTPUT_BLOCK_SIZE);
 
-    if(state->swifftx.remainingSize % 8 == 0){
-	state->swifftx.remaining[sizeOfLastInputBlock - 1] = 0x80;
+    if(hs->swifftx.remainingSize % 8 == 0){
+	hs->swifftx.remaining[sizeOfLastInputBlock - 1] = 0x80;
     }else{
-	state->swifftx.remaining[sizeOfLastInputBlock - 1] |= (1 << (7 - (state->swifftx.remainingSize % 8)));
+	hs->swifftx.remaining[sizeOfLastInputBlock - 1] |= (1 << (7 - (hs->swifftx.remainingSize % 8)));
     }
 
     if (sizeOfLastInputBlock){
-	memcpy(currInputBlock + SWIFFTX_OUTPUT_BLOCK_SIZE, state->swifftx.remaining, sizeOfLastInputBlock);
+	memcpy(currInputBlock + SWIFFTX_OUTPUT_BLOCK_SIZE, hs->swifftx.remaining, sizeOfLastInputBlock);
     }
 
     for(i = 0; i < HAIFA_NUM_OF_BITS_SIZE; ++i){
-	messageLengthChar[i] = state->swifftx.numOfBitsChar[i];
+	messageLengthChar[i] = hs->swifftx.numOfBitsChar[i];
     }
     if(sizeOfLastInputBlock){
-	AddToCurrInBase256(messageLengthChar, sizeOfLastInputBlock * 8);
+	_swifftx_addToCurrInBase256(messageLengthChar, sizeOfLastInputBlock * 8);
     }
 
     if(!toAddFinalBlock){
@@ -862,13 +866,13 @@ int swifftx_done(hash_state *state, unsigned char *hashval)
 	}
     }
 
-    memcpy(currInputBlock + SWIFFTX_OUTPUT_BLOCK_SIZE + HAIFA_INPUT_BLOCK_SIZE, state->swifftx.numOfBitsChar, HAIFA_NUM_OF_BITS_SIZE);
-    memcpy(currInputBlock + SWIFFTX_OUTPUT_BLOCK_SIZE + HAIFA_INPUT_BLOCK_SIZE + HAIFA_NUM_OF_BITS_SIZE, state->swifftx.salt, HAIFA_SALT_SIZE);
+    memcpy(currInputBlock + SWIFFTX_OUTPUT_BLOCK_SIZE + HAIFA_INPUT_BLOCK_SIZE, hs->swifftx.numOfBitsChar, HAIFA_NUM_OF_BITS_SIZE);
+    memcpy(currInputBlock + SWIFFTX_OUTPUT_BLOCK_SIZE + HAIFA_INPUT_BLOCK_SIZE + HAIFA_NUM_OF_BITS_SIZE, hs->swifftx.salt, HAIFA_SALT_SIZE);
 
-    ComputeSingleSWIFFTX(currInputBlock, state->swifftx.currOutputBlock, !toAddFinalBlock);
+    _swifftx_compute_single(currInputBlock, hs->swifftx.currOutputBlock, !toAddFinalBlock);
 
     if(toAddFinalBlock){
-	memcpy(currInputBlock, state->swifftx.currOutputBlock, SWIFFTX_OUTPUT_BLOCK_SIZE);
+	memcpy(currInputBlock, hs->swifftx.currOutputBlock, SWIFFTX_OUTPUT_BLOCK_SIZE);
 
 	memset(currInputBlock + SWIFFTX_OUTPUT_BLOCK_SIZE , 0, HAIFA_INPUT_BLOCK_SIZE - HAIFA_NUM_OF_BITS_SIZE - 2);
 	memcpy(currInputBlock + SWIFFTX_OUTPUT_BLOCK_SIZE + HAIFA_INPUT_BLOCK_SIZE - HAIFA_NUM_OF_BITS_SIZE - 2, messageLengthChar, HAIFA_NUM_OF_BITS_SIZE);
@@ -877,13 +881,13 @@ int swifftx_done(hash_state *state, unsigned char *hashval)
 	currInputBlock[SWIFFTX_OUTPUT_BLOCK_SIZE + HAIFA_INPUT_BLOCK_SIZE - 1] = digestSizeLSB;
 
 	memset(currInputBlock + SWIFFTX_OUTPUT_BLOCK_SIZE + HAIFA_INPUT_BLOCK_SIZE, 0, HAIFA_NUM_OF_BITS_SIZE);
-	memcpy(currInputBlock + SWIFFTX_OUTPUT_BLOCK_SIZE + HAIFA_INPUT_BLOCK_SIZE + HAIFA_NUM_OF_BITS_SIZE, state->swifftx.salt, HAIFA_SALT_SIZE);
+	memcpy(currInputBlock + SWIFFTX_OUTPUT_BLOCK_SIZE + HAIFA_INPUT_BLOCK_SIZE + HAIFA_NUM_OF_BITS_SIZE, hs->swifftx.salt, HAIFA_SALT_SIZE);
 
-	ComputeSingleSWIFFTX(currInputBlock, state->swifftx.currOutputBlock, true);
+	_swifftx_compute_single(currInputBlock, hs->swifftx.currOutputBlock, true);
     }
 
-    for(i = 0; i < (state->swifftx.hashbitlen / 8); ++i){
-	hashval[i] = state->swifftx.currOutputBlock[i];
+    for(i = 0; i < (hs->swifftx.hashbitlen / 8); ++i){
+	out[i] = hs->swifftx.currOutputBlock[i];
     }
 
     return NBSCrypto_OK;

@@ -257,6 +257,15 @@ struct shabal_state{
     unsigned Whigh, Wlow;
 };
 
+struct simd_state {
+    unsigned int hashbitlen;
+    unsigned int blocksize;
+    unsigned int n_feistels;
+    unsigned long long count;
+    uint32_t *A, *B, *C, *D;
+    unsigned char* buffer;
+};
+
 struct sm3_state{
     unsigned total[2];
     unsigned state[8];
@@ -349,6 +358,7 @@ typedef union hash_state{
     struct sha512_state		sha512;
     struct sha3_state		sha3;
     struct shabal_state		shabal;
+    struct simd_state		simd;
     struct sm3_state		sm3;
     struct snefru_state		snefru;
     struct streebog_state	streebog;
@@ -904,6 +914,19 @@ extern const struct hash_descriptor shabal_224_desc;
 extern const struct hash_descriptor shabal_256_desc;
 extern const struct hash_descriptor shabal_384_desc;
 extern const struct hash_descriptor shabal_512_desc;
+
+
+#pragma mark SIMD
+int simd_224_init(hash_state *hs);
+int simd_256_init(hash_state *hs);
+int simd_384_init(hash_state *hs);
+int simd_512_init(hash_state *hs);
+int simd_process(hash_state *hs, const unsigned char *in, unsigned long inlen);
+int simd_done(hash_state *hs, unsigned char *out);
+extern const struct hash_descriptor simd_224_desc;
+extern const struct hash_descriptor simd_256_desc;
+extern const struct hash_descriptor simd_384_desc;
+extern const struct hash_descriptor simd_512_desc;
 
 
 #pragma mark SM3

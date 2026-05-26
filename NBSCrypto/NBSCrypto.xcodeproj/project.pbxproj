@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1D0E78BF2FC60F91005EE298 /* simd.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D0E78BE2FC60F91005EE298 /* simd.c */; };
+		1D0E78C02FC60F91005EE298 /* simd.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D0E78BE2FC60F91005EE298 /* simd.c */; };
+		1D0E78C12FC60F91005EE298 /* simd.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D0E78BE2FC60F91005EE298 /* simd.c */; };
+		1D0E78C22FC60F91005EE298 /* simd.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D0E78BE2FC60F91005EE298 /* simd.c */; };
 		1D419CD62FC0651B003A7B83 /* NBSCrypto.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D419CD52FC0651B003A7B83 /* NBSCrypto.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1D419CE72FC06723003A7B83 /* NBSCrypto.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D419CD52FC0651B003A7B83 /* NBSCrypto.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1D419CF32FC06814003A7B83 /* NBSCrypto.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D419CD52FC0651B003A7B83 /* NBSCrypto.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -393,6 +397,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1D0E78BE2FC60F91005EE298 /* simd.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = simd.c; sourceTree = "<group>"; tabWidth = 8; };
 		1D419CD22FC0651B003A7B83 /* NBSCrypto.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NBSCrypto.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D419CD52FC0651B003A7B83 /* NBSCrypto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBSCrypto.h; sourceTree = "<group>"; tabWidth = 8; };
 		1D419CE12FC066EF003A7B83 /* NBSCrypto.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NBSCrypto.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -679,6 +684,7 @@
 				1D419DC02FC06C96003A7B83 /* sha2.c */,
 				1D419DAA2FC06C95003A7B83 /* sha3.c */,
 				1D419DAE2FC06C95003A7B83 /* shabal.c */,
+				1D0E78BE2FC60F91005EE298 /* simd.c */,
 				1D419DA82FC06C94003A7B83 /* sm3.c */,
 				1D419DA72FC06C94003A7B83 /* snefru.c */,
 				1D419DBC2FC06C96003A7B83 /* streebog.c */,
@@ -1030,6 +1036,7 @@
 				1D419D662FC06BDA003A7B83 /* ctr.c in Sources */,
 				1D419D4A2FC06BD9003A7B83 /* eax.c in Sources */,
 				1D419D6A2FC06BDA003A7B83 /* ecb.c in Sources */,
+				1D0E78BF2FC60F91005EE298 /* simd.c in Sources */,
 				1D419D5E2FC06BD9003A7B83 /* f8.c in Sources */,
 				1D419D5A2FC06BD9003A7B83 /* gcm.c in Sources */,
 				1D419D7A2FC06BDA003A7B83 /* lrw.c in Sources */,
@@ -1125,6 +1132,7 @@
 				1D419D672FC06BDA003A7B83 /* ctr.c in Sources */,
 				1D419D4B2FC06BD9003A7B83 /* eax.c in Sources */,
 				1D419D6B2FC06BDA003A7B83 /* ecb.c in Sources */,
+				1D0E78C02FC60F91005EE298 /* simd.c in Sources */,
 				1D419D5F2FC06BDA003A7B83 /* f8.c in Sources */,
 				1D419D5B2FC06BD9003A7B83 /* gcm.c in Sources */,
 				1D419D7B2FC06BDA003A7B83 /* lrw.c in Sources */,
@@ -1220,6 +1228,7 @@
 				1D419D682FC06BDA003A7B83 /* ctr.c in Sources */,
 				1D419D4C2FC06BD9003A7B83 /* eax.c in Sources */,
 				1D419D6C2FC06BDA003A7B83 /* ecb.c in Sources */,
+				1D0E78C12FC60F91005EE298 /* simd.c in Sources */,
 				1D419D602FC06BDA003A7B83 /* f8.c in Sources */,
 				1D419D5C2FC06BD9003A7B83 /* gcm.c in Sources */,
 				1D419D7C2FC06BDA003A7B83 /* lrw.c in Sources */,
@@ -1273,6 +1282,7 @@
 				1D419E092FC06C97003A7B83 /* crc8.c in Sources */,
 				1D419E352FC06C98003A7B83 /* crc16.c in Sources */,
 				1D419E1D2FC06C97003A7B83 /* crc24.c in Sources */,
+				1D0E78C22FC60F91005EE298 /* simd.c in Sources */,
 				1D419E492FC06C98003A7B83 /* crc32.c in Sources */,
 				1D419E392FC06C98003A7B83 /* crc64.c in Sources */,
 				1D419DE12FC06C97003A7B83 /* echo.c in Sources */,
