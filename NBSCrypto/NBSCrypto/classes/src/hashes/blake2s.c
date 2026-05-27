@@ -61,35 +61,35 @@ const struct hash_descriptor blake2s_256_desc =
 
 #pragma mark - DEFINES
 #define G(r, i, a, b, c, d) do {		\
-    a = a + b + m[BLAKE2S_SIGMA[r][2 * i + 0]];	\
-    d = ROR(d ^ a, 16);				\
-    c = c + d;					\
-    b = ROR(b ^ c, 12);				\
-    a = a + b + m[BLAKE2S_SIGMA[r][2 * i + 1]];	\
-    d = ROR(d ^ a, 8);				\
-    c = c + d;					\
-    b = ROR(b ^ c, 7);				\
+a = a + b + m[BLAKE2S_SIGMA[r][2 * i + 0]];	\
+d = ROR(d ^ a, 16);				\
+c = c + d;					\
+b = ROR(b ^ c, 12);				\
+a = a + b + m[BLAKE2S_SIGMA[r][2 * i + 1]];	\
+d = ROR(d ^ a, 8);				\
+c = c + d;					\
+b = ROR(b ^ c, 7);				\
 } while (0)
 
 #define ROUND(r) do {				\
-    G(r, 0, v[ 0], v[ 4], v[ 8], v[12]);	\
-    G(r, 1, v[ 1], v[ 5], v[ 9], v[13]);	\
-    G(r, 2, v[ 2], v[ 6], v[10], v[14]);	\
-    G(r, 3, v[ 3], v[ 7], v[11], v[15]);	\
-    G(r, 4, v[ 0], v[ 5], v[10], v[15]);	\
-    G(r, 5, v[ 1], v[ 6], v[11], v[12]);	\
-    G(r, 6, v[ 2], v[ 7], v[ 8], v[13]);	\
-    G(r, 7, v[ 3], v[ 4], v[ 9], v[14]);	\
+G(r, 0, v[ 0], v[ 4], v[ 8], v[12]);	\
+G(r, 1, v[ 1], v[ 5], v[ 9], v[13]);	\
+G(r, 2, v[ 2], v[ 6], v[10], v[14]);	\
+G(r, 3, v[ 3], v[ 7], v[11], v[15]);	\
+G(r, 4, v[ 0], v[ 5], v[10], v[15]);	\
+G(r, 5, v[ 1], v[ 6], v[11], v[12]);	\
+G(r, 6, v[ 2], v[ 7], v[ 8], v[13]);	\
+G(r, 7, v[ 3], v[ 4], v[ 9], v[14]);	\
 } while (0)
 
 #define STORE32L(x, y) do {								\
-    (y)[3] = (unsigned char)(((x)>>24)&255); (y)[2] = (unsigned char)(((x)>>16)&255);	\
-    (y)[1] = (unsigned char)(((x)>> 8)&255); (y)[0] = (unsigned char)((x)&255);		\
+(y)[3] = (unsigned char)(((x)>>24)&255); (y)[2] = (unsigned char)(((x)>>16)&255);	\
+(y)[1] = (unsigned char)(((x)>> 8)&255); (y)[0] = (unsigned char)((x)&255);		\
 } while(0)
 
 #define LOAD32L(x, y) do {							\
-    x = ((unsigned)((y)[3] & 255)<<24) | ((unsigned)((y)[2] & 255)<<16) |	\
-	((unsigned)((y)[1] & 255)<< 8) | ((unsigned)((y)[0] & 255));		\
+x = ((unsigned)((y)[3] & 255)<<24) | ((unsigned)((y)[2] & 255)<<16) |	\
+((unsigned)((y)[1] & 255)<< 8) | ((unsigned)((y)[0] & 255));		\
 } while(0)
 
 #define ROR(x, y) (((((unsigned)(x)&0xFFFFFFFF)>>(unsigned)((y)&31)) | ((unsigned)(x)<<(unsigned)((32-((y)&31))&31))) & 0xFFFFFFFF)
@@ -134,6 +134,11 @@ static const unsigned char BLAKE2S_SIGMA[10][16] = {
     { 6, 15, 14, 9, 11, 3, 0, 8, 12, 2, 13, 7, 1, 4, 10, 5 },
     { 10, 2, 8, 4, 7, 6, 1, 5, 15, 11, 9, 14, 3, 12, 13, 0 },
 };
+
+
+
+
+#pragma mark - INLINE
 
 static inline void _blake2s_set_lastnode(hash_state *hs) {hs->blake2s.f[1]=0xffffffffUL;}
 static inline int _blake2s_is_lastblock(const hash_state *hs) {return hs->blake2s.f[0]!=0;}
