@@ -29,6 +29,10 @@
 	case NBSCrypto_HASH_BLAKE2S_160:		{r=&blake2s_160_desc;break;}
 	case NBSCrypto_HASH_BLAKE2S_224:		{r=&blake2s_224_desc;break;}
 	case NBSCrypto_HASH_BLAKE2S_256:		{r=&blake2s_256_desc;break;}
+	case NBSCrypto_HASH_CHI_224:			{r=&chi_224_desc;break;}
+	case NBSCrypto_HASH_CHI_256:			{r=&chi_256_desc;break;}
+	case NBSCrypto_HASH_CHI_384:			{r=&chi_384_desc;break;}
+	case NBSCrypto_HASH_CHI_512:			{r=&chi_512_desc;break;}
 	case NBSCrypto_HASH_CRC8_AUTOSAR:		{r=&crc8_AUTOSAR_desc;break;}
 	case NBSCrypto_HASH_CRC8_BLUETOOTH:		{r=&crc8_BLUETOOTH_desc;break;}
 	case NBSCrypto_HASH_CRC8_CDMA2000:		{r=&crc8_CDMA2000_desc;break;}

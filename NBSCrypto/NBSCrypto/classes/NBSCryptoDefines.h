@@ -1253,10 +1253,10 @@ typedef enum NBSCrypto_HASH : NSUInteger {
     //NBSCrypto_HASH_BLUEMIDNIGHTWISH_256	=  15,
     //NBSCrypto_HASH_BLUEMIDNIGHTWISH_384	=  16,
     //NBSCrypto_HASH_BLUEMIDNIGHTWISH_512	=  17,
-    //NBSCrypto_HASH_CHI_224			=  18,
-    //NBSCrypto_HASH_CHI_256			=  19,
-    //NBSCrypto_HASH_CHI_384			=  20,
-    //NBSCrypto_HASH_CHI_512			=  21,
+    NBSCrypto_HASH_CHI_224			=  18,
+    NBSCrypto_HASH_CHI_256			=  19,
+    NBSCrypto_HASH_CHI_384			=  20,
+    NBSCrypto_HASH_CHI_512			=  21,
     NBSCrypto_HASH_CRC8_AUTOSAR			=  22,
     NBSCrypto_HASH_CRC8_BLUETOOTH		=  23,
     NBSCrypto_HASH_CRC8_CDMA2000		=  24,
@@ -1535,12 +1535,10 @@ typedef enum NBSCrypto_HASH : NSUInteger {
     NBSCrypto_HASH_CRC64_GO_ISO			= NBSCrypto_HASH_CRC64_ISO_3309,
     NBSCrypto_HASH_GOST_R34112012_256		= NBSCrypto_HASH_STREEBOG_256,
     NBSCrypto_HASH_GOST_R34112012_512		= NBSCrypto_HASH_STREEBOG_512,
-#if !TARGET_OS_WATCH
     NBSCrypto_HASH_XXH3				= NBSCrypto_HASH_XXH3_64,
     NBSCrypto_HASH_XXH32			= NBSCrypto_HASH_XXH_32,
     NBSCrypto_HASH_XXH64			= NBSCrypto_HASH_XXH_64,
     NBSCrypto_HASH_XXH128			= NBSCrypto_HASH_XXH3_128,
-#endif
 } NBSCrypto_HASH;
 
 

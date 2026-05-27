@@ -32,6 +32,21 @@ struct blake2s_state{
     unsigned long outlen;
 };
 
+struct chi_state{
+    union {
+	unsigned long long small[6];
+	unsigned long long large[9];
+	unsigned long long small32[2*6];
+	unsigned long long large32[2*9];
+    } hs_State;
+    unsigned int hs_HashBitLen;
+    unsigned int hs_MessageLen;
+    unsigned int hs_DataLen;
+    unsigned char hs_DataBuffer[128];
+    unsigned long long hs_TotalLenLow;
+    unsigned long long hs_TotalLenHigh;
+};
+
 struct crc8_state{
     int inv, rev;
     unsigned s, e, p;
@@ -325,6 +340,7 @@ typedef union hash_state{
     struct adler32_state 	adler32;
     struct blake2b_state	blake2b;
     struct blake2s_state	blake2s;
+    struct chi_state		chi;
     struct crc8_state		crc8;
     struct crc16_state		crc16;
     struct crc24_state		crc24;
@@ -421,6 +437,19 @@ extern const struct hash_descriptor blake2s_128_desc;
 extern const struct hash_descriptor blake2s_160_desc;
 extern const struct hash_descriptor blake2s_224_desc;
 extern const struct hash_descriptor blake2s_256_desc;
+
+
+#pragma mark CHI
+int chi_224_init(hash_state *hs);
+int chi_256_init(hash_state *hs);
+int chi_384_init(hash_state *hs);
+int chi_512_init(hash_state *hs);
+int chi_process(hash_state *hs, const unsigned char *in, unsigned long inlen);
+int chi_done(hash_state *hs, unsigned char *out);
+extern const struct hash_descriptor chi_224_desc;
+extern const struct hash_descriptor chi_256_desc;
+extern const struct hash_descriptor chi_384_desc;
+extern const struct hash_descriptor chi_512_desc;
 
 
 #pragma mark CRC8
