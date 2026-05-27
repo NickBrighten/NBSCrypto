@@ -154,6 +154,8 @@ Please have a look [here](https://help.github.com/articles/approving-a-pull-requ
     - BIT-LENGTH: `160` `256` `384` `512`
 - __BLAKE2S__
     - BIT-LENGTH: `128` `160` `224` `256`
+- __CHI__
+    - BIT-LENGTH: `224` `256` `384` `512`
 - __CRC-8__
     - BIT-LENGTH: `8`
     - VARIATIONS: `AES` `AUTOSAR` `BLUETOOTH` `CCITT` `CDMA2000` `DARC` `DVB-S2` `EBU` `GSM-A` `GSM-B` `HITAG` `I-432-1` `ICODE` `ITU` `LTE` `MAXIM` `MAXIM-DOWN` `MIFARE-MAD` `NRSC-5` `OPENSEAFTY` `ROHC` `SAE-J1850` `SMBUS` `TECH-3250` `WCDMA`
