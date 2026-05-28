@@ -150,6 +150,8 @@ Please have a look [here](https://help.github.com/articles/approving-a-pull-requ
 # Supported Hash-Algorithms
 - __ADLER32__
     - BIT-LENGTH: `32`
+- __ARIRANG__
+    - BIT-LENGTH: `224` `256` `384` `512`
 - __BLAKE2B__
     - BIT-LENGTH: `160` `256` `384` `512`
 - __BLAKE2S__
