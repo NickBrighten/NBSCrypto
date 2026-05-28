@@ -12,6 +12,16 @@ struct adler32_state{
     unsigned short s[2];
 };
 
+struct arirang_state{
+    int hashbitlen;
+    unsigned char block[128];
+    unsigned int blocklen;
+    unsigned int remainderbit;
+    unsigned long long count[2];
+    unsigned long long counter[2];
+    unsigned long long workingvar[8];
+};
+
 struct blake2b_state{
     unsigned char buf[128];
     unsigned char last_node;
@@ -338,6 +348,7 @@ typedef union hash_state{
     char dummy[1];
 
     struct adler32_state 	adler32;
+    struct arirang_state 	arirang;
     struct blake2b_state	blake2b;
     struct blake2s_state	blake2s;
     struct chi_state		chi;
@@ -411,6 +422,19 @@ int adler32_init(hash_state *hs);
 int adler32_process(hash_state *hs, const unsigned char *in, unsigned long inlen);
 int adler32_done(hash_state *hs, unsigned char *out);
 extern const struct hash_descriptor adler32_desc;
+
+
+#pragma mark ARIRANG
+int arirang_224_init(hash_state *hs);
+int arirang_256_init(hash_state *hs);
+int arirang_384_init(hash_state *hs);
+int arirang_512_init(hash_state *hs);
+int arirang_process(hash_state *hs, const unsigned char *in, unsigned long inlen);
+int arirang_done(hash_state *hs, unsigned char *out);
+extern const struct hash_descriptor arirang_224_desc;
+extern const struct hash_descriptor arirang_256_desc;
+extern const struct hash_descriptor arirang_384_desc;
+extern const struct hash_descriptor arirang_512_desc;
 
 
 #pragma mark BLAKE2B

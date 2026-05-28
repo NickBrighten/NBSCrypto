@@ -21,6 +21,10 @@
 
     switch (_algorithm) {
 	case NBSCrypto_HASH_ADLER32:			{r=&adler32_desc;break;}
+	case NBSCrypto_HASH_ARIRANG_224:		{r=&arirang_224_desc;break;}
+	case NBSCrypto_HASH_ARIRANG_256:		{r=&arirang_256_desc;break;}
+	case NBSCrypto_HASH_ARIRANG_384:		{r=&arirang_384_desc;break;}
+	case NBSCrypto_HASH_ARIRANG_512:		{r=&arirang_512_desc;break;}
 	case NBSCrypto_HASH_BLAKE2B_160:		{r=&blake2b_160_desc;break;}
 	case NBSCrypto_HASH_BLAKE2B_256:		{r=&blake2b_256_desc;break;}
 	case NBSCrypto_HASH_BLAKE2B_384:		{r=&blake2b_384_desc;break;}

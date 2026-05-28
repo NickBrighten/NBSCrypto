@@ -1237,10 +1237,10 @@ typedef enum NBSCrypto_CIPHER : NSUInteger {
 ///	@discussion	Hash-Algorithms for NBSCryptoHash [hashFromString:] [hashFromData:]
 typedef enum NBSCrypto_HASH : NSUInteger {
     NBSCrypto_HASH_ADLER32			=   1,
-    //NBSCrypto_HASH_ARIRANG_224		=   2,
-    //NBSCrypto_HASH_ARIRANG_256		=   3,
-    //NBSCrypto_HASH_ARIRANG_384		=   4,
-    //NBSCrypto_HASH_ARIRANG_512		=   5,
+    NBSCrypto_HASH_ARIRANG_224			=   2,
+    NBSCrypto_HASH_ARIRANG_256			=   3,
+    NBSCrypto_HASH_ARIRANG_384			=   4,
+    NBSCrypto_HASH_ARIRANG_512			=   5,
     NBSCrypto_HASH_BLAKE2B_160			=   6,
     NBSCrypto_HASH_BLAKE2B_256			=   7,
     NBSCrypto_HASH_BLAKE2B_384			=   8,
