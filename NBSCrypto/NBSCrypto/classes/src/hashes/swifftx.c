@@ -718,36 +718,36 @@ static inline void _swifftx_compute_single(unsigned char input[SWIFFTX_INPUT_BLO
     }
 }
 
-static inline int _swifftx_init(hash_state *state, int hashbitlen)
+static inline int _swifftx_init(hash_state *hs, int hashbitlen)
 {
     switch(hashbitlen){
 	case 224:{
-	    state->swifftx.hashbitlen = hashbitlen;
-	    memcpy(state->swifftx.currOutputBlock, HAIFA_IV_224, SWIFFTX_OUTPUT_BLOCK_SIZE);
+	    hs->swifftx.hashbitlen = hashbitlen;
+	    memcpy(hs->swifftx.currOutputBlock, HAIFA_IV_224, SWIFFTX_OUTPUT_BLOCK_SIZE);
 	    break;
 	}
 	case 256:{
-	    state->swifftx.hashbitlen = hashbitlen;
-	    memcpy(state->swifftx.currOutputBlock, HAIFA_IV_256, SWIFFTX_OUTPUT_BLOCK_SIZE);
+	    hs->swifftx.hashbitlen = hashbitlen;
+	    memcpy(hs->swifftx.currOutputBlock, HAIFA_IV_256, SWIFFTX_OUTPUT_BLOCK_SIZE);
 	    break;
 	}
 	case 384:{
-	    state->swifftx.hashbitlen = hashbitlen;
-	    memcpy(state->swifftx.currOutputBlock, HAIFA_IV_384, SWIFFTX_OUTPUT_BLOCK_SIZE);
+	    hs->swifftx.hashbitlen = hashbitlen;
+	    memcpy(hs->swifftx.currOutputBlock, HAIFA_IV_384, SWIFFTX_OUTPUT_BLOCK_SIZE);
 	    break;
 	}
 	case 512:{
-	    state->swifftx.hashbitlen = hashbitlen;
-	    memcpy(state->swifftx.currOutputBlock, HAIFA_IV_512, SWIFFTX_OUTPUT_BLOCK_SIZE);
+	    hs->swifftx.hashbitlen = hashbitlen;
+	    memcpy(hs->swifftx.currOutputBlock, HAIFA_IV_512, SWIFFTX_OUTPUT_BLOCK_SIZE);
 	    break;
 	}
     }
 
-    state->swifftx.wasUpdated = false;
-    state->swifftx.remainingSize = 0;
-    memset(state->swifftx.remaining, 0, HAIFA_INPUT_BLOCK_SIZE);
-    memset(state->swifftx.numOfBitsChar, 0, HAIFA_NUM_OF_BITS_SIZE);
-    memcpy(state->swifftx.salt, saltValueChar, HAIFA_SALT_SIZE);
+    hs->swifftx.wasUpdated = false;
+    hs->swifftx.remainingSize = 0;
+    memset(hs->swifftx.remaining, 0, HAIFA_INPUT_BLOCK_SIZE);
+    memset(hs->swifftx.numOfBitsChar, 0, HAIFA_NUM_OF_BITS_SIZE);
+    memcpy(hs->swifftx.salt, saltValueChar, HAIFA_SALT_SIZE);
 
     _swifftx_initialize();
 
