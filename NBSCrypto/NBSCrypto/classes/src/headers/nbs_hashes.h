@@ -42,6 +42,19 @@ struct blake2s_state{
     unsigned long outlen;
 };
 
+typedef struct {unsigned int DoublePipe[32];unsigned char LastPart[64 * 2];}bluemidnightwish_Data256;
+typedef struct {unsigned long long DoublePipe[32];unsigned char LastPart[128 * 2];}bluemidnightwish_Data512;
+struct bluemidnightwish_state {
+    int hashbitlen;
+    int unprocessed_bits;
+    unsigned long long bits_processed;
+    union
+    {
+	bluemidnightwish_Data256 p256[1];
+	bluemidnightwish_Data512 p512[1];
+    } pipe[1];
+};
+
 struct chi_state{
     union {
 	unsigned long long small[6];
@@ -347,52 +360,53 @@ struct xxhash_state{
 typedef union hash_state{
     char dummy[1];
 
-    struct adler32_state 	adler32;
-    struct arirang_state 	arirang;
-    struct blake2b_state	blake2b;
-    struct blake2s_state	blake2s;
-    struct chi_state		chi;
-    struct crc8_state		crc8;
-    struct crc16_state		crc16;
-    struct crc24_state		crc24;
-    struct crc32_state		crc32;
-    struct crc64_state		crc64;
-    struct echo_state		echo;
-    struct fnv132_state		fnv132;
-    struct fnv164_state		fnv164;
-    struct gost_state		gost;
-    struct groestl_state	groestl;
-    struct hamsi_state		hamsi;
-    struct haval_state		haval;
-    struct jh_state		jh;
-    struct joaat_state		joaat;
-    struct lane_state		lane;
-    struct lesamnta256_state	lesamnta256;
-    struct lesamnta512_state	lesamnta512;
-    struct luffa_state		luffa;
-    struct md2_state		md2;
-    struct md4_state		md4;
-    struct md5_state		md5;
-    struct murmur3a_state	murmur3a;
-    struct murmur3c_state	murmur3c;
-    struct murmur3f_state	murmur3f;
-    struct ripemd128_state	ripemd128;
-    struct ripemd160_state	ripemd160;
-    struct ripemd256_state	ripemd256;
-    struct ripemd320_state	ripemd320;
-    struct sha1_state		sha1;
-    struct sha256_state 	sha256;
-    struct sha512_state		sha512;
-    struct sha3_state		sha3;
-    struct shabal_state		shabal;
-    struct simd_state		simd;
-    struct sm3_state		sm3;
-    struct snefru_state		snefru;
-    struct streebog_state	streebog;
-    struct swifftx_state	swifftx;
-    struct tiger_state 		tiger;
-    struct whirlpool_state 	whirlpool;
-    struct xxhash_state 	xxh;
+    struct adler32_state 		adler32;
+    struct arirang_state 		arirang;
+    struct blake2b_state		blake2b;
+    struct blake2s_state		blake2s;
+    struct bluemidnightwish_state	bluemidnightwish;
+    struct chi_state			chi;
+    struct crc8_state			crc8;
+    struct crc16_state			crc16;
+    struct crc24_state			crc24;
+    struct crc32_state			crc32;
+    struct crc64_state			crc64;
+    struct echo_state			echo;
+    struct fnv132_state			fnv132;
+    struct fnv164_state			fnv164;
+    struct gost_state			gost;
+    struct groestl_state		groestl;
+    struct hamsi_state			hamsi;
+    struct haval_state			haval;
+    struct jh_state			jh;
+    struct joaat_state			joaat;
+    struct lane_state			lane;
+    struct lesamnta256_state		lesamnta256;
+    struct lesamnta512_state		lesamnta512;
+    struct luffa_state			luffa;
+    struct md2_state			md2;
+    struct md4_state			md4;
+    struct md5_state			md5;
+    struct murmur3a_state		murmur3a;
+    struct murmur3c_state		murmur3c;
+    struct murmur3f_state		murmur3f;
+    struct ripemd128_state		ripemd128;
+    struct ripemd160_state		ripemd160;
+    struct ripemd256_state		ripemd256;
+    struct ripemd320_state		ripemd320;
+    struct sha1_state			sha1;
+    struct sha256_state 		sha256;
+    struct sha512_state			sha512;
+    struct sha3_state			sha3;
+    struct shabal_state			shabal;
+    struct simd_state			simd;
+    struct sm3_state			sm3;
+    struct snefru_state			snefru;
+    struct streebog_state		streebog;
+    struct swifftx_state		swifftx;
+    struct tiger_state 			tiger;
+    struct whirlpool_state 		whirlpool;
+    struct xxhash_state 		xxh;
 
     void *data;
 } hash_state;
@@ -461,6 +475,19 @@ extern const struct hash_descriptor blake2s_128_desc;
 extern const struct hash_descriptor blake2s_160_desc;
 extern const struct hash_descriptor blake2s_224_desc;
 extern const struct hash_descriptor blake2s_256_desc;
+
+
+#pragma mark BLUEMIDNIGHTWISH
+int bluemidnightwish_224_init(hash_state *hs);
+int bluemidnightwish_256_init(hash_state *hs);
+int bluemidnightwish_384_init(hash_state *hs);
+int bluemidnightwish_512_init(hash_state *hs);
+int bluemidnightwish_process(hash_state *hs, const unsigned char *in, unsigned long inlen);
+int bluemidnightwish_done(hash_state *hs, unsigned char *out);
+extern const struct hash_descriptor bluemidnightwish_224_desc;
+extern const struct hash_descriptor bluemidnightwish_256_desc;
+extern const struct hash_descriptor bluemidnightwish_384_desc;
+extern const struct hash_descriptor bluemidnightwish_512_desc;
 
 
 #pragma mark CHI
