@@ -156,6 +156,8 @@ Please have a look [here](https://help.github.com/articles/approving-a-pull-requ
     - BIT-LENGTH: `160` `256` `384` `512`
 - __BLAKE2S__
     - BIT-LENGTH: `128` `160` `224` `256`
+- __BLUEMIDNIGHTWISH__
+    - BIT-LENGTH: `224` `256` `384` `512`
 - __CHI__
     - BIT-LENGTH: `224` `256` `384` `512`
 - __CRC-8__
