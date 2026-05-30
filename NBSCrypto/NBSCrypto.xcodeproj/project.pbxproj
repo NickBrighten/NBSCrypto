@@ -402,6 +402,10 @@
 		1DB25A672FC7630900E0D9E3 /* chi.c in Sources */ = {isa = PBXBuildFile; fileRef = 1DB25A652FC7630900E0D9E3 /* chi.c */; };
 		1DB25A682FC7630900E0D9E3 /* chi.c in Sources */ = {isa = PBXBuildFile; fileRef = 1DB25A652FC7630900E0D9E3 /* chi.c */; };
 		1DB25A692FC7630900E0D9E3 /* chi.c in Sources */ = {isa = PBXBuildFile; fileRef = 1DB25A652FC7630900E0D9E3 /* chi.c */; };
+		1DF2EE362FCB2A9400A72997 /* shavite3.c in Sources */ = {isa = PBXBuildFile; fileRef = 1DF2EE352FCB2A9400A72997 /* shavite3.c */; };
+		1DF2EE372FCB2A9400A72997 /* shavite3.c in Sources */ = {isa = PBXBuildFile; fileRef = 1DF2EE352FCB2A9400A72997 /* shavite3.c */; };
+		1DF2EE382FCB2A9400A72997 /* shavite3.c in Sources */ = {isa = PBXBuildFile; fileRef = 1DF2EE352FCB2A9400A72997 /* shavite3.c */; };
+		1DF2EE392FCB2A9400A72997 /* shavite3.c in Sources */ = {isa = PBXBuildFile; fileRef = 1DF2EE352FCB2A9400A72997 /* shavite3.c */; };
 		1DF7F14B2FC8C26B00CA2560 /* arirang.c in Sources */ = {isa = PBXBuildFile; fileRef = 1DF7F14A2FC8C26B00CA2560 /* arirang.c */; };
 		1DF7F14C2FC8C26B00CA2560 /* arirang.c in Sources */ = {isa = PBXBuildFile; fileRef = 1DF7F14A2FC8C26B00CA2560 /* arirang.c */; };
 		1DF7F14D2FC8C26B00CA2560 /* arirang.c in Sources */ = {isa = PBXBuildFile; fileRef = 1DF7F14A2FC8C26B00CA2560 /* arirang.c */; };
@@ -519,6 +523,7 @@
 		1D4B76002FC5EFAD00159BB6 /* swifftx.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = swifftx.c; sourceTree = "<group>"; tabWidth = 8; };
 		1D5BEB652FC9E16600865E11 /* bluemidnightwish.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = bluemidnightwish.c; sourceTree = "<group>"; tabWidth = 8; };
 		1DB25A652FC7630900E0D9E3 /* chi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = chi.c; sourceTree = "<group>"; tabWidth = 8; };
+		1DF2EE352FCB2A9400A72997 /* shavite3.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = shavite3.c; sourceTree = "<group>"; tabWidth = 8; };
 		1DF7F14A2FC8C26B00CA2560 /* arirang.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = arirang.c; sourceTree = "<group>"; tabWidth = 8; };
 /* End PBXFileReference section */
 
@@ -702,6 +707,7 @@
 				1D419DC02FC06C96003A7B83 /* sha2.c */,
 				1D419DAA2FC06C95003A7B83 /* sha3.c */,
 				1D419DAE2FC06C95003A7B83 /* shabal.c */,
+				1DF2EE352FCB2A9400A72997 /* shavite3.c */,
 				1D0E78BE2FC60F91005EE298 /* simd.c */,
 				1D419DA82FC06C94003A7B83 /* sm3.c */,
 				1D419DA72FC06C94003A7B83 /* snefru.c */,
@@ -1031,6 +1037,7 @@
 				1D419DEE2FC06C97003A7B83 /* md2.c in Sources */,
 				1D419DFE2FC06C97003A7B83 /* md4.c in Sources */,
 				1D419E422FC06C98003A7B83 /* md5.c in Sources */,
+				1DF2EE362FCB2A9400A72997 /* shavite3.c in Sources */,
 				1D419E022FC06C97003A7B83 /* murmur.c in Sources */,
 				1D419E122FC06C97003A7B83 /* ripemd.c in Sources */,
 				1D419E1E2FC06C97003A7B83 /* sha1.c in Sources */,
@@ -1130,6 +1137,7 @@
 				1D419DEF2FC06C97003A7B83 /* md2.c in Sources */,
 				1D419DFF2FC06C97003A7B83 /* md4.c in Sources */,
 				1D419E432FC06C98003A7B83 /* md5.c in Sources */,
+				1DF2EE372FCB2A9400A72997 /* shavite3.c in Sources */,
 				1D419E032FC06C97003A7B83 /* murmur.c in Sources */,
 				1D419E132FC06C97003A7B83 /* ripemd.c in Sources */,
 				1D419E1F2FC06C97003A7B83 /* sha1.c in Sources */,
@@ -1229,6 +1237,7 @@
 				1D419DF02FC06C97003A7B83 /* md2.c in Sources */,
 				1D419E002FC06C97003A7B83 /* md4.c in Sources */,
 				1D419E442FC06C98003A7B83 /* md5.c in Sources */,
+				1DF2EE382FCB2A9400A72997 /* shavite3.c in Sources */,
 				1D419E042FC06C97003A7B83 /* murmur.c in Sources */,
 				1D419E142FC06C97003A7B83 /* ripemd.c in Sources */,
 				1D419E202FC06C97003A7B83 /* sha1.c in Sources */,
@@ -1355,6 +1364,7 @@
 				1D419D4D2FC06BD9003A7B83 /* eax.c in Sources */,
 				1D419D6D2FC06BDA003A7B83 /* ecb.c in Sources */,
 				1D419D612FC06BDA003A7B83 /* f8.c in Sources */,
+				1DF2EE392FCB2A9400A72997 /* shavite3.c in Sources */,
 				1D419D5D2FC06BD9003A7B83 /* gcm.c in Sources */,
 				1D419D7D2FC06BDA003A7B83 /* lrw.c in Sources */,
 				1D419D792FC06BDA003A7B83 /* ocb.c in Sources */,
@@ -1429,9 +1439,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 260529;
+				CURRENT_PROJECT_VERSION = 260530;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 2VUNR4Y3UN;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -1461,9 +1471,9 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 260529;
+				CURRENT_PROJECT_VERSION = 260530;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 2VUNR4Y3UN;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -1490,9 +1500,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 260529;
+				CURRENT_PROJECT_VERSION = 260530;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 2VUNR4Y3UN;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -1521,9 +1531,9 @@
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = NO;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 260529;
+				CURRENT_PROJECT_VERSION = 260530;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 2VUNR4Y3UN;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
