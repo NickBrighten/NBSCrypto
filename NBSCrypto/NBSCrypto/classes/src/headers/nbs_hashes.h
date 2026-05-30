@@ -295,6 +295,16 @@ struct shabal_state{
     unsigned Whigh, Wlow;
 };
 
+struct shavite3_state{
+    int BlockSize;
+    int DigestSize;
+    unsigned char chaining_value[64];
+    unsigned char buffer[128];
+    unsigned char partial_byte;
+    unsigned char salt[64];
+    unsigned long long bitcount;
+};
+
 struct simd_state {
     unsigned int hashbitlen;
     unsigned int blocksize;
@@ -398,6 +408,7 @@ typedef union hash_state{
     struct sha256_state 		sha256;
     struct sha512_state			sha512;
     struct sha3_state			sha3;
+    struct shavite3_state		shavite3;
     struct shabal_state			shabal;
     struct simd_state			simd;
     struct sm3_state			sm3;
@@ -994,6 +1005,19 @@ extern const struct hash_descriptor shabal_224_desc;
 extern const struct hash_descriptor shabal_256_desc;
 extern const struct hash_descriptor shabal_384_desc;
 extern const struct hash_descriptor shabal_512_desc;
+
+
+#pragma mark SHAVITE3
+int shavite3_224_init(hash_state *hs);
+int shavite3_256_init(hash_state *hs);
+int shavite3_384_init(hash_state *hs);
+int shavite3_512_init(hash_state *hs);
+int shavite3_process(hash_state *hs, const unsigned char *in, unsigned long inlen);
+int shavite3_done(hash_state *hs, unsigned char *out);
+extern const struct hash_descriptor shavite3_224_desc;
+extern const struct hash_descriptor shavite3_256_desc;
+extern const struct hash_descriptor shavite3_384_desc;
+extern const struct hash_descriptor shavite3_512_desc;
 
 
 #pragma mark SIMD

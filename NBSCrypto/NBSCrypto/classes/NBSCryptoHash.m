@@ -201,6 +201,10 @@
 	case NBSCrypto_HASH_SHABAL_512:			{r=&shabal_512_desc;break;}
 	case NBSCrypto_HASH_SHAKE_128:			{r=&shake_128_desc;break;}
 	case NBSCrypto_HASH_SHAKE_256:			{r=&shake_256_desc;break;}
+	case NBSCrypto_HASH_SHAVITE3_224:		{r=&shavite3_224_desc;break;}
+	case NBSCrypto_HASH_SHAVITE3_256:		{r=&shavite3_256_desc;break;}
+	case NBSCrypto_HASH_SHAVITE3_384:		{r=&shavite3_384_desc;break;}
+	case NBSCrypto_HASH_SHAVITE3_512:		{r=&shavite3_512_desc;break;}
 	case NBSCrypto_HASH_SIMD_224:			{r=&simd_224_desc;break;}
 	case NBSCrypto_HASH_SIMD_256:			{r=&simd_256_desc;break;}
 	case NBSCrypto_HASH_SIMD_384:			{r=&simd_384_desc;break;}
