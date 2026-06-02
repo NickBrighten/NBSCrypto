@@ -42,6 +42,14 @@ struct blake2s_state{
     unsigned long outlen;
 };
 
+struct blake3_state {
+    unsigned block;
+    unsigned bytes;
+    unsigned char input[64];
+    unsigned int *cv, cv_buf[54 * 8];
+    unsigned long long chunk;
+};
+
 typedef struct {unsigned int DoublePipe[32];unsigned char LastPart[64 * 2];}bluemidnightwish_Data256;
 typedef struct {unsigned long long DoublePipe[32];unsigned char LastPart[128 * 2];}bluemidnightwish_Data512;
 struct bluemidnightwish_state {
@@ -374,6 +382,7 @@ typedef union hash_state{
     struct arirang_state 		arirang;
     struct blake2b_state		blake2b;
     struct blake2s_state		blake2s;
+    struct blake3_state			blake3;
     struct bluemidnightwish_state	bluemidnightwish;
     struct chi_state			chi;
     struct crc8_state			crc8;
@@ -486,6 +495,13 @@ extern const struct hash_descriptor blake2s_128_desc;
 extern const struct hash_descriptor blake2s_160_desc;
 extern const struct hash_descriptor blake2s_224_desc;
 extern const struct hash_descriptor blake2s_256_desc;
+
+
+#pragma mark BLAKE3
+int blake3_init(hash_state *hs);
+int blake3_process(hash_state *hs, const unsigned char *in, unsigned long inlen);
+int blake3_done(hash_state *hs, unsigned char *out);
+extern const struct hash_descriptor blake3_desc;
 
 
 #pragma mark BLUEMIDNIGHTWISH
