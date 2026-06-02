@@ -33,6 +33,7 @@
 	case NBSCrypto_HASH_BLAKE2S_160:		{r=&blake2s_160_desc;break;}
 	case NBSCrypto_HASH_BLAKE2S_224:		{r=&blake2s_224_desc;break;}
 	case NBSCrypto_HASH_BLAKE2S_256:		{r=&blake2s_256_desc;break;}
+	case NBSCrypto_HASH_BLAKE3:			{r=&blake3_desc;break;}
 	case NBSCrypto_HASH_BLUEMIDNIGHTWISH_224:	{r=&bluemidnightwish_224_desc;break;}
 	case NBSCrypto_HASH_BLUEMIDNIGHTWISH_256:	{r=&bluemidnightwish_256_desc;break;}
 	case NBSCrypto_HASH_BLUEMIDNIGHTWISH_384:	{r=&bluemidnightwish_384_desc;break;}
