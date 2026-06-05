@@ -11,7 +11,7 @@
 const struct hash_descriptor sha1_desc =
 {
     "sha1",
-    184,
+    185,
     20,
     64,
     &sha1_init,
@@ -31,19 +31,19 @@ const struct hash_descriptor sha1_desc =
 
 #define STORE32H(x, y)										\
     do {(y)[0] = (unsigned char)(((x)>>24)&255); (y)[1] = (unsigned char)(((x)>>16)&255);	\
-	(y)[2] = (unsigned char)(((x)>>8)&255); (y)[3] = (unsigned char)((x)&255);		\
+	(y)[2] = (unsigned char)(((x)>> 8)&255); (y)[3] = (unsigned char)((x)&255);		\
     } while(0)
 
-#define LOAD32H(x, y)										\
-    do {x = ((unsigned)((y)[0] & 255)<<24) | ((unsigned)((y)[1] & 255)<<16) |			\
-	((unsigned)((y)[2] & 255)<<8)  | ((unsigned)((y)[3] & 255));				\
+#define LOAD32H(x, y)									\
+    do {x = ((unsigned)((y)[0] & 255)<<24) | ((unsigned)((y)[1] & 255)<<16) |		\
+	    ((unsigned)((y)[2] & 255)<< 8) | ((unsigned)((y)[3] & 255));		\
     } while(0)
 
 #define STORE64H(x, y)										\
     do {(y)[0] = (unsigned char)(((x)>>56)&255); (y)[1] = (unsigned char)(((x)>>48)&255);	\
 	(y)[2] = (unsigned char)(((x)>>40)&255); (y)[3] = (unsigned char)(((x)>>32)&255);	\
 	(y)[4] = (unsigned char)(((x)>>24)&255); (y)[5] = (unsigned char)(((x)>>16)&255);	\
-	(y)[6] = (unsigned char)(((x)>>8)&255); (y)[7] = (unsigned char)((x)&255);		\
+	(y)[6] = (unsigned char)(((x)>> 8)&255); (y)[7] = (unsigned char)((x)&255);		\
     } while(0)
 
 #define ROL(x, y) ((((unsigned)(x)<<(unsigned)((y)&31)) | (((unsigned)(x)&0xFFFFFFFF)>>(unsigned)((32-((y)&31))&31))) & 0xFFFFFFFF)
