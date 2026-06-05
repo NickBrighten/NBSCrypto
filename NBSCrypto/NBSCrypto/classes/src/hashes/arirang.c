@@ -68,10 +68,10 @@ const struct hash_descriptor arirang_512_desc =
 
 #define ENDIAN_REVERSE_DWORD(dwS) ((ROTL_DWORD((dwS),  8) & 0x00ff00ff) | (ROTL_DWORD((dwS), 24) & 0xff00ff00))
 #define ENDIAN_REVERSE_QWORD(w, x) {								\
-unsigned long long tmp = (w);								\
-tmp = (tmp >> 32) | (tmp << 32);							\
-tmp = ((tmp & 0xff00ff00ff00ff00ULL) >>  8) | ((tmp & 0x00ff00ff00ff00ffULL) <<  8);	\
-(x) = ((tmp & 0xffff0000ffff0000ULL) >> 16) | ((tmp & 0x0000ffff0000ffffULL) << 16);	\
+    unsigned long long tmp = (w);								\
+    tmp = (tmp >> 32) | (tmp << 32);								\
+    tmp = ((tmp & 0xff00ff00ff00ff00ULL) >>  8) | ((tmp & 0x00ff00ff00ff00ffULL) <<  8);	\
+    (x) = ((tmp & 0xffff0000ffff0000ULL) >> 16) | ((tmp & 0x0000ffff0000ffffULL) << 16);	\
 }
 
 #define BIG_B2D(B, D)		D = ENDIAN_REVERSE_DWORD(*(unsigned int *)(B))
@@ -149,45 +149,45 @@ static inline void _step256(unsigned int R[8], unsigned int M1, unsigned int M2)
     R[4] ^= M2;
 
     temp1 =  (unsigned int)(sbx[byte(R[0], 0)])		^
-    ((unsigned int)(sbx[byte(R[0], 1)]) <<  8)	^
-    ((unsigned int)(sbx[byte(R[0], 2)]) << 16)	^
-    ((unsigned int)(sbx[byte(R[0], 3)]) << 24);
+	    ((unsigned int)(sbx[byte(R[0], 1)]) <<  8)	^
+	    ((unsigned int)(sbx[byte(R[0], 2)]) << 16)	^
+	    ((unsigned int)(sbx[byte(R[0], 3)]) << 24);
     temp2 =  (unsigned int)(sbx[byte(R[4], 0)])		^
-    ((unsigned int)(sbx[byte(R[4], 1)]) <<  8)	^
-    ((unsigned int)(sbx[byte(R[4], 2)]) << 16)	^
-    ((unsigned int)(sbx[byte(R[4], 3)]) << 24);
+	    ((unsigned int)(sbx[byte(R[4], 1)]) <<  8)	^
+	    ((unsigned int)(sbx[byte(R[4], 2)]) << 16)	^
+	    ((unsigned int)(sbx[byte(R[4], 3)]) << 24);
     temp1 = ( (unsigned int)(F2[byte(temp1,0)])		^
-	     (unsigned int)(F3[byte(temp1,1)])		^
-	     (unsigned int)(   byte(temp1,2) )		^
-	     (unsigned int)(   byte(temp1,3) ))	^
-    (((unsigned int)(   byte(temp1,0) )		^
-      (unsigned int)(F2[byte(temp1,1)])		^
-      (unsigned int)(F3[byte(temp1,2)])		^
-      (unsigned int)(   byte(temp1,3) )) <<  8)	^
-    (((unsigned int)(   byte(temp1,0) )		^
-      (unsigned int)(   byte(temp1,1) )		^
-      (unsigned int)(F2[byte(temp1,2)])		^
-      (unsigned int)(F3[byte(temp1,3)])) << 16)	^
-    (((unsigned int)(F3[byte(temp1,0)])		^
-      (unsigned int)(   byte(temp1,1) )		^
-      (unsigned int)(   byte(temp1,2) )		^
-      (unsigned int)(F2[byte(temp1,3)])) << 24);
+	      (unsigned int)(F3[byte(temp1,1)])		^
+	      (unsigned int)(   byte(temp1,2) )		^
+	      (unsigned int)(   byte(temp1,3) ))	^
+	    (((unsigned int)(   byte(temp1,0) )		^
+	      (unsigned int)(F2[byte(temp1,1)])		^
+	      (unsigned int)(F3[byte(temp1,2)])		^
+	      (unsigned int)(   byte(temp1,3) )) <<  8)	^
+	    (((unsigned int)(   byte(temp1,0) )		^
+	      (unsigned int)(   byte(temp1,1) )		^
+	      (unsigned int)(F2[byte(temp1,2)])		^
+	      (unsigned int)(F3[byte(temp1,3)])) << 16)	^
+	    (((unsigned int)(F3[byte(temp1,0)])		^
+	      (unsigned int)(   byte(temp1,1) )		^
+	      (unsigned int)(   byte(temp1,2) )		^
+	      (unsigned int)(F2[byte(temp1,3)])) << 24);
     temp2 = ( (unsigned int)(F2[byte(temp2,0)])		^
-	     (unsigned int)(F3[byte(temp2,1)])		^
-	     (unsigned int)(   byte(temp2,2) )		^
-	     (unsigned int)(   byte(temp2,3) ))	^
-    (((unsigned int)(   byte(temp2,0) )		^
-      (unsigned int)(F2[byte(temp2,1)])		^
-      (unsigned int)(F3[byte(temp2,2)])		^
-      (unsigned int)(   byte(temp2,3) )) <<  8)	^
-    (((unsigned int)(   byte(temp2,0) )		^
-      (unsigned int)(   byte(temp2,1) )		^
-      (unsigned int)(F2[byte(temp2,2)])		^
-      (unsigned int)(F3[byte(temp2,3)])) << 16)	^
-    (((unsigned int)(F3[byte(temp2,0)])		^
-      (unsigned int)(   byte(temp2,1) )		^
-      (unsigned int)(   byte(temp2,2) )		^
-      (unsigned int)(F2[byte(temp2,3)])) << 24);
+	      (unsigned int)(F3[byte(temp2,1)])		^
+	      (unsigned int)(   byte(temp2,2) )		^
+	      (unsigned int)(   byte(temp2,3) ))	^
+	    (((unsigned int)(   byte(temp2,0) )		^
+	      (unsigned int)(F2[byte(temp2,1)])		^
+	      (unsigned int)(F3[byte(temp2,2)])		^
+	      (unsigned int)(   byte(temp2,3) )) <<  8)	^
+	    (((unsigned int)(   byte(temp2,0) )		^
+	      (unsigned int)(   byte(temp2,1) )		^
+	      (unsigned int)(F2[byte(temp2,2)])		^
+	      (unsigned int)(F3[byte(temp2,3)])) << 16)	^
+	    (((unsigned int)(F3[byte(temp2,0)])		^
+	      (unsigned int)(   byte(temp2,1) )		^
+	      (unsigned int)(   byte(temp2,2) )		^
+	      (unsigned int)(F2[byte(temp2,3)])) << 24);
 
     R[1] ^= temp1;
     R[2] ^= ROTL_DWORD(temp1, 13);
@@ -215,21 +215,21 @@ static inline void _step512(unsigned long long R[8], unsigned long long M1, unsi
     R[4] ^= M2;
 
     temp1 =  (unsigned long long)(sbx[byte(R[0], 0)])		^
-    ((unsigned long long)(sbx[byte(R[0], 1)]) <<  8)	^
-    ((unsigned long long)(sbx[byte(R[0], 2)]) << 16)	^
-    ((unsigned long long)(sbx[byte(R[0], 3)]) << 24)	^
-    ((unsigned long long)(sbx[byte(R[0], 4)]) << 32)	^
-    ((unsigned long long)(sbx[byte(R[0], 5)]) << 40)	^
-    ((unsigned long long)(sbx[byte(R[0], 6)]) << 48)	^
-    ((unsigned long long)(sbx[byte(R[0], 7)]) << 56);
+	    ((unsigned long long)(sbx[byte(R[0], 1)]) <<  8)	^
+	    ((unsigned long long)(sbx[byte(R[0], 2)]) << 16)	^
+	    ((unsigned long long)(sbx[byte(R[0], 3)]) << 24)	^
+	    ((unsigned long long)(sbx[byte(R[0], 4)]) << 32)	^
+	    ((unsigned long long)(sbx[byte(R[0], 5)]) << 40)	^
+	    ((unsigned long long)(sbx[byte(R[0], 6)]) << 48)	^
+	    ((unsigned long long)(sbx[byte(R[0], 7)]) << 56);
     temp2 =  (unsigned long long)(sbx[byte(R[4], 0)])		^
-    ((unsigned long long)(sbx[byte(R[4], 1)]) <<  8)	^
-    ((unsigned long long)(sbx[byte(R[4], 2)]) << 16)	^
-    ((unsigned long long)(sbx[byte(R[4], 3)]) << 24)	^
-    ((unsigned long long)(sbx[byte(R[4], 4)]) << 32)	^
-    ((unsigned long long)(sbx[byte(R[4], 5)]) << 40)	^
-    ((unsigned long long)(sbx[byte(R[4], 6)]) << 48)	^
-    ((unsigned long long)(sbx[byte(R[4], 7)]) << 56);
+	    ((unsigned long long)(sbx[byte(R[4], 1)]) <<  8)	^
+	    ((unsigned long long)(sbx[byte(R[4], 2)]) << 16)	^
+	    ((unsigned long long)(sbx[byte(R[4], 3)]) << 24)	^
+	    ((unsigned long long)(sbx[byte(R[4], 4)]) << 32)	^
+	    ((unsigned long long)(sbx[byte(R[4], 5)]) << 40)	^
+	    ((unsigned long long)(sbx[byte(R[4], 6)]) << 48)	^
+	    ((unsigned long long)(sbx[byte(R[4], 7)]) << 56);
     temp1 =  ((unsigned long long)(   byte(temp1,0) )		^
 	      (unsigned long long)(F2[byte(temp1,1)])		^
 	      (unsigned long long)(FA[byte(temp1,2)])		^
@@ -238,62 +238,62 @@ static inline void _step512(unsigned long long R[8], unsigned long long M1, unsi
 	      (unsigned long long)(   byte(temp1,5) )		^
 	      (unsigned long long)(F4[byte(temp1,6)])		^
 	      (unsigned long long)(   byte(temp1,7) ))		^
-    (((unsigned long long)(   byte(temp1,0) )		^
-      (unsigned long long)(   byte(temp1,1) )		^
-      (unsigned long long)(F2[byte(temp1,2)])		^
-      (unsigned long long)(FA[byte(temp1,3)])		^
-      (unsigned long long)(F9[byte(temp1,4)])		^
-      (unsigned long long)(F8[byte(temp1,5)])		^
-      (unsigned long long)(   byte(temp1,6) )		^
-      (unsigned long long)(F4[byte(temp1,7)])) <<  8 )	^
-    (((unsigned long long)(F4[byte(temp1,0)])		^
-      (unsigned long long)(   byte(temp1,1) )		^
-      (unsigned long long)(   byte(temp1,2) )		^
-      (unsigned long long)(F2[byte(temp1,3)])		^
-      (unsigned long long)(FA[byte(temp1,4)])		^
-      (unsigned long long)(F9[byte(temp1,5)])		^
-      (unsigned long long)(F8[byte(temp1,6)])		^
-      (unsigned long long)(   byte(temp1,7) )) << 16 )	^
-    (((unsigned long long)(   byte(temp1,0) )		^
-      (unsigned long long)(F4[byte(temp1,1)])		^
-      (unsigned long long)(   byte(temp1,2) )		^
-      (unsigned long long)(   byte(temp1,3) )		^
-      (unsigned long long)(F2[byte(temp1,4)])		^
-      (unsigned long long)(FA[byte(temp1,5)])		^
-      (unsigned long long)(F9[byte(temp1,6)])		^
-      (unsigned long long)(F8[byte(temp1,7)])) << 24 )	^
-    (((unsigned long long)(F8[byte(temp1,0)])		^
-      (unsigned long long)(   byte(temp1,1) )		^
-      (unsigned long long)(F4[byte(temp1,2)])		^
-      (unsigned long long)(   byte(temp1,3) )		^
-      (unsigned long long)(   byte(temp1,4) )		^
-      (unsigned long long)(F2[byte(temp1,5)])		^
-      (unsigned long long)(FA[byte(temp1,6)])		^
-      (unsigned long long)(F9[byte(temp1,7)])) << 32 )	^
-    (((unsigned long long)(F9[byte(temp1,0)])		^
-      (unsigned long long)(F8[byte(temp1,1)])		^
-      (unsigned long long)(   byte(temp1,2) )		^
-      (unsigned long long)(F4[byte(temp1,3)])		^
-      (unsigned long long)(   byte(temp1,4) )		^
-      (unsigned long long)(   byte(temp1,5) )		^
-      (unsigned long long)(F2[byte(temp1,6)])		^
-      (unsigned long long)(FA[byte(temp1,7)])) << 40 )	^
-    (((unsigned long long)(FA[byte(temp1,0)])		^
-      (unsigned long long)(F9[byte(temp1,1)])		^
-      (unsigned long long)(F8[byte(temp1,2)])		^
-      (unsigned long long)(   byte(temp1,3) )		^
-      (unsigned long long)(F4[byte(temp1,4)])		^
-      (unsigned long long)(   byte(temp1,5) )		^
-      (unsigned long long)(   byte(temp1,6) )		^
-      (unsigned long long)(F2[byte(temp1,7)])) << 48 )	^
-    (((unsigned long long)(F2[byte(temp1,0)])		^
-      (unsigned long long)(FA[byte(temp1,1)])		^
-      (unsigned long long)(F9[byte(temp1,2)])		^
-      (unsigned long long)(F8[byte(temp1,3)])		^
-      (unsigned long long)(   byte(temp1,4) )		^
-      (unsigned long long)(F4[byte(temp1,5)])		^
-      (unsigned long long)(   byte(temp1,6) )		^
-      (unsigned long long)(   byte(temp1,7) )) << 56 );
+	    (((unsigned long long)(   byte(temp1,0) )		^
+	      (unsigned long long)(   byte(temp1,1) )		^
+	      (unsigned long long)(F2[byte(temp1,2)])		^
+	      (unsigned long long)(FA[byte(temp1,3)])		^
+	      (unsigned long long)(F9[byte(temp1,4)])		^
+	      (unsigned long long)(F8[byte(temp1,5)])		^
+	      (unsigned long long)(   byte(temp1,6) )		^
+	      (unsigned long long)(F4[byte(temp1,7)])) <<  8 )	^
+	    (((unsigned long long)(F4[byte(temp1,0)])		^
+	      (unsigned long long)(   byte(temp1,1) )		^
+	      (unsigned long long)(   byte(temp1,2) )		^
+	      (unsigned long long)(F2[byte(temp1,3)])		^
+	      (unsigned long long)(FA[byte(temp1,4)])		^
+	      (unsigned long long)(F9[byte(temp1,5)])		^
+	      (unsigned long long)(F8[byte(temp1,6)])		^
+	      (unsigned long long)(   byte(temp1,7) )) << 16 )	^
+	    (((unsigned long long)(   byte(temp1,0) )		^
+	      (unsigned long long)(F4[byte(temp1,1)])		^
+	      (unsigned long long)(   byte(temp1,2) )		^
+	      (unsigned long long)(   byte(temp1,3) )		^
+	      (unsigned long long)(F2[byte(temp1,4)])		^
+	      (unsigned long long)(FA[byte(temp1,5)])		^
+	      (unsigned long long)(F9[byte(temp1,6)])		^
+	      (unsigned long long)(F8[byte(temp1,7)])) << 24 )	^
+	    (((unsigned long long)(F8[byte(temp1,0)])		^
+	      (unsigned long long)(   byte(temp1,1) )		^
+	      (unsigned long long)(F4[byte(temp1,2)])		^
+	      (unsigned long long)(   byte(temp1,3) )		^
+	      (unsigned long long)(   byte(temp1,4) )		^
+	      (unsigned long long)(F2[byte(temp1,5)])		^
+	      (unsigned long long)(FA[byte(temp1,6)])		^
+	      (unsigned long long)(F9[byte(temp1,7)])) << 32 )	^
+	    (((unsigned long long)(F9[byte(temp1,0)])		^
+	      (unsigned long long)(F8[byte(temp1,1)])		^
+	      (unsigned long long)(   byte(temp1,2) )		^
+	      (unsigned long long)(F4[byte(temp1,3)])		^
+	      (unsigned long long)(   byte(temp1,4) )		^
+	      (unsigned long long)(   byte(temp1,5) )		^
+	      (unsigned long long)(F2[byte(temp1,6)])		^
+	      (unsigned long long)(FA[byte(temp1,7)])) << 40 )	^
+	    (((unsigned long long)(FA[byte(temp1,0)])		^
+	      (unsigned long long)(F9[byte(temp1,1)])		^
+	      (unsigned long long)(F8[byte(temp1,2)])		^
+	      (unsigned long long)(   byte(temp1,3) )		^
+	      (unsigned long long)(F4[byte(temp1,4)])		^
+	      (unsigned long long)(   byte(temp1,5) )		^
+	      (unsigned long long)(   byte(temp1,6) )		^
+	      (unsigned long long)(F2[byte(temp1,7)])) << 48 )	^
+	    (((unsigned long long)(F2[byte(temp1,0)])		^
+	      (unsigned long long)(FA[byte(temp1,1)])		^
+	      (unsigned long long)(F9[byte(temp1,2)])		^
+	      (unsigned long long)(F8[byte(temp1,3)])		^
+	      (unsigned long long)(   byte(temp1,4) )		^
+	      (unsigned long long)(F4[byte(temp1,5)])		^
+	      (unsigned long long)(   byte(temp1,6) )		^
+	      (unsigned long long)(   byte(temp1,7) )) << 56 );
     temp2 =  ((unsigned long long)(   byte(temp2,0) )		^
 	      (unsigned long long)(F2[byte(temp2,1)])		^
 	      (unsigned long long)(FA[byte(temp2,2)])		^
@@ -302,62 +302,62 @@ static inline void _step512(unsigned long long R[8], unsigned long long M1, unsi
 	      (unsigned long long)(   byte(temp2,5) )		^
 	      (unsigned long long)(F4[byte(temp2,6)])		^
 	      (unsigned long long)(   byte(temp2,7) ))		^
-    (((unsigned long long)(   byte(temp2,0) )		^
-      (unsigned long long)(   byte(temp2,1) )		^
-      (unsigned long long)(F2[byte(temp2,2)])		^
-      (unsigned long long)(FA[byte(temp2,3)])		^
-      (unsigned long long)(F9[byte(temp2,4)])		^
-      (unsigned long long)(F8[byte(temp2,5)])		^
-      (unsigned long long)(   byte(temp2,6) )		^
-      (unsigned long long)(F4[byte(temp2,7)])) <<  8 )	^
-    (((unsigned long long)(F4[byte(temp2,0)])		^
-      (unsigned long long)(   byte(temp2,1) )		^
-      (unsigned long long)(   byte(temp2,2) )		^
-      (unsigned long long)(F2[byte(temp2,3)])		^
-      (unsigned long long)(FA[byte(temp2,4)])		^
-      (unsigned long long)(F9[byte(temp2,5)])		^
-      (unsigned long long)(F8[byte(temp2,6)])		^
-      (unsigned long long)(   byte(temp2,7) )) << 16 )	^
-    (((unsigned long long)(   byte(temp2,0) )		^
-      (unsigned long long)(F4[byte(temp2,1)])		^
-      (unsigned long long)(   byte(temp2,2) )		^
-      (unsigned long long)(   byte(temp2,3) )		^
-      (unsigned long long)(F2[byte(temp2,4)])		^
-      (unsigned long long)(FA[byte(temp2,5)])		^
-      (unsigned long long)(F9[byte(temp2,6)])		^
-      (unsigned long long)(F8[byte(temp2,7)])) << 24 )	^
-    (((unsigned long long)(F8[byte(temp2,0)])		^
-      (unsigned long long)(   byte(temp2,1) )		^
-      (unsigned long long)(F4[byte(temp2,2)])		^
-      (unsigned long long)(   byte(temp2,3) )		^
-      (unsigned long long)(   byte(temp2,4) )		^
-      (unsigned long long)(F2[byte(temp2,5)])		^
-      (unsigned long long)(FA[byte(temp2,6)])		^
-      (unsigned long long)(F9[byte(temp2,7)])) << 32 )	^
-    (((unsigned long long)(F9[byte(temp2,0)])		^
-      (unsigned long long)(F8[byte(temp2,1)])		^
-      (unsigned long long)(   byte(temp2,2) )		^
-      (unsigned long long)(F4[byte(temp2,3)])		^
-      (unsigned long long)(   byte(temp2,4) )		^
-      (unsigned long long)(   byte(temp2,5) )		^
-      (unsigned long long)(F2[byte(temp2,6)])		^
-      (unsigned long long)(FA[byte(temp2,7)])) << 40 )	^
-    (((unsigned long long)(FA[byte(temp2,0)])		^
-      (unsigned long long)(F9[byte(temp2,1)])		^
-      (unsigned long long)(F8[byte(temp2,2)])		^
-      (unsigned long long)(   byte(temp2,3) )		^
-      (unsigned long long)(F4[byte(temp2,4)])		^
-      (unsigned long long)(   byte(temp2,5) )		^
-      (unsigned long long)(   byte(temp2,6) )		^
-      (unsigned long long)(F2[byte(temp2,7)])) << 48 )	^
-    (((unsigned long long)(F2[byte(temp2,0)])		^
-      (unsigned long long)(FA[byte(temp2,1)])		^
-      (unsigned long long)(F9[byte(temp2,2)])		^
-      (unsigned long long)(F8[byte(temp2,3)])		^
-      (unsigned long long)(   byte(temp2,4) )		^
-      (unsigned long long)(F4[byte(temp2,5)])		^
-      (unsigned long long)(   byte(temp2,6) )		^
-      (unsigned long long)(   byte(temp2,7) )) << 56 );
+	    (((unsigned long long)(   byte(temp2,0) )		^
+	      (unsigned long long)(   byte(temp2,1) )		^
+	      (unsigned long long)(F2[byte(temp2,2)])		^
+	      (unsigned long long)(FA[byte(temp2,3)])		^
+	      (unsigned long long)(F9[byte(temp2,4)])		^
+	      (unsigned long long)(F8[byte(temp2,5)])		^
+	      (unsigned long long)(   byte(temp2,6) )		^
+	      (unsigned long long)(F4[byte(temp2,7)])) <<  8 )	^
+	    (((unsigned long long)(F4[byte(temp2,0)])		^
+	      (unsigned long long)(   byte(temp2,1) )		^
+	      (unsigned long long)(   byte(temp2,2) )		^
+	      (unsigned long long)(F2[byte(temp2,3)])		^
+	      (unsigned long long)(FA[byte(temp2,4)])		^
+	      (unsigned long long)(F9[byte(temp2,5)])		^
+	      (unsigned long long)(F8[byte(temp2,6)])		^
+	      (unsigned long long)(   byte(temp2,7) )) << 16 )	^
+	    (((unsigned long long)(   byte(temp2,0) )		^
+	      (unsigned long long)(F4[byte(temp2,1)])		^
+	      (unsigned long long)(   byte(temp2,2) )		^
+	      (unsigned long long)(   byte(temp2,3) )		^
+	      (unsigned long long)(F2[byte(temp2,4)])		^
+	      (unsigned long long)(FA[byte(temp2,5)])		^
+	      (unsigned long long)(F9[byte(temp2,6)])		^
+	      (unsigned long long)(F8[byte(temp2,7)])) << 24 )	^
+	    (((unsigned long long)(F8[byte(temp2,0)])		^
+	      (unsigned long long)(   byte(temp2,1) )		^
+	      (unsigned long long)(F4[byte(temp2,2)])		^
+	      (unsigned long long)(   byte(temp2,3) )		^
+	      (unsigned long long)(   byte(temp2,4) )		^
+	      (unsigned long long)(F2[byte(temp2,5)])		^
+	      (unsigned long long)(FA[byte(temp2,6)])		^
+	      (unsigned long long)(F9[byte(temp2,7)])) << 32 )	^
+	    (((unsigned long long)(F9[byte(temp2,0)])		^
+	      (unsigned long long)(F8[byte(temp2,1)])		^
+	      (unsigned long long)(   byte(temp2,2) )		^
+	      (unsigned long long)(F4[byte(temp2,3)])		^
+	      (unsigned long long)(   byte(temp2,4) )		^
+	      (unsigned long long)(   byte(temp2,5) )		^
+	      (unsigned long long)(F2[byte(temp2,6)])		^
+	      (unsigned long long)(FA[byte(temp2,7)])) << 40 )	^
+	    (((unsigned long long)(FA[byte(temp2,0)])		^
+	      (unsigned long long)(F9[byte(temp2,1)])		^
+	      (unsigned long long)(F8[byte(temp2,2)])		^
+	      (unsigned long long)(   byte(temp2,3) )		^
+	      (unsigned long long)(F4[byte(temp2,4)])		^
+	      (unsigned long long)(   byte(temp2,5) )		^
+	      (unsigned long long)(   byte(temp2,6) )		^
+	      (unsigned long long)(F2[byte(temp2,7)])) << 48 )	^
+	    (((unsigned long long)(F2[byte(temp2,0)])		^
+	      (unsigned long long)(FA[byte(temp2,1)])		^
+	      (unsigned long long)(F9[byte(temp2,2)])		^
+	      (unsigned long long)(F8[byte(temp2,3)])		^
+	      (unsigned long long)(   byte(temp2,4) )		^
+	      (unsigned long long)(F4[byte(temp2,5)])		^
+	      (unsigned long long)(   byte(temp2,6) )		^
+	      (unsigned long long)(   byte(temp2,7) )) << 56 );
 
     R[1] ^= temp1;
     R[2] ^= ROTL_QWORD(temp1, 29);
