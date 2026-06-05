@@ -11,7 +11,7 @@
 const struct hash_descriptor ripemd_128_desc =
 {
     "ripemd-128",
-    180,
+    181,
     16,
     64,
     &ripemd_128_init,
@@ -23,7 +23,7 @@ const struct hash_descriptor ripemd_128_desc =
 const struct hash_descriptor ripemd_160_desc =
 {
     "ripemd-160",
-    181,
+    182,
     20,
     64,
     &ripemd_160_init,
@@ -35,7 +35,7 @@ const struct hash_descriptor ripemd_160_desc =
 const struct hash_descriptor ripemd_256_desc =
 {
     "ripemd-256",
-    182,
+    183,
     32,
     64,
     &ripemd_256_init,
@@ -47,7 +47,7 @@ const struct hash_descriptor ripemd_256_desc =
 const struct hash_descriptor ripemd_320_desc =
 {
     "ripemd-320",
-    183,
+    184,
     40,
     64,
     &ripemd_320_init,
@@ -151,19 +151,19 @@ const struct hash_descriptor ripemd_320_desc =
 #define STORE32L(x, y)										\
     do {											\
 	(y)[3] = (unsigned char)(((x)>>24)&255); (y)[2] = (unsigned char)(((x)>>16)&255);	\
-	(y)[1] = (unsigned char)(((x)>>8)&255); (y)[0] = (unsigned char)((x)&255);		\
+	(y)[1] = (unsigned char)(((x)>> 8)&255); (y)[0] = (unsigned char)((x)&255);		\
     } while(0)
 
 #define LOAD32L(x, y)										\
     do {x = ((unsigned)((y)[3] & 255)<<24) | ((unsigned)((y)[2] & 255)<<16) |			\
-	((unsigned)((y)[1] & 255)<<8)  | ((unsigned)((y)[0] & 255));				\
+	    ((unsigned)((y)[1] & 255)<< 8) | ((unsigned)((y)[0] & 255));			\
     } while(0)
 
 #define STORE64L(x,y)										\
     do {(y)[7] = (unsigned char)(((x)>>56)&255); (y)[6] = (unsigned char)(((x)>>48)&255);	\
 	(y)[5] = (unsigned char)(((x)>>40)&255); (y)[4] = (unsigned char)(((x)>>32)&255);	\
 	(y)[3] = (unsigned char)(((x)>>24)&255); (y)[2] = (unsigned char)(((x)>>16)&255);	\
-	(y)[1] = (unsigned char)(((x)>>8)&255); (y)[0] = (unsigned char)((x)&255);		\
+	(y)[1] = (unsigned char)(((x)>> 8)&255); (y)[0] = (unsigned char)((x)&255);		\
     } while(0)
 
 #define ROLc(x, y) ((((unsigned)(x)<<(unsigned)((y)&31)) | (((unsigned)(x)&0xFFFFFFFF)>>(unsigned)((32-((y)&31))&31))) & 0xFFFFFFFF)
@@ -183,13 +183,11 @@ static inline int _ripemd_128_compress(hash_state *hs, const unsigned char *buf)
 	LOAD32L(X[i], buf + (4 * i));
     }
 
-
     aa = aaa = hs->ripemd128.state[0];
     bb = bbb = hs->ripemd128.state[1];
     cc = ccc = hs->ripemd128.state[2];
     dd = ddd = hs->ripemd128.state[3];
 
-    /* round 1 */
     FF128(aa, bb, cc, dd, X[ 0], 11);
     FF128(dd, aa, bb, cc, X[ 1], 14);
     FF128(cc, dd, aa, bb, X[ 2], 15);
@@ -207,7 +205,6 @@ static inline int _ripemd_128_compress(hash_state *hs, const unsigned char *buf)
     FF128(cc, dd, aa, bb, X[14],  9);
     FF128(bb, cc, dd, aa, X[15],  8);
 
-    /* round 2 */
     GG128(aa, bb, cc, dd, X[ 7],  7);
     GG128(dd, aa, bb, cc, X[ 4],  6);
     GG128(cc, dd, aa, bb, X[13],  8);
@@ -225,7 +222,6 @@ static inline int _ripemd_128_compress(hash_state *hs, const unsigned char *buf)
     GG128(cc, dd, aa, bb, X[11], 13);
     GG128(bb, cc, dd, aa, X[ 8], 12);
 
-    /* round 3 */
     HH128(aa, bb, cc, dd, X[ 3], 11);
     HH128(dd, aa, bb, cc, X[10], 13);
     HH128(cc, dd, aa, bb, X[14],  6);
@@ -243,7 +239,6 @@ static inline int _ripemd_128_compress(hash_state *hs, const unsigned char *buf)
     HH128(cc, dd, aa, bb, X[ 5],  7);
     HH128(bb, cc, dd, aa, X[12],  5);
 
-    /* round 4 */
     II128(aa, bb, cc, dd, X[ 1], 11);
     II128(dd, aa, bb, cc, X[ 9], 12);
     II128(cc, dd, aa, bb, X[11], 14);
@@ -261,7 +256,6 @@ static inline int _ripemd_128_compress(hash_state *hs, const unsigned char *buf)
     II128(cc, dd, aa, bb, X[ 6],  5);
     II128(bb, cc, dd, aa, X[ 2], 12);
 
-    /* parallel round 1 */
     III128(aaa, bbb, ccc, ddd, X[ 5],  8);
     III128(ddd, aaa, bbb, ccc, X[14],  9);
     III128(ccc, ddd, aaa, bbb, X[ 7],  9);
@@ -279,7 +273,6 @@ static inline int _ripemd_128_compress(hash_state *hs, const unsigned char *buf)
     III128(ccc, ddd, aaa, bbb, X[ 3], 12);
     III128(bbb, ccc, ddd, aaa, X[12],  6);
 
-    /* parallel round 2 */
     HHH128(aaa, bbb, ccc, ddd, X[ 6],  9);
     HHH128(ddd, aaa, bbb, ccc, X[11], 13);
     HHH128(ccc, ddd, aaa, bbb, X[ 3], 15);
@@ -297,7 +290,6 @@ static inline int _ripemd_128_compress(hash_state *hs, const unsigned char *buf)
     HHH128(ccc, ddd, aaa, bbb, X[ 1], 13);
     HHH128(bbb, ccc, ddd, aaa, X[ 2], 11);
 
-    /* parallel round 3 */
     GGG128(aaa, bbb, ccc, ddd, X[15],  9);
     GGG128(ddd, aaa, bbb, ccc, X[ 5],  7);
     GGG128(ccc, ddd, aaa, bbb, X[ 1], 15);
@@ -315,7 +307,6 @@ static inline int _ripemd_128_compress(hash_state *hs, const unsigned char *buf)
     GGG128(ccc, ddd, aaa, bbb, X[ 4],  7);
     GGG128(bbb, ccc, ddd, aaa, X[13],  5);
 
-    /* parallel round 4 */
     FFF128(aaa, bbb, ccc, ddd, X[ 8], 15);
     FFF128(ddd, aaa, bbb, ccc, X[ 6],  5);
     FFF128(ccc, ddd, aaa, bbb, X[ 4],  8);
@@ -358,7 +349,6 @@ static inline int _ripemd_160_compress(hash_state *hs, const unsigned char *buf)
     dd = ddd = hs->ripemd160.state[3];
     ee = eee = hs->ripemd160.state[4];
 
-    /* round 1 */
     FF160(aa, bb, cc, dd, ee, X[ 0], 11);
     FF160(ee, aa, bb, cc, dd, X[ 1], 14);
     FF160(dd, ee, aa, bb, cc, X[ 2], 15);
@@ -376,7 +366,6 @@ static inline int _ripemd_160_compress(hash_state *hs, const unsigned char *buf)
     FF160(bb, cc, dd, ee, aa, X[14],  9);
     FF160(aa, bb, cc, dd, ee, X[15],  8);
 
-    /* round 2 */
     GG160(ee, aa, bb, cc, dd, X[ 7],  7);
     GG160(dd, ee, aa, bb, cc, X[ 4],  6);
     GG160(cc, dd, ee, aa, bb, X[13],  8);
@@ -394,7 +383,6 @@ static inline int _ripemd_160_compress(hash_state *hs, const unsigned char *buf)
     GG160(aa, bb, cc, dd, ee, X[11], 13);
     GG160(ee, aa, bb, cc, dd, X[ 8], 12);
 
-    /* round 3 */
     HH160(dd, ee, aa, bb, cc, X[ 3], 11);
     HH160(cc, dd, ee, aa, bb, X[10], 13);
     HH160(bb, cc, dd, ee, aa, X[14],  6);
@@ -412,7 +400,6 @@ static inline int _ripemd_160_compress(hash_state *hs, const unsigned char *buf)
     HH160(ee, aa, bb, cc, dd, X[ 5],  7);
     HH160(dd, ee, aa, bb, cc, X[12],  5);
 
-    /* round 4 */
     II160(cc, dd, ee, aa, bb, X[ 1], 11);
     II160(bb, cc, dd, ee, aa, X[ 9], 12);
     II160(aa, bb, cc, dd, ee, X[11], 14);
@@ -430,7 +417,6 @@ static inline int _ripemd_160_compress(hash_state *hs, const unsigned char *buf)
     II160(dd, ee, aa, bb, cc, X[ 6],  5);
     II160(cc, dd, ee, aa, bb, X[ 2], 12);
 
-    /* round 5 */
     JJ160(bb, cc, dd, ee, aa, X[ 4],  9);
     JJ160(aa, bb, cc, dd, ee, X[ 0], 15);
     JJ160(ee, aa, bb, cc, dd, X[ 5],  5);
@@ -448,7 +434,6 @@ static inline int _ripemd_160_compress(hash_state *hs, const unsigned char *buf)
     JJ160(cc, dd, ee, aa, bb, X[15],  5);
     JJ160(bb, cc, dd, ee, aa, X[13],  6);
 
-    /* parallel round 1 */
     JJJ160(aaa, bbb, ccc, ddd, eee, X[ 5],  8);
     JJJ160(eee, aaa, bbb, ccc, ddd, X[14],  9);
     JJJ160(ddd, eee, aaa, bbb, ccc, X[ 7],  9);
@@ -466,7 +451,6 @@ static inline int _ripemd_160_compress(hash_state *hs, const unsigned char *buf)
     JJJ160(bbb, ccc, ddd, eee, aaa, X[ 3], 12);
     JJJ160(aaa, bbb, ccc, ddd, eee, X[12],  6);
 
-    /* parallel round 2 */
     III160(eee, aaa, bbb, ccc, ddd, X[ 6],  9);
     III160(ddd, eee, aaa, bbb, ccc, X[11], 13);
     III160(ccc, ddd, eee, aaa, bbb, X[ 3], 15);
@@ -484,7 +468,6 @@ static inline int _ripemd_160_compress(hash_state *hs, const unsigned char *buf)
     III160(aaa, bbb, ccc, ddd, eee, X[ 1], 13);
     III160(eee, aaa, bbb, ccc, ddd, X[ 2], 11);
 
-    /* parallel round 3 */
     HHH160(ddd, eee, aaa, bbb, ccc, X[15],  9);
     HHH160(ccc, ddd, eee, aaa, bbb, X[ 5],  7);
     HHH160(bbb, ccc, ddd, eee, aaa, X[ 1], 15);
@@ -502,7 +485,6 @@ static inline int _ripemd_160_compress(hash_state *hs, const unsigned char *buf)
     HHH160(eee, aaa, bbb, ccc, ddd, X[ 4],  7);
     HHH160(ddd, eee, aaa, bbb, ccc, X[13],  5);
 
-    /* parallel round 4 */
     GGG160(ccc, ddd, eee, aaa, bbb, X[ 8], 15);
     GGG160(bbb, ccc, ddd, eee, aaa, X[ 6],  5);
     GGG160(aaa, bbb, ccc, ddd, eee, X[ 4],  8);
@@ -520,7 +502,6 @@ static inline int _ripemd_160_compress(hash_state *hs, const unsigned char *buf)
     GGG160(ddd, eee, aaa, bbb, ccc, X[10], 15);
     GGG160(ccc, ddd, eee, aaa, bbb, X[14],  8);
 
-    /* parallel round 5 */
     FFF160(bbb, ccc, ddd, eee, aaa, X[12],  8);
     FFF160(aaa, bbb, ccc, ddd, eee, X[15],  5);
     FFF160(eee, aaa, bbb, ccc, ddd, X[10], 12);
@@ -567,7 +548,6 @@ static inline int _ripemd_256_compress(hash_state *hs, const unsigned char *buf)
     ccc = hs->ripemd256.state[6];
     ddd = hs->ripemd256.state[7];
 
-    /* round 1 */
     FF128(aa, bb, cc, dd, X[ 0], 11);
     FF128(dd, aa, bb, cc, X[ 1], 14);
     FF128(cc, dd, aa, bb, X[ 2], 15);
@@ -585,7 +565,6 @@ static inline int _ripemd_256_compress(hash_state *hs, const unsigned char *buf)
     FF128(cc, dd, aa, bb, X[14],  9);
     FF128(bb, cc, dd, aa, X[15],  8);
 
-    /* parallel round 1 */
     III128(aaa, bbb, ccc, ddd, X[ 5],  8);
     III128(ddd, aaa, bbb, ccc, X[14],  9);
     III128(ccc, ddd, aaa, bbb, X[ 7],  9);
@@ -605,7 +584,6 @@ static inline int _ripemd_256_compress(hash_state *hs, const unsigned char *buf)
 
     tmp = aa; aa = aaa; aaa = tmp;
 
-    /* round 2 */
     GG128(aa, bb, cc, dd, X[ 7],  7);
     GG128(dd, aa, bb, cc, X[ 4],  6);
     GG128(cc, dd, aa, bb, X[13],  8);
@@ -623,7 +601,6 @@ static inline int _ripemd_256_compress(hash_state *hs, const unsigned char *buf)
     GG128(cc, dd, aa, bb, X[11], 13);
     GG128(bb, cc, dd, aa, X[ 8], 12);
 
-    /* parallel round 2 */
     HHH128(aaa, bbb, ccc, ddd, X[ 6],  9);
     HHH128(ddd, aaa, bbb, ccc, X[11], 13);
     HHH128(ccc, ddd, aaa, bbb, X[ 3], 15);
@@ -643,7 +620,6 @@ static inline int _ripemd_256_compress(hash_state *hs, const unsigned char *buf)
 
     tmp = bb; bb = bbb; bbb = tmp;
 
-    /* round 3 */
     HH128(aa, bb, cc, dd, X[ 3], 11);
     HH128(dd, aa, bb, cc, X[10], 13);
     HH128(cc, dd, aa, bb, X[14],  6);
@@ -661,7 +637,6 @@ static inline int _ripemd_256_compress(hash_state *hs, const unsigned char *buf)
     HH128(cc, dd, aa, bb, X[ 5],  7);
     HH128(bb, cc, dd, aa, X[12],  5);
 
-    /* parallel round 3 */
     GGG128(aaa, bbb, ccc, ddd, X[15],  9);
     GGG128(ddd, aaa, bbb, ccc, X[ 5],  7);
     GGG128(ccc, ddd, aaa, bbb, X[ 1], 15);
@@ -681,7 +656,6 @@ static inline int _ripemd_256_compress(hash_state *hs, const unsigned char *buf)
 
     tmp = cc; cc = ccc; ccc = tmp;
 
-    /* round 4 */
     II128(aa, bb, cc, dd, X[ 1], 11);
     II128(dd, aa, bb, cc, X[ 9], 12);
     II128(cc, dd, aa, bb, X[11], 14);
@@ -699,7 +673,6 @@ static inline int _ripemd_256_compress(hash_state *hs, const unsigned char *buf)
     II128(cc, dd, aa, bb, X[ 6],  5);
     II128(bb, cc, dd, aa, X[ 2], 12);
 
-    /* parallel round 4 */
     FFF128(aaa, bbb, ccc, ddd, X[ 8], 15);
     FFF128(ddd, aaa, bbb, ccc, X[ 6],  5);
     FFF128(ccc, ddd, aaa, bbb, X[ 4],  8);
@@ -751,7 +724,6 @@ static inline int _ripemd_320_compress(hash_state *hs, const unsigned char *buf)
     ddd = hs->ripemd320.state[8];
     eee = hs->ripemd320.state[9];
 
-    /* round 1 */
     FF160(aa, bb, cc, dd, ee, X[ 0], 11);
     FF160(ee, aa, bb, cc, dd, X[ 1], 14);
     FF160(dd, ee, aa, bb, cc, X[ 2], 15);
@@ -769,7 +741,6 @@ static inline int _ripemd_320_compress(hash_state *hs, const unsigned char *buf)
     FF160(bb, cc, dd, ee, aa, X[14],  9);
     FF160(aa, bb, cc, dd, ee, X[15],  8);
 
-    /* parallel round 1 */
     JJJ160(aaa, bbb, ccc, ddd, eee, X[ 5],  8);
     JJJ160(eee, aaa, bbb, ccc, ddd, X[14],  9);
     JJJ160(ddd, eee, aaa, bbb, ccc, X[ 7],  9);
@@ -789,7 +760,6 @@ static inline int _ripemd_320_compress(hash_state *hs, const unsigned char *buf)
 
     tmp = aa; aa = aaa; aaa = tmp;
 
-    /* round 2 */
     GG160(ee, aa, bb, cc, dd, X[ 7],  7);
     GG160(dd, ee, aa, bb, cc, X[ 4],  6);
     GG160(cc, dd, ee, aa, bb, X[13],  8);
@@ -807,7 +777,6 @@ static inline int _ripemd_320_compress(hash_state *hs, const unsigned char *buf)
     GG160(aa, bb, cc, dd, ee, X[11], 13);
     GG160(ee, aa, bb, cc, dd, X[ 8], 12);
 
-    /* parallel round 2 */
     III160(eee, aaa, bbb, ccc, ddd, X[ 6],  9);
     III160(ddd, eee, aaa, bbb, ccc, X[11], 13);
     III160(ccc, ddd, eee, aaa, bbb, X[ 3], 15);
@@ -827,7 +796,6 @@ static inline int _ripemd_320_compress(hash_state *hs, const unsigned char *buf)
 
     tmp = bb; bb = bbb; bbb = tmp;
 
-    /* round 3 */
     HH160(dd, ee, aa, bb, cc, X[ 3], 11);
     HH160(cc, dd, ee, aa, bb, X[10], 13);
     HH160(bb, cc, dd, ee, aa, X[14],  6);
@@ -845,7 +813,6 @@ static inline int _ripemd_320_compress(hash_state *hs, const unsigned char *buf)
     HH160(ee, aa, bb, cc, dd, X[ 5],  7);
     HH160(dd, ee, aa, bb, cc, X[12],  5);
 
-    /* parallel round 3 */
     HHH160(ddd, eee, aaa, bbb, ccc, X[15],  9);
     HHH160(ccc, ddd, eee, aaa, bbb, X[ 5],  7);
     HHH160(bbb, ccc, ddd, eee, aaa, X[ 1], 15);
@@ -865,7 +832,6 @@ static inline int _ripemd_320_compress(hash_state *hs, const unsigned char *buf)
 
     tmp = cc; cc = ccc; ccc = tmp;
 
-    /* round 4 */
     II160(cc, dd, ee, aa, bb, X[ 1], 11);
     II160(bb, cc, dd, ee, aa, X[ 9], 12);
     II160(aa, bb, cc, dd, ee, X[11], 14);
@@ -883,7 +849,6 @@ static inline int _ripemd_320_compress(hash_state *hs, const unsigned char *buf)
     II160(dd, ee, aa, bb, cc, X[ 6],  5);
     II160(cc, dd, ee, aa, bb, X[ 2], 12);
 
-    /* parallel round 4 */
     GGG160(ccc, ddd, eee, aaa, bbb, X[ 8], 15);
     GGG160(bbb, ccc, ddd, eee, aaa, X[ 6],  5);
     GGG160(aaa, bbb, ccc, ddd, eee, X[ 4],  8);
@@ -903,7 +868,6 @@ static inline int _ripemd_320_compress(hash_state *hs, const unsigned char *buf)
 
     tmp = dd; dd = ddd; ddd = tmp;
 
-    /* round 5 */
     JJ160(bb, cc, dd, ee, aa, X[ 4],  9);
     JJ160(aa, bb, cc, dd, ee, X[ 0], 15);
     JJ160(ee, aa, bb, cc, dd, X[ 5],  5);
@@ -921,7 +885,6 @@ static inline int _ripemd_320_compress(hash_state *hs, const unsigned char *buf)
     JJ160(cc, dd, ee, aa, bb, X[15],  5);
     JJ160(bb, cc, dd, ee, aa, X[13],  6);
 
-    /* parallel round 5 */
     FFF160(bbb, ccc, ddd, eee, aaa, X[12],  8);
     FFF160(aaa, bbb, ccc, ddd, eee, X[15],  5);
     FFF160(eee, aaa, bbb, ccc, ddd, X[10], 12);
