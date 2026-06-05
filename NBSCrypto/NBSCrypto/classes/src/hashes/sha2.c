@@ -11,7 +11,7 @@
 const struct hash_descriptor sha224_desc =
 {
     "sha224",
-    185,
+    186,
     28,
     64,
     &sha224_init,
@@ -23,7 +23,7 @@ const struct hash_descriptor sha224_desc =
 const struct hash_descriptor sha256_desc =
 {
     "sha256",
-    186,
+    187,
     32,
     64,
     &sha256_init,
@@ -35,7 +35,7 @@ const struct hash_descriptor sha256_desc =
 const struct hash_descriptor sha384_desc =
 {
     "sha384",
-    187,
+    188,
     48,
     128,
     &sha384_init,
@@ -47,7 +47,7 @@ const struct hash_descriptor sha384_desc =
 const struct hash_descriptor sha512_desc =
 {
     "sha512",
-    188,
+    189,
     64,
     128,
     &sha512_init,
@@ -59,7 +59,7 @@ const struct hash_descriptor sha512_desc =
 const struct hash_descriptor sha512_224_desc =
 {
     "sha512-224",
-    189,
+    190,
     28,
     128,
     &sha512_224_init,
@@ -71,7 +71,7 @@ const struct hash_descriptor sha512_224_desc =
 const struct hash_descriptor sha512_256_desc =
 {
     "sha512-256",
-    190,
+    191,
     32,
     128,
     &sha512_256_init,
@@ -106,7 +106,7 @@ const struct hash_descriptor sha512_256_desc =
 
 #define LOAD32H(x, y)										\
     do {x = ((unsigned)((y)[0] & 255)<<24) | ((unsigned)((y)[1] & 255)<<16) |			\
-	((unsigned)((y)[2] & 255)<<8)  | ((unsigned)((y)[3] & 255));				\
+	    ((unsigned)((y)[2] & 255)<< 8) | ((unsigned)((y)[3] & 255));			\
     } while(0)
 
 #define STORE64H(x, y)										\
