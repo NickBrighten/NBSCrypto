@@ -12,7 +12,7 @@
 const struct hash_descriptor echo_224_desc =
 {
     "echo-224",
-    100,
+    101,
     28,
     64,
     &echo_224_init,
@@ -24,7 +24,7 @@ const struct hash_descriptor echo_224_desc =
 const struct hash_descriptor echo_256_desc =
 {
     "echo-256",
-    101,
+    102,
     32,
     64,
     &echo_256_init,
@@ -36,7 +36,7 @@ const struct hash_descriptor echo_256_desc =
 const struct hash_descriptor echo_384_desc =
 {
     "echo-384",
-    102,
+    103,
     48,
     128,
     &echo_384_init,
@@ -48,7 +48,7 @@ const struct hash_descriptor echo_384_desc =
 const struct hash_descriptor echo_512_desc =
 {
     "echo-512",
-    103,
+    104,
     64,
     128,
     &echo_512_init,
@@ -127,13 +127,13 @@ const struct hash_descriptor echo_512_desc =
 #define AESround(i) do {										\
     unsigned int WA, WB, WC, WD;									\
     WA = T0[ lbyte(WL##i) ] ^ T1[ Hbyte(WL##i) ] ^							\
-	 T2[ sbyte(WH##i) ] ^ T3[ Mbyte(WH##i) ] ^ ((unsigned int)CNT);					\
+    T2[ sbyte(WH##i) ] ^ T3[ Mbyte(WH##i) ] ^ ((unsigned int)CNT);					\
     WB = T0[ Lbyte(WL##i) ] ^ T1[ hbyte(WH##i) ] ^							\
-	 T2[ Sbyte(WH##i) ] ^ T3[ mbyte(WL##i) ] ^ ((unsigned long long)CNT >> 32);			\
+    T2[ Sbyte(WH##i) ] ^ T3[ mbyte(WL##i) ] ^ ((unsigned long long)CNT >> 32);				\
     WC = T0[ lbyte(WH##i) ] ^ T1[ Hbyte(WH##i) ] ^							\
-	 T2[ sbyte(WL##i) ] ^ T3[ Mbyte(WL##i) ] ^ (unsigned int)SALT_A;				\
+    T2[ sbyte(WL##i) ] ^ T3[ Mbyte(WL##i) ] ^ (unsigned int)SALT_A;					\
     WD = T0[ Lbyte(WH##i) ] ^ T1[ hbyte(WL##i) ] ^							\
-	 T2[ Sbyte(WL##i) ] ^ T3[ mbyte(WH##i) ] ^ (unsigned int)((unsigned long long)SALT_A >> 32);	\
+    T2[ Sbyte(WL##i) ] ^ T3[ mbyte(WH##i) ] ^ (unsigned int)((unsigned long long)SALT_A >> 32);		\
     CNT++;												\
     WL##i  = (unsigned long long)(T0[lbyte(WA)]^T1[hbyte(WB)]^T2[sbyte(WC)]^T3[mbyte(WD)]);		\
     WL##i ^=((unsigned long long)(T0[lbyte(WB)]^T1[hbyte(WC)]^T2[sbyte(WD)]^T3[mbyte(WA)]) << 32);	\
@@ -160,7 +160,7 @@ const struct hash_descriptor echo_512_desc =
 	hs->echo.state[5] = hs->echo.CV[5] ^ WH10;		\
 	hs->echo.state[6] = hs->echo.CV[6] ^ WL11;		\
 	hs->echo.state[7] = hs->echo.CV[7] ^ WH11;		\
-    } else {							\
+    }else{							\
 	hs->echo.state[0]   = hs->echo.CV[0]   ^ WL0 ^ WL8 ;	\
 	hs->echo.state[1]   = hs->echo.CV[1]   ^ WH0 ^ WH8 ;	\
 	hs->echo.state[2]   = hs->echo.CV[2]   ^ WL1 ^ WL9 ;	\
