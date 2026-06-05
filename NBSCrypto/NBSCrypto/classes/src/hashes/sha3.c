@@ -11,7 +11,7 @@
 const struct hash_descriptor sha3_224_desc =
 {
     "sha3-224",
-    191,
+    192,
     28,
     144,
     &sha3_224_init,
@@ -23,7 +23,7 @@ const struct hash_descriptor sha3_224_desc =
 const struct hash_descriptor sha3_256_desc =
 {
     "sha3-256",
-    192,
+    193,
     32,
     136,
     &sha3_256_init,
@@ -35,7 +35,7 @@ const struct hash_descriptor sha3_256_desc =
 const struct hash_descriptor sha3_384_desc =
 {
     "sha3-384",
-    193,
+    194,
     48,
     104,
     &sha3_384_init,
@@ -47,7 +47,7 @@ const struct hash_descriptor sha3_384_desc =
 const struct hash_descriptor sha3_512_desc =
 {
     "sha3-512",
-    194,
+    195,
     64,
     72,
     &sha3_512_init,
@@ -59,7 +59,7 @@ const struct hash_descriptor sha3_512_desc =
 const struct hash_descriptor keccak_224_desc =
 {
     "keccak-224",
-    149,
+    150,
     28,
     144,
     &sha3_224_init,
@@ -71,7 +71,7 @@ const struct hash_descriptor keccak_224_desc =
 const struct hash_descriptor keccak_256_desc =
 {
     "keccak-256",
-    150,
+    151,
     32,
     136,
     &sha3_256_init,
@@ -83,7 +83,7 @@ const struct hash_descriptor keccak_256_desc =
 const struct hash_descriptor keccak_384_desc =
 {
     "keccak-384",
-    151,
+    152,
     48,
     104,
     &sha3_384_init,
@@ -95,7 +95,7 @@ const struct hash_descriptor keccak_384_desc =
 const struct hash_descriptor keccak_512_desc =
 {
     "keccak-512",
-    152,
+    153,
     64,
     72,
     &sha3_512_init,
@@ -107,7 +107,7 @@ const struct hash_descriptor keccak_512_desc =
 const struct hash_descriptor shake_128_desc =
 {
     "shake-128",
-    200,
+    201,
     16,
     168,
     &sha3_shake_128_init,
@@ -119,7 +119,7 @@ const struct hash_descriptor shake_128_desc =
 const struct hash_descriptor shake_256_desc =
 {
     "shake-256",
-    201,
+    202,
     32,
     136,
     &sha3_shake_256_init,
@@ -137,18 +137,18 @@ const struct hash_descriptor shake_256_desc =
     do {(y)[7] = (unsigned char)(((x)>>56)&255); (y)[6] = (unsigned char)(((x)>>48)&255);	\
 	(y)[5] = (unsigned char)(((x)>>40)&255); (y)[4] = (unsigned char)(((x)>>32)&255);	\
 	(y)[3] = (unsigned char)(((x)>>24)&255); (y)[2] = (unsigned char)(((x)>>16)&255);	\
-	(y)[1] = (unsigned char)(((x)>>8)&255); (y)[0] = (unsigned char)((x)&255);		\
+	(y)[1] = (unsigned char)(((x)>> 8)&255); (y)[0] = (unsigned char)((x)&255);		\
     } while(0)
 
 #define LOAD64L(x, y)						\
     do {x = (((unsigned long long)((y)[7] & 255))<<56)|		\
-	(((unsigned long long)((y)[6] & 255))<<48)|		\
-	(((unsigned long long)((y)[5] & 255))<<40)|		\
-	(((unsigned long long)((y)[4] & 255))<<32)|		\
-	(((unsigned long long)((y)[3] & 255))<<24)|		\
-	(((unsigned long long)((y)[2] & 255))<<16)|		\
-	(((unsigned long long)((y)[1] & 255))<<8)|		\
-	(((unsigned long long)((y)[0] & 255)));			\
+	    (((unsigned long long)((y)[6] & 255))<<48)|		\
+	    (((unsigned long long)((y)[5] & 255))<<40)|		\
+	    (((unsigned long long)((y)[4] & 255))<<32)|		\
+	    (((unsigned long long)((y)[3] & 255))<<24)|		\
+	    (((unsigned long long)((y)[2] & 255))<<16)|		\
+	    (((unsigned long long)((y)[1] & 255))<< 8)|		\
+	    (((unsigned long long)((y)[0] & 255)));		\
     } while(0)
 
 #define ROL64(x, y) ((((x)<<((unsigned long long)(y)&63)) | (((x)&CONST64(0xFFFFFFFFFFFFFFFF))>>(((unsigned long long)64-((y)&63))&63))) & CONST64(0xFFFFFFFFFFFFFFFF))
