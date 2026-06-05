@@ -11,7 +11,7 @@
 const struct hash_descriptor jh_224_desc =
 {
     "jh-224",
-    144,
+    145,
     28,
     64,
     &jh_224_init,
@@ -23,7 +23,7 @@ const struct hash_descriptor jh_224_desc =
 const struct hash_descriptor jh_256_desc =
 {
     "jh-256",
-    145,
+    146,
     32,
     64,
     &jh_256_init,
@@ -35,7 +35,7 @@ const struct hash_descriptor jh_256_desc =
 const struct hash_descriptor jh_384_desc =
 {
     "jh-384",
-    146,
+    147,
     48,
     64,
     &jh_384_init,
@@ -47,7 +47,7 @@ const struct hash_descriptor jh_384_desc =
 const struct hash_descriptor jh_512_desc =
 {
     "jh-512",
-    147,
+    148,
     64,
     64,
     &jh_512_init,
