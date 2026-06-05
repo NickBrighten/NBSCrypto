@@ -12,7 +12,7 @@
 const struct hash_descriptor bluemidnightwish_224_desc =
 {
     "bluemidnightwish-224",
-    14,
+    15,
     28,
     64,
     &bluemidnightwish_224_init,
@@ -24,7 +24,7 @@ const struct hash_descriptor bluemidnightwish_224_desc =
 const struct hash_descriptor bluemidnightwish_256_desc =
 {
     "bluemidnightwish-256",
-    15,
+    16,
     32,
     64,
     &bluemidnightwish_256_init,
@@ -36,7 +36,7 @@ const struct hash_descriptor bluemidnightwish_256_desc =
 const struct hash_descriptor bluemidnightwish_384_desc =
 {
     "bluemidnightwish-384",
-    16,
+    17,
     48,
     64,
     &bluemidnightwish_384_init,
@@ -48,7 +48,7 @@ const struct hash_descriptor bluemidnightwish_384_desc =
 const struct hash_descriptor bluemidnightwish_512_desc =
 {
     "bluemidnightwish-512",
-    17,
+    18,
     64,
     64,
     &bluemidnightwish_512_init,
@@ -101,10 +101,10 @@ const struct hash_descriptor bluemidnightwish_512_desc =
 #define r64_06(x) rotl64((x), 43)
 #define r64_07(x) rotl64((x), 53)
 
-#define hashState224(x)  ((x)->bluemidnightwish.pipe->p256)
-#define hashState256(x)  ((x)->bluemidnightwish.pipe->p256)
-#define hashState384(x)  ((x)->bluemidnightwish.pipe->p512)
-#define hashState512(x)  ((x)->bluemidnightwish.pipe->p512)
+#define hashState224(x) ((x)->bluemidnightwish.pipe->p256)
+#define hashState256(x) ((x)->bluemidnightwish.pipe->p256)
+#define hashState384(x) ((x)->bluemidnightwish.pipe->p512)
+#define hashState512(x) ((x)->bluemidnightwish.pipe->p512)
 
 const unsigned int i224p2[16] =
 {   0x00010203, 0x04050607, 0x08090a0b, 0x0c0d0e0f,
