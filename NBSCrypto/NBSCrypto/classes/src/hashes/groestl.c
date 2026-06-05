@@ -12,7 +12,7 @@
 const struct hash_descriptor groestl_224_desc =
 {
     "groestl-224",
-    121,
+    122,
     28,
     64,
     &groestl_224_init,
@@ -24,7 +24,7 @@ const struct hash_descriptor groestl_224_desc =
 const struct hash_descriptor groestl_256_desc =
 {
     "groestl-256",
-    122,
+    123,
     32,
     64,
     &groestl_256_init,
@@ -36,7 +36,7 @@ const struct hash_descriptor groestl_256_desc =
 const struct hash_descriptor groestl_384_desc =
 {
     "groestl-384",
-    123,
+    124,
     48,
     128,
     &groestl_384_init,
@@ -48,7 +48,7 @@ const struct hash_descriptor groestl_384_desc =
 const struct hash_descriptor groestl_512_desc =
 {
     "groestl-512",
-    124,
+    125,
     64,
     128,
     &groestl_512_init,
@@ -594,116 +594,124 @@ unsigned long long T[8*256]  __attribute__((aligned(64))) = {
 
 #define EXT_BYTE(var,n) ((unsigned char)((unsigned long long)(var) >> (8*n)))
 #define ROTL64(a,n) ((((a)<<(n))|((a)>>(64-(n))))&(0xffffffffffffffffULL))
-#define U64BIG(a)((ROTL64(a,8) & (0x000000FF000000FFULL)) | (ROTL64(a,24) & (0x0000FF000000FF00ULL)) | (ROTL64(a,40) & (0x00FF000000FF0000ULL)) | (ROTL64(a,56) & (0xFF000000FF000000ULL)))
+#define U64BIG(a)(\
+    (ROTL64(a, 8) & (0x000000FF000000FFULL)) |	\
+    (ROTL64(a,24) & (0x0000FF000000FF00ULL)) |	\
+    (ROTL64(a,40) & (0x00FF000000FF0000ULL)) |	\
+    (ROTL64(a,56) & (0xFF000000FF000000ULL))	\
+)
 
-#define COLUMN(x,y,i,c0,c1,c2,c3,c4,c5,c6,c7) y[i] = T[0*256+EXT_BYTE(x[c0],0)] ^ T[1*256+EXT_BYTE(x[c1],1)] ^ T[2*256+EXT_BYTE(x[c2],2)] ^ T[3*256+EXT_BYTE(x[c3],3)] ^ T[4*256+EXT_BYTE(x[c4],4)] ^ T[5*256+EXT_BYTE(x[c5],5)] ^ T[6*256+EXT_BYTE(x[c6],6)] ^ T[7*256+EXT_BYTE(x[c7],7)]
+#define COLUMN(x,y,i,c0,c1,c2,c3,c4,c5,c6,c7)											\
+    y[i] =															\
+	T[0*256+EXT_BYTE(x[c0],0)] ^ T[1*256+EXT_BYTE(x[c1],1)] ^ T[2*256+EXT_BYTE(x[c2],2)] ^ T[3*256+EXT_BYTE(x[c3],3)] ^	\
+	T[4*256+EXT_BYTE(x[c4],4)] ^ T[5*256+EXT_BYTE(x[c5],5)] ^ T[6*256+EXT_BYTE(x[c6],6)] ^ T[7*256+EXT_BYTE(x[c7],7)]
 
-#define RND512P(x,y,r) do {				\
-	x[0] ^= U64BIG(0x0000000000000000ull)^r;	\
-	x[1] ^= U64BIG(0x1000000000000000ull)^r;	\
-	x[2] ^= U64BIG(0x2000000000000000ull)^r;	\
-	x[3] ^= U64BIG(0x3000000000000000ull)^r;	\
-	x[4] ^= U64BIG(0x4000000000000000ull)^r;	\
-	x[5] ^= U64BIG(0x5000000000000000ull)^r;	\
-	x[6] ^= U64BIG(0x6000000000000000ull)^r;	\
-	x[7] ^= U64BIG(0x7000000000000000ull)^r;	\
-	COLUMN(x,y,0,0,1,2,3,4,5,6,7);			\
-	COLUMN(x,y,1,1,2,3,4,5,6,7,0);			\
-	COLUMN(x,y,2,2,3,4,5,6,7,0,1);			\
-	COLUMN(x,y,3,3,4,5,6,7,0,1,2);			\
-	COLUMN(x,y,4,4,5,6,7,0,1,2,3);			\
-	COLUMN(x,y,5,5,6,7,0,1,2,3,4);			\
-	COLUMN(x,y,6,6,7,0,1,2,3,4,5);			\
-	COLUMN(x,y,7,7,0,1,2,3,4,5,6);			\
+#define RND512P(x,y,r) do {			\
+    x[0] ^= U64BIG(0x0000000000000000ull)^r;	\
+    x[1] ^= U64BIG(0x1000000000000000ull)^r;	\
+    x[2] ^= U64BIG(0x2000000000000000ull)^r;	\
+    x[3] ^= U64BIG(0x3000000000000000ull)^r;	\
+    x[4] ^= U64BIG(0x4000000000000000ull)^r;	\
+    x[5] ^= U64BIG(0x5000000000000000ull)^r;	\
+    x[6] ^= U64BIG(0x6000000000000000ull)^r;	\
+    x[7] ^= U64BIG(0x7000000000000000ull)^r;	\
+    COLUMN(x,y,0,0,1,2,3,4,5,6,7);		\
+    COLUMN(x,y,1,1,2,3,4,5,6,7,0);		\
+    COLUMN(x,y,2,2,3,4,5,6,7,0,1);		\
+    COLUMN(x,y,3,3,4,5,6,7,0,1,2);		\
+    COLUMN(x,y,4,4,5,6,7,0,1,2,3);		\
+    COLUMN(x,y,5,5,6,7,0,1,2,3,4);		\
+    COLUMN(x,y,6,6,7,0,1,2,3,4,5);		\
+    COLUMN(x,y,7,7,0,1,2,3,4,5,6);		\
 } while (0)
 
-#define RND512Q(x,y,r) do {				\
-	x[0] ^= U64BIG(0xffffffffffffffffull)^r;	\
-	x[1] ^= U64BIG(0xffffffffffffffefull)^r;	\
-	x[2] ^= U64BIG(0xffffffffffffffdfull)^r;	\
-	x[3] ^= U64BIG(0xffffffffffffffcfull)^r;	\
-	x[4] ^= U64BIG(0xffffffffffffffbfull)^r;	\
-	x[5] ^= U64BIG(0xffffffffffffffafull)^r;	\
-	x[6] ^= U64BIG(0xffffffffffffff9full)^r;	\
-	x[7] ^= U64BIG(0xffffffffffffff8full)^r;	\
-	COLUMN(x,y,0,1,3,5,7,0,2,4,6);			\
-	COLUMN(x,y,1,2,4,6,0,1,3,5,7);			\
-	COLUMN(x,y,2,3,5,7,1,2,4,6,0);			\
-	COLUMN(x,y,3,4,6,0,2,3,5,7,1);			\
-	COLUMN(x,y,4,5,7,1,3,4,6,0,2);			\
-	COLUMN(x,y,5,6,0,2,4,5,7,1,3);			\
-	COLUMN(x,y,6,7,1,3,5,6,0,2,4);			\
-	COLUMN(x,y,7,0,2,4,6,7,1,3,5);			\
+#define RND512Q(x,y,r) do {			\
+    x[0] ^= U64BIG(0xffffffffffffffffull)^r;	\
+    x[1] ^= U64BIG(0xffffffffffffffefull)^r;	\
+    x[2] ^= U64BIG(0xffffffffffffffdfull)^r;	\
+    x[3] ^= U64BIG(0xffffffffffffffcfull)^r;	\
+    x[4] ^= U64BIG(0xffffffffffffffbfull)^r;	\
+    x[5] ^= U64BIG(0xffffffffffffffafull)^r;	\
+    x[6] ^= U64BIG(0xffffffffffffff9full)^r;	\
+    x[7] ^= U64BIG(0xffffffffffffff8full)^r;	\
+    COLUMN(x,y,0,1,3,5,7,0,2,4,6);		\
+    COLUMN(x,y,1,2,4,6,0,1,3,5,7);		\
+    COLUMN(x,y,2,3,5,7,1,2,4,6,0);		\
+    COLUMN(x,y,3,4,6,0,2,3,5,7,1);		\
+    COLUMN(x,y,4,5,7,1,3,4,6,0,2);		\
+    COLUMN(x,y,5,6,0,2,4,5,7,1,3);		\
+    COLUMN(x,y,6,7,1,3,5,6,0,2,4);		\
+    COLUMN(x,y,7,0,2,4,6,7,1,3,5);		\
 } while (0)
 
-#define RND1024P(x,y,r) do {				\
-	x[ 0] ^= U64BIG(0x0000000000000000ull)^r;	\
-	x[ 1] ^= U64BIG(0x1000000000000000ull)^r;	\
-	x[ 2] ^= U64BIG(0x2000000000000000ull)^r;	\
-	x[ 3] ^= U64BIG(0x3000000000000000ull)^r;	\
-	x[ 4] ^= U64BIG(0x4000000000000000ull)^r;	\
-	x[ 5] ^= U64BIG(0x5000000000000000ull)^r;	\
-	x[ 6] ^= U64BIG(0x6000000000000000ull)^r;	\
-	x[ 7] ^= U64BIG(0x7000000000000000ull)^r;	\
-	x[ 8] ^= U64BIG(0x8000000000000000ull)^r;	\
-	x[ 9] ^= U64BIG(0x9000000000000000ull)^r;	\
-	x[10] ^= U64BIG(0xa000000000000000ull)^r;	\
-	x[11] ^= U64BIG(0xb000000000000000ull)^r;	\
-	x[12] ^= U64BIG(0xc000000000000000ull)^r;	\
-	x[13] ^= U64BIG(0xd000000000000000ull)^r;	\
-	x[14] ^= U64BIG(0xe000000000000000ull)^r;	\
-	x[15] ^= U64BIG(0xf000000000000000ull)^r;	\
-	COLUMN(x,y,15,15, 0, 1, 2, 3, 4, 5,10);		\
-	COLUMN(x,y,14,14,15, 0, 1, 2, 3, 4, 9);		\
-	COLUMN(x,y,13,13,14,15, 0, 1, 2, 3, 8);		\
-	COLUMN(x,y,12,12,13,14,15, 0, 1, 2, 7);		\
-	COLUMN(x,y,11,11,12,13,14,15, 0, 1, 6);		\
-	COLUMN(x,y,10,10,11,12,13,14,15, 0, 5);		\
-	COLUMN(x,y, 9, 9,10,11,12,13,14,15, 4);		\
-	COLUMN(x,y, 8, 8, 9,10,11,12,13,14, 3);		\
-	COLUMN(x,y, 7, 7, 8, 9,10,11,12,13, 2);		\
-	COLUMN(x,y, 6, 6, 7, 8, 9,10,11,12, 1);		\
-	COLUMN(x,y, 5, 5, 6, 7, 8, 9,10,11, 0);		\
-	COLUMN(x,y, 4, 4, 5, 6, 7, 8, 9,10,15);		\
-	COLUMN(x,y, 3, 3, 4, 5, 6, 7, 8, 9,14);		\
-	COLUMN(x,y, 2, 2, 3, 4, 5, 6, 7, 8,13);		\
-	COLUMN(x,y, 1, 1, 2, 3, 4, 5, 6, 7,12);		\
-	COLUMN(x,y, 0, 0, 1, 2, 3, 4, 5, 6,11);		\
+#define RND1024P(x,y,r) do {			\
+    x[ 0] ^= U64BIG(0x0000000000000000ull)^r;	\
+    x[ 1] ^= U64BIG(0x1000000000000000ull)^r;	\
+    x[ 2] ^= U64BIG(0x2000000000000000ull)^r;	\
+    x[ 3] ^= U64BIG(0x3000000000000000ull)^r;	\
+    x[ 4] ^= U64BIG(0x4000000000000000ull)^r;	\
+    x[ 5] ^= U64BIG(0x5000000000000000ull)^r;	\
+    x[ 6] ^= U64BIG(0x6000000000000000ull)^r;	\
+    x[ 7] ^= U64BIG(0x7000000000000000ull)^r;	\
+    x[ 8] ^= U64BIG(0x8000000000000000ull)^r;	\
+    x[ 9] ^= U64BIG(0x9000000000000000ull)^r;	\
+    x[10] ^= U64BIG(0xa000000000000000ull)^r;	\
+    x[11] ^= U64BIG(0xb000000000000000ull)^r;	\
+    x[12] ^= U64BIG(0xc000000000000000ull)^r;	\
+    x[13] ^= U64BIG(0xd000000000000000ull)^r;	\
+    x[14] ^= U64BIG(0xe000000000000000ull)^r;	\
+    x[15] ^= U64BIG(0xf000000000000000ull)^r;	\
+    COLUMN(x,y,15,15, 0, 1, 2, 3, 4, 5,10);	\
+    COLUMN(x,y,14,14,15, 0, 1, 2, 3, 4, 9);	\
+    COLUMN(x,y,13,13,14,15, 0, 1, 2, 3, 8);	\
+    COLUMN(x,y,12,12,13,14,15, 0, 1, 2, 7);	\
+    COLUMN(x,y,11,11,12,13,14,15, 0, 1, 6);	\
+    COLUMN(x,y,10,10,11,12,13,14,15, 0, 5);	\
+    COLUMN(x,y, 9, 9,10,11,12,13,14,15, 4);	\
+    COLUMN(x,y, 8, 8, 9,10,11,12,13,14, 3);	\
+    COLUMN(x,y, 7, 7, 8, 9,10,11,12,13, 2);	\
+    COLUMN(x,y, 6, 6, 7, 8, 9,10,11,12, 1);	\
+    COLUMN(x,y, 5, 5, 6, 7, 8, 9,10,11, 0);	\
+    COLUMN(x,y, 4, 4, 5, 6, 7, 8, 9,10,15);	\
+    COLUMN(x,y, 3, 3, 4, 5, 6, 7, 8, 9,14);	\
+    COLUMN(x,y, 2, 2, 3, 4, 5, 6, 7, 8,13);	\
+    COLUMN(x,y, 1, 1, 2, 3, 4, 5, 6, 7,12);	\
+    COLUMN(x,y, 0, 0, 1, 2, 3, 4, 5, 6,11);	\
 } while (0)
 
-#define RND1024Q(x,y,r) do {				\
-	x[ 0] ^= U64BIG(0xffffffffffffffffull)^r;	\
-	x[ 1] ^= U64BIG(0xffffffffffffffefull)^r;	\
-	x[ 2] ^= U64BIG(0xffffffffffffffdfull)^r;	\
-	x[ 3] ^= U64BIG(0xffffffffffffffcfull)^r;	\
-	x[ 4] ^= U64BIG(0xffffffffffffffbfull)^r;	\
-	x[ 5] ^= U64BIG(0xffffffffffffffafull)^r;	\
-	x[ 6] ^= U64BIG(0xffffffffffffff9full)^r;	\
-	x[ 7] ^= U64BIG(0xffffffffffffff8full)^r;	\
-	x[ 8] ^= U64BIG(0xffffffffffffff7full)^r;	\
-	x[ 9] ^= U64BIG(0xffffffffffffff6full)^r;	\
-	x[10] ^= U64BIG(0xffffffffffffff5full)^r;	\
-	x[11] ^= U64BIG(0xffffffffffffff4full)^r;	\
-	x[12] ^= U64BIG(0xffffffffffffff3full)^r;	\
-	x[13] ^= U64BIG(0xffffffffffffff2full)^r;	\
-	x[14] ^= U64BIG(0xffffffffffffff1full)^r;	\
-	x[15] ^= U64BIG(0xffffffffffffff0full)^r;	\
-	COLUMN(x,y,15, 0, 2, 4,10,15, 1, 3, 5);		\
-	COLUMN(x,y,14,15, 1, 3, 9,14, 0, 2, 4);		\
-	COLUMN(x,y,13,14, 0, 2, 8,13,15, 1, 3);		\
-	COLUMN(x,y,12,13,15, 1, 7,12,14, 0, 2);		\
-	COLUMN(x,y,11,12,14, 0, 6,11,13,15, 1);		\
-	COLUMN(x,y,10,11,13,15, 5,10,12,14, 0);		\
-	COLUMN(x,y, 9,10,12,14, 4, 9,11,13,15);		\
-	COLUMN(x,y, 8, 9,11,13, 3, 8,10,12,14);		\
-	COLUMN(x,y, 7, 8,10,12, 2, 7, 9,11,13);		\
-	COLUMN(x,y, 6, 7, 9,11, 1, 6, 8,10,12);		\
-	COLUMN(x,y, 5, 6, 8,10, 0, 5, 7, 9,11);		\
-	COLUMN(x,y, 4, 5, 7, 9,15, 4, 6, 8,10);		\
-	COLUMN(x,y, 3, 4, 6, 8,14, 3, 5, 7, 9);		\
-	COLUMN(x,y, 2, 3, 5, 7,13, 2, 4, 6, 8);		\
-	COLUMN(x,y, 1, 2, 4, 6,12, 1, 3, 5, 7);		\
-	COLUMN(x,y, 0, 1, 3, 5,11, 0, 2, 4, 6);		\
+#define RND1024Q(x,y,r) do {			\
+    x[ 0] ^= U64BIG(0xffffffffffffffffull)^r;	\
+    x[ 1] ^= U64BIG(0xffffffffffffffefull)^r;	\
+    x[ 2] ^= U64BIG(0xffffffffffffffdfull)^r;	\
+    x[ 3] ^= U64BIG(0xffffffffffffffcfull)^r;	\
+    x[ 4] ^= U64BIG(0xffffffffffffffbfull)^r;	\
+    x[ 5] ^= U64BIG(0xffffffffffffffafull)^r;	\
+    x[ 6] ^= U64BIG(0xffffffffffffff9full)^r;	\
+    x[ 7] ^= U64BIG(0xffffffffffffff8full)^r;	\
+    x[ 8] ^= U64BIG(0xffffffffffffff7full)^r;	\
+    x[ 9] ^= U64BIG(0xffffffffffffff6full)^r;	\
+    x[10] ^= U64BIG(0xffffffffffffff5full)^r;	\
+    x[11] ^= U64BIG(0xffffffffffffff4full)^r;	\
+    x[12] ^= U64BIG(0xffffffffffffff3full)^r;	\
+    x[13] ^= U64BIG(0xffffffffffffff2full)^r;	\
+    x[14] ^= U64BIG(0xffffffffffffff1full)^r;	\
+    x[15] ^= U64BIG(0xffffffffffffff0full)^r;	\
+    COLUMN(x,y,15, 0, 2, 4,10,15, 1, 3, 5);	\
+    COLUMN(x,y,14,15, 1, 3, 9,14, 0, 2, 4);	\
+    COLUMN(x,y,13,14, 0, 2, 8,13,15, 1, 3);	\
+    COLUMN(x,y,12,13,15, 1, 7,12,14, 0, 2);	\
+    COLUMN(x,y,11,12,14, 0, 6,11,13,15, 1);	\
+    COLUMN(x,y,10,11,13,15, 5,10,12,14, 0);	\
+    COLUMN(x,y, 9,10,12,14, 4, 9,11,13,15);	\
+    COLUMN(x,y, 8, 9,11,13, 3, 8,10,12,14);	\
+    COLUMN(x,y, 7, 8,10,12, 2, 7, 9,11,13);	\
+    COLUMN(x,y, 6, 7, 9,11, 1, 6, 8,10,12);	\
+    COLUMN(x,y, 5, 6, 8,10, 0, 5, 7, 9,11);	\
+    COLUMN(x,y, 4, 5, 7, 9,15, 4, 6, 8,10);	\
+    COLUMN(x,y, 3, 4, 6, 8,14, 3, 5, 7, 9);	\
+    COLUMN(x,y, 2, 3, 5, 7,13, 2, 4, 6, 8);	\
+    COLUMN(x,y, 1, 2, 4, 6,12, 1, 3, 5, 7);	\
+    COLUMN(x,y, 0, 1, 3, 5,11, 0, 2, 4, 6);	\
 } while (0)
 
 enum { LONG = SIZE1024, SHORT = SIZE512 };
