@@ -11,7 +11,7 @@
 const struct hash_descriptor shabal_192_desc =
 {
     "shabal-192",
-    195,
+    196,
     24,
     64,
     &shabal_192_init,
@@ -23,7 +23,7 @@ const struct hash_descriptor shabal_192_desc =
 const struct hash_descriptor shabal_224_desc =
 {
     "shabal-224",
-    196,
+    197,
     28,
     64,
     &shabal_224_init,
@@ -35,7 +35,7 @@ const struct hash_descriptor shabal_224_desc =
 const struct hash_descriptor shabal_256_desc =
 {
     "shabal-256",
-    197,
+    198,
     32,
     64,
     &shabal_256_init,
@@ -47,7 +47,7 @@ const struct hash_descriptor shabal_256_desc =
 const struct hash_descriptor shabal_384_desc =
 {
     "shabal-384",
-    198,
+    199,
     48,
     64,
     &shabal_384_init,
@@ -59,7 +59,7 @@ const struct hash_descriptor shabal_384_desc =
 const struct hash_descriptor shabal_512_desc =
 {
     "shabal-521",
-    199,
+    200,
     64,
     64,
     &shabal_512_init,
@@ -86,44 +86,44 @@ const struct hash_descriptor shabal_512_desc =
     unsigned Wlow, Whigh;
 
 #define READ_STATE(state) do {		\
-    A00 = (state)->shabal.A[0];		\
-    A01 = (state)->shabal.A[1];		\
-    A02 = (state)->shabal.A[2];		\
-    A03 = (state)->shabal.A[3];		\
-    A04 = (state)->shabal.A[4];		\
-    A05 = (state)->shabal.A[5];		\
-    A06 = (state)->shabal.A[6];		\
-    A07 = (state)->shabal.A[7];		\
-    A08 = (state)->shabal.A[8];		\
-    A09 = (state)->shabal.A[9];		\
+    A00 = (state)->shabal.A[ 0];	\
+    A01 = (state)->shabal.A[ 1];	\
+    A02 = (state)->shabal.A[ 2];	\
+    A03 = (state)->shabal.A[ 3];	\
+    A04 = (state)->shabal.A[ 4];	\
+    A05 = (state)->shabal.A[ 5];	\
+    A06 = (state)->shabal.A[ 6];	\
+    A07 = (state)->shabal.A[ 7];	\
+    A08 = (state)->shabal.A[ 8];	\
+    A09 = (state)->shabal.A[ 9];	\
     A0A = (state)->shabal.A[10];	\
     A0B = (state)->shabal.A[11];	\
-    B0 = (state)->shabal.B[0];		\
-    B1 = (state)->shabal.B[1];		\
-    B2 = (state)->shabal.B[2];		\
-    B3 = (state)->shabal.B[3];		\
-    B4 = (state)->shabal.B[4];		\
-    B5 = (state)->shabal.B[5];		\
-    B6 = (state)->shabal.B[6];		\
-    B7 = (state)->shabal.B[7];		\
-    B8 = (state)->shabal.B[8];		\
-    B9 = (state)->shabal.B[9];		\
+    B0 = (state)->shabal.B[ 0];		\
+    B1 = (state)->shabal.B[ 1];		\
+    B2 = (state)->shabal.B[ 2];		\
+    B3 = (state)->shabal.B[ 3];		\
+    B4 = (state)->shabal.B[ 4];		\
+    B5 = (state)->shabal.B[ 5];		\
+    B6 = (state)->shabal.B[ 6];		\
+    B7 = (state)->shabal.B[ 7];		\
+    B8 = (state)->shabal.B[ 8];		\
+    B9 = (state)->shabal.B[ 9];		\
     BA = (state)->shabal.B[10];		\
     BB = (state)->shabal.B[11];		\
     BC = (state)->shabal.B[12];		\
     BD = (state)->shabal.B[13];		\
     BE = (state)->shabal.B[14];		\
     BF = (state)->shabal.B[15];		\
-    C0 = (state)->shabal.C[0];		\
-    C1 = (state)->shabal.C[1];		\
-    C2 = (state)->shabal.C[2];		\
-    C3 = (state)->shabal.C[3];		\
-    C4 = (state)->shabal.C[4];		\
-    C5 = (state)->shabal.C[5];		\
-    C6 = (state)->shabal.C[6];		\
-    C7 = (state)->shabal.C[7];		\
-    C8 = (state)->shabal.C[8];		\
-    C9 = (state)->shabal.C[9];		\
+    C0 = (state)->shabal.C[ 0];		\
+    C1 = (state)->shabal.C[ 1];		\
+    C2 = (state)->shabal.C[ 2];		\
+    C3 = (state)->shabal.C[ 3];		\
+    C4 = (state)->shabal.C[ 4];		\
+    C5 = (state)->shabal.C[ 5];		\
+    C6 = (state)->shabal.C[ 6];		\
+    C7 = (state)->shabal.C[ 7];		\
+    C8 = (state)->shabal.C[ 8];		\
+    C9 = (state)->shabal.C[ 9];		\
     CA = (state)->shabal.C[10];		\
     CB = (state)->shabal.C[11];		\
     CC = (state)->shabal.C[12];		\
@@ -135,44 +135,44 @@ const struct hash_descriptor shabal_512_desc =
 } while (0)
 
 #define WRITE_STATE(state) do {		\
-    (state)->shabal.A[0] = A00;		\
-    (state)->shabal.A[1] = A01;		\
-    (state)->shabal.A[2] = A02;		\
-    (state)->shabal.A[3] = A03;		\
-    (state)->shabal.A[4] = A04;		\
-    (state)->shabal.A[5] = A05;		\
-    (state)->shabal.A[6] = A06;		\
-    (state)->shabal.A[7] = A07;		\
-    (state)->shabal.A[8] = A08;		\
-    (state)->shabal.A[9] = A09;		\
+    (state)->shabal.A[ 0] = A00;	\
+    (state)->shabal.A[ 1] = A01;	\
+    (state)->shabal.A[ 2] = A02;	\
+    (state)->shabal.A[ 3] = A03;	\
+    (state)->shabal.A[ 4] = A04;	\
+    (state)->shabal.A[ 5] = A05;	\
+    (state)->shabal.A[ 6] = A06;	\
+    (state)->shabal.A[ 7] = A07;	\
+    (state)->shabal.A[ 8] = A08;	\
+    (state)->shabal.A[ 9] = A09;	\
     (state)->shabal.A[10] = A0A;	\
     (state)->shabal.A[11] = A0B;	\
-    (state)->shabal.B[0] = B0;		\
-    (state)->shabal.B[1] = B1;		\
-    (state)->shabal.B[2] = B2;		\
-    (state)->shabal.B[3] = B3;		\
-    (state)->shabal.B[4] = B4;		\
-    (state)->shabal.B[5] = B5;		\
-    (state)->shabal.B[6] = B6;		\
-    (state)->shabal.B[7] = B7;		\
-    (state)->shabal.B[8] = B8;		\
-    (state)->shabal.B[9] = B9;		\
+    (state)->shabal.B[ 0] = B0;		\
+    (state)->shabal.B[ 1] = B1;		\
+    (state)->shabal.B[ 2] = B2;		\
+    (state)->shabal.B[ 3] = B3;		\
+    (state)->shabal.B[ 4] = B4;		\
+    (state)->shabal.B[ 5] = B5;		\
+    (state)->shabal.B[ 6] = B6;		\
+    (state)->shabal.B[ 7] = B7;		\
+    (state)->shabal.B[ 8] = B8;		\
+    (state)->shabal.B[ 9] = B9;		\
     (state)->shabal.B[10] = BA;		\
     (state)->shabal.B[11] = BB;		\
     (state)->shabal.B[12] = BC;		\
     (state)->shabal.B[13] = BD;		\
     (state)->shabal.B[14] = BE;		\
     (state)->shabal.B[15] = BF;		\
-    (state)->shabal.C[0] = C0;		\
-    (state)->shabal.C[1] = C1;		\
-    (state)->shabal.C[2] = C2;		\
-    (state)->shabal.C[3] = C3;		\
-    (state)->shabal.C[4] = C4;		\
-    (state)->shabal.C[5] = C5;		\
-    (state)->shabal.C[6] = C6;		\
-    (state)->shabal.C[7] = C7;		\
-    (state)->shabal.C[8] = C8;		\
-    (state)->shabal.C[9] = C9;		\
+    (state)->shabal.C[ 0] = C0;		\
+    (state)->shabal.C[ 1] = C1;		\
+    (state)->shabal.C[ 2] = C2;		\
+    (state)->shabal.C[ 3] = C3;		\
+    (state)->shabal.C[ 4] = C4;		\
+    (state)->shabal.C[ 5] = C5;		\
+    (state)->shabal.C[ 6] = C6;		\
+    (state)->shabal.C[ 7] = C7;		\
+    (state)->shabal.C[ 8] = C8;		\
+    (state)->shabal.C[ 9] = C9;		\
     (state)->shabal.C[10] = CA;		\
     (state)->shabal.C[11] = CB;		\
     (state)->shabal.C[12] = CC;		\
@@ -184,9 +184,9 @@ const struct hash_descriptor shabal_512_desc =
 } while (0)
 
 #define DECODE_BLOCK do {		\
-    M0 = _dec32le_aligned(buffer + 0);	\
-    M1 = _dec32le_aligned(buffer + 4);	\
-    M2 = _dec32le_aligned(buffer + 8);	\
+    M0 = _dec32le_aligned(buffer +  0);	\
+    M1 = _dec32le_aligned(buffer +  4);	\
+    M2 = _dec32le_aligned(buffer +  8);	\
     M3 = _dec32le_aligned(buffer + 12);	\
     M4 = _dec32le_aligned(buffer + 16);	\
     M5 = _dec32le_aligned(buffer + 20);	\
@@ -242,7 +242,7 @@ const struct hash_descriptor shabal_512_desc =
 
 #define INCR_W do {			\
     if ((Wlow = T32(Wlow + 1)) == 0)	\
-	Whigh = T32(Whigh + 1);		\
+    Whigh = T32(Whigh + 1);		\
 } while (0)
 
 #define XOR_W do {	\
