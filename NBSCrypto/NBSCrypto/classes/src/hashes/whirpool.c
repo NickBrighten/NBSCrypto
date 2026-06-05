@@ -11,7 +11,7 @@
 const struct hash_descriptor whirlpool_desc =
 {
     "whirlpool",
-    237,
+    238,
     64,
     64,
     &whirlpool_init,
@@ -25,7 +25,8 @@ const struct hash_descriptor whirlpool_desc =
 
 #pragma mark - DEFINES
 #define STORE64H(x, y)										\
-    do {(y)[0] = (unsigned char)(((x)>>56)&255); (y)[1] = (unsigned char)(((x)>>48)&255);	\
+    do {											\
+	(y)[0] = (unsigned char)(((x)>>56)&255); (y)[1] = (unsigned char)(((x)>>48)&255);	\
 	(y)[2] = (unsigned char)(((x)>>40)&255); (y)[3] = (unsigned char)(((x)>>32)&255);	\
 	(y)[4] = (unsigned char)(((x)>>24)&255); (y)[5] = (unsigned char)(((x)>>16)&255);	\
 	(y)[6] = (unsigned char)(((x)>>8)&255); (y)[7] = (unsigned char)((x)&255);		\
@@ -33,13 +34,13 @@ const struct hash_descriptor whirlpool_desc =
 
 #define LOAD64H(x, y)						\
     do {x = (((unsigned long long)((y)[0] & 255))<<56)|		\
-	(((unsigned long long)((y)[1] & 255))<<48)|		\
-	(((unsigned long long)((y)[2] & 255))<<40)|		\
-	(((unsigned long long)((y)[3] & 255))<<32)|		\
-	(((unsigned long long)((y)[4] & 255))<<24)|		\
-	(((unsigned long long)((y)[5] & 255))<<16)|		\
-	(((unsigned long long)((y)[6] & 255))<<8)|		\
-	(((unsigned long long)((y)[7] & 255)));			\
+	    (((unsigned long long)((y)[1] & 255))<<48)|		\
+	    (((unsigned long long)((y)[2] & 255))<<40)|		\
+	    (((unsigned long long)((y)[3] & 255))<<32)|		\
+	    (((unsigned long long)((y)[4] & 255))<<24)|		\
+	    (((unsigned long long)((y)[5] & 255))<<16)|		\
+	    (((unsigned long long)((y)[6] & 255))<<8)|		\
+	    (((unsigned long long)((y)[7] & 255)));		\
     } while(0)
 
 #define MIN(x, y) (((x)<(y))?(x):(y))
