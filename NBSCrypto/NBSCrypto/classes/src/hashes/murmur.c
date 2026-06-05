@@ -11,7 +11,7 @@
 const struct hash_descriptor murmur3a_desc =
 {
     "murmur3a",
-    177,
+    178,
     4,
     4,
     &murmur3a_init,
@@ -23,7 +23,7 @@ const struct hash_descriptor murmur3a_desc =
 const struct hash_descriptor murmur3c_desc =
 {
     "murmur3c",
-    178,
+    179,
     16,
     16,
     &murmur3c_init,
@@ -35,7 +35,7 @@ const struct hash_descriptor murmur3c_desc =
 const struct hash_descriptor murmur3f_desc =
 {
     "murmur3f",
-    179,
+    180,
     16,
     16,
     &murmur3f_init,
@@ -153,8 +153,8 @@ const struct hash_descriptor murmur3f_desc =
 
 #define dobytes128x86(cnt, h1, h2, h3, h4, k1, k2, k3, k4, n, ptr, len)	do {	\
     unsigned __cnt = cnt;							\
-    for(;__cnt--; len--) {							\
-	switch(n) {								\
+    for(;__cnt--; len--){							\
+	switch(n){								\
 	    case  0: case  1: case  2: case  3:					\
 		k1 = k1>>8 | (unsigned)*ptr++<<24;				\
 		++n;								\
@@ -176,7 +176,7 @@ const struct hash_descriptor murmur3f_desc =
 		doblock128x86(h1, h2, h3, h4, k1, k2, k3, k4);			\
 		n = 0;								\
 		break;								\
-	    }									\
+	}									\
     }										\
 } while(0)
 
@@ -231,8 +231,8 @@ static inline void _murmur32_process(unsigned *ph1, unsigned *pcarry, const void
     unsigned h1 = *ph1;
     unsigned c = *pcarry;
 
-    const uint8_t *ptr = (uint8_t*)key;
-    const uint8_t *end;
+    const unsigned char *ptr = (unsigned char *)key;
+    const unsigned char *end;
 
     int n = c & 3;
 
@@ -399,8 +399,8 @@ static inline void _murmur128x64_process(unsigned long long ph[2], unsigned long
     unsigned long long k1 = pcarry[0];
     unsigned long long k2 = pcarry[1];
 
-    const uint8_t *ptr = (uint8_t*)key;
-    const uint8_t *end;
+    const unsigned char *ptr = (unsigned char *)key;
+    const unsigned char *end;
 
     int n = k2 & 15;
     int i = -(intptr_t)(void *)ptr & 7;
@@ -477,8 +477,8 @@ static inline void _murmur128x86_process(unsigned ph[4], unsigned pcarry[4], con
     unsigned k3 = pcarry[2];
     unsigned k4 = pcarry[3];
 
-    const uint8_t *ptr = (uint8_t*)key;
-    const uint8_t *end;
+    const unsigned char *ptr = (unsigned char *)key;
+    const unsigned char *end;
 
     int n = k4 & 15;
     int i = -(intptr_t)(void *)ptr & 3;
@@ -671,7 +671,7 @@ int murmur3a_done(hash_state *hs, unsigned char out[4])
 
     out[0] = (unsigned char)((hs->murmur3a.h >> 24) & 0xff);
     out[1] = (unsigned char)((hs->murmur3a.h >> 16) & 0xff);
-    out[2] = (unsigned char)((hs->murmur3a.h >> 8) & 0xff);
+    out[2] = (unsigned char)((hs->murmur3a.h >>  8) & 0xff);
     out[3] = (unsigned char) (hs->murmur3a.h & 0xff);
 
     return NBSCrypto_OK;
@@ -682,22 +682,22 @@ int murmur3c_done(hash_state *hs, unsigned char out[16])
     unsigned h[4] = {0, 0, 0, 0};
     _murmur128x86_result(hs->murmur3c.h, hs->murmur3c.carry, hs->murmur3c.len, h);
 
-    out[0]  = (unsigned char)((h[0] >> 24) & 0xff);
-    out[1]  = (unsigned char)((h[0] >> 16) & 0xff);
-    out[2]  = (unsigned char)((h[0] >> 8) & 0xff);
-    out[3]  = (unsigned char)(h[0] & 0xff);
-    out[4]  = (unsigned char)((h[1] >> 24) & 0xff);
-    out[5]  = (unsigned char)((h[1] >> 16) & 0xff);
-    out[6]  = (unsigned char)((h[1] >> 8) & 0xff);
-    out[7]  = (unsigned char)(h[1] & 0xff);
-    out[8]  = (unsigned char)((h[2] >> 24) & 0xff);
-    out[9]  = (unsigned char)((h[2] >> 16) & 0xff);
-    out[10] = (unsigned char)((h[2] >> 8) & 0xff);
-    out[11] = (unsigned char)(h[2] & 0xff);
+    out[ 0] = (unsigned char)((h[0] >> 24) & 0xff);
+    out[ 1] = (unsigned char)((h[0] >> 16) & 0xff);
+    out[ 2] = (unsigned char)((h[0] >>  8) & 0xff);
+    out[ 3] = (unsigned char)( h[0] & 0xff);
+    out[ 4] = (unsigned char)((h[1] >> 24) & 0xff);
+    out[ 5] = (unsigned char)((h[1] >> 16) & 0xff);
+    out[ 6] = (unsigned char)((h[1] >>  8) & 0xff);
+    out[ 7] = (unsigned char)( h[1] & 0xff);
+    out[ 8] = (unsigned char)((h[2] >> 24) & 0xff);
+    out[ 9] = (unsigned char)((h[2] >> 16) & 0xff);
+    out[10] = (unsigned char)((h[2] >>  8) & 0xff);
+    out[11] = (unsigned char)( h[2] & 0xff);
     out[12] = (unsigned char)((h[3] >> 24) & 0xff);
     out[13] = (unsigned char)((h[3] >> 16) & 0xff);
-    out[14] = (unsigned char)((h[3] >> 8) & 0xff);
-    out[15] = (unsigned char)(h[3] & 0xff);
+    out[14] = (unsigned char)((h[3] >>  8) & 0xff);
+    out[15] = (unsigned char)( h[3] & 0xff);
 
     return NBSCrypto_OK;
 }
@@ -707,21 +707,21 @@ int murmur3f_done(hash_state *hs, unsigned char out[16])
     uint64_t h[2] = {0, 0};
     _murmur128x64_result(hs->murmur3f.h, hs->murmur3f.carry, hs->murmur3f.len, h);
 
-    out[0]  = (unsigned char)((h[0] >> 56) & 0xff);
-    out[1]  = (unsigned char)((h[0] >> 48) & 0xff);
-    out[2]  = (unsigned char)((h[0] >> 40) & 0xff);
-    out[3]  = (unsigned char)((h[0] >> 32) & 0xff);
-    out[4]  = (unsigned char)((h[0] >> 24) & 0xff);
-    out[5]  = (unsigned char)((h[0] >> 16) & 0xff);
-    out[6]  = (unsigned char)((h[0] >> 8) & 0xff);
-    out[7]  = (unsigned char)(h[0] & 0xff);
-    out[8]  = (unsigned char)((h[1] >> 56) & 0xff);
-    out[9]  = (unsigned char)((h[1] >> 48) & 0xff);
+    out[ 0] = (unsigned char)((h[0] >> 56) & 0xff);
+    out[ 1] = (unsigned char)((h[0] >> 48) & 0xff);
+    out[ 2] = (unsigned char)((h[0] >> 40) & 0xff);
+    out[ 3] = (unsigned char)((h[0] >> 32) & 0xff);
+    out[ 4] = (unsigned char)((h[0] >> 24) & 0xff);
+    out[ 5] = (unsigned char)((h[0] >> 16) & 0xff);
+    out[ 6] = (unsigned char)((h[0] >>  8) & 0xff);
+    out[ 7] = (unsigned char)( h[0] & 0xff);
+    out[ 8] = (unsigned char)((h[1] >> 56) & 0xff);
+    out[ 9] = (unsigned char)((h[1] >> 48) & 0xff);
     out[10] = (unsigned char)((h[1] >> 40) & 0xff);
     out[11] = (unsigned char)((h[1] >> 32) & 0xff);
     out[12] = (unsigned char)((h[1] >> 24) & 0xff);
     out[13] = (unsigned char)((h[1] >> 16) & 0xff);
-    out[14] = (unsigned char)((h[1] >> 8) & 0xff);
+    out[14] = (unsigned char)((h[1] >>  8) & 0xff);
     out[15] = (unsigned char)(h[1] & 0xff);
 
     return NBSCrypto_OK;
