@@ -11,7 +11,7 @@
 const struct hash_descriptor fnv1_32_desc =
 {
     "fnv1-32",
-    106,
+    107,
     4,
     4,
     &fnv1_32_init,
@@ -23,7 +23,7 @@ const struct hash_descriptor fnv1_32_desc =
 const struct hash_descriptor fnv1a_32_desc =
 {
     "fnv1a-32",
-    107,
+    108,
     4,
     4,
     &fnv1_32_init,
@@ -35,7 +35,7 @@ const struct hash_descriptor fnv1a_32_desc =
 const struct hash_descriptor fnv1_64_desc =
 {
     "fnv1-64",
-    108,
+    109,
     8,
     8,
     &fnv1_64_init,
@@ -47,7 +47,7 @@ const struct hash_descriptor fnv1_64_desc =
 const struct hash_descriptor fnv1a_64_desc =
 {
     "fnv1a-64",
-    109,
+    110,
     8,
     8,
     &fnv1_64_init,
