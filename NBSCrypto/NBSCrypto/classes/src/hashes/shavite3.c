@@ -11,7 +11,7 @@
 const struct hash_descriptor shavite3_224_desc =
 {
     "shavite3-224",
-    202,
+    203,
     28,
     64,
     &shavite3_224_init,
@@ -23,7 +23,7 @@ const struct hash_descriptor shavite3_224_desc =
 const struct hash_descriptor shavite3_256_desc =
 {
     "shavite3-256",
-    203,
+    204,
     32,
     64,
     &shavite3_256_init,
@@ -35,7 +35,7 @@ const struct hash_descriptor shavite3_256_desc =
 const struct hash_descriptor shavite3_384_desc =
 {
     "shavite3-384",
-    204,
+    205,
     48,
     64,
     &shavite3_384_init,
@@ -47,7 +47,7 @@ const struct hash_descriptor shavite3_384_desc =
 const struct hash_descriptor shavite3_512_desc =
 {
     "shavite3-512",
-    205,
+    206,
     64,
     64,
     &shavite3_512_init,
@@ -64,38 +64,38 @@ const struct hash_descriptor shavite3_512_desc =
 #define ONE8 0xFFU
 #define T8(x) ((x) & ONE8)
 #define U8TO32_LITTLE(c)(						\
-((unsigned int)T8(* ((unsigned char*)(c))))			|	\
-((unsigned int)T8(*(((unsigned char*)(c)) + 1)) <<  8)	|	\
-((unsigned int)T8(*(((unsigned char*)(c)) + 2)) << 16)	|	\
-((unsigned int)T8(*(((unsigned char*)(c)) + 3)) << 24))
+    ((unsigned int)T8(* ((unsigned char*)(c))))			|	\
+    ((unsigned int)T8(*(((unsigned char*)(c)) + 1)) <<  8)	|	\
+    ((unsigned int)T8(*(((unsigned char*)(c)) + 2)) << 16)	|	\
+    ((unsigned int)T8(*(((unsigned char*)(c)) + 3)) << 24))
 
 #define U16TO8_LITTLE(c, v) do {	\
-unsigned short tmp_h_x = (v);	\
-unsigned char *tmp_h_d = (c);	\
-tmp_h_d[0] = T8(tmp_h_x);		\
-tmp_h_d[1] = T8(tmp_h_x >> 8);	\
+    unsigned short tmp_h_x = (v);	\
+    unsigned char *tmp_h_d = (c);	\
+    tmp_h_d[0] = T8(tmp_h_x);		\
+    tmp_h_d[1] = T8(tmp_h_x >> 8);	\
 } while (0)
 
 #define U32TO8_LITTLE(c, v) do {	\
-unsigned int tmp_h_x = (v);		\
-unsigned char *tmp_h_d = (c);	\
-tmp_h_d[0] = T8(tmp_h_x);		\
-tmp_h_d[1] = T8(tmp_h_x >>  8);	\
-tmp_h_d[2] = T8(tmp_h_x >> 16);	\
-tmp_h_d[3] = T8(tmp_h_x >> 24);	\
+    unsigned int tmp_h_x = (v);		\
+    unsigned char *tmp_h_d = (c);	\
+    tmp_h_d[0] = T8(tmp_h_x);		\
+    tmp_h_d[1] = T8(tmp_h_x >>  8);	\
+    tmp_h_d[2] = T8(tmp_h_x >> 16);	\
+    tmp_h_d[3] = T8(tmp_h_x >> 24);	\
 } while (0)
 
 #define U64TO8_LITTLE(c, v) do {	\
-unsigned long long tmp_h_x = (v);	\
-unsigned char *tmp_h_d = (c);	\
-tmp_h_d[0] = T8(tmp_h_x);		\
-tmp_h_d[1] = T8(tmp_h_x >>  8);	\
-tmp_h_d[2] = T8(tmp_h_x >> 16);	\
-tmp_h_d[3] = T8(tmp_h_x >> 24);	\
-tmp_h_d[4] = T8(tmp_h_x >> 32);	\
-tmp_h_d[5] = T8(tmp_h_x >> 40);	\
-tmp_h_d[6] = T8(tmp_h_x >> 48);	\
-tmp_h_d[7] = T8(tmp_h_x >> 56);	\
+    unsigned long long tmp_h_x = (v);	\
+    unsigned char *tmp_h_d = (c);	\
+    tmp_h_d[0] = T8(tmp_h_x);		\
+    tmp_h_d[1] = T8(tmp_h_x >>  8);	\
+    tmp_h_d[2] = T8(tmp_h_x >> 16);	\
+    tmp_h_d[3] = T8(tmp_h_x >> 24);	\
+    tmp_h_d[4] = T8(tmp_h_x >> 32);	\
+    tmp_h_d[5] = T8(tmp_h_x >> 40);	\
+    tmp_h_d[6] = T8(tmp_h_x >> 48);	\
+    tmp_h_d[7] = T8(tmp_h_x >> 56);	\
 } while (0)
 
 #define InternalRounds256 3
