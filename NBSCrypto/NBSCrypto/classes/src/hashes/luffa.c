@@ -11,7 +11,7 @@
 const struct hash_descriptor luffa_224_desc =
 {
     "luffa-224",
-    163,
+    164,
     28,
     32,
     &luffa_224_init,
@@ -23,7 +23,7 @@ const struct hash_descriptor luffa_224_desc =
 const struct hash_descriptor luffa_256_desc =
 {
     "luffa-256",
-    164,
+    165,
     32,
     32,
     &luffa_256_init,
@@ -35,7 +35,7 @@ const struct hash_descriptor luffa_256_desc =
 const struct hash_descriptor luffa_384_desc =
 {
     "luffa-384",
-    165,
+    166,
     48,
     32,
     &luffa_384_init,
@@ -47,7 +47,7 @@ const struct hash_descriptor luffa_384_desc =
 const struct hash_descriptor luffa_512_desc =
 {
     "luffa-512",
-    166,
+    167,
     64,
     32,
     &luffa_512_init,
@@ -425,25 +425,10 @@ static inline int _luffa_init(hash_state *hs, int hashbitlen)
 
 #pragma mark - FUNCTIONS
 
-int luffa_224_init(hash_state *hs)
-{
-    return _luffa_init(hs, 224);
-}
-
-int luffa_256_init(hash_state *hs)
-{
-    return _luffa_init(hs, 256);
-}
-
-int luffa_384_init(hash_state *hs)
-{
-    return _luffa_init(hs, 384);
-}
-
-int luffa_512_init(hash_state *hs)
-{
-    return _luffa_init(hs, 512);
-}
+int luffa_224_init(hash_state *hs){return _luffa_init(hs, 224);}
+int luffa_256_init(hash_state *hs){return _luffa_init(hs, 256);}
+int luffa_384_init(hash_state *hs){return _luffa_init(hs, 384);}
+int luffa_512_init(hash_state *hs){return _luffa_init(hs, 512);}
 
 int luffa_process(hash_state *hs, const unsigned char *in, unsigned long inlen)
 {
