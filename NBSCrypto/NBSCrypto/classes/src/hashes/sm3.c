@@ -11,7 +11,7 @@
 const struct hash_descriptor sm3_desc =
 {
     "sm3",
-    217,
+    218,
     32,
     64,
     &sm3_init,
@@ -26,9 +26,9 @@ const struct hash_descriptor sm3_desc =
 #pragma mark - DEFINES
 #define BEG(n,b,i) {				\
     (n)	= ((unsigned)(b)[(i)] << 24) |		\
-    ((unsigned)(b)[(i)+1] << 16) |		\
-    ((unsigned)(b)[(i)+2] <<  8) |		\
-    ((unsigned)(b)[(i)+3]);			\
+	((unsigned)(b)[(i)+1] << 16) |		\
+	((unsigned)(b)[(i)+2] <<  8) |		\
+	((unsigned)(b)[(i)+3]);			\
 }
 
 #define BEP(n,b,i) {				\
@@ -53,7 +53,7 @@ const struct hash_descriptor sm3_desc =
 
 static unsigned char _sm3_padding[64] =
 {
-	0x80, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+    0x80, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 };
 
 
