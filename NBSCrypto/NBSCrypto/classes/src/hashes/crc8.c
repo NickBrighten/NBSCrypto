@@ -11,7 +11,7 @@
 const struct hash_descriptor crc8_AUTOSAR_desc =
 {
     "crc8-AUTOSAR",
-    22,
+    23,
     1,
     1,
     &crc8_AUTOSAR_init,
@@ -23,7 +23,7 @@ const struct hash_descriptor crc8_AUTOSAR_desc =
 const struct hash_descriptor crc8_BLUETOOTH_desc =
 {
     "crc8-BLUETOOTH",
-    23,
+    24,
     1,
     1,
     &crc8_BLUETOOTH_init,
@@ -35,7 +35,7 @@ const struct hash_descriptor crc8_BLUETOOTH_desc =
 const struct hash_descriptor crc8_CDMA2000_desc =
 {
     "crc8-CDMA2000",
-    24,
+    25,
     1,
     1,
     &crc8_CDMA2000_init,
@@ -47,7 +47,7 @@ const struct hash_descriptor crc8_CDMA2000_desc =
 const struct hash_descriptor crc8_DARC_desc =
 {
     "crc8-DARC",
-    25,
+    26,
     1,
     1,
     &crc8_DARC_init,
@@ -59,7 +59,7 @@ const struct hash_descriptor crc8_DARC_desc =
 const struct hash_descriptor crc8_DVB_S2_desc =
 {
     "crc8-DVB-S2",
-    26,
+    27,
     1,
     1,
     &crc8_DVB_S2_init,
@@ -71,7 +71,7 @@ const struct hash_descriptor crc8_DVB_S2_desc =
 const struct hash_descriptor crc8_GSM_A_desc =
 {
     "crc8-GSM-A",
-    27,
+    28,
     1,
     1,
     &crc8_GSM_A_init,
@@ -83,7 +83,7 @@ const struct hash_descriptor crc8_GSM_A_desc =
 const struct hash_descriptor crc8_GSM_B_desc =
 {
     "crc8-GSM-B",
-    28,
+    29,
     1,
     1,
     &crc8_GSM_B_init,
@@ -95,7 +95,7 @@ const struct hash_descriptor crc8_GSM_B_desc =
 const struct hash_descriptor crc8_HITAG_desc =
 {
     "crc8-HITAG",
-    29,
+    30,
     1,
     1,
     &crc8_HITAG_init,
@@ -107,7 +107,7 @@ const struct hash_descriptor crc8_HITAG_desc =
 const struct hash_descriptor crc8_ICODE_desc =
 {
     "crc8-ICODE",
-    30,
+    31,
     1,
     1,
     &crc8_ICODE_init,
@@ -119,7 +119,7 @@ const struct hash_descriptor crc8_ICODE_desc =
 const struct hash_descriptor crc8_ITU_desc =
 {
     "crc8-ITU",
-    31,
+    32,
     1,
     1,
     &crc8_ITU_init,
@@ -131,7 +131,7 @@ const struct hash_descriptor crc8_ITU_desc =
 const struct hash_descriptor crc8_LTE_desc =
 {
     "crc8-LTE",
-    32,
+    33,
     1,
     1,
     &crc8_LTE_init,
@@ -143,7 +143,7 @@ const struct hash_descriptor crc8_LTE_desc =
 const struct hash_descriptor crc8_MAXIM_desc =
 {
     "crc8-MAXIM",
-    33,
+    34,
     1,
     1,
     &crc8_MAXIM_init,
@@ -155,7 +155,7 @@ const struct hash_descriptor crc8_MAXIM_desc =
 const struct hash_descriptor crc8_MIFARE_MAD_desc =
 {
     "crc8-MIFARE-MAD",
-    34,
+    35,
     1,
     1,
     &crc8_MIFARE_MAD_init,
@@ -167,7 +167,7 @@ const struct hash_descriptor crc8_MIFARE_MAD_desc =
 const struct hash_descriptor crc8_NRSC_5_desc =
 {
     "crc8-NRSC-5",
-    35,
+    36,
     1,
     1,
     &crc8_NRSC_5_init,
@@ -179,7 +179,7 @@ const struct hash_descriptor crc8_NRSC_5_desc =
 const struct hash_descriptor crc8_OPENSAFETY_desc =
 {
     "crc8-OPENSAFETY",
-    36,
+    37,
     1,
     1,
     &crc8_OPENSAFETY_init,
@@ -191,7 +191,7 @@ const struct hash_descriptor crc8_OPENSAFETY_desc =
 const struct hash_descriptor crc8_ROHC_desc =
 {
     "crc8-ROHC",
-    37,
+    38,
     1,
     1,
     &crc8_ROHC_init,
@@ -203,7 +203,7 @@ const struct hash_descriptor crc8_ROHC_desc =
 const struct hash_descriptor crc8_SAE_J1850_desc =
 {
     "crc8-SEA-J1850",
-    38,
+    39,
     1,
     1,
     &crc8_SAE_J1850_init,
@@ -215,7 +215,7 @@ const struct hash_descriptor crc8_SAE_J1850_desc =
 const struct hash_descriptor crc8_SMBUS_desc =
 {
     "crc8-SMBUS",
-    39,
+    40,
     1,
     1,
     &crc8_SMBUS_init,
@@ -227,7 +227,7 @@ const struct hash_descriptor crc8_SMBUS_desc =
 const struct hash_descriptor crc8_TECH_3250_desc =
 {
     "crc8-TECH-3250",
-    40,
+    41,
     1,
     1,
     &crc8_TECH_3250_init,
@@ -239,7 +239,7 @@ const struct hash_descriptor crc8_TECH_3250_desc =
 const struct hash_descriptor crc8_WCDMA_desc =
 {
     "crc8-WCDMA",
-    41,
+    42,
     1,
     1,
     &crc8_WCDMA_init,

@@ -11,7 +11,7 @@
 const struct hash_descriptor crc16_desc =
 {
     "crc16",
-    42,
+    43,
     2,
     2,
     &crc16_init,
@@ -23,7 +23,7 @@ const struct hash_descriptor crc16_desc =
 const struct hash_descriptor crc16_CDMA2000_desc =
 {
     "crc16-CDMA2000",
-    43,
+    44,
     2,
     2,
     &crc16_CDMA2000_init,
@@ -35,7 +35,7 @@ const struct hash_descriptor crc16_CDMA2000_desc =
 const struct hash_descriptor crc16_CMS_desc =
 {
     "crc16-CMS",
-    44,
+    45,
     2,
     2,
     &crc16_CMS_init,
@@ -47,7 +47,7 @@ const struct hash_descriptor crc16_CMS_desc =
 const struct hash_descriptor crc16_DDS110_desc =
 {
     "crc16-DDS110",
-    45,
+    46,
     2,
     2,
     &crc16_DDS110_init,
@@ -59,7 +59,7 @@ const struct hash_descriptor crc16_DDS110_desc =
 const struct hash_descriptor crc16_DECTR_desc =
 {
     "crc16-DECTR",
-    46,
+    47,
     2,
     2,
     &crc16_DECTR_init,
@@ -71,7 +71,7 @@ const struct hash_descriptor crc16_DECTR_desc =
 const struct hash_descriptor crc16_DECTX_desc =
 {
     "crc16-DECTX",
-    47,
+    48,
     2,
     2,
     &crc16_DECTX_init,
@@ -83,7 +83,7 @@ const struct hash_descriptor crc16_DECTX_desc =
 const struct hash_descriptor crc16_DNP_desc =
 {
     "crc16-DNP",
-    48,
+    49,
     2,
     2,
     &crc16_DNP_init,
@@ -95,7 +95,7 @@ const struct hash_descriptor crc16_DNP_desc =
 const struct hash_descriptor crc16_EN13757_desc =
 {
     "crc16-EN13757",
-    49,
+    50,
     2,
     2,
     &crc16_EN13757_init,
@@ -107,7 +107,7 @@ const struct hash_descriptor crc16_EN13757_desc =
 const struct hash_descriptor crc16_GENIBUS_desc =
 {
     "crc16-GENIBUS",
-    50,
+    51,
     2,
     2,
     &crc16_GENIBUS_init,
@@ -119,7 +119,7 @@ const struct hash_descriptor crc16_GENIBUS_desc =
 const struct hash_descriptor crc16_GSM_desc =
 {
     "crc16-GSM",
-    51,
+    52,
     2,
     2,
     &crc16_GSM_init,
@@ -131,7 +131,7 @@ const struct hash_descriptor crc16_GSM_desc =
 const struct hash_descriptor crc16_IBM3740_desc =
 {
     "crc16-IBM3740",
-    52,
+    53,
     2,
     2,
     &crc16_IBM3740_init,
@@ -143,7 +143,7 @@ const struct hash_descriptor crc16_IBM3740_desc =
 const struct hash_descriptor crc16_IBMSDLC_desc =
 {
     "crc16-IBMSDLC",
-    53,
+    54,
     2,
     2,
     &crc16_IBMSDLC_init,
@@ -155,7 +155,7 @@ const struct hash_descriptor crc16_IBMSDLC_desc =
 const struct hash_descriptor crc16_ISO_IEC_14443_3_A_desc =
 {
     "crc16-ISO-IEC-14443-3-A",
-    54,
+    55,
     2,
     2,
     &crc16_ISO_IEC_14443_3_A_init,
@@ -167,7 +167,7 @@ const struct hash_descriptor crc16_ISO_IEC_14443_3_A_desc =
 const struct hash_descriptor crc16_KERMIT_desc =
 {
     "crc16-KERMIT",
-    55,
+    56,
     2,
     2,
     &crc16_KERMIT_init,
@@ -179,7 +179,7 @@ const struct hash_descriptor crc16_KERMIT_desc =
 const struct hash_descriptor crc16_LJ1200_desc =
 {
     "crc16-LJ1200",
-    56,
+    57,
     2,
     2,
     &crc16_LJ1200_init,
@@ -191,7 +191,7 @@ const struct hash_descriptor crc16_LJ1200_desc =
 const struct hash_descriptor crc16_M17_desc =
 {
     "crc16-M17",
-    57,
+    58,
     2,
     2,
     &crc16_M17_init,
@@ -203,7 +203,7 @@ const struct hash_descriptor crc16_M17_desc =
 const struct hash_descriptor crc16_MAXIM_desc =
 {
     "crc16-MAXIM",
-    58,
+    59,
     2,
     2,
     &crc16_MAXIM_init,
@@ -215,7 +215,7 @@ const struct hash_descriptor crc16_MAXIM_desc =
 const struct hash_descriptor crc16_MCRF4XX_desc =
 {
     "crc16-MCRF4XX",
-    59,
+    60,
     2,
     2,
     &crc16_MCRF4XX_init,
@@ -227,7 +227,7 @@ const struct hash_descriptor crc16_MCRF4XX_desc =
 const struct hash_descriptor crc16_MODBUS_desc =
 {
     "crc16-MODBUS",
-    60,
+    61,
     2,
     2,
     &crc16_MODBUS_init,
@@ -239,7 +239,7 @@ const struct hash_descriptor crc16_MODBUS_desc =
 const struct hash_descriptor crc16_NRSC5_desc =
 {
     "crc16-NRSC5",
-    61,
+    62,
     2,
     2,
     &crc16_NRSC5_init,
@@ -251,7 +251,7 @@ const struct hash_descriptor crc16_NRSC5_desc =
 const struct hash_descriptor crc16_OPENSAFETY_A_desc =
 {
     "crc16-OPENSAFETY-A",
-    62,
+    63,
     2,
     2,
     &crc16_OPENSAFETY_A_init,
@@ -263,7 +263,7 @@ const struct hash_descriptor crc16_OPENSAFETY_A_desc =
 const struct hash_descriptor crc16_OPENSAFETY_B_desc =
 {
     "crc16-OPENSAFETY-B",
-    63,
+    64,
     2,
     2,
     &crc16_OPENSAFETY_B_init,
@@ -275,7 +275,7 @@ const struct hash_descriptor crc16_OPENSAFETY_B_desc =
 const struct hash_descriptor crc16_PROFIBUS_desc =
 {
     "crc16-PROFIBUS",
-    64,
+    65,
     2,
     2,
     &crc16_PROFIBUS_init,
@@ -287,7 +287,7 @@ const struct hash_descriptor crc16_PROFIBUS_desc =
 const struct hash_descriptor crc16_RIELLO_desc =
 {
     "crc16-RIELLO",
-    65,
+    66,
     2,
     2,
     &crc16_RIELLO_init,
@@ -299,7 +299,7 @@ const struct hash_descriptor crc16_RIELLO_desc =
 const struct hash_descriptor crc16_SPI_FUJITSU_desc =
 {
     "crc16-SPI-FUJITSU",
-    66,
+    67,
     2,
     2,
     &crc16_SPI_FUJITSU_init,
@@ -311,7 +311,7 @@ const struct hash_descriptor crc16_SPI_FUJITSU_desc =
 const struct hash_descriptor crc16_T10DIF_desc =
 {
     "crc16-T10DIF",
-    67,
+    68,
     2,
     2,
     &crc16_T10DIF_init,
@@ -323,7 +323,7 @@ const struct hash_descriptor crc16_T10DIF_desc =
 const struct hash_descriptor crc16_TELEDISK_desc =
 {
     "crc16-TELEDISK",
-    68,
+    69,
     2,
     2,
     &crc16_TELEDISK_init,
@@ -335,7 +335,7 @@ const struct hash_descriptor crc16_TELEDISK_desc =
 const struct hash_descriptor crc16_TMS37157_desc =
 {
     "crc16-TMS37157",
-    69,
+    70,
     2,
     2,
     &crc16_TMS37157_init,
@@ -347,7 +347,7 @@ const struct hash_descriptor crc16_TMS37157_desc =
 const struct hash_descriptor crc16_UMTS_desc =
 {
     "crc16-UMTS",
-    70,
+    71,
     2,
     2,
     &crc16_UMTS_init,
@@ -359,7 +359,7 @@ const struct hash_descriptor crc16_UMTS_desc =
 const struct hash_descriptor crc16_USB_desc =
 {
     "crc16-USB",
-    71,
+    72,
     2,
     2,
     &crc16_USB_init,
@@ -371,7 +371,7 @@ const struct hash_descriptor crc16_USB_desc =
 const struct hash_descriptor crc16_XMODEM_desc =
 {
     "crc16-XMODEM",
-    72,
+    73,
     2,
     2,
     &crc16_XMODEM_init,

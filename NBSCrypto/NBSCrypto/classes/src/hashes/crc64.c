@@ -19,7 +19,7 @@
 const struct hash_descriptor crc64_ECMA_182_desc =
 {
     "crc64-ECMA-182",
-    93,
+    94,
     8,
     8,
     &crc64_ECMA_182_init,
@@ -31,7 +31,7 @@ const struct hash_descriptor crc64_ECMA_182_desc =
 const struct hash_descriptor crc64_ISO_3309_desc =
 {
     "crc64-ISO-3309",
-    94,
+    95,
     8,
     8,
     &crc64_ISO_3309_init,
@@ -43,7 +43,7 @@ const struct hash_descriptor crc64_ISO_3309_desc =
 const struct hash_descriptor crc64_MS_desc =
 {
     "crc64-MS",
-    95,
+    96,
     8,
     8,
     &crc64_MS_init,
@@ -55,7 +55,7 @@ const struct hash_descriptor crc64_MS_desc =
 const struct hash_descriptor crc64_NVME_desc =
 {
     "crc64-NVME",
-    96,
+    97,
     8,
     8,
     &crc64_NVME_init,
@@ -67,7 +67,7 @@ const struct hash_descriptor crc64_NVME_desc =
 const struct hash_descriptor crc64_REDIS_desc =
 {
     "crc64-REDIS",
-    97,
+    98,
     8,
     8,
     &crc64_REDIS_init,
@@ -79,7 +79,7 @@ const struct hash_descriptor crc64_REDIS_desc =
 const struct hash_descriptor crc64_WE_desc =
 {
     "crc64-WE",
-    98,
+    99,
     8,
     8,
     &crc64_WE_init,
@@ -91,7 +91,7 @@ const struct hash_descriptor crc64_WE_desc =
 const struct hash_descriptor crc64_XZ_desc =
 {
     "crc64-XZ",
-    99,
+    100,
     8,
     8,
     &crc64_XZ_init,
