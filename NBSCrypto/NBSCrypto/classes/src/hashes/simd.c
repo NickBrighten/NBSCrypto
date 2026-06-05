@@ -11,7 +11,7 @@
 const struct hash_descriptor simd_224_desc =
 {
     "simd-224",
-    206,
+    207,
     28,
     64,
     &simd_224_init,
@@ -23,7 +23,7 @@ const struct hash_descriptor simd_224_desc =
 const struct hash_descriptor simd_256_desc =
 {
     "simd-256",
-    207,
+    208,
     32,
     64,
     &simd_256_init,
@@ -35,7 +35,7 @@ const struct hash_descriptor simd_256_desc =
 const struct hash_descriptor simd_384_desc =
 {
     "simd-384",
-    208,
+    209,
     32,
     64,
     &simd_384_init,
@@ -47,7 +47,7 @@ const struct hash_descriptor simd_384_desc =
 const struct hash_descriptor simd_512_desc =
 {
     "simd-512",
-    209,
+    210,
     64,
     64,
     &simd_512_init,
@@ -67,7 +67,7 @@ const struct hash_descriptor simd_512_desc =
 #define ROTR32(x, n) ROTL32(x, (32 - (n)))
 
 #define CHECK_ALIGNED(p,n) ((((unsigned char *) (p) - (unsigned char *) NULL) & ((n)-1)) == 0)
-#define IS_ALIGNED(p,n)    (n<=4 || CHECK_ALIGNED(p,n))
+#define IS_ALIGNED(p,n) (n<=4 || CHECK_ALIGNED(p,n))
 
 const int P[32] = {
     4, 6, 0, 2, 7, 5, 3, 1,
@@ -274,11 +274,11 @@ static inline void _simd_compress(hash_state * const hs, const unsigned char * c
 
     _message_expansion(hs, W,  M, final);
 
-#define PACK(i)(				\
-(((uint32_t) M[i]))		^	\
-(((uint32_t) M[i+1]) <<  8)	^	\
-(((uint32_t) M[i+2]) << 16)	^	\
-(((uint32_t) M[i+3]) << 24))
+#define PACK(i)(			\
+    (((uint32_t) M[i]))		^	\
+    (((uint32_t) M[i+1]) <<  8)	^	\
+    (((uint32_t) M[i+2]) << 16)	^	\
+    (((uint32_t) M[i+3]) << 24))
 
     for(j=0; j<n; j++){
 	hs->simd.A[j] ^= PACK(4*j);
