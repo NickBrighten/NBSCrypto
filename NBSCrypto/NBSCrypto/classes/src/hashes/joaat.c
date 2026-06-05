@@ -11,7 +11,7 @@
 const struct hash_descriptor joaat_desc =
 {
     "joaat",
-    148,
+    149,
     4,
     4,
     &joaat_init,
