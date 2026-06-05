@@ -31,28 +31,28 @@ const struct hash_descriptor blake3_desc =
 #define ROOT        (1u << 3)
 
 #define G(i, j, a, b, c, d)		\
-a = a + b + m[s[i][j * 2]];		\
-d = d ^ a;				\
-d = d >> 16 | d << 16;		\
-c = c + d;				\
-b = b ^ c;				\
-b = b >> 12 | b << 20;		\
-a = a + b + m[s[i][j * 2 + 1]];	\
-d = d ^ a;				\
-d = d >> 8 | d << 24;		\
-c = c + d;				\
-b = b ^ c;				\
-b = b >> 7 | b << 25;
+    a = a + b + m[s[i][j * 2]];		\
+    d = d ^ a;				\
+    d = d >> 16 | d << 16;		\
+    c = c + d;				\
+    b = b ^ c;				\
+    b = b >> 12 | b << 20;		\
+    a = a + b + m[s[i][j * 2 + 1]];	\
+    d = d ^ a;				\
+    d = d >> 8 | d << 24;		\
+    c = c + d;				\
+    b = b ^ c;				\
+    b = b >> 7 | b << 25;
 
 #define ROUND(i)			\
-G(i, 0, v[0], v[4], v[ 8], v[12])	\
-G(i, 1, v[1], v[5], v[ 9], v[13])	\
-G(i, 2, v[2], v[6], v[10], v[14])	\
-G(i, 3, v[3], v[7], v[11], v[15])	\
-G(i, 4, v[0], v[5], v[10], v[15])	\
-G(i, 5, v[1], v[6], v[11], v[12])	\
-G(i, 6, v[2], v[7], v[ 8], v[13])	\
-G(i, 7, v[3], v[4], v[ 9], v[14])
+    G(i, 0, v[0], v[4], v[ 8], v[12])	\
+    G(i, 1, v[1], v[5], v[ 9], v[13])	\
+    G(i, 2, v[2], v[6], v[10], v[14])	\
+    G(i, 3, v[3], v[7], v[11], v[15])	\
+    G(i, 4, v[0], v[5], v[10], v[15])	\
+    G(i, 5, v[1], v[6], v[11], v[12])	\
+    G(i, 6, v[2], v[7], v[ 8], v[13])	\
+    G(i, 7, v[3], v[4], v[ 9], v[14])
 
 static const unsigned int iv[] = {
     0x6a09e667, 0xbb67ae85, 0x3c6ef372, 0xa54ff53a, 0x510e527f, 0x9b05688c, 0x1f83d9ab, 0x5be0cd19,
