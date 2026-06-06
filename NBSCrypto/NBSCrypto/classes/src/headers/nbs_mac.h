@@ -12,7 +12,7 @@
 
 #pragma mark - MAC STRUCTS
 
-    typedef struct {
+typedef struct {
     int cipher, block_len, buflen, keylen;
     unsigned char akey[MAXBLOCKSIZE], ACC[MAXBLOCKSIZE], IV[MAXBLOCKSIZE];
     cipher_state cs;
