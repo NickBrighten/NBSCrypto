@@ -162,6 +162,8 @@
 	case NBSCrypto_HASH_KECCAK_256:			{r=&keccak_256_desc;break;}
 	case NBSCrypto_HASH_KECCAK_384:			{r=&keccak_384_desc;break;}
 	case NBSCrypto_HASH_KECCAK_512:			{r=&keccak_512_desc;break;}
+	case NBSCrypto_HASH_KUPYNA_256:			{r=&kupyna_256_desc;break;}
+	case NBSCrypto_HASH_KUPYNA_512:			{r=&kupyna_512_desc;break;}
 	case NBSCrypto_HASH_LANE_224:			{r=&lane_224_desc;break;}
 	case NBSCrypto_HASH_LANE_256:			{r=&lane_256_desc;break;}
 	case NBSCrypto_HASH_LANE_384:			{r=&lane_384_desc;break;}

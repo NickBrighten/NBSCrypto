@@ -172,6 +172,23 @@ struct joaat_state{
     unsigned state;
 };
 
+union kupyna256_t{uint64_t q[8];uint8_t b[64];};
+struct kupyna256_state {
+    int hashbitlen;
+    size_t pos;
+    uint64_t total;
+    union kupyna256_t h;
+    union kupyna256_t m;
+};
+union kupyna512_t{uint64_t q[16];uint8_t b[128];};
+struct kupyna512_state {
+    int hashbitlen;
+    size_t pos;
+    uint64_t total;
+    union kupyna512_t h;
+    union kupyna512_t m;
+};
+
 struct lane_state{
     int hashbitlen;
     unsigned char buffer[128];
@@ -399,6 +416,8 @@ typedef union hash_state{
     struct haval_state			haval;
     struct jh_state			jh;
     struct joaat_state			joaat;
+    struct kupyna256_state		kupyna256;
+    struct kupyna512_state		kupyna512;
     struct lane_state			lane;
     struct lesamnta256_state		lesamnta256;
     struct lesamnta512_state		lesamnta512;
@@ -828,6 +847,17 @@ int joaat_init(hash_state *hs);
 int joaat_process(hash_state *hs, const unsigned char *in, unsigned long inlen);
 int joaat_done(hash_state *hs, unsigned char *out);
 extern const struct hash_descriptor joaat_desc;
+
+
+#pragma mark KUPYNA
+int kupyna_256_init(hash_state *hs);
+int kupyna_384_init(hash_state *hs);
+int kupyna_512_init(hash_state *hs);
+int kupyna_process(hash_state *hs, const unsigned char *in, unsigned long inlen);
+int kupyna_done(hash_state *hs, unsigned char *out);
+extern const struct hash_descriptor kupyna_256_desc;
+extern const struct hash_descriptor kupyna_384_desc;
+extern const struct hash_descriptor kupyna_512_desc;
 
 
 #pragma mark LANE
