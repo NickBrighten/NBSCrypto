@@ -10,6 +10,8 @@ To integrate the `.framework` or `.xcframework` into an Objective-C project, you
 Precompiled Builds will be available as multiple tagets `.xcframework` for production/deployment and simulators [here](https://github.com/NickBrighten/NBSCrypto/releases).
 
 An XCFramework `.xcframework` is Apple's recommended, modern format for distributing compiled binary code and frameworks. It allows developers to bundle libraries supporting multiple platforms, such as iOS, iPadOS, macOS, tvOS, visionOS and watchOS, into a single, unified package that works on both physical devices and simulators.
+
+If you wish to use this source code for your own library (and for platforms other than Apple devices), you can start with the `src` folder and extend and optimize the code.
 #
 
 
