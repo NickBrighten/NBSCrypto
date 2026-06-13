@@ -20,6 +20,7 @@ If you wish to use this source code for your own library (and for platforms othe
 - [Collaboration](#collaboration)
 - [Supported Cipher-Algorithms](#supported-cipher-algorithms)
 - [Supported Hash-Algorithms](#supported-hash-algorithms)
+- [Supported MAC-Algorithms](#supported-mac-algorithms)
 #
 
 
@@ -244,3 +245,14 @@ Please have a look [here](https://help.github.com/articles/approving-a-pull-requ
 - __XXH__
     - BIT-LENGTH: `32` `64` `128`
 #
+
+
+
+# Supported MAC-Algorithms
+- __F9__
+- __HMAC__
+- __OMAC__
+- __PELICAN__
+- __PMAC__
+- __POLY1305__
+
