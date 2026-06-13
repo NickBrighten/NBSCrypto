@@ -250,9 +250,16 @@ Please have a look [here](https://help.github.com/articles/approving-a-pull-requ
 
 # Supported MAC-Algorithms
 - __F9__
+    - `cipher`
 - __HMAC__
+    - `generic` `hash`
 - __OMAC__
+    - `cipher`
 - __PELICAN__
+    - `generic` `hash`
 - __PMAC__
+    - `cipher`
 - __POLY1305__
+    - `generid` `hash`
+#
 
