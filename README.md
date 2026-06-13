@@ -260,6 +260,6 @@ Please have a look [here](https://help.github.com/articles/approving-a-pull-requ
 - __PMAC__
     - `cipher`
 - __POLY1305__
-    - `generid` `hash`
+    - `generic` `hash`
 #
 
