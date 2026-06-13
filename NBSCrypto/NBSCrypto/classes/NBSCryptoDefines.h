@@ -1552,7 +1552,8 @@ typedef enum NBSCrypto_HASH : NSUInteger {
 typedef enum NBSCrypto_MAC : NSUInteger {
     NBSCrypto_MAC_NONE				=  0,
     NBSCrypto_MAC_HMAC				=  1,
-    NBSCrypto_MAC_POLY1305			=  2,
+    NBSCrypto_MAC_PELICAN			=  2,
+    NBSCrypto_MAC_POLY1305			=  3,
 } NBSCrypto_MAC;
 
 

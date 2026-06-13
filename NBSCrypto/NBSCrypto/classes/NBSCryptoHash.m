@@ -275,6 +275,24 @@
 	    hmac_done(h, &hash_descriptor[0].hashsize, &s);
 	    break;
 	}
+	case NBSCrypto_MAC_PELICAN:{
+	    NSString *sKEY=[_key stringByAppendingString:[_HEX_PADDING objectAtIndex:0]];
+	    sKEY = [self _paddingString:sKEY withLength:_BIT_LENGTH_256];
+
+	    unsigned char out[_BIT_LENGTH_128];
+
+	    pelican_state s;
+	    pelican_init((const unsigned char *)[sKEY UTF8String], sKEY.length, &s);
+	    pelican_process(d.bytes, d.length, &s);
+	    pelican_done(out, &s);
+
+	    NSMutableString *pr;
+	    pr=[NSMutableString stringWithCapacity:_BIT_LENGTH_128*2];
+	    for(int i=0;i<_BIT_LENGTH_128;i++){[pr appendFormat:@"%02x",out[i]];}
+	    return pr;
+
+	    break;
+	}
 	case NBSCrypto_MAC_POLY1305:{
 	    NSString *sKEY=[_key stringByAppendingString:[_HEX_PADDING objectAtIndex:0]];
 	    sKEY = [self _paddingString:sKEY withLength:_BIT_LENGTH_256];

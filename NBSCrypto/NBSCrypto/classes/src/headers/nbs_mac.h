@@ -31,6 +31,12 @@ typedef struct {
 } omac_state;
 
 typedef struct {
+    int buflen;
+    unsigned char state[16];
+    cipher_state cs;
+} pelican_state;
+
+typedef struct {
     int cipher, block_len, buflen;
     unsigned char Ls[32][MAXBLOCKSIZE], Li[MAXBLOCKSIZE], Lr[MAXBLOCKSIZE], block[MAXBLOCKSIZE], checksum[MAXBLOCKSIZE];
     unsigned long block_index;
@@ -64,6 +70,12 @@ int hmac_done(unsigned char *out, unsigned long *outlen, hmac_state *hmac);
 int omac_init(int cipher, const unsigned char *key, unsigned long keylen, omac_state *omac);
 int omac_process(const unsigned char *in, unsigned long inlen, omac_state *omac);
 int omac_done(unsigned char *out, unsigned long *outlen, omac_state *omac);
+
+
+#pragma mark PELICAN
+int pelican_init(const unsigned char *key, unsigned long keylen, pelican_state *pelmac);
+int pelican_process(const unsigned char *in, unsigned long inlen, pelican_state *pelmac);
+int pelican_done(unsigned char *out, pelican_state *pelmac);
 
 
 #pragma mark PMAC
