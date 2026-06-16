@@ -252,14 +252,14 @@ Please have a look [here](https://help.github.com/articles/approving-a-pull-requ
 - __F9__
     - `cipher`
 - __HMAC__
-    - `generic` `hash`
+    - `hash`
 - __OMAC__
     - `cipher`
 - __PELICAN__
-    - `generic` `hash`
+    - `hash`
 - __PMAC__
     - `cipher`
 - __POLY1305__
-    - `generic` `hash`
+    - `hash`
 #
 
