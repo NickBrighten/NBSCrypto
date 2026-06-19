@@ -1075,6 +1075,7 @@
 				1D419D922FC06C5D003A7B83 /* f9.c in Sources */,
 				1D419D9A2FC06C5D003A7B83 /* hmac.c in Sources */,
 				1D419D8E2FC06C5D003A7B83 /* omac.c in Sources */,
+				1D8475ED2FDDB0C300E0836C /* pelican.c in Sources */,
 				1D419D962FC06C5D003A7B83 /* pmac.c in Sources */,
 				1D419D9E2FC06C5D003A7B83 /* poly1305.c in Sources */,
 				1D419D842FC06C3C003A7B83 /* misc.c in Sources */,
@@ -1086,7 +1087,6 @@
 				1D419D4A2FC06BD9003A7B83 /* eax.c in Sources */,
 				1D419D6A2FC06BDA003A7B83 /* ecb.c in Sources */,
 				1D419D5E2FC06BD9003A7B83 /* f8.c in Sources */,
-				1D8475ED2FDDB0C300E0836C /* pelican.c in Sources */,
 				1D419D5A2FC06BD9003A7B83 /* gcm.c in Sources */,
 				1D419D7A2FC06BDA003A7B83 /* lrw.c in Sources */,
 				1D419D762FC06BDA003A7B83 /* ocb.c in Sources */,
@@ -1108,8 +1108,8 @@
 				1D419EE72FC06DC9003A7B83 /* base32.c in Sources */,
 				1D419EE32FC06DC9003A7B83 /* base64.c in Sources */,
 				1D419EAA2FC06D49003A7B83 /* aes.c in Sources */,
-				1D419E8A2FC06D49003A7B83 /* aria.c in Sources */,
 				1D419EAE2FC06D49003A7B83 /* anubis.c in Sources */,
+				1D419E8A2FC06D49003A7B83 /* aria.c in Sources */,
 				1D419ECE2FC06D4A003A7B83 /* blowfish.c in Sources */,
 				1D419EC22FC06D49003A7B83 /* camellia.c in Sources */,
 				1D419E9A2FC06D49003A7B83 /* cast.c in Sources */,
@@ -1178,6 +1178,7 @@
 				1D419D932FC06C5D003A7B83 /* f9.c in Sources */,
 				1D419D9B2FC06C5D003A7B83 /* hmac.c in Sources */,
 				1D419D8F2FC06C5D003A7B83 /* omac.c in Sources */,
+				1D8475EE2FDDB0C300E0836C /* pelican.c in Sources */,
 				1D419D972FC06C5D003A7B83 /* pmac.c in Sources */,
 				1D419D9F2FC06C5D003A7B83 /* poly1305.c in Sources */,
 				1D419D852FC06C3C003A7B83 /* misc.c in Sources */,
@@ -1189,7 +1190,6 @@
 				1D419D4B2FC06BD9003A7B83 /* eax.c in Sources */,
 				1D419D6B2FC06BDA003A7B83 /* ecb.c in Sources */,
 				1D419D5F2FC06BDA003A7B83 /* f8.c in Sources */,
-				1D8475EE2FDDB0C300E0836C /* pelican.c in Sources */,
 				1D419D5B2FC06BD9003A7B83 /* gcm.c in Sources */,
 				1D419D7B2FC06BDA003A7B83 /* lrw.c in Sources */,
 				1D419D772FC06BDA003A7B83 /* ocb.c in Sources */,
@@ -1281,6 +1281,7 @@
 				1D419D942FC06C5D003A7B83 /* f9.c in Sources */,
 				1D419D9C2FC06C5D003A7B83 /* hmac.c in Sources */,
 				1D419D902FC06C5D003A7B83 /* omac.c in Sources */,
+				1D8475EF2FDDB0C300E0836C /* pelican.c in Sources */,
 				1D419D982FC06C5D003A7B83 /* pmac.c in Sources */,
 				1D419DA02FC06C5D003A7B83 /* poly1305.c in Sources */,
 				1D419D862FC06C3C003A7B83 /* misc.c in Sources */,
@@ -1292,7 +1293,6 @@
 				1D419D4C2FC06BD9003A7B83 /* eax.c in Sources */,
 				1D419D6C2FC06BDA003A7B83 /* ecb.c in Sources */,
 				1D419D602FC06BDA003A7B83 /* f8.c in Sources */,
-				1D8475EF2FDDB0C300E0836C /* pelican.c in Sources */,
 				1D419D5C2FC06BD9003A7B83 /* gcm.c in Sources */,
 				1D419D7C2FC06BDA003A7B83 /* lrw.c in Sources */,
 				1D419D782FC06BDA003A7B83 /* ocb.c in Sources */,
@@ -1379,11 +1379,11 @@
 				1D419E2D2FC06C97003A7B83 /* streebog.c in Sources */,
 				1D4B76042FC5EFAD00159BB6 /* swifftx.c in Sources */,
 				1D419DED2FC06C97003A7B83 /* tiger.c in Sources */,
-				1D8475F02FDDB0C300E0836C /* pelican.c in Sources */,
 				1D419E312FC06C98003A7B83 /* whirpool.c in Sources */,
 				1D419D952FC06C5D003A7B83 /* f9.c in Sources */,
 				1D419D9D2FC06C5D003A7B83 /* hmac.c in Sources */,
 				1D419D912FC06C5D003A7B83 /* omac.c in Sources */,
+				1D8475F02FDDB0C300E0836C /* pelican.c in Sources */,
 				1D419D992FC06C5D003A7B83 /* pmac.c in Sources */,
 				1D419DA12FC06C5D003A7B83 /* poly1305.c in Sources */,
 				1D419D872FC06C3C003A7B83 /* misc.c in Sources */,
@@ -1469,7 +1469,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 260613;
+				CURRENT_PROJECT_VERSION = 260619;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -1501,7 +1501,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 260613;
+				CURRENT_PROJECT_VERSION = 260619;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -1530,7 +1530,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 260613;
+				CURRENT_PROJECT_VERSION = 260619;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -1561,7 +1561,7 @@
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = NO;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 260613;
+				CURRENT_PROJECT_VERSION = 260619;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
