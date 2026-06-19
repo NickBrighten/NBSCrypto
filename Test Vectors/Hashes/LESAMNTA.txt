@@ -1,0 +1,96 @@
+#################################################################
+####################   LESAMNTA - VECTORS   #####################
+#################################################################
+
+
+---------------------------- 224-BIT ----------------------------
+
+LEN	: 0
+MSG	: ""
+MD	: 58166233cfb5ca0719eebf68fe7c12e5c79f6c69466e9792b3e9d198
+
+
+LEN	: 1
+MSG	: " "
+MD	: 7fef89af6d90a046b495fe2bbd4fdd4a227d4a7e3bc0d5cb4f06a996
+
+
+LEN	: 5
+MSG	: "H    "
+MD	: 0e4f7201a6fb5adfbb2717ad57173450011665873eac68783612da40
+
+
+LEN	: 16
+MSG	: "0123456789abcdef"
+MD	: b6ec026cc53175c18833dbdb3d8fb1ae88e19107cf5510adb6ff4d60
+
+
+
+---------------------------- 256-BIT ----------------------------
+
+LEN	: 0
+MSG	: ""
+MD	: 860f46f4442fa068fca207244b45bd70cef2323bf162fa78cebac75a60508a38
+
+
+LEN	: 1
+MSG	: " "
+MD	: 88fcec466d067b02c033450ccda1b2d4a516ea29a9da0179c3e5438cfaa33fb5
+
+
+LEN	: 5
+MSG	: "H    "
+MD	: 1e29aef31cb00d4df9e75da21c140d57de1812515fc35fc062ebb29e519d2863
+
+
+LEN	: 16
+MSG	: "0123456789abcdef"
+MD	: 0267d55b6e26e964441c70b222184ce60034c3a4d825c28fb8df00dfd8ec8764
+
+
+
+---------------------------- 384-BIT ----------------------------
+
+LEN	: 0
+MSG	: ""
+MD	: b47860e67df03def9fc41a557217545e375d075f92070d4ea2558dd97b0c6bb294a34397ce512c32326bf6b12d5c867f
+
+
+LEN	: 1
+MSG	: " "
+MD	: 2d66793be811116d5ed0e0e97dea211a0980c44e05029de21c58b73672ab7c8809699c23feab9e53d667d3244ff4e949
+
+
+LEN	: 5
+MSG	: "H    "
+MD	: 6b46c6e7d8cc528b08d9bd2ff8b5f2582e1269fe7d136b5760a387eaf1c6732e3e52a35d92800333d8cbba45ba92582a
+
+
+LEN	: 16
+MSG	: "0123456789abcdef"
+MD	: eb3e6714a39adc0f6b68f6a35acab60c8b4f0cebdca8746e555025626399d06f708d98c24600b31314373aad057802a0
+
+
+
+---------------------------- 512-BIT ----------------------------
+
+LEN	: 0
+MSG	: ""
+MD	: 6095e77ff9c5ce53b4c464184f4f495e5d123b0500a8c7ecf0f6df7034dc918efef8e44b066c1cc8b99abf15cc499da40211754882eaf7b1d9544900521b84a0
+
+
+LEN	: 1
+MSG	: " "
+MD	: 800d5cd9e6482757a33ad503bdeeb65d25406941bca74054b2b2ce8f71af4ff2569eed2469d38b95a513f3cb532db884449f1933cd07219fcac7b716a1f598aa
+
+
+LEN	: 5
+MSG	: "H    "
+MD	: 00214c9c05f71ad192cf1c2a2364d3076dd7d93946d122dc8485b4dcc438bef4897f37db3942b964a59f5aba488a795a6a5a96d298f9299a4ab93a5aac0fd551
+
+
+LEN	: 16
+MSG	: "0123456789abcdef"
+MD	: ac2b6e3f04f92c2bf7cf7ffad96af39f7d48ca99e34309981afbcee5f840e275b064fd1175ee5a67daf3288ca9ba5267e051546502a84ff4fd707e0615dbe920
+
+#################################################################
