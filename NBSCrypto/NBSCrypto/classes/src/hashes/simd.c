@@ -36,7 +36,7 @@ const struct hash_descriptor simd_384_desc =
 {
     "simd-384",
     209,
-    32,
+    48,
     64,
     &simd_384_init,
     &simd_process,
