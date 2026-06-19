@@ -12,6 +12,8 @@ Precompiled Builds will be available as multiple tagets `.xcframework` for produ
 An XCFramework `.xcframework` is Apple's recommended, modern format for distributing compiled binary code and frameworks. It allows developers to bundle libraries supporting multiple platforms, such as iOS, iPadOS, macOS, tvOS, visionOS and watchOS, into a single, unified package that works on both physical devices and simulators.
 
 If you wish to use this source code for your own library (and for platforms other than Apple devices), you can start with the `src` folder and extend and optimize the code.
+
+Test vectors for ciphers and hashes are being gradually added and updated.
 #
 
 
