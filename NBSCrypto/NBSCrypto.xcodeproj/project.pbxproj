@@ -11,6 +11,10 @@
 		1D0E78C02FC60F91005EE298 /* simd.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D0E78BE2FC60F91005EE298 /* simd.c */; };
 		1D0E78C12FC60F91005EE298 /* simd.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D0E78BE2FC60F91005EE298 /* simd.c */; };
 		1D0E78C22FC60F91005EE298 /* simd.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D0E78BE2FC60F91005EE298 /* simd.c */; };
+		1D30115C2FE9720F00C5E200 /* fugue.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D30115B2FE9720F00C5E200 /* fugue.c */; };
+		1D30115D2FE9720F00C5E200 /* fugue.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D30115B2FE9720F00C5E200 /* fugue.c */; };
+		1D30115E2FE9720F00C5E200 /* fugue.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D30115B2FE9720F00C5E200 /* fugue.c */; };
+		1D30115F2FE9720F00C5E200 /* fugue.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D30115B2FE9720F00C5E200 /* fugue.c */; };
 		1D3DE0602FD4893000FC764F /* kupyna.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D3DE05F2FD4893000FC764F /* kupyna.c */; };
 		1D3DE0612FD4893000FC764F /* kupyna.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D3DE05F2FD4893000FC764F /* kupyna.c */; };
 		1D3DE0622FD4893000FC764F /* kupyna.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D3DE05F2FD4893000FC764F /* kupyna.c */; };
@@ -426,6 +430,7 @@
 
 /* Begin PBXFileReference section */
 		1D0E78BE2FC60F91005EE298 /* simd.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = simd.c; sourceTree = "<group>"; tabWidth = 8; };
+		1D30115B2FE9720F00C5E200 /* fugue.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = fugue.c; sourceTree = "<group>"; tabWidth = 8; };
 		1D3DE05F2FD4893000FC764F /* kupyna.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = kupyna.c; sourceTree = "<group>"; tabWidth = 8; };
 		1D419CD22FC0651B003A7B83 /* NBSCrypto.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NBSCrypto.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D419CD52FC0651B003A7B83 /* NBSCrypto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBSCrypto.h; sourceTree = "<group>"; tabWidth = 8; };
@@ -706,6 +711,7 @@
 				1D419DBF2FC06C96003A7B83 /* crc64.c */,
 				1D419DA92FC06C94003A7B83 /* echo.c */,
 				1D419DA32FC06C94003A7B83 /* fnv.c */,
+				1D30115B2FE9720F00C5E200 /* fugue.c */,
 				1D419DBA2FC06C95003A7B83 /* gost.c */,
 				1D419DB02FC06C95003A7B83 /* groestl.c */,
 				1D419DA52FC06C94003A7B83 /* hamsi.c */,
@@ -1044,6 +1050,7 @@
 				1D419E362FC06C98003A7B83 /* crc64.c in Sources */,
 				1D419DDE2FC06C96003A7B83 /* echo.c in Sources */,
 				1D419DC62FC06C96003A7B83 /* fnv.c in Sources */,
+				1D30115C2FE9720F00C5E200 /* fugue.c in Sources */,
 				1D419E222FC06C97003A7B83 /* gost.c in Sources */,
 				1D419DFA2FC06C97003A7B83 /* groestl.c in Sources */,
 				1D419DCE2FC06C96003A7B83 /* hamsi.c in Sources */,
@@ -1147,6 +1154,7 @@
 				1D419E372FC06C98003A7B83 /* crc64.c in Sources */,
 				1D419DDF2FC06C96003A7B83 /* echo.c in Sources */,
 				1D419DC72FC06C96003A7B83 /* fnv.c in Sources */,
+				1D30115D2FE9720F00C5E200 /* fugue.c in Sources */,
 				1D419E232FC06C97003A7B83 /* gost.c in Sources */,
 				1D419DFB2FC06C97003A7B83 /* groestl.c in Sources */,
 				1D419DCF2FC06C96003A7B83 /* hamsi.c in Sources */,
@@ -1250,6 +1258,7 @@
 				1D419E382FC06C98003A7B83 /* crc64.c in Sources */,
 				1D419DE02FC06C97003A7B83 /* echo.c in Sources */,
 				1D419DC82FC06C96003A7B83 /* fnv.c in Sources */,
+				1D30115E2FE9720F00C5E200 /* fugue.c in Sources */,
 				1D419E242FC06C97003A7B83 /* gost.c in Sources */,
 				1D419DFC2FC06C97003A7B83 /* groestl.c in Sources */,
 				1D419DD02FC06C96003A7B83 /* hamsi.c in Sources */,
@@ -1353,6 +1362,7 @@
 				1D419E392FC06C98003A7B83 /* crc64.c in Sources */,
 				1D419DE12FC06C97003A7B83 /* echo.c in Sources */,
 				1D419DC92FC06C96003A7B83 /* fnv.c in Sources */,
+				1D30115F2FE9720F00C5E200 /* fugue.c in Sources */,
 				1D419E252FC06C97003A7B83 /* gost.c in Sources */,
 				1D419DFD2FC06C97003A7B83 /* groestl.c in Sources */,
 				1D419DD12FC06C96003A7B83 /* hamsi.c in Sources */,

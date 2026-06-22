@@ -14,9 +14,9 @@ struct adler32_state{
 
 struct arirang_state{
     int hashbitlen;
-    unsigned char block[128];
     unsigned int blocklen;
     unsigned int remainderbit;
+    unsigned char block[128];
     unsigned long long count[2];
     unsigned long long counter[2];
     unsigned long long workingvar[8];
@@ -45,8 +45,8 @@ struct blake2s_state{
 struct blake3_state {
     unsigned block;
     unsigned bytes;
-    unsigned char input[64];
     unsigned int *cv, cv_buf[54 * 8];
+    unsigned char input[64];
     unsigned long long chunk;
 };
 
@@ -69,13 +69,13 @@ struct chi_state{
 	unsigned long long large[9];
 	unsigned long long small32[2*6];
 	unsigned long long large32[2*9];
-    } hs_State;
-    unsigned int hs_HashBitLen;
-    unsigned int hs_MessageLen;
-    unsigned int hs_DataLen;
-    unsigned char hs_DataBuffer[128];
-    unsigned long long hs_TotalLenLow;
-    unsigned long long hs_TotalLenHigh;
+    } State;
+    unsigned int HashBitLen;
+    unsigned int MessageLen;
+    unsigned int DataLen;
+    unsigned char DataBuffer[128];
+    unsigned long long TotalLenLow;
+    unsigned long long TotalLenHigh;
 };
 
 struct crc8_state{
@@ -121,6 +121,17 @@ struct fnv164_state{
     unsigned long long state;
 };
 
+typedef union{unsigned int d;unsigned char b[4];}fugue_hash32_s;
+typedef struct {int n, s, k, r, t;}fugue_hashCfg;
+struct fugue_state {
+    int hashbitlen;
+    int Base;
+    fugue_hashCfg *Cfg;
+    fugue_hash32_s State[36];
+    unsigned int Partial[1];
+    unsigned long long TotalBits;
+};
+
 struct gost_state{
     const unsigned (*t)[4][256];
     unsigned s[16];
@@ -140,13 +151,13 @@ struct groestl_state{
 
 struct hamsi_state{
     int hashbitlen;
-    unsigned long leftbits;
     int cvsize;
     int ROUNDS;
     int PFROUNDS;
-    unsigned char leftdata[8];
     unsigned int state[16];
     unsigned int counter;
+    unsigned char leftdata[8];
+    unsigned long leftbits;
 };
 
 struct haval_state{
@@ -174,17 +185,17 @@ struct joaat_state{
 
 union kupyna256_t{uint64_t q[8];uint8_t b[64];};
 struct kupyna256_state {
-    int hashbitlen;
     size_t pos;
-    uint64_t total;
+    int hashbitlen;
+    unsigned long long total;
     union kupyna256_t h;
     union kupyna256_t m;
 };
 union kupyna512_t{uint64_t q[16];uint8_t b[128];};
 struct kupyna512_state {
-    int hashbitlen;
     size_t pos;
-    uint64_t total;
+    int hashbitlen;
+    unsigned long long total;
     union kupyna512_t h;
     union kupyna512_t m;
 };
@@ -216,10 +227,10 @@ struct luffa_state{
     int hashbitlen;
     int width;
     int limit;
-    unsigned long long bitlen[2];
     unsigned int rembitlen;
     unsigned int buffer[8];
     unsigned int chainv[40];
+    unsigned long long bitlen[2];
 };
 
 struct md2_state{
@@ -289,35 +300,35 @@ struct sha1_state{
 
 struct sha256_state{
     unsigned state[8], curlen;
-    unsigned long long length;
     unsigned char buf[64];
+    unsigned long long length;
 };
 
 struct sha512_state{
-    unsigned long long length, state[8];
-    unsigned long curlen;
     unsigned char buf[128];
+    unsigned long curlen;
+    unsigned long long length, state[8];
 };
 
 struct sha3_state{
     unsigned char sb[25*8];
-    unsigned long long saved;
-    unsigned long long s[25];
     unsigned short byte_index;
     unsigned short capacity_words;
     unsigned short word_index;
     unsigned short xof_flag;
+    unsigned long long saved;
+    unsigned long long s[25];
 };
 
 struct shabal_state{
     int hashbitlen;
-    unsigned char buffer[16*4];
     size_t buffer_ptr;
     unsigned A[12];
     unsigned B[16];
     unsigned C[16];
     unsigned last_byte_significant_bits;
     unsigned Whigh, Wlow;
+    unsigned char buffer[16*4];
 };
 
 struct shavite3_state{
@@ -334,9 +345,9 @@ struct simd_state {
     unsigned int hashbitlen;
     unsigned int blocksize;
     unsigned int n_feistels;
+    unsigned char* buffer;
     unsigned long long count;
     uint32_t *A, *B, *C, *D;
-    unsigned char* buffer;
 };
 
 struct sm3_state{
@@ -353,35 +364,35 @@ struct snefru_state{
 
 union streebog512{unsigned long long QWORD[8];} __attribute__((__aligned__(16)));
 struct streebog_state{
-    unsigned char buffer[64]	__attribute__((__aligned__(16)));
     union streebog512 hash	__attribute__((__aligned__(16)));
     union streebog512 h		__attribute__((__aligned__(16)));
     union streebog512 N		__attribute__((__aligned__(16)));
     union streebog512 Sigma	__attribute__((__aligned__(16)));
-    unsigned long bufsize;
     unsigned int digest_size;
+    unsigned char buffer[64]	__attribute__((__aligned__(16)));
+    unsigned long bufsize;
 };
 
 struct swifftx_state{
     unsigned int remainingSize;
-    unsigned short hashbitlen;
     unsigned char remaining[175 + 1];
     unsigned char currOutputBlock[65];
     unsigned char numOfBitsChar[8];
     unsigned char salt[8];
+    unsigned short hashbitlen;
     bool wasUpdated;
 };
 
 struct tiger_state{
-    unsigned long long s[3], len;
-    unsigned long clen;
     unsigned char buf[64];
+    unsigned long clen;
+    unsigned long long s[3], len;
 };
 
 struct whirlpool_state{
-    unsigned long long s[8], len;
     unsigned char buf[64];
     unsigned clen;
+    unsigned long long s[8], len;
 };
 
 struct xxhash_state{
@@ -410,6 +421,7 @@ typedef union hash_state{
     struct echo_state			echo;
     struct fnv132_state			fnv132;
     struct fnv164_state			fnv164;
+    struct fugue_state			fugue;
     struct gost_state			gost;
     struct groestl_state		groestl;
     struct hamsi_state			hamsi;
@@ -757,6 +769,19 @@ int fnv1a_64_process(hash_state *hs, const unsigned char *in, unsigned long inle
 int fnv1_64_done(hash_state *hs, unsigned char *out);
 extern const struct hash_descriptor fnv1_64_desc;
 extern const struct hash_descriptor fnv1a_64_desc;
+
+
+#pragma mark FUGUE
+int fugue_224_init(hash_state *hs);
+int fugue_256_init(hash_state *hs);
+int fugue_384_init(hash_state *hs);
+int fugue_512_init(hash_state *hs);
+int fugue_process(hash_state* hs, const unsigned char *in, unsigned long inlen);
+int fugue_done(hash_state* hs, unsigned char *out);
+extern const struct hash_descriptor fugue_224_desc;
+extern const struct hash_descriptor fugue_256_desc;
+extern const struct hash_descriptor fugue_384_desc;
+extern const struct hash_descriptor fugue_512_desc;
 
 
 #pragma mark GOST

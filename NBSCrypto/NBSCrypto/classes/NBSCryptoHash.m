@@ -128,6 +128,10 @@
 	case NBSCrypto_HASH_FNV1a32:			{r=&fnv1a_32_desc;break;}
 	case NBSCrypto_HASH_FNV164:			{r=&fnv1_64_desc;break;}
 	case NBSCrypto_HASH_FNV1a64:			{r=&fnv1a_64_desc;break;}
+	case NBSCrypto_HASH_FUGUE_224:			{r=&fugue_224_desc;break;}
+	case NBSCrypto_HASH_FUGUE_256:			{r=&fugue_256_desc;break;}
+	case NBSCrypto_HASH_FUGUE_384:			{r=&fugue_384_desc;break;}
+	case NBSCrypto_HASH_FUGUE_512:			{r=&fugue_512_desc;break;}
 	case NBSCrypto_HASH_GOST:			{r=&gost_desc;break;}
 	case NBSCrypto_HASH_GOST_CRYPTO:		{r=&gost_crypto_desc;break;}
 	case NBSCrypto_HASH_GROESTL_224:		{r=&groestl_224_desc;break;}
