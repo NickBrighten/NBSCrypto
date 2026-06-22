@@ -21,6 +21,7 @@ Test vectors for ciphers and hashes are being gradually added and updated.
 # Table of Content
 - [Collaboration](#collaboration)
 - [Supported Cipher-Algorithms](#supported-cipher-algorithms)
+- [Syntax for Hash](#syntax-for-hash)
 - [Supported Hash-Algorithms](#supported-hash-algorithms)
 - [Supported MAC-Algorithms](#supported-mac-algorithms)
 #
@@ -150,6 +151,49 @@ Please have a look [here](https://help.github.com/articles/approving-a-pull-requ
     - MODES: `CBC` `CFB` `CTR` `EAX` `ECB` `F8` `OCB` `OFB`
 #
 
+
+# Syntax for Hash
+Objective-C
+```Objective-C
+[NBSCryptoHash hashString:@"0123456789abcdef"
+            withAlgorithm:NBSCrypto_HASH_SHA3_512];
+//return NSString
+```
+```Objective-C
+[NBSCryptoHash hashString:@"0123456789abcdef"
+            withAlgorithm:NBSCrypto_HASH_SHAKE_256
+                   useMAC:NBSCrypto_MAC_POLY1305
+             setKeyForMAC:@"0123456789abcdef0123456789abcdef"];
+//return NSString
+```
+```Objective-C
+NBSCryptoHash *hash = [[NBSCryptoHash alloc] init];
+[hash setAlgorithm:NBSCrypto_HASH_LUFFA_224];
+[hash hashString:@"0123456789abcdef"];
+//return NSString
+NSLog("OUTPUT HASH: %@", hash);
+```
+```Objective-C
+NBSCryptoHash *MAChash = [[NBSCryptoHash alloc] init];
+[MAChash setAlgorithm:NBSCrypto_HASH_GROESTL_512];
+[MAChash useMAC:NBSCrypto_MAC_HMAC];
+[MAChash setKeyForMAC:@"0123456789abcdef0123456789abcdef"];
+//return NSString
+NSLog("OUTPUT MAC: %@", MAChash);
+```
+
+Swift
+```Swift
+let hash = NBSCryptoHash.hashString("0123456789abcdef", withAlgorithm:NBSCrypto_HASH_BLUEMIDNIGHTWISH_512);
+//return NSString
+NSLog("OUTPUT HASH: %@", hash);
+```
+```Swift
+let MAChash = NBSCryptoHash.hashString("0123456789abcdef", withAlgorithm:NBSCrypto_HASH_BLUEMIDNIGHTWISH_512, use:NBSCrypto_MAC_HMAC, setKeyForMAC:"0123456789abcdef0123456789abcdef");
+//return NSString
+NSLog("OUTPUT MAC: %@", MAChash);
+```
+#
 
 
 # Supported Hash-Algorithms
