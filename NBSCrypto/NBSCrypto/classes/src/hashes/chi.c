@@ -82,27 +82,27 @@ typedef enum {
 #define _BYTE(x, i) ((unsigned char)(((x) >> (8 * (7 - i))) & 0xFF))
 
 #define _BYTE2WORD(b) (					\
-    (((unsigned long long)(b)[0] & 0xFF) << 56) |	\
-    (((unsigned long long)(b)[1] & 0xFF) << 48) |	\
-    (((unsigned long long)(b)[2] & 0xFF) << 40) |	\
-    (((unsigned long long)(b)[3] & 0xFF) << 32) |	\
-    (((unsigned long long)(b)[4] & 0xFF) << 24) |	\
-    (((unsigned long long)(b)[5] & 0xFF) << 16) |	\
-    (((unsigned long long)(b)[6] & 0xFF) <<  8) |	\
-    (((unsigned long long)(b)[7] & 0xFF))		\
+(((unsigned long long)(b)[0] & 0xFF) << 56) |	\
+(((unsigned long long)(b)[1] & 0xFF) << 48) |	\
+(((unsigned long long)(b)[2] & 0xFF) << 40) |	\
+(((unsigned long long)(b)[3] & 0xFF) << 32) |	\
+(((unsigned long long)(b)[4] & 0xFF) << 24) |	\
+(((unsigned long long)(b)[5] & 0xFF) << 16) |	\
+(((unsigned long long)(b)[6] & 0xFF) <<  8) |	\
+(((unsigned long long)(b)[7] & 0xFF))		\
 )
 
 #define _WORD2BYTE(w, b)	\
-    do {			\
-	(b)[7] = _BYTE(w, 7);	\
-	(b)[6] = _BYTE(w, 6);	\
-	(b)[5] = _BYTE(w, 5);	\
-	(b)[4] = _BYTE(w, 4);	\
-	(b)[3] = _BYTE(w, 3);	\
-	(b)[2] = _BYTE(w, 2);	\
-	(b)[1] = _BYTE(w, 1);	\
-	(b)[0] = _BYTE(w, 0);	\
-    } while(0)
+do {			\
+(b)[7] = _BYTE(w, 7);	\
+(b)[6] = _BYTE(w, 6);	\
+(b)[5] = _BYTE(w, 5);	\
+(b)[4] = _BYTE(w, 4);	\
+(b)[3] = _BYTE(w, 3);	\
+(b)[2] = _BYTE(w, 2);	\
+(b)[1] = _BYTE(w, 1);	\
+(b)[0] = _BYTE(w, 0);	\
+} while(0)
 
 const unsigned long long K[] = {
     0x9B05688C2B3E6C1FULL, 0xDBD99E6FF3C90BDCULL, 0x4DBC64712A5BB168ULL, 0x767E27C3CF76C8E7ULL,
@@ -354,12 +354,12 @@ static inline void _256_update(hash_state *hs, int final)
     unsigned long long X, Y, Z, XX, YY, ZZ;
     unsigned long long AA, DD, newA, newD;
 
-    A = hs->chi.hs_State.small[0];
-    B = hs->chi.hs_State.small[1];
-    C = hs->chi.hs_State.small[2];
-    D = hs->chi.hs_State.small[3];
-    E = hs->chi.hs_State.small[4];
-    F = hs->chi.hs_State.small[5];
+    A = hs->chi.State.small[0];
+    B = hs->chi.State.small[1];
+    C = hs->chi.State.small[2];
+    D = hs->chi.State.small[3];
+    E = hs->chi.State.small[4];
+    F = hs->chi.State.small[5];
 
     if (final){
 	A = _rotr64(A, 1);
@@ -371,7 +371,7 @@ static inline void _256_update(hash_state *hs, int final)
     }
 
     for (i = 0; i < _256_MSG_N; ++i){
-	W[i] = _BYTE2WORD(hs->chi.hs_DataBuffer + 8 * i);
+	W[i] = _BYTE2WORD(hs->chi.DataBuffer + 8 * i);
     }
     _256_message_expansion(W);
 
@@ -390,12 +390,12 @@ static inline void _256_update(hash_state *hs, int final)
 	C = B; B = A; A = newA;
     }
 
-    hs->chi.hs_State.small[0] = _rotr64(hs->chi.hs_State.small[0], 1) ^ A;
-    hs->chi.hs_State.small[1] = _rotr64(hs->chi.hs_State.small[1], 1) ^ B;
-    hs->chi.hs_State.small[2] = _rotr64(hs->chi.hs_State.small[2], 1) ^ C;
-    hs->chi.hs_State.small[3] = _rotr64(hs->chi.hs_State.small[3], 1) ^ D;
-    hs->chi.hs_State.small[4] = _rotr64(hs->chi.hs_State.small[4], 1) ^ E;
-    hs->chi.hs_State.small[5] = _rotr64(hs->chi.hs_State.small[5], 1) ^ F;
+    hs->chi.State.small[0] = _rotr64(hs->chi.State.small[0], 1) ^ A;
+    hs->chi.State.small[1] = _rotr64(hs->chi.State.small[1], 1) ^ B;
+    hs->chi.State.small[2] = _rotr64(hs->chi.State.small[2], 1) ^ C;
+    hs->chi.State.small[3] = _rotr64(hs->chi.State.small[3], 1) ^ D;
+    hs->chi.State.small[4] = _rotr64(hs->chi.State.small[4], 1) ^ E;
+    hs->chi.State.small[5] = _rotr64(hs->chi.State.small[5], 1) ^ F;
 }
 
 static inline void _512_update(hash_state *hs, int final)
@@ -410,15 +410,15 @@ static inline void _512_update(hash_state *hs, int final)
     unsigned long long X, Y, Z, XX, YY, ZZ;
     unsigned long long AA, DD, GG, newA, newD, newG;
 
-    A = hs->chi.hs_State.large[0];
-    B = hs->chi.hs_State.large[1];
-    C = hs->chi.hs_State.large[2];
-    D = hs->chi.hs_State.large[3];
-    E = hs->chi.hs_State.large[4];
-    F = hs->chi.hs_State.large[5];
-    G = hs->chi.hs_State.large[6];
-    P = hs->chi.hs_State.large[7];
-    Q = hs->chi.hs_State.large[8];
+    A = hs->chi.State.large[0];
+    B = hs->chi.State.large[1];
+    C = hs->chi.State.large[2];
+    D = hs->chi.State.large[3];
+    E = hs->chi.State.large[4];
+    F = hs->chi.State.large[5];
+    G = hs->chi.State.large[6];
+    P = hs->chi.State.large[7];
+    Q = hs->chi.State.large[8];
 
     if (final){
 	A = _rotr64(A, 1);
@@ -433,7 +433,7 @@ static inline void _512_update(hash_state *hs, int final)
     }
 
     for (i = 0; i < _512_MSG_N; ++i){
-	W[i] = _BYTE2WORD(hs->chi.hs_DataBuffer + 8*i);
+	W[i] = _BYTE2WORD(hs->chi.DataBuffer + 8*i);
     }
     _512_message_expansion(W);
 
@@ -454,26 +454,26 @@ static inline void _512_update(hash_state *hs, int final)
 	C = B; B = A; A = newA;
     }
 
-    hs->chi.hs_State.large[0] = _rotr64(hs->chi.hs_State.large[0], 1) ^ A;
-    hs->chi.hs_State.large[1] = _rotr64(hs->chi.hs_State.large[1], 1) ^ B;
-    hs->chi.hs_State.large[2] = _rotr64(hs->chi.hs_State.large[2], 1) ^ C;
-    hs->chi.hs_State.large[3] = _rotr64(hs->chi.hs_State.large[3], 1) ^ D;
-    hs->chi.hs_State.large[4] = _rotr64(hs->chi.hs_State.large[4], 1) ^ E;
-    hs->chi.hs_State.large[5] = _rotr64(hs->chi.hs_State.large[5], 1) ^ F;
-    hs->chi.hs_State.large[6] = _rotr64(hs->chi.hs_State.large[6], 1) ^ G;
-    hs->chi.hs_State.large[7] = _rotr64(hs->chi.hs_State.large[7], 1) ^ P;
-    hs->chi.hs_State.large[8] = _rotr64(hs->chi.hs_State.large[8], 1) ^ Q;
+    hs->chi.State.large[0] = _rotr64(hs->chi.State.large[0], 1) ^ A;
+    hs->chi.State.large[1] = _rotr64(hs->chi.State.large[1], 1) ^ B;
+    hs->chi.State.large[2] = _rotr64(hs->chi.State.large[2], 1) ^ C;
+    hs->chi.State.large[3] = _rotr64(hs->chi.State.large[3], 1) ^ D;
+    hs->chi.State.large[4] = _rotr64(hs->chi.State.large[4], 1) ^ E;
+    hs->chi.State.large[5] = _rotr64(hs->chi.State.large[5], 1) ^ F;
+    hs->chi.State.large[6] = _rotr64(hs->chi.State.large[6], 1) ^ G;
+    hs->chi.State.large[7] = _rotr64(hs->chi.State.large[7], 1) ^ P;
+    hs->chi.State.large[8] = _rotr64(hs->chi.State.large[8], 1) ^ Q;
 }
 
 static inline int _inc_total_len(hash_state *hs)
 {
     unsigned long long old_len;
 
-    old_len = hs->chi.hs_TotalLenLow;
-    hs->chi.hs_TotalLenLow += hs->chi.hs_DataLen;
-    if (old_len > hs->chi.hs_TotalLenLow)
+    old_len = hs->chi.TotalLenLow;
+    hs->chi.TotalLenLow += hs->chi.DataLen;
+    if (old_len > hs->chi.TotalLenLow)
     {
-	switch (hs->chi.hs_HashBitLen)
+	switch (hs->chi.HashBitLen)
 	{
 	    case 224:
 	    case 256:
@@ -481,7 +481,7 @@ static inline int _inc_total_len(hash_state *hs)
 
 	    case 384:
 	    case 512:
-		if (++hs->chi.hs_TotalLenHigh == 0)
+		if (++hs->chi.TotalLenHigh == 0)
 		    return NBSCrypto_ERROR;
 	}
     }
@@ -491,7 +491,7 @@ static inline int _inc_total_len(hash_state *hs)
 
 static inline void _hash(hash_state *hs, int final)
 {
-    switch (hs->chi.hs_HashBitLen)
+    switch (hs->chi.HashBitLen)
     {
 	case 224:
 	case 256:
@@ -516,31 +516,31 @@ static inline int _chi_init(hash_state *hs, int hashbitlen)
 	    return NBSCrypto_ERROR;
 	}
 	case 224:{
-	    memcpy(hs->chi.hs_State.small, _224_init, 6 * sizeof(unsigned long long));
-	    hs->chi.hs_MessageLen = _256_MSG_BLK_LEN;
+	    memcpy(hs->chi.State.small, _224_init, 6 * sizeof(unsigned long long));
+	    hs->chi.MessageLen = _256_MSG_BLK_LEN;
 	    break;
 	}
 	case 256:{
-	    memcpy(hs->chi.hs_State.small, _256_init, 6 * sizeof(unsigned long long));
-	    hs->chi.hs_MessageLen = _256_MSG_BLK_LEN;
+	    memcpy(hs->chi.State.small, _256_init, 6 * sizeof(unsigned long long));
+	    hs->chi.MessageLen = _256_MSG_BLK_LEN;
 	    break;
 	}
 	case 384:{
-	    memcpy(hs->chi.hs_State.large, _384_init, 9 * sizeof(unsigned long long));
-	    hs->chi.hs_MessageLen = _512_MSG_BLK_LEN;
+	    memcpy(hs->chi.State.large, _384_init, 9 * sizeof(unsigned long long));
+	    hs->chi.MessageLen = _512_MSG_BLK_LEN;
 	    break;
 	}
 	case 512:{
-	    memcpy(hs->chi.hs_State.large, _512_init, 9 * sizeof(unsigned long long));
-	    hs->chi.hs_MessageLen = _512_MSG_BLK_LEN;
+	    memcpy(hs->chi.State.large, _512_init, 9 * sizeof(unsigned long long));
+	    hs->chi.MessageLen = _512_MSG_BLK_LEN;
 	    break;
 	}
     }
 
-    hs->chi.hs_HashBitLen = (HashBitLen)hashbitlen;
-    hs->chi.hs_DataLen      = 0;
-    hs->chi.hs_TotalLenLow  = 0;
-    hs->chi.hs_TotalLenHigh = 0;
+    hs->chi.HashBitLen = (HashBitLen)hashbitlen;
+    hs->chi.DataLen      = 0;
+    hs->chi.TotalLenLow  = 0;
+    hs->chi.TotalLenHigh = 0;
 
     return NBSCrypto_OK;
 }
@@ -566,25 +566,25 @@ int chi_process(hash_state *hs, const unsigned char *in, unsigned long inlen)
     if (in == NULL){
 	return NBSCrypto_ERROR;
     }
-    if ((hs->chi.hs_DataLen & 0x7) != 0){
+    if ((hs->chi.DataLen & 0x7) != 0){
 	return NBSCrypto_ERROR;
     }
 
     while (inlen > 0){
-	cs = _MIN((unsigned int)inlen, hs->chi.hs_MessageLen - hs->chi.hs_DataLen);
+	cs = _MIN((unsigned int)inlen, hs->chi.MessageLen - hs->chi.DataLen);
 
-	memcpy(hs->chi.hs_DataBuffer+hs->chi.hs_DataLen / 8, in, (cs + 7) / 8);
+	memcpy(hs->chi.DataBuffer+hs->chi.DataLen / 8, in, (cs + 7) / 8);
 	in += cs / 8;
 	inlen -= cs;
-	hs->chi.hs_DataLen += cs;
+	hs->chi.DataLen += cs;
 
-	if (hs->chi.hs_DataLen >= (unsigned int)hs->chi.hs_MessageLen){
+	if (hs->chi.DataLen >= (unsigned int)hs->chi.MessageLen){
 	    _hash(hs, 0);
 	    ret = _inc_total_len(hs);
 	    if (ret != NBSCrypto_OK){
 		return ret;
 	    }
-	    hs->chi.hs_DataLen = 0;
+	    hs->chi.DataLen = 0;
 	}
     }
 
@@ -611,7 +611,7 @@ int chi_done(hash_state *hs, unsigned char *out)
 	return ret;
     }
 
-    switch (hs->chi.hs_HashBitLen)
+    switch (hs->chi.HashBitLen)
     {
 	case 224:
 	case 256:
@@ -623,77 +623,77 @@ int chi_done(hash_state *hs, unsigned char *out)
 	    break;
     }
 
-    whole_bytes = hs->chi.hs_DataLen / 8;
-    last_byte_bits = hs->chi.hs_DataLen % 8;
+    whole_bytes = hs->chi.DataLen / 8;
+    last_byte_bits = hs->chi.DataLen % 8;
 
-    hs->chi.hs_DataBuffer[whole_bytes] &= ~((1 << (7-last_byte_bits)) - 1);
-    hs->chi.hs_DataBuffer[whole_bytes] |= (1 << (7-last_byte_bits));
+    hs->chi.DataBuffer[whole_bytes] &= ~((1 << (7-last_byte_bits)) - 1);
+    hs->chi.DataBuffer[whole_bytes] |= (1 << (7-last_byte_bits));
 
-    hs->chi.hs_DataLen += (8 - last_byte_bits);
+    hs->chi.DataLen += (8 - last_byte_bits);
 
-    left_over_bytes = (hs->chi.hs_MessageLen - hs->chi.hs_DataLen) / 8;
+    left_over_bytes = (hs->chi.MessageLen - hs->chi.DataLen) / 8;
 
     if (left_over_bytes < length_bytes){
-	memset(hs->chi.hs_DataBuffer + hs->chi.hs_DataLen/8, 0, left_over_bytes);
+	memset(hs->chi.DataBuffer + hs->chi.DataLen/8, 0, left_over_bytes);
 	_hash(hs, 0);
-	hs->chi.hs_DataLen = 0;
-	left_over_bytes = hs->chi.hs_MessageLen / 8;
+	hs->chi.DataLen = 0;
+	left_over_bytes = hs->chi.MessageLen / 8;
     }
 
-    memset(hs->chi.hs_DataBuffer + hs->chi.hs_DataLen / 8, 0, left_over_bytes);
+    memset(hs->chi.DataBuffer + hs->chi.DataLen / 8, 0, left_over_bytes);
 
-    whole_bytes = hs->chi.hs_MessageLen / 8 - length_bytes;
+    whole_bytes = hs->chi.MessageLen / 8 - length_bytes;
     if (length_bytes == sizeof(unsigned long long) * 2){
-	_WORD2BYTE(hs->chi.hs_TotalLenHigh, hs->chi.hs_DataBuffer + whole_bytes);
+	_WORD2BYTE(hs->chi.TotalLenHigh, hs->chi.DataBuffer + whole_bytes);
 	whole_bytes += sizeof(unsigned long long);
     }else{
-	if (hs->chi.hs_TotalLenHigh != 0)
+	if (hs->chi.TotalLenHigh != 0)
 	    return NBSCrypto_ERROR;
     }
 
-    _WORD2BYTE(hs->chi.hs_TotalLenLow, hs->chi.hs_DataBuffer + whole_bytes);
-    hs->chi.hs_DataLen = hs->chi.hs_MessageLen;
+    _WORD2BYTE(hs->chi.TotalLenLow, hs->chi.DataBuffer + whole_bytes);
+    hs->chi.DataLen = hs->chi.MessageLen;
 
     _hash(hs, 1);
-    hs->chi.hs_DataLen = 0;
+    hs->chi.DataLen = 0;
 
-    switch(hs->chi.hs_HashBitLen)
+    switch(hs->chi.HashBitLen)
     {
 	case 224:
-	    _WORD2BYTE(hs->chi.hs_State.large[0],out);
-	    _WORD2BYTE(hs->chi.hs_State.large[1],out +  8);
-	    _WORD2BYTE(hs->chi.hs_State.large[3],out + 16);
-	    out[24] = _BYTE(hs->chi.hs_State.large[4], 0);
-	    out[25] = _BYTE(hs->chi.hs_State.large[4], 1);
-	    out[26] = _BYTE(hs->chi.hs_State.large[4], 2);
-	    out[27] = _BYTE(hs->chi.hs_State.large[4], 3);
+	    _WORD2BYTE(hs->chi.State.large[0],out);
+	    _WORD2BYTE(hs->chi.State.large[1],out +  8);
+	    _WORD2BYTE(hs->chi.State.large[3],out + 16);
+	    out[24] = _BYTE(hs->chi.State.large[4], 0);
+	    out[25] = _BYTE(hs->chi.State.large[4], 1);
+	    out[26] = _BYTE(hs->chi.State.large[4], 2);
+	    out[27] = _BYTE(hs->chi.State.large[4], 3);
 	    break;
 
 	case 256:
-	    _WORD2BYTE(hs->chi.hs_State.large[0],out);
-	    _WORD2BYTE(hs->chi.hs_State.large[1],out +  8);
-	    _WORD2BYTE(hs->chi.hs_State.large[3],out + 16);
-	    _WORD2BYTE(hs->chi.hs_State.large[4],out + 24);
+	    _WORD2BYTE(hs->chi.State.large[0],out);
+	    _WORD2BYTE(hs->chi.State.large[1],out +  8);
+	    _WORD2BYTE(hs->chi.State.large[3],out + 16);
+	    _WORD2BYTE(hs->chi.State.large[4],out + 24);
 	    break;
 
 	case 384:
-	    _WORD2BYTE(hs->chi.hs_State.large[0],out);
-	    _WORD2BYTE(hs->chi.hs_State.large[1],out +  8);
-	    _WORD2BYTE(hs->chi.hs_State.large[2],out + 16);
-	    _WORD2BYTE(hs->chi.hs_State.large[3],out + 24);
-	    _WORD2BYTE(hs->chi.hs_State.large[4],out + 32);
-	    _WORD2BYTE(hs->chi.hs_State.large[5],out + 40);
+	    _WORD2BYTE(hs->chi.State.large[0],out);
+	    _WORD2BYTE(hs->chi.State.large[1],out +  8);
+	    _WORD2BYTE(hs->chi.State.large[2],out + 16);
+	    _WORD2BYTE(hs->chi.State.large[3],out + 24);
+	    _WORD2BYTE(hs->chi.State.large[4],out + 32);
+	    _WORD2BYTE(hs->chi.State.large[5],out + 40);
 	    break;
 
 	case 512:
-	    _WORD2BYTE(hs->chi.hs_State.large[0],out);
-	    _WORD2BYTE(hs->chi.hs_State.large[1],out +  8);
-	    _WORD2BYTE(hs->chi.hs_State.large[2],out + 16);
-	    _WORD2BYTE(hs->chi.hs_State.large[3],out + 24);
-	    _WORD2BYTE(hs->chi.hs_State.large[4],out + 32);
-	    _WORD2BYTE(hs->chi.hs_State.large[5],out + 40);
-	    _WORD2BYTE(hs->chi.hs_State.large[6],out + 48);
-	    _WORD2BYTE(hs->chi.hs_State.large[7],out + 56);
+	    _WORD2BYTE(hs->chi.State.large[0],out);
+	    _WORD2BYTE(hs->chi.State.large[1],out +  8);
+	    _WORD2BYTE(hs->chi.State.large[2],out + 16);
+	    _WORD2BYTE(hs->chi.State.large[3],out + 24);
+	    _WORD2BYTE(hs->chi.State.large[4],out + 32);
+	    _WORD2BYTE(hs->chi.State.large[5],out + 40);
+	    _WORD2BYTE(hs->chi.State.large[6],out + 48);
+	    _WORD2BYTE(hs->chi.State.large[7],out + 56);
 	    break;
     }
 
