@@ -188,6 +188,8 @@ Please have a look [here](https://help.github.com/articles/approving-a-pull-requ
     - BIT-LENGTH: `32`
 - __FNV1-64 / FNV1a-64__
     - BIT-LENGTH: `64`
+- __FUGUE__
+    - BIT-LENGTH: `224` `256` `384` `512`
 - __GOST / GOST-CRYPTO__
     - BIT-LENGTH: `256`
 - __GROESTL__
