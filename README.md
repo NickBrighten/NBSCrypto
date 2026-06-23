@@ -1,13 +1,13 @@
 # NBSCrypto
 NBSCrypto is an ultra lightweight crytopgraphy framework for iOS, iPadOS, macOS, tvOS and watchOS.
 
-This repository include the whole Xcode project with all targets, ready to build.\
+This repository include the whole Xcode project with all targets, ready to build (Build-Number: 260623)\
 NSCrypto is written in `Objective-C` and `C`.
 
 It is possible to use the `.framework` or `.xcframework` in both Objective-C and Swift.\
 To integrate the `.framework` or `.xcframework` into an Objective-C project, you can use our guide: [Integrate NBSCrypto to an Objective-C Project](https://github.com/NickBrighten/NBSCrypto/tree/main/Integrate_into_Objective-C.md) and to integrate it into a Swift project, you can use our guide: [Integrate NBSCrypto to an Swift Project](https://github.com/NickBrighten/NBSCrypto/tree/main/Integrate_into_Swift.md).
 
-Precompiled Builds will be available as multiple tagets `.xcframework` for production/deployment and simulators [here](https://github.com/NickBrighten/NBSCrypto/releases).
+Precompiled Builds (Build-Number: 260613) will be available as multiple tagets `.xcframework` for production/deployment and simulators [here](https://github.com/NickBrighten/NBSCrypto/releases).
 
 An XCFramework `.xcframework` is Apple's recommended, modern format for distributing compiled binary code and frameworks. It allows developers to bundle libraries supporting multiple platforms, such as iOS, iPadOS, macOS, tvOS, visionOS and watchOS, into a single, unified package that works on both physical devices and simulators.
 
