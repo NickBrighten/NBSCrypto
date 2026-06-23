@@ -258,6 +258,8 @@ NSLog("OUTPUT MAC: %@", MAChash);
     - BIT-LENGTH: `224` `256` `384` `512`
 - __MD2 / MD4 / MD5__
     - BIT-LENGTH: `128`
+- __MD6__
+    - BIT-LENGTH: `128` `160` `192` `224` `256` `384` `512`
 - __MURMUR3A__
     - BIT-LENGTH: `32`
 - __MURMUR3C / MURMUR3F__
