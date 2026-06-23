@@ -183,6 +183,13 @@
 	case NBSCrypto_HASH_MD2:			{r=&md2_desc;break;}
 	case NBSCrypto_HASH_MD4:			{r=&md4_desc;break;}
 	case NBSCrypto_HASH_MD5:			{r=&md5_desc;break;}
+	case NBSCrypto_HASH_MD6_128:			{r=&md6_128_desc;break;}
+	case NBSCrypto_HASH_MD6_160:			{r=&md6_160_desc;break;}
+	case NBSCrypto_HASH_MD6_192:			{r=&md6_192_desc;break;}
+	case NBSCrypto_HASH_MD6_224:			{r=&md6_224_desc;break;}
+	case NBSCrypto_HASH_MD6_256:			{r=&md6_256_desc;break;}
+	case NBSCrypto_HASH_MD6_384:			{r=&md6_384_desc;break;}
+	case NBSCrypto_HASH_MD6_512:			{r=&md6_512_desc;break;}
 	case NBSCrypto_HASH_MURMUR3A:			{r=&murmur3a_desc;break;}
 	case NBSCrypto_HASH_MURMUR3C:			{r=&murmur3c_desc;break;}
 	case NBSCrypto_HASH_MURMUR3F:			{r=&murmur3f_desc;break;}
@@ -358,7 +365,7 @@
     _mac = MAC;
 }
 
-- (void)setKey:(NSString *)KEY{
+- (void)setKeyForMAC:(NSString *)KEY{
     _key = KEY;
 }
 
@@ -387,7 +394,7 @@
     [r setAlgorithm:a];
     [r useMAC:m];
     if (m) {
-	[r setKey:k];
+	[r setKeyForMAC:k];
     }
     return [r hashString:s];
 }

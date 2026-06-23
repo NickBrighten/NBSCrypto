@@ -250,6 +250,18 @@ struct md5_state{
     unsigned long long length;
 };
 
+struct md6_state{
+    int d, finalized, hashbitlen, initialized, keylen, L, r, top;
+    unsigned int bits[29];
+    unsigned char hashval[16*(64/8)];
+    unsigned char hexhashval[(16*(64/8))+1];
+    unsigned long long B[29][64];
+    unsigned long long bits_processed;
+    unsigned long long compression_calls;
+    unsigned long long i_for_level[29];
+    unsigned long long K[8];
+};
+
 struct murmur3a_state{
     unsigned len;
     unsigned h;
@@ -437,6 +449,7 @@ typedef union hash_state{
     struct md2_state			md2;
     struct md4_state			md4;
     struct md5_state			md5;
+    struct md6_state			md6;
     struct murmur3a_state		murmur3a;
     struct murmur3c_state		murmur3c;
     struct murmur3f_state		murmur3f;
@@ -952,6 +965,25 @@ int md5_init(hash_state *hs);
 int md5_process(hash_state *hs, const unsigned char *in, unsigned long inlen);
 int md5_done(hash_state *hs, unsigned char *out);
 extern const struct hash_descriptor md5_desc;
+
+
+#pragma mark MD6
+int md6_128_init(hash_state *hs);
+int md6_160_init(hash_state *hs);
+int md6_192_init(hash_state *hs);
+int md6_224_init(hash_state *hs);
+int md6_256_init(hash_state *hs);
+int md6_384_init(hash_state *hs);
+int md6_512_init(hash_state *hs);
+int md6_process(hash_state *hs, const unsigned char *in, unsigned long inlen);
+int md6_done(hash_state *hs, unsigned char *out);
+extern const struct hash_descriptor md6_128_desc;
+extern const struct hash_descriptor md6_160_desc;
+extern const struct hash_descriptor md6_192_desc;
+extern const struct hash_descriptor md6_224_desc;
+extern const struct hash_descriptor md6_256_desc;
+extern const struct hash_descriptor md6_384_desc;
+extern const struct hash_descriptor md6_512_desc;
 
 
 #pragma mark MURMUR

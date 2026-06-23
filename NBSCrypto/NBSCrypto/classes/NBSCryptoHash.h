@@ -47,10 +47,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 ///	KEY (Required for HMAC)
-///	@discussion		setKEY for hashing/checksum/digit/HMAC
+///	@discussion		setKeyForMAC for hashing/checksum/digit/HMAC
 ///	@discussion		If no KEY is specified, NBSCryptoHash automatically pads the KEY with zeros
 ///				to the required length.
-@property (nonatomic, setter=setKey:)		NSString *KEY;
+@property (nonatomic, setter=setKeyForMAC:)	NSString *KEY;
 
 
 - (instancetype)init;
