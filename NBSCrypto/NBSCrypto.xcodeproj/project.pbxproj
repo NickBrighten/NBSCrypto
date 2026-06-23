@@ -1025,7 +1025,6 @@
 				1D419E9D2FC06D49003A7B83 /* chacha.c in Sources */,
 				1D419EC92FC06D4A003A7B83 /* des.c in Sources */,
 				1D419EB12FC06D49003A7B83 /* idea.c in Sources */,
-				1DE68D442FEAE7570035A45E /* md6.c in Sources */,
 				1D419EC52FC06D4A003A7B83 /* kasumi.c in Sources */,
 				1D419EA52FC06D49003A7B83 /* khazad.c in Sources */,
 				1D419E7D2FC06D49003A7B83 /* lea.c in Sources */,
@@ -1071,6 +1070,7 @@
 				1D419DEE2FC06C97003A7B83 /* md2.c in Sources */,
 				1D419DFE2FC06C97003A7B83 /* md4.c in Sources */,
 				1D419E422FC06C98003A7B83 /* md5.c in Sources */,
+				1DE68D442FEAE7570035A45E /* md6.c in Sources */,
 				1D419E022FC06C97003A7B83 /* murmur.c in Sources */,
 				1D419E122FC06C97003A7B83 /* ripemd.c in Sources */,
 				1D419E1E2FC06C97003A7B83 /* sha1.c in Sources */,
@@ -1130,7 +1130,6 @@
 				1D419E9E2FC06D49003A7B83 /* chacha.c in Sources */,
 				1D419ECA2FC06D4A003A7B83 /* des.c in Sources */,
 				1D419EB22FC06D49003A7B83 /* idea.c in Sources */,
-				1DE68D452FEAE7570035A45E /* md6.c in Sources */,
 				1D419EC62FC06D4A003A7B83 /* kasumi.c in Sources */,
 				1D419EA62FC06D49003A7B83 /* khazad.c in Sources */,
 				1D419E7E2FC06D49003A7B83 /* lea.c in Sources */,
@@ -1176,6 +1175,7 @@
 				1D419DEF2FC06C97003A7B83 /* md2.c in Sources */,
 				1D419DFF2FC06C97003A7B83 /* md4.c in Sources */,
 				1D419E432FC06C98003A7B83 /* md5.c in Sources */,
+				1DE68D452FEAE7570035A45E /* md6.c in Sources */,
 				1D419E032FC06C97003A7B83 /* murmur.c in Sources */,
 				1D419E132FC06C97003A7B83 /* ripemd.c in Sources */,
 				1D419E1F2FC06C97003A7B83 /* sha1.c in Sources */,
@@ -1235,7 +1235,6 @@
 				1D419E9F2FC06D49003A7B83 /* chacha.c in Sources */,
 				1D419ECB2FC06D4A003A7B83 /* des.c in Sources */,
 				1D419EB32FC06D49003A7B83 /* idea.c in Sources */,
-				1DE68D462FEAE7570035A45E /* md6.c in Sources */,
 				1D419EC72FC06D4A003A7B83 /* kasumi.c in Sources */,
 				1D419EA72FC06D49003A7B83 /* khazad.c in Sources */,
 				1D419E7F2FC06D49003A7B83 /* lea.c in Sources */,
@@ -1281,6 +1280,7 @@
 				1D419DF02FC06C97003A7B83 /* md2.c in Sources */,
 				1D419E002FC06C97003A7B83 /* md4.c in Sources */,
 				1D419E442FC06C98003A7B83 /* md5.c in Sources */,
+				1DE68D462FEAE7570035A45E /* md6.c in Sources */,
 				1D419E042FC06C97003A7B83 /* murmur.c in Sources */,
 				1D419E142FC06C97003A7B83 /* ripemd.c in Sources */,
 				1D419E202FC06C97003A7B83 /* sha1.c in Sources */,
@@ -1356,7 +1356,6 @@
 				1D419E882FC06D49003A7B83 /* sm4.c in Sources */,
 				1D419E742FC06D49003A7B83 /* tea.c in Sources */,
 				1D419ED42FC06D4A003A7B83 /* twofish.c in Sources */,
-				1DE68D472FEAE7570035A45E /* md6.c in Sources */,
 				1D419EBC2FC06D49003A7B83 /* xtea.c in Sources */,
 				1D419E4D2FC06C98003A7B83 /* adler32.c in Sources */,
 				1DF7F14E2FC8C26B00CA2560 /* arirang.c in Sources */,
@@ -1386,6 +1385,7 @@
 				1D419DF12FC06C97003A7B83 /* md2.c in Sources */,
 				1D419E012FC06C97003A7B83 /* md4.c in Sources */,
 				1D419E452FC06C98003A7B83 /* md5.c in Sources */,
+				1DE68D472FEAE7570035A45E /* md6.c in Sources */,
 				1D419E052FC06C97003A7B83 /* murmur.c in Sources */,
 				1D419E152FC06C97003A7B83 /* ripemd.c in Sources */,
 				1D419E212FC06C97003A7B83 /* sha1.c in Sources */,
@@ -1489,7 +1489,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 260619;
+				CURRENT_PROJECT_VERSION = 260623;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -1521,7 +1521,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 260619;
+				CURRENT_PROJECT_VERSION = 260623;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -1550,7 +1550,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 260619;
+				CURRENT_PROJECT_VERSION = 260623;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -1581,7 +1581,7 @@
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = NO;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 260619;
+				CURRENT_PROJECT_VERSION = 260623;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
