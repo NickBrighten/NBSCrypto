@@ -43,13 +43,13 @@ const struct cipher_descriptor cast6_desc =
 
 #define ROL32(a, n) (((a) << (n)) | ((a) >> (32 - (n))))
 
-#define LOAD32(p) (						\
+#define LOAD32(p) (					\
     ((unsigned)(((unsigned char *)(p))[0]) << 24) |	\
     ((unsigned)(((unsigned char *)(p))[1]) << 16) |	\
     ((unsigned)(((unsigned char *)(p))[2]) <<  8) |	\
     ((unsigned)(((unsigned char *)(p))[3]) <<  0))
 
-#define STORE32(a, p)							\
+#define STORE32(a, p)						\
     ((unsigned char *)(p))[0] = ((unsigned)(a) >> 24) & 0xFFU,	\
     ((unsigned char *)(p))[1] = ((unsigned)(a) >> 16) & 0xFFU,	\
     ((unsigned char *)(p))[2] = ((unsigned)(a) >>  8) & 0xFFU,	\
