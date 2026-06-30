@@ -12,7 +12,7 @@
 const struct hash_descriptor skein_224_desc =
 {
     "skein-224",
-    214,
+    213,
     28,
     128,
     &skein_224_init,
