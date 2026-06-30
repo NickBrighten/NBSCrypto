@@ -353,13 +353,28 @@ struct shavite3_state{
     unsigned long long bitcount;
 };
 
-struct simd_state {
+struct simd_state{
     unsigned int hashbitlen;
     unsigned int blocksize;
     unsigned int n_feistels;
     unsigned char* buffer;
     unsigned long long count;
     uint32_t *A, *B, *C, *D;
+};
+
+typedef struct{size_t hashBitLen, bCnt;unsigned long long T[2];}Skein_Ctxt_Hdr_t;
+typedef struct{Skein_Ctxt_Hdr_t h;unsigned char b[ 32];unsigned long long X[ 4];}Skein_256_Ctxt_t;
+typedef struct{Skein_Ctxt_Hdr_t h;unsigned char b[ 64];unsigned long long X[ 8];}Skein_512_Ctxt_t;
+typedef struct{Skein_Ctxt_Hdr_t h;unsigned char b[128];unsigned long long X[16];}Skein1024_Ctxt_t;
+struct skein_state{
+    unsigned int statebits;
+    union
+    {
+	Skein_Ctxt_Hdr_t h;
+	Skein_256_Ctxt_t ctx_256;
+	Skein_512_Ctxt_t ctx_512;
+	Skein1024_Ctxt_t ctx1024;
+    } u;
 };
 
 struct sm3_state{
@@ -464,6 +479,7 @@ typedef union hash_state{
     struct shavite3_state		shavite3;
     struct shabal_state			shabal;
     struct simd_state			simd;
+    struct skein_state			skein;
     struct sm3_state			sm3;
     struct snefru_state			snefru;
     struct streebog_state		streebog;
@@ -1134,6 +1150,21 @@ extern const struct hash_descriptor simd_224_desc;
 extern const struct hash_descriptor simd_256_desc;
 extern const struct hash_descriptor simd_384_desc;
 extern const struct hash_descriptor simd_512_desc;
+
+
+#pragma mark SKEIN
+int skein_224_init(hash_state *hs);
+int skein_256_init(hash_state *hs);
+int skein_384_init(hash_state *hs);
+int skein_512_init(hash_state *hs);
+int skein_1024_init(hash_state *hs);
+int skein_process(hash_state *hs, const unsigned char *in, unsigned long inlen);
+int skein_done(hash_state *hs, unsigned char *out);
+extern const struct hash_descriptor skein_224_desc;
+extern const struct hash_descriptor skein_256_desc;
+extern const struct hash_descriptor skein_384_desc;
+extern const struct hash_descriptor skein_512_desc;
+extern const struct hash_descriptor skein_1024_desc;
 
 
 #pragma mark SM3

@@ -223,6 +223,11 @@
 	case NBSCrypto_HASH_SIMD_256:			{r=&simd_256_desc;break;}
 	case NBSCrypto_HASH_SIMD_384:			{r=&simd_384_desc;break;}
 	case NBSCrypto_HASH_SIMD_512:			{r=&simd_512_desc;break;}
+	case NBSCrypto_HASH_SKEIN_224:			{r=&skein_224_desc;break;}
+	case NBSCrypto_HASH_SKEIN_256:			{r=&skein_256_desc;break;}
+	case NBSCrypto_HASH_SKEIN_384:			{r=&skein_384_desc;break;}
+	case NBSCrypto_HASH_SKEIN_512:			{r=&skein_512_desc;break;}
+	case NBSCrypto_HASH_SKEIN_1024:			{r=&skein_1024_desc;break;}
 	case NBSCrypto_HASH_SM3:			{r=&sm3_desc;break;}
 	case NBSCrypto_HASH_SNEFRU:			{r=&snefru_desc;break;}
 	case NBSCrypto_HASH_STREEBOG_256:		{r=&streebog_256_desc;break;}
