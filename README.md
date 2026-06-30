@@ -153,7 +153,7 @@ Please have a look [here](https://help.github.com/articles/approving-a-pull-requ
 
 
 
-#Syntax for Hash
+# Syntax for Hash
 Objective-C
 ```Objective-C
 [NBSCryptoHash hashString:@"0123456789abcdef"
