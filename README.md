@@ -1,7 +1,7 @@
 # NBSCrypto
 NBSCrypto is an ultra lightweight crytopgraphy framework for iOS, iPadOS, macOS, tvOS and watchOS.
 
-This repository include the whole Xcode project with all targets, ready to build (Build-Number: 260623)\
+This repository include the whole Xcode project with all targets, ready to build (Build-Number: 260630)\
 NSCrypto is written in `Objective-C` and `C`.
 
 It is possible to use the `.framework` or `.xcframework` in both Objective-C and Swift.\
@@ -282,6 +282,8 @@ NSLog("OUTPUT MAC: %@", MAChash);
     - BIT-LENGTH: `224` `256` `384` `512`
 - __SIMD__
     - BIT-LENGTH: `224` `256` `384` `512`
+- __SKEIN__
+    - BIT-LENGTH: `224` `256` `384` `512` `1024`
 - __SM3__
     - BIT-LENGTH: `256`
 - __SNEFRU__
