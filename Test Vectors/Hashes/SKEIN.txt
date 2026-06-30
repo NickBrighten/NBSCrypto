@@ -1,0 +1,117 @@
+#################################################################
+######################   SKEIN - VECTORS   ######################
+#################################################################
+
+
+---------------------------- 224-BIT ----------------------------
+
+LEN	: 0
+MSG	: ""
+MD	: 1541ae9fc3ebe24eb758ccb1fd60c2c31a9ebfe65b220086e7819e25
+
+
+LEN	: 1
+MSG	: " "
+MD	: c08ef7ff0984a53d6089609459e136aa5d7a7d8ba9852365c3fe6c03
+
+
+LEN	: 5
+MSG	: "H    "
+MD	: 84da4a7cdcbadd9cdefa5fa108728b381272052bcc8667bbbdec9bbd
+
+
+LEN	: 16
+MSG	: "0123456789abcdef"
+MD	: 27ef785311611455ca7fffc43b645f8e30bfb9ba513aa9d20ba866cc
+
+
+
+---------------------------- 256-BIT ----------------------------
+
+LEN	: 0
+MSG	: ""
+MD	: 39ccc4554a8b31853b9de7a1fe638a24cce6b35a55f2431009e18780335d2621
+
+
+LEN	: 1
+MSG	: " "
+MD	: 13ef758a5c38e8906c148354351f3aeb669e44b5cb6cbe14d20d3de8e269ab96
+
+
+LEN	: 5
+MSG	: "H    "
+MD	: 8e6f8db5c29545500541ad9470d2c71d19b38827c34e0a435611bc447752c16a
+
+
+LEN	: 16
+MSG	: "0123456789abcdef"
+MD	: d21ac0562135a346e9c6bbde2990e67629b742a5396cddfaba44b2e01de68fde
+
+
+
+---------------------------- 384-BIT ----------------------------
+
+LEN	: 0
+MSG	: ""
+MD	: dd5aaf4589dc227bd1eb7bc68771f5baeaa3586ef6c7680167a023ec8ce26980f06c4082c488b4ac9ef313f8cbe70808
+
+
+LEN	: 1
+MSG	: " "
+MD	: e6a6d38ead0e25c2d328c6c3200c38da0b183bac6f0f1803e330b061a829305cc2dcb1e5d50e52b6f6cca1e95426793a
+
+
+LEN	: 5
+MSG	: "H    "
+MD	: 1d3f9afac2c3e792a01b9f0437872342a84f7cc9bb1dade1bc05da924c3697992ab6efcccce509133ddf4a89452ae91a
+
+
+LEN	: 16
+MSG	: "0123456789abcdef"
+MD	: 47876dcdc1841194f884b3165ce979f366cb2e04a3a1c5463793bd3045b4f931879f5db71fef8ccccb1fc7e378a94bd4
+
+
+
+---------------------------- 512-BIT ----------------------------
+
+LEN	: 0
+MSG	: ""
+MD	: bc5b4c50925519c290cc634277ae3d6257212395cba733bbad37a4af0fa06af41fca7903d06564fea7a2d3730dbdb80c1f85562dfcc070334ea4d1d9e72cba7a
+
+
+LEN	: 1
+MSG	: " "
+MD	: bf96b35cecafc8ad25ac7207e90ef279fe99be4594ae996f726968c4b799018a248d80152952c4c31589776c367e7b6153dc0dbdf1b479d53298a6328aa03fdb
+
+
+LEN	: 5
+MSG	: "H    "
+MD	: 282cdc4c3d86098c3c88d359a11d0f9ee0532836cef30144068a317b29c90ee700957a6e94684e6caf7202bcbe0690330d9c47682d2a6b58d7d3d39e8fa17bac
+
+
+LEN	: 16
+MSG	: "0123456789abcdef"
+MD	: cc4b81bbd6e41aadfc2f34f80f92cb8e0b116cf0341bde777a650a70635646b5e9687f506bfa1c52239fb182cd7ce6887ffd2beba46b5f5dba0fd5109fbc519a
+
+--------------------------- 1024-BIT ----------------------------
+
+LEN	: 0
+MSG	: ""
+MD	: 0fff9563bb3279289227ac77d319b6fff8d7e9f09da1247b72a0a265cd6d2a62645ad547ed8193db48cff847c06494a03f55666d3b47eb4c20456c9373c86297d630d5578ebd34cb40991578f9f52b18003efa35d3da6553ff35db91b81ab890bec1b189b7f52cb2a783ebb7d823d725b0b4a71f6824e88f68f982eefc6d19c6
+
+
+LEN	: 1
+MSG	: " "
+MD	: d19b5b6440ecbd3ec025bfab1925f21d2f155c287783046f7eb8c68b34df087b6487ba6de415c096c8d9b4efb3d7b1ac2a1dedca7c467e6cac0ed3f2a90b40b9eec93d5b208b5569d488fc86d438402ce61ff94a00802cf4bae1f4c273a9baebd9d9b0d60e3af481e25befd69ee71f36d9ef204a1942ccfae4e33fcb0ba5d980
+
+
+LEN	: 5
+MSG	: "H    "
+MD	: 07cf4ccc8dc25ae2ae4e79647da5c6ff2851f68ef44369fb6068f153a992e208a48861a3417c66874417f6d37cf17b1bbd3fdc80791705989fdd6f71bcbb499da538b90584c0e2e624dde98eca8bf63bc70c895ee1d84fb852d8d5fc22866889cc6c6841ac959aed5b2a47fbca347b2cb0edd3c1e9b96793dd4269b8ce08d719
+
+
+LEN	: 16
+MSG	: "0123456789abcdef"
+MD	: 54113f5141c708272de8950d09a49997bf85900d8f3e51e80ac1dd4616b413eab995acc723133b243840fe3085e084a64df7d08ae0bb2b2e8598f21ef40bbec7380cab18eafbd9c3f0a79f485bfe21bd9f9b749f60fc47d9b1bfdd9b0eb33772db2825d619fd75be69d63563a4a098fafc56ae62486732242684cfcbbff8d128
+
+#################################################################
