@@ -11,7 +11,7 @@
 const struct hash_descriptor snefru_desc =
 {
     "snefru",
-    219,
+    10450128,
     32,
     64,
     &snefru_init,
