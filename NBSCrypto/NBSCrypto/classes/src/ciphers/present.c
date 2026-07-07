@@ -12,7 +12,7 @@
 const struct cipher_descriptor present_desc =
 {
     "present",
-    18,
+    22,
     10, 16, 8, 31,
     &present_setup,
     &present_encrypt,

@@ -12,7 +12,7 @@
 const struct cipher_descriptor rc4_desc =
 {
     "rc4",
-    20,
+    24,
     1, 256, 0, 0,
     NULL,
     NULL,
