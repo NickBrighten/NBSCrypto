@@ -11,7 +11,7 @@
 const struct hash_descriptor md6_128_desc =
 {
     "md6-128",
-    171,
+    10320128,
     16,
     64,
     &md6_128_init,
@@ -23,7 +23,7 @@ const struct hash_descriptor md6_128_desc =
 const struct hash_descriptor md6_160_desc =
 {
     "md6-160",
-    172,
+    10320160,
     20,
     64,
     &md6_160_init,
@@ -35,7 +35,7 @@ const struct hash_descriptor md6_160_desc =
 const struct hash_descriptor md6_192_desc =
 {
     "md6-192",
-    173,
+    10320192,
     24,
     64,
     &md6_192_init,
@@ -47,7 +47,7 @@ const struct hash_descriptor md6_192_desc =
 const struct hash_descriptor md6_224_desc =
 {
     "md6-224",
-    174,
+    10320224,
     28,
     64,
     &md6_224_init,
@@ -59,7 +59,7 @@ const struct hash_descriptor md6_224_desc =
 const struct hash_descriptor md6_256_desc =
 {
     "md6-256",
-    175,
+    10320256,
     32,
     64,
     &md6_256_init,
@@ -71,7 +71,7 @@ const struct hash_descriptor md6_256_desc =
 const struct hash_descriptor md6_384_desc =
 {
     "md6-384",
-    176,
+    10320384,
     48,
     64,
     &md6_384_init,
@@ -83,7 +83,7 @@ const struct hash_descriptor md6_384_desc =
 const struct hash_descriptor md6_512_desc =
 {
     "md6-512",
-    177,
+    10320512,
     64,
     64,
     &md6_512_init,
@@ -293,13 +293,13 @@ static inline void _md6_main_compression_loop(uint64_t *A , int r)
 
 	/* ******************************************* */
 #define loop_body(rs,ls,step)			\
-x = S;					\
-x ^= A[i+step-t5];				\
-x ^= A[i+step-t0];				\
-x ^= ( A[i+step-t1] & A[i+step-t2] );	\
-x ^= ( A[i+step-t3] & A[i+step-t4] );	\
-x ^= (x >> rs);				\
-A[i+step] = x ^ (x << ls);
+    x = S;					\
+    x ^= A[i+step-t5];				\
+    x ^= A[i+step-t0];				\
+    x ^= ( A[i+step-t1] & A[i+step-t2] );	\
+    x ^= ( A[i+step-t3] & A[i+step-t4] );	\
+    x ^= (x >> rs);				\
+    A[i+step] = x ^ (x << ls);
 	/* ******************************************* */
 
 	RL00 RL01 RL02 RL03 RL04 RL05 RL06 RL07

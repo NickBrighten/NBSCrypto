@@ -11,7 +11,7 @@
 const struct hash_descriptor hamsi_224_desc =
 {
     "hamsi-224",
-    126,
+    10200224,
     28,
     32,
     &hamsi_224_init,
@@ -23,7 +23,7 @@ const struct hash_descriptor hamsi_224_desc =
 const struct hash_descriptor hamsi_256_desc =
 {
     "hamsi-256",
-    127,
+    10200256,
     32,
     32,
     &hamsi_256_init,
@@ -35,7 +35,7 @@ const struct hash_descriptor hamsi_256_desc =
 const struct hash_descriptor hamsi_384_desc =
 {
     "hamsi-384",
-    128,
+    10200384,
     48,
     32,
     &hamsi_384_init,
@@ -47,7 +47,7 @@ const struct hash_descriptor hamsi_384_desc =
 const struct hash_descriptor hamsi_512_desc =
 {
     "hamsi-512",
-    129,
+    10200512,
     64,
     32,
     &hamsi_512_init,
@@ -94,7 +94,7 @@ const struct hash_descriptor hamsi_512_desc =
 	MOV(2,1);                       \
 	MOV(1,3);                       \
 	MOV(3,4);                       \
-    } while (0)
+} while (0)
 
 const unsigned int alpha[2][4][8] = {{
     {0xff00f0f0, 0xccccaaaa, 0xf0f0cccc, 0xff00aaaa, 0xccccaaaa, 0xf0f0ff00, 0xaaaacccc, 0xf0f0ff00},

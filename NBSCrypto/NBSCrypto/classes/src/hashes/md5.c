@@ -11,7 +11,7 @@
 const struct hash_descriptor md5_desc =
 {
     "md5",
-    170,
+    10310128,
     16,
     64,
     &md5_init,
@@ -37,20 +37,20 @@ const struct hash_descriptor md5_desc =
 #define STORE32L(x, y)										\
     do {											\
 	(y)[3] = (unsigned char)(((x)>>24)&255); (y)[2] = (unsigned char)(((x)>>16)&255);	\
-	(y)[1] = (unsigned char)(((x)>>8)&255); (y)[0] = (unsigned char)((x)&255);		\
-    } while(0)
+	(y)[1] = (unsigned char)(((x)>> 8)&255); (y)[0] = (unsigned char)((x)&255);		\
+} while(0)
 
 #define LOAD32L(x, y)										\
     do {x = ((unsigned)((y)[3] & 255)<<24) | ((unsigned)((y)[2] & 255)<<16) |			\
-	((unsigned)((y)[1] & 255)<<8)  | ((unsigned)((y)[0] & 255));				\
-    } while(0)
+	    ((unsigned)((y)[1] & 255)<< 8) | ((unsigned)((y)[0] & 255));			\
+} while(0)
 
 #define STORE64L(x,y)										\
     do {(y)[7] = (unsigned char)(((x)>>56)&255); (y)[6] = (unsigned char)(((x)>>48)&255);	\
 	(y)[5] = (unsigned char)(((x)>>40)&255); (y)[4] = (unsigned char)(((x)>>32)&255);	\
 	(y)[3] = (unsigned char)(((x)>>24)&255); (y)[2] = (unsigned char)(((x)>>16)&255);	\
-	(y)[1] = (unsigned char)(((x)>>8)&255); (y)[0] = (unsigned char)((x)&255);		\
-    } while(0)
+	(y)[1] = (unsigned char)(((x)>> 8)&255); (y)[0] = (unsigned char)((x)&255);		\
+} while(0)
 
 #define ROLc(x, y) ((((unsigned)(x)<<(unsigned)((y)&31)) | (((unsigned)(x)&0xFFFFFFFF)>>(unsigned)((32-((y)&31))&31))) & 0xFFFFFFFF)
 

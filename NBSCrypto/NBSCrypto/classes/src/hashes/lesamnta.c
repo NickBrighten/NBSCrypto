@@ -11,7 +11,7 @@
 const struct hash_descriptor lesamnta_224_desc =
 {
     "lesamnta-224",
-    160,
+    10270224,
     28,
     32,
     &lesamnta_224_init,
@@ -23,7 +23,7 @@ const struct hash_descriptor lesamnta_224_desc =
 const struct hash_descriptor lesamnta_256_desc =
 {
     "lesamnta-256",
-    161,
+    10270256,
     32,
     32,
     &lesamnta_256_init,
@@ -35,7 +35,7 @@ const struct hash_descriptor lesamnta_256_desc =
 const struct hash_descriptor lesamnta_384_desc =
 {
     "lesamnta-384",
-    162,
+    10270384,
     48,
     64,
     &lesamnta_384_init,
@@ -47,7 +47,7 @@ const struct hash_descriptor lesamnta_384_desc =
 const struct hash_descriptor lesamnta_512_desc =
 {
     "lesamnta-512",
-    163,
+    10270512,
     64,
     64,
     &lesamnta_512_init,
@@ -108,99 +108,99 @@ const struct hash_descriptor lesamnta_512_desc =
 
 #define F512_1(s, t)								\
     t[0] =									\
-    TBLC0[ s[0] >> 56] ^							\
-    TBLC1[(s[0] >> 48) & 0xff] ^						\
-    TBLC2[(s[0] >> 40) & 0xff] ^						\
-    TBLC3[(s[0] >> 32) & 0xff] ^						\
-    TBLC4[(s[0] >> 24) & 0xff] ^						\
-    TBLC5[(s[0] >> 16) & 0xff] ^						\
-    TBLC6[(s[0] >>  8) & 0xff] ^						\
-    TBLC7[ s[0]        & 0xff];							\
+	TBLC0[ s[0] >> 56] ^							\
+	TBLC1[(s[0] >> 48) & 0xff] ^						\
+	TBLC2[(s[0] >> 40) & 0xff] ^						\
+	TBLC3[(s[0] >> 32) & 0xff] ^						\
+	TBLC4[(s[0] >> 24) & 0xff] ^						\
+	TBLC5[(s[0] >> 16) & 0xff] ^						\
+	TBLC6[(s[0] >>  8) & 0xff] ^						\
+	TBLC7[ s[0]        & 0xff];						\
     t[1] =									\
-    TBLC0[ s[1] >> 56] ^ 							\
-    TBLC1[(s[1] >> 48) & 0xff] ^						\
-    TBLC2[(s[1] >> 40) & 0xff] ^						\
-    TBLC3[(s[1] >> 32) & 0xff] ^						\
-    TBLC4[(s[1] >> 24) & 0xff] ^						\
-    TBLC5[(s[1] >> 16) & 0xff] ^						\
-    TBLC6[(s[1] >>  8) & 0xff] ^						\
-    TBLC7[ s[1]        & 0xff];							\
+	TBLC0[ s[1] >> 56] ^ 							\
+	TBLC1[(s[1] >> 48) & 0xff] ^						\
+	TBLC2[(s[1] >> 40) & 0xff] ^						\
+	TBLC3[(s[1] >> 32) & 0xff] ^						\
+	TBLC4[(s[1] >> 24) & 0xff] ^						\
+	TBLC5[(s[1] >> 16) & 0xff] ^						\
+	TBLC6[(s[1] >>  8) & 0xff] ^						\
+	TBLC7[ s[1]        & 0xff];						\
     s[0] = (t[1] & 0xffffffff00000000LL) | (t[0] & 0x00000000ffffffffLL);	\
     s[1] = (t[0] & 0xffffffff00000000LL) | (t[1] & 0x00000000ffffffffLL);
 
 #define F512_2(s, t)						\
     t[0] =							\
-    ((unsigned long long*)  TBLD0)[ s[0] >> 56        ] ^	\
-    ((unsigned long long*)  TBLD1)[(s[0] >> 16) & 0xff] ^	\
-    ((unsigned long long*)  TBLD2)[(s[1] >> 40) & 0xff] ^	\
-    ((unsigned long long*)  TBLD3)[ s[1]        & 0xff] ^	\
-    TBLD0[((s[0] >> 24) & 0xff) * 2 + 1] ^			\
-    TBLD1[((s[1] >> 48) & 0xff) * 2 + 1] ^			\
-    TBLD2[((s[1] >>  8) & 0xff) * 2 + 1] ^			\
-    TBLD3[((s[0] >> 32) & 0xff) * 2 + 1];			\
+	((unsigned long long*)  TBLD0)[ s[0] >> 56        ] ^	\
+	((unsigned long long*)  TBLD1)[(s[0] >> 16) & 0xff] ^	\
+	((unsigned long long*)  TBLD2)[(s[1] >> 40) & 0xff] ^	\
+	((unsigned long long*)  TBLD3)[ s[1]        & 0xff] ^	\
+	TBLD0[((s[0] >> 24) & 0xff) * 2 + 1] ^			\
+	TBLD1[((s[1] >> 48) & 0xff) * 2 + 1] ^			\
+	TBLD2[((s[1] >>  8) & 0xff) * 2 + 1] ^			\
+	TBLD3[((s[0] >> 32) & 0xff) * 2 + 1];			\
     t[1] =							\
-    ((unsigned long long*)  TBLD0)[ s[1] >> 56        ] ^	\
-    ((unsigned long long*)  TBLD1)[(s[1] >> 16) & 0xff] ^	\
-    ((unsigned long long*)  TBLD2)[(s[0] >> 40) & 0xff] ^	\
-    ((unsigned long long*)  TBLD3)[ s[0]        & 0xff] ^	\
-    TBLD0[((s[1] >> 24) & 0xff) * 2 + 1] ^			\
-    TBLD1[((s[0] >> 48) & 0xff) * 2 + 1] ^			\
-    TBLD2[((s[0] >>  8) & 0xff) * 2 + 1] ^			\
-    TBLD3[((s[1] >> 32) & 0xff) * 2 + 1];			\
+	((unsigned long long*)  TBLD0)[ s[1] >> 56        ] ^	\
+	((unsigned long long*)  TBLD1)[(s[1] >> 16) & 0xff] ^	\
+	((unsigned long long*)  TBLD2)[(s[0] >> 40) & 0xff] ^	\
+	((unsigned long long*)  TBLD3)[ s[0]        & 0xff] ^	\
+	TBLD0[((s[1] >> 24) & 0xff) * 2 + 1] ^			\
+	TBLD1[((s[0] >> 48) & 0xff) * 2 + 1] ^			\
+	TBLD2[((s[0] >>  8) & 0xff) * 2 + 1] ^			\
+	TBLD3[((s[1] >> 32) & 0xff) * 2 + 1];			\
     s[0] =							\
-    ((unsigned long long*)  TBLD0)[ t[0] >> 56        ] ^	\
-    ((unsigned long long*)  TBLD1)[(t[0] >> 16) & 0xff] ^	\
-    ((unsigned long long*)  TBLD2)[(t[1] >> 40) & 0xff] ^	\
-    ((unsigned long long*)  TBLD3)[ t[1]        & 0xff] ^	\
-    TBLD0[((t[0] >> 24) & 0xff) * 2 + 1] ^			\
-    TBLD1[((t[1] >> 48) & 0xff) * 2 + 1] ^			\
-    TBLD2[((t[1] >>  8) & 0xff) * 2 + 1] ^			\
-    TBLD3[((t[0] >> 32) & 0xff) * 2 + 1];			\
+	((unsigned long long*)  TBLD0)[ t[0] >> 56        ] ^	\
+	((unsigned long long*)  TBLD1)[(t[0] >> 16) & 0xff] ^	\
+	((unsigned long long*)  TBLD2)[(t[1] >> 40) & 0xff] ^	\
+	((unsigned long long*)  TBLD3)[ t[1]        & 0xff] ^	\
+	TBLD0[((t[0] >> 24) & 0xff) * 2 + 1] ^			\
+	TBLD1[((t[1] >> 48) & 0xff) * 2 + 1] ^			\
+	TBLD2[((t[1] >>  8) & 0xff) * 2 + 1] ^			\
+	TBLD3[((t[0] >> 32) & 0xff) * 2 + 1];			\
     s[1] =							\
-    ((unsigned long long*)  TBLD0)[ t[1] >> 56        ] ^	\
-    ((unsigned long long*)  TBLD1)[(t[1] >> 16) & 0xff] ^	\
-    ((unsigned long long*)  TBLD2)[(t[0] >> 40) & 0xff] ^	\
-    ((unsigned long long*)  TBLD3)[ t[0]        & 0xff] ^	\
-    TBLD0[((t[1] >> 24) & 0xff) * 2 + 1] ^			\
-    TBLD1[((t[0] >> 48) & 0xff) * 2 + 1] ^			\
-    TBLD2[((t[0] >>  8) & 0xff) * 2 + 1] ^			\
-    TBLD3[((t[1] >> 32) & 0xff) * 2 + 1];			\
+	((unsigned long long*)  TBLD0)[ t[1] >> 56        ] ^	\
+	((unsigned long long*)  TBLD1)[(t[1] >> 16) & 0xff] ^	\
+	((unsigned long long*)  TBLD2)[(t[0] >> 40) & 0xff] ^	\
+	((unsigned long long*)  TBLD3)[ t[0]        & 0xff] ^	\
+	TBLD0[((t[1] >> 24) & 0xff) * 2 + 1] ^			\
+	TBLD1[((t[0] >> 48) & 0xff) * 2 + 1] ^			\
+	TBLD2[((t[0] >>  8) & 0xff) * 2 + 1] ^			\
+	TBLD3[((t[1] >> 32) & 0xff) * 2 + 1];			\
     t[0] =							\
-    ((unsigned long long*)  TBLD0)[ s[0] >> 56        ] ^	\
-    ((unsigned long long*)  TBLD1)[(s[0] >> 16) & 0xff] ^	\
-    ((unsigned long long*)  TBLD2)[(s[1] >> 40) & 0xff] ^	\
-    ((unsigned long long*)  TBLD3)[ s[1]        & 0xff] ^	\
-    TBLD0[((s[0] >> 24) & 0xff) * 2 + 1] ^			\
-    TBLD1[((s[1] >> 48) & 0xff) * 2 + 1] ^			\
-    TBLD2[((s[1] >>  8) & 0xff) * 2 + 1] ^			\
-    TBLD3[((s[0] >> 32) & 0xff) * 2 + 1];			\
+	((unsigned long long*)  TBLD0)[ s[0] >> 56        ] ^	\
+	((unsigned long long*)  TBLD1)[(s[0] >> 16) & 0xff] ^	\
+	((unsigned long long*)  TBLD2)[(s[1] >> 40) & 0xff] ^	\
+	((unsigned long long*)  TBLD3)[ s[1]        & 0xff] ^	\
+	TBLD0[((s[0] >> 24) & 0xff) * 2 + 1] ^			\
+	TBLD1[((s[1] >> 48) & 0xff) * 2 + 1] ^			\
+	TBLD2[((s[1] >>  8) & 0xff) * 2 + 1] ^			\
+	TBLD3[((s[0] >> 32) & 0xff) * 2 + 1];			\
     t[1] =							\
-    ((unsigned long long*)  TBLD0)[ s[1] >> 56        ] ^	\
-    ((unsigned long long*)  TBLD1)[(s[1] >> 16) & 0xff] ^	\
-    ((unsigned long long*)  TBLD2)[(s[0] >> 40) & 0xff] ^	\
-    ((unsigned long long*)  TBLD3)[ s[0]        & 0xff] ^	\
-    TBLD0[((s[1] >> 24) & 0xff) * 2 + 1] ^			\
-    TBLD1[((s[0] >> 48) & 0xff) * 2 + 1] ^			\
-    TBLD2[((s[0] >>  8) & 0xff) * 2 + 1] ^			\
-    TBLD3[((s[1] >> 32) & 0xff) * 2 + 1];			\
+	((unsigned long long*)  TBLD0)[ s[1] >> 56        ] ^	\
+	((unsigned long long*)  TBLD1)[(s[1] >> 16) & 0xff] ^	\
+	((unsigned long long*)  TBLD2)[(s[0] >> 40) & 0xff] ^	\
+	((unsigned long long*)  TBLD3)[ s[0]        & 0xff] ^	\
+	TBLD0[((s[1] >> 24) & 0xff) * 2 + 1] ^			\
+	TBLD1[((s[0] >> 48) & 0xff) * 2 + 1] ^			\
+	TBLD2[((s[0] >>  8) & 0xff) * 2 + 1] ^			\
+	TBLD3[((s[1] >> 32) & 0xff) * 2 + 1];			\
     s[0] =							\
-    ((unsigned long long*)  TBLD0)[ t[0] >> 56        ] ^	\
-    ((unsigned long long*)  TBLD1)[(t[0] >> 16) & 0xff] ^	\
-    ((unsigned long long*)  TBLD2)[(t[1] >> 40) & 0xff] ^	\
-    ((unsigned long long*)  TBLD3)[ t[1]        & 0xff] ^	\
-    TBLD0[((t[0] >> 24) & 0xff) * 2 + 1] ^			\
-    TBLD1[((t[1] >> 48) & 0xff) * 2 + 1] ^			\
-    TBLD2[((t[1] >>  8) & 0xff) * 2 + 1] ^			\
-    TBLD3[((t[0] >> 32) & 0xff) * 2 + 1];			\
+	((unsigned long long*)  TBLD0)[ t[0] >> 56        ] ^	\
+	((unsigned long long*)  TBLD1)[(t[0] >> 16) & 0xff] ^	\
+	((unsigned long long*)  TBLD2)[(t[1] >> 40) & 0xff] ^	\
+	((unsigned long long*)  TBLD3)[ t[1]        & 0xff] ^	\
+	TBLD0[((t[0] >> 24) & 0xff) * 2 + 1] ^			\
+	TBLD1[((t[1] >> 48) & 0xff) * 2 + 1] ^			\
+	TBLD2[((t[1] >>  8) & 0xff) * 2 + 1] ^			\
+	TBLD3[((t[0] >> 32) & 0xff) * 2 + 1];			\
     s[1] =							\
-    ((unsigned long long*)  TBLD0)[ t[1] >> 56        ] ^	\
-    ((unsigned long long*)  TBLD1)[(t[1] >> 16) & 0xff] ^	\
-    ((unsigned long long*)  TBLD2)[(t[0] >> 40) & 0xff] ^	\
-    ((unsigned long long*)  TBLD3)[ t[0]        & 0xff] ^	\
-    TBLD0[((t[1] >> 24) & 0xff) * 2 + 1] ^			\
-    TBLD1[((t[0] >> 48) & 0xff) * 2 + 1] ^			\
-    TBLD2[((t[0] >>  8) & 0xff) * 2 + 1] ^			\
-    TBLD3[((t[1] >> 32) & 0xff) * 2 + 1];
+	((unsigned long long*)  TBLD0)[ t[1] >> 56        ] ^	\
+	((unsigned long long*)  TBLD1)[(t[1] >> 16) & 0xff] ^	\
+	((unsigned long long*)  TBLD2)[(t[0] >> 40) & 0xff] ^	\
+	((unsigned long long*)  TBLD3)[ t[0]        & 0xff] ^	\
+	TBLD0[((t[1] >> 24) & 0xff) * 2 + 1] ^			\
+	TBLD1[((t[0] >> 48) & 0xff) * 2 + 1] ^			\
+	TBLD2[((t[0] >>  8) & 0xff) * 2 + 1] ^			\
+	TBLD3[((t[1] >> 32) & 0xff) * 2 + 1];
 
 #define ROUND256(a,b,c,d)					\
     tmp.msg[0] = midmsg[a]	^ midkey[b];			\
