@@ -11,7 +11,7 @@
 const struct hash_descriptor haval_128_3_desc =
 {
     "haval-128-3",
-    130,
+    10213128,
     16,
     128,
     &haval_128_3_init,
@@ -23,7 +23,7 @@ const struct hash_descriptor haval_128_3_desc =
 const struct hash_descriptor haval_160_3_desc =
 {
     "haval-160-3",
-    131,
+    10213160,
     20,
     128,
     &haval_160_3_init,
@@ -35,7 +35,7 @@ const struct hash_descriptor haval_160_3_desc =
 const struct hash_descriptor haval_192_3_desc =
 {
     "haval-192-3",
-    132,
+    10213192,
     24,
     128,
     &haval_192_3_init,
@@ -47,7 +47,7 @@ const struct hash_descriptor haval_192_3_desc =
 const struct hash_descriptor haval_224_3_desc =
 {
     "haval-224-3",
-    133,
+    10213224,
     28,
     128,
     &haval_224_3_init,
@@ -59,7 +59,7 @@ const struct hash_descriptor haval_224_3_desc =
 const struct hash_descriptor haval_256_3_desc =
 {
     "haval-256-3",
-    134,
+    10213256,
     32,
     128,
     &haval_256_3_init,
@@ -71,7 +71,7 @@ const struct hash_descriptor haval_256_3_desc =
 const struct hash_descriptor haval_128_4_desc =
 {
     "haval-128-4",
-    135,
+    10214128,
     16,
     128,
     &haval_128_4_init,
@@ -83,7 +83,7 @@ const struct hash_descriptor haval_128_4_desc =
 const struct hash_descriptor haval_160_4_desc =
 {
     "haval-160-4",
-    136,
+    10214160,
     20,
     128,
     &haval_160_4_init,
@@ -95,7 +95,7 @@ const struct hash_descriptor haval_160_4_desc =
 const struct hash_descriptor haval_192_4_desc =
 {
     "haval-192-4",
-    137,
+    10214192,
     24,
     128,
     &haval_192_4_init,
@@ -107,7 +107,7 @@ const struct hash_descriptor haval_192_4_desc =
 const struct hash_descriptor haval_224_4_desc =
 {
     "haval-224-4",
-    138,
+    10214224,
     28,
     128,
     &haval_224_4_init,
@@ -119,7 +119,7 @@ const struct hash_descriptor haval_224_4_desc =
 const struct hash_descriptor haval_256_4_desc =
 {
     "haval-256-4",
-    139,
+    10214256,
     32,
     128,
     &haval_256_4_init,
@@ -131,7 +131,7 @@ const struct hash_descriptor haval_256_4_desc =
 const struct hash_descriptor haval_128_5_desc =
 {
     "haval-128-5",
-    140,
+    10215128,
     16,
     128,
     &haval_128_5_init,
@@ -143,7 +143,7 @@ const struct hash_descriptor haval_128_5_desc =
 const struct hash_descriptor haval_160_5_desc =
 {
     "haval-160-5",
-    141,
+    10215160,
     20,
     128,
     &haval_160_5_init,
@@ -155,7 +155,7 @@ const struct hash_descriptor haval_160_5_desc =
 const struct hash_descriptor haval_192_5_desc =
 {
     "haval-192-5",
-    142,
+    10215192,
     24,
     128,
     &haval_192_5_init,
@@ -167,7 +167,7 @@ const struct hash_descriptor haval_192_5_desc =
 const struct hash_descriptor haval_224_5_desc =
 {
     "haval-224-5",
-    143,
+    10215244,
     28,
     128,
     &haval_224_5_init,
@@ -179,7 +179,7 @@ const struct hash_descriptor haval_224_5_desc =
 const struct hash_descriptor haval_256_5_desc =
 {
     "haval-256-5",
-    144,
+    10215256,
     32,
     128,
     &haval_256_5_init,
