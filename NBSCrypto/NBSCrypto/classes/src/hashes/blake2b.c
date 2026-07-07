@@ -11,7 +11,7 @@
 const struct hash_descriptor blake2b_160_desc =
 {
     "blake2b-160",
-    6,
+    10030160,
     20,
     128,
     &blake2b_160_init,
@@ -23,7 +23,7 @@ const struct hash_descriptor blake2b_160_desc =
 const struct hash_descriptor blake2b_256_desc =
 {
     "blake2b-256",
-    7,
+    10030256,
     32,
     128,
     &blake2b_256_init,
@@ -35,7 +35,7 @@ const struct hash_descriptor blake2b_256_desc =
 const struct hash_descriptor blake2b_384_desc =
 {
     "blake2b-384",
-    8,
+    10030384,
     48,
     128,
     &blake2b_384_init,
@@ -47,7 +47,7 @@ const struct hash_descriptor blake2b_384_desc =
 const struct hash_descriptor blake2b_512_desc =
 {
     "blake2b-512",
-    9,
+    10030512,
     64,
     128,
     &blake2b_512_init,
@@ -86,7 +86,7 @@ const struct hash_descriptor blake2b_512_desc =
     (y)[7] = (unsigned char)(((x)>>56)&255); (y)[6] = (unsigned char)(((x)>>48)&255);	\
     (y)[5] = (unsigned char)(((x)>>40)&255); (y)[4] = (unsigned char)(((x)>>32)&255);	\
     (y)[3] = (unsigned char)(((x)>>24)&255); (y)[2] = (unsigned char)(((x)>>16)&255);	\
-    (y)[1] = (unsigned char)(((x)>>8)&255); (y)[0] = (unsigned char)((x)&255);		\
+    (y)[1] = (unsigned char)(((x)>> 8)&255); (y)[0] = (unsigned char)((x)&255);		\
 } while(0)
 
 #define LOAD64L(x, y) do {				\
@@ -96,7 +96,7 @@ const struct hash_descriptor blake2b_512_desc =
 	(((unsigned long long)((y)[4] & 255))<<32)|	\
 	(((unsigned long long)((y)[3] & 255))<<24)|	\
 	(((unsigned long long)((y)[2] & 255))<<16)|	\
-	(((unsigned long long)((y)[1] & 255))<<8)|	\
+	(((unsigned long long)((y)[1] & 255))<< 8)|	\
 	(((unsigned long long)((y)[0] & 255)));		\
 } while(0)
 
