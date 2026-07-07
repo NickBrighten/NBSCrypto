@@ -190,6 +190,15 @@
 	case NBSCrypto_HASH_MD6_256:			{r=&md6_256_desc;break;}
 	case NBSCrypto_HASH_MD6_384:			{r=&md6_384_desc;break;}
 	case NBSCrypto_HASH_MD6_512:			{r=&md6_512_desc;break;}
+	case NBSCrypto_HASH_MESHHASH2_128:		{r=&meshhash2_128_desc;break;}
+	case NBSCrypto_HASH_MESHHASH2_160:		{r=&meshhash2_160_desc;break;}
+	case NBSCrypto_HASH_MESHHASH2_192:		{r=&meshhash2_192_desc;break;}
+	case NBSCrypto_HASH_MESHHASH2_224:		{r=&meshhash2_224_desc;break;}
+	case NBSCrypto_HASH_MESHHASH2_256:		{r=&meshhash2_256_desc;break;}
+	case NBSCrypto_HASH_MESHHASH2_384:		{r=&meshhash2_384_desc;break;}
+	case NBSCrypto_HASH_MESHHASH2_512:		{r=&meshhash2_512_desc;break;}
+	case NBSCrypto_HASH_MESHHASH2_1024:		{r=&meshhash2_1024_desc;break;}
+	case NBSCrypto_HASH_MESHHASH2_2048:		{r=&meshhash2_2048_desc;break;}
 	case NBSCrypto_HASH_MURMUR3A:			{r=&murmur3a_desc;break;}
 	case NBSCrypto_HASH_MURMUR3C:			{r=&murmur3c_desc;break;}
 	case NBSCrypto_HASH_MURMUR3F:			{r=&murmur3f_desc;break;}
