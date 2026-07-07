@@ -33,16 +33,12 @@ struct camellia_state{
 };
 
 struct cast5_state{
-    unsigned k[32], keylen;
-};
-
-struct cast128_state{
     unsigned int nr;
     unsigned km[16];
     unsigned kr[16];
 };
 
-struct cast256_state{
+struct cast6_state{
     unsigned km[12][4];
     unsigned char kr[12][4];
 };
@@ -71,6 +67,12 @@ struct kasumi_state{
 struct khazad_state {
     unsigned long long eK[8+1];
     unsigned long long dK[8+1];
+};
+
+struct kuznyechik_state
+{
+    unsigned long long eK[20];
+    unsigned long long dK[20];
 };
 
 struct lea_state{
@@ -155,14 +157,15 @@ typedef union cipher_state{
     struct aria_state		aria;
     struct blowfish_state	blowfish;
     struct camellia_state	camellia;
-    struct cast128_state	cast128;
-    struct cast256_state	cast256;
+    struct cast5_state		cast5;
+    struct cast6_state		cast6;
     struct chacha_state		chacha;
     struct des_state		des;
     struct des3_state		des3;
     struct idea_state		idea;
     struct kasumi_state		kasumi;
     struct khazad_state		khazad;
+    struct kuznyechik_state	kuznyechik;
     struct lea_state		lea;
     struct mars_state		mars;
     struct noekeon_state	noekeon;
@@ -189,7 +192,7 @@ typedef union cipher_state{
 #pragma mark - CIPHER DISCRIPTOR
 extern struct cipher_descriptor {
     const char *name;
-    unsigned char ID;
+    unsigned long ID;
     int  min_key_length, max_key_length, block_length, default_rounds;
 
     int  (*setup)(const unsigned char *key, int keylen, int num_rounds, cipher_state *cs);
@@ -272,19 +275,19 @@ void camellia_done(cipher_state *cs);
 extern const struct cipher_descriptor camellia_desc;
 
 
-#pragma mark CAST128
-int  cast128_setup(const unsigned char *key, int keylen, int num_rounds, cipher_state *cs);
-int  cast128_encrypt(const unsigned char *pt, unsigned char *ct, const cipher_state *cs);
-int  cast128_decrypt(const unsigned char *ct, unsigned char *pt, const cipher_state *cs);
-void cast128_done(cipher_state *cs);
+#pragma mark CAST5
+int  cast5_setup(const unsigned char *key, int keylen, int num_rounds, cipher_state *cs);
+int  cast5_encrypt(const unsigned char *pt, unsigned char *ct, const cipher_state *cs);
+int  cast5_decrypt(const unsigned char *ct, unsigned char *pt, const cipher_state *cs);
+void cast5_done(cipher_state *cs);
 extern const struct cipher_descriptor cast5_desc;
 
 
-#pragma mark CAST256
-int  cast256_setup(const unsigned char *key, int keylen, int num_rounds, cipher_state *cs);
-int  cast256_encrypt(const unsigned char *pt, unsigned char *ct, const cipher_state *cs);
-int  cast256_decrypt(const unsigned char *ct, unsigned char *pt, const cipher_state *cs);
-void cast256_done(cipher_state *cs);
+#pragma mark CAST6
+int  cast6_setup(const unsigned char *key, int keylen, int num_rounds, cipher_state *cs);
+int  cast6_encrypt(const unsigned char *pt, unsigned char *ct, const cipher_state *cs);
+int  cast6_decrypt(const unsigned char *ct, unsigned char *pt, const cipher_state *cs);
+void cast6_done(cipher_state *cs);
 extern const struct cipher_descriptor cast6_desc;
 
 
@@ -332,6 +335,14 @@ int  khazad_encrypt(const unsigned char *pt, unsigned char *ct, const cipher_sta
 int  khazad_decrypt(const unsigned char *ct, unsigned char *pt, const cipher_state *cs);
 void khazad_done(cipher_state *cs);
 extern const struct cipher_descriptor khazad_desc;
+
+
+#pragma mark KUZNYECHIK
+int  kuznyechik_setup(const unsigned char *key, int keylen, int num_rounds, cipher_state *cs);
+int  kuznyechik_encrypt(const unsigned char *pt, unsigned char *ct, const cipher_state *cs);
+int  kuznyechik_decrypt(const unsigned char *ct, unsigned char *pt, const cipher_state *cs);
+void kuznyechik_done(cipher_state *cs);
+extern const struct cipher_descriptor kuznyechik_desc;
 
 
 #pragma mark LEA
@@ -468,7 +479,7 @@ extern const struct cipher_descriptor xtea_desc;
 
 
 #pragma mark - CIPHER GLOBAL FUNCTIONS
-int is_cipher_valid(int idx);
+int is_cipher_valid(unsigned long idx);
 int register_cipher(const struct cipher_descriptor *cipher);
 int unregister_cipher(const struct cipher_descriptor *cipher);
 
