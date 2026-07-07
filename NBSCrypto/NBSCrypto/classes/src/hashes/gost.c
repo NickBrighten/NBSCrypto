@@ -11,7 +11,7 @@
 const struct hash_descriptor gost_desc =
 {
     "gost",
-    120,
+    10181256,
     32,
     64,
     &gost_init,
@@ -23,7 +23,7 @@ const struct hash_descriptor gost_desc =
 const struct hash_descriptor gost_crypto_desc =
 {
     "gost-crypto",
-    121,
+    10182256,
     32,
     64,
     &gost_crypto_init,
@@ -163,10 +163,10 @@ const struct hash_descriptor gost_crypto_desc =
     if (i != 6) {			\
 	A(u, l, r);			\
 	if (i == 2) { 			\
-	C(u);				\
-    }					\
-    AA(v, l, r);			\
-}
+	    C(u);			\
+	}				\
+	AA(v, l, r);			\
+    }
 
 
 static const unsigned GHOST_TABS[4][256] = {
