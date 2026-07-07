@@ -11,7 +11,7 @@
 const struct hash_descriptor chi_224_desc =
 {
     "chi-224",
-    19,
+    10070224,
     28,
     64,
     &chi_224_init,
@@ -23,7 +23,7 @@ const struct hash_descriptor chi_224_desc =
 const struct hash_descriptor chi_256_desc =
 {
     "chi-256",
-    20,
+    10070256,
     32,
     64,
     &chi_256_init,
@@ -35,7 +35,7 @@ const struct hash_descriptor chi_256_desc =
 const struct hash_descriptor chi_384_desc =
 {
     "chi-384",
-    21,
+    10070384,
     48,
     64,
     &chi_384_init,
@@ -47,7 +47,7 @@ const struct hash_descriptor chi_384_desc =
 const struct hash_descriptor chi_512_desc =
 {
     "chi-512",
-    22,
+    10070512,
     64,
     64,
     &chi_512_init,
@@ -82,26 +82,26 @@ typedef enum {
 #define _BYTE(x, i) ((unsigned char)(((x) >> (8 * (7 - i))) & 0xFF))
 
 #define _BYTE2WORD(b) (					\
-(((unsigned long long)(b)[0] & 0xFF) << 56) |	\
-(((unsigned long long)(b)[1] & 0xFF) << 48) |	\
-(((unsigned long long)(b)[2] & 0xFF) << 40) |	\
-(((unsigned long long)(b)[3] & 0xFF) << 32) |	\
-(((unsigned long long)(b)[4] & 0xFF) << 24) |	\
-(((unsigned long long)(b)[5] & 0xFF) << 16) |	\
-(((unsigned long long)(b)[6] & 0xFF) <<  8) |	\
-(((unsigned long long)(b)[7] & 0xFF))		\
+    (((unsigned long long)(b)[0] & 0xFF) << 56) |	\
+    (((unsigned long long)(b)[1] & 0xFF) << 48) |	\
+    (((unsigned long long)(b)[2] & 0xFF) << 40) |	\
+    (((unsigned long long)(b)[3] & 0xFF) << 32) |	\
+    (((unsigned long long)(b)[4] & 0xFF) << 24) |	\
+    (((unsigned long long)(b)[5] & 0xFF) << 16) |	\
+    (((unsigned long long)(b)[6] & 0xFF) <<  8) |	\
+    (((unsigned long long)(b)[7] & 0xFF))		\
 )
 
 #define _WORD2BYTE(w, b)	\
-do {			\
-(b)[7] = _BYTE(w, 7);	\
-(b)[6] = _BYTE(w, 6);	\
-(b)[5] = _BYTE(w, 5);	\
-(b)[4] = _BYTE(w, 4);	\
-(b)[3] = _BYTE(w, 3);	\
-(b)[2] = _BYTE(w, 2);	\
-(b)[1] = _BYTE(w, 1);	\
-(b)[0] = _BYTE(w, 0);	\
+    do {			\
+	(b)[7] = _BYTE(w, 7);	\
+	(b)[6] = _BYTE(w, 6);	\
+	(b)[5] = _BYTE(w, 5);	\
+	(b)[4] = _BYTE(w, 4);	\
+	(b)[3] = _BYTE(w, 3);	\
+	(b)[2] = _BYTE(w, 2);	\
+	(b)[1] = _BYTE(w, 1);	\
+	(b)[0] = _BYTE(w, 0);	\
 } while(0)
 
 const unsigned long long K[] = {
