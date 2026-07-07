@@ -19,10 +19,10 @@ const struct cipher_descriptor cast5_desc =
     "cast5",
     7,
     5, 16, 8, 16,
-    &cast128_setup,
-    &cast128_encrypt,
-    &cast128_decrypt,
-    &cast128_done
+    &cast5_setup,
+    &cast5_encrypt,
+    &cast5_decrypt,
+    &cast5_done
 };
 
 const struct cipher_descriptor cast6_desc =
@@ -30,10 +30,10 @@ const struct cipher_descriptor cast6_desc =
     "cast6",
     8,
     16, 32, 16, 48,
-    &cast256_setup,
-    &cast256_encrypt,
-    &cast256_decrypt,
-    &cast256_done
+    &cast6_setup,
+    &cast6_encrypt,
+    &cast6_decrypt,
+    &cast6_done
 };
 
 
@@ -44,16 +44,16 @@ const struct cipher_descriptor cast6_desc =
 #define ROL32(a, n) (((a) << (n)) | ((a) >> (32 - (n))))
 
 #define LOAD32(p) (					\
-    ((unsigned)(((unsigned char *)(p))[0]) << 24) |	\
-    ((unsigned)(((unsigned char *)(p))[1]) << 16) |	\
-    ((unsigned)(((unsigned char *)(p))[2]) <<  8) |	\
-    ((unsigned)(((unsigned char *)(p))[3]) <<  0))
+	((unsigned)(((unsigned char *)(p))[0]) << 24) |	\
+	((unsigned)(((unsigned char *)(p))[1]) << 16) |	\
+	((unsigned)(((unsigned char *)(p))[2]) <<  8) |	\
+	((unsigned)(((unsigned char *)(p))[3]) <<  0))
 
-#define STORE32(a, p)						\
-    ((unsigned char *)(p))[0] = ((unsigned)(a) >> 24) & 0xFFU,	\
-    ((unsigned char *)(p))[1] = ((unsigned)(a) >> 16) & 0xFFU,	\
-    ((unsigned char *)(p))[2] = ((unsigned)(a) >>  8) & 0xFFU,	\
-    ((unsigned char *)(p))[3] = ((unsigned)(a) >>  0) & 0xFFU
+#define STORE32(a, p)							\
+	((unsigned char *)(p))[0] = ((unsigned)(a) >> 24) & 0xFFU,	\
+	((unsigned char *)(p))[1] = ((unsigned)(a) >> 16) & 0xFFU,	\
+	((unsigned char *)(p))[2] = ((unsigned)(a) >>  8) & 0xFFU,	\
+	((unsigned char *)(p))[3] = ((unsigned)(a) >>  0) & 0xFFU
 
 #define S1(a, b) s1[(a >> (8 * b)) & 0xFF]
 #define S2(a, b) s2[(a >> (8 * b)) & 0xFF]
@@ -65,21 +65,21 @@ const struct cipher_descriptor cast6_desc =
 #define S8(a, b) s8[(a >> (8 * b)) & 0xFF]
 
 #define F1(y, x, kr, km){				\
-unsigned t;						\
+    unsigned t;						\
     t = km + x;						\
     t = ROL32(t, kr);					\
     y ^= ((S1(t, 3) ^ S2(t, 2)) - S3(t, 1)) + S4(t, 0);	\
 }
 
 #define F2(y, x, kr, km){				\
-unsigned t;						\
+    unsigned t;						\
     t = km ^ x;						\
     t = ROL32(t, kr);					\
     y ^= ((S1(t, 3) - S2(t, 2)) + S3(t, 1)) ^ S4(t, 0);	\
 }
 
 #define F3(y, x, kr, km){				\
-unsigned t;						\
+    unsigned t;						\
     t = km - x;						\
     t = ROL32(t, kr);					\
     y ^= ((S1(t, 3) + S2(t, 2)) ^ S3(t, 1)) - S4(t, 0);	\
@@ -439,7 +439,7 @@ static const unsigned char tr[4][8] =
 
 #pragma mark - FUNCTIONS
 
-int cast128_setup(const unsigned char *key, int keylen, int num_rounds, cipher_state *cs)
+int cast5_setup(const unsigned char *key, int keylen, int num_rounds, cipher_state *cs)
 {
     unsigned int i;
     unsigned *k;
@@ -455,26 +455,26 @@ int cast128_setup(const unsigned char *key, int keylen, int num_rounds, cipher_s
 	return NBSCrypto_ERROR;
     }
 
-    cs->cast128.nr = (keylen <= 10) ? 12 : 16;
+    cs->cast5.nr = (keylen <= 10) ? 12 : 16;
 
     memset(buffer, 0, 16);
     memcpy(buffer, key, keylen);
 
-    cs->cast128.km[0] = LOAD32(buffer);
-    cs->cast128.km[1] = LOAD32(buffer +  4);
-    cs->cast128.km[2] = LOAD32(buffer +  8);
-    cs->cast128.km[3] = LOAD32(buffer + 12);
+    cs->cast5.km[0] = LOAD32(buffer);
+    cs->cast5.km[1] = LOAD32(buffer +  4);
+    cs->cast5.km[2] = LOAD32(buffer +  8);
+    cs->cast5.km[3] = LOAD32(buffer + 12);
 
-    x0 = cs->cast128.km[0];
-    x1 = cs->cast128.km[1];
-    x2 = cs->cast128.km[2];
-    x3 = cs->cast128.km[3];
+    x0 = cs->cast5.km[0];
+    x1 = cs->cast5.km[1];
+    x2 = cs->cast5.km[2];
+    x3 = cs->cast5.km[3];
 
     for(i = 0; i < 32; i += 16){
 	if(i == 0){
-	    k = cs->cast128.km;
+	    k = cs->cast5.km;
 	}else{
-	    k = cs->cast128.kr;
+	    k = cs->cast5.kr;
 	}
 
 	z0 = x0 ^ S5(x3, 2) ^ S6(x3, 0) ^ S7(x3, 3) ^ S8(x3, 1) ^ S7(x2, 3);
@@ -482,28 +482,28 @@ int cast128_setup(const unsigned char *key, int keylen, int num_rounds, cipher_s
 	z2 = x3 ^ S5(z1, 0) ^ S6(z1, 1) ^ S7(z1, 2) ^ S8(z1, 3) ^ S5(x2, 2);
 	z3 = x1 ^ S5(z2, 1) ^ S6(z2, 2) ^ S7(z2, 0) ^ S8(z2, 3) ^ S6(x2, 0);
 
-	k[0] = S5(z2, 3) ^ S6(z2, 2) ^ S7(z1, 0) ^ S8(z1, 1) ^ S5(z0, 1);
-	k[1] = S5(z2, 1) ^ S6(z2, 0) ^ S7(z1, 2) ^ S8(z1, 3) ^ S6(z1, 1);
-	k[2] = S5(z3, 3) ^ S6(z3, 2) ^ S7(z0, 0) ^ S8(z0, 1) ^ S7(z2, 2);
-	k[3] = S5(z3, 1) ^ S6(z3, 0) ^ S7(z0, 2) ^ S8(z0, 3) ^ S8(z3, 3);
+	k[ 0] = S5(z2, 3) ^ S6(z2, 2) ^ S7(z1, 0) ^ S8(z1, 1) ^ S5(z0, 1);
+	k[ 1] = S5(z2, 1) ^ S6(z2, 0) ^ S7(z1, 2) ^ S8(z1, 3) ^ S6(z1, 1);
+	k[ 2] = S5(z3, 3) ^ S6(z3, 2) ^ S7(z0, 0) ^ S8(z0, 1) ^ S7(z2, 2);
+	k[ 3] = S5(z3, 1) ^ S6(z3, 0) ^ S7(z0, 2) ^ S8(z0, 3) ^ S8(z3, 3);
 
 	x0 = z2 ^ S5(z1, 2) ^ S6(z1, 0) ^ S7(z1, 3) ^ S8(z1, 1) ^ S7(z0, 3);
 	x1 = z0 ^ S5(x0, 3) ^ S6(x0, 1) ^ S7(x0, 2) ^ S8(x0, 0) ^ S8(z0, 1);
 	x2 = z1 ^ S5(x1, 0) ^ S6(x1, 1) ^ S7(x1, 2) ^ S8(x1, 3) ^ S5(z0, 2);
 	x3 = z3 ^ S5(x2, 1) ^ S6(x2, 2) ^ S7(x2, 0) ^ S8(x2, 3) ^ S6(z0, 0);
 
-	k[4] = S5(x0, 0) ^ S6(x0, 1) ^ S7(x3, 3) ^ S8(x3, 2) ^ S5(x2, 3);
-	k[5] = S5(x0, 2) ^ S6(x0, 3) ^ S7(x3, 1) ^ S8(x3, 0) ^ S6(x3, 2);
-	k[6] = S5(x1, 0) ^ S6(x1, 1) ^ S7(x2, 3) ^ S8(x2, 2) ^ S7(x0, 0);
-	k[7] = S5(x1, 2) ^ S6(x1, 3) ^ S7(x2, 1) ^ S8(x2, 0) ^ S8(x1, 0);
+	k[ 4] = S5(x0, 0) ^ S6(x0, 1) ^ S7(x3, 3) ^ S8(x3, 2) ^ S5(x2, 3);
+	k[ 5] = S5(x0, 2) ^ S6(x0, 3) ^ S7(x3, 1) ^ S8(x3, 0) ^ S6(x3, 2);
+	k[ 6] = S5(x1, 0) ^ S6(x1, 1) ^ S7(x2, 3) ^ S8(x2, 2) ^ S7(x0, 0);
+	k[ 7] = S5(x1, 2) ^ S6(x1, 3) ^ S7(x2, 1) ^ S8(x2, 0) ^ S8(x1, 0);
 
 	z0 = x0 ^ S5(x3, 2) ^ S6(x3, 0) ^ S7(x3, 3) ^ S8(x3, 1) ^ S7(x2, 3);
 	z1 = x2 ^ S5(z0, 3) ^ S6(z0, 1) ^ S7(z0, 2) ^ S8(z0, 0) ^ S8(x2, 1);
 	z2 = x3 ^ S5(z1, 0) ^ S6(z1, 1) ^ S7(z1, 2) ^ S8(z1, 3) ^ S5(x2, 2);
 	z3 = x1 ^ S5(z2, 1) ^ S6(z2, 2) ^ S7(z2, 0) ^ S8(z2, 3) ^ S6(x2, 0);
 
-	k[8] = S5(z0, 0) ^ S6(z0, 1) ^ S7(z3, 3) ^ S8(z3, 2) ^ S5(z2, 2);
-	k[9] = S5(z0, 2) ^ S6(z0, 3) ^ S7(z3, 1) ^ S8(z3, 0) ^ S6(z3, 3);
+	k[ 8] = S5(z0, 0) ^ S6(z0, 1) ^ S7(z3, 3) ^ S8(z3, 2) ^ S5(z2, 2);
+	k[ 9] = S5(z0, 2) ^ S6(z0, 3) ^ S7(z3, 1) ^ S8(z3, 0) ^ S6(z3, 3);
 	k[10] = S5(z1, 0) ^ S6(z1, 1) ^ S7(z2, 3) ^ S8(z2, 2) ^ S7(z0, 1);
 	k[11] = S5(z1, 2) ^ S6(z1, 3) ^ S7(z2, 1) ^ S8(z2, 0) ^ S8(z1, 1);
 
@@ -519,14 +519,14 @@ int cast128_setup(const unsigned char *key, int keylen, int num_rounds, cipher_s
     }
 
     for(i = 0; i < 16; i++){
-	cs->cast128.kr[i] &= 0x1F;
+	cs->cast5.kr[i] &= 0x1F;
     }
 
     return NBSCrypto_OK;
 }
 
 
-int cast256_setup(const unsigned char *key, int keylen, int num_rounds, cipher_state *cs)
+int cast6_setup(const unsigned char *key, int keylen, int num_rounds, cipher_state *cs)
 {
     unsigned int i;
     unsigned a, b, c, d, e, f, g, h;
@@ -553,45 +553,45 @@ int cast256_setup(const unsigned char *key, int keylen, int num_rounds, cipher_s
 	W(a, b, c, d, e, f, g, h, tr[(2 * i) % 4], tm[2 * i]);
 	W(a, b, c, d, e, f, g, h, tr[(2 * i + 1) % 4], tm[2 * i + 1]);
 
-	cs->cast256.kr[i][0] = a & 0x1F;
-	cs->cast256.kr[i][1] = c & 0x1F;
-	cs->cast256.kr[i][2] = e & 0x1F;
-	cs->cast256.kr[i][3] = g & 0x1F;
+	cs->cast6.kr[i][0] = a & 0x1F;
+	cs->cast6.kr[i][1] = c & 0x1F;
+	cs->cast6.kr[i][2] = e & 0x1F;
+	cs->cast6.kr[i][3] = g & 0x1F;
 
-	cs->cast256.km[i][0] = h;
-	cs->cast256.km[i][1] = f;
-	cs->cast256.km[i][2] = d;
-	cs->cast256.km[i][3] = b;
+	cs->cast6.km[i][0] = h;
+	cs->cast6.km[i][1] = f;
+	cs->cast6.km[i][2] = d;
+	cs->cast6.km[i][3] = b;
     }
 
     return NBSCrypto_OK;
 }
 
-int cast128_encrypt(const unsigned char *in, unsigned char *out, const cipher_state *cs)
+int cast5_encrypt(const unsigned char *in, unsigned char *out, const cipher_state *cs)
 {
     unsigned l, r;
 
     l = LOAD32(in);
     r = LOAD32(in + 4);
 
-    F1(l, r, cs->cast128.kr[ 0], cs->cast128.km[ 0]);
-    F2(r, l, cs->cast128.kr[ 1], cs->cast128.km[ 1]);
-    F3(l, r, cs->cast128.kr[ 2], cs->cast128.km[ 2]);
-    F1(r, l, cs->cast128.kr[ 3], cs->cast128.km[ 3]);
-    F2(l, r, cs->cast128.kr[ 4], cs->cast128.km[ 4]);
-    F3(r, l, cs->cast128.kr[ 5], cs->cast128.km[ 5]);
-    F1(l, r, cs->cast128.kr[ 6], cs->cast128.km[ 6]);
-    F2(r, l, cs->cast128.kr[ 7], cs->cast128.km[ 7]);
-    F3(l, r, cs->cast128.kr[ 8], cs->cast128.km[ 8]);
-    F1(r, l, cs->cast128.kr[ 9], cs->cast128.km[ 9]);
-    F2(l, r, cs->cast128.kr[10], cs->cast128.km[10]);
-    F3(r, l, cs->cast128.kr[11], cs->cast128.km[11]);
+    F1(l, r, cs->cast5.kr[ 0], cs->cast5.km[ 0]);
+    F2(r, l, cs->cast5.kr[ 1], cs->cast5.km[ 1]);
+    F3(l, r, cs->cast5.kr[ 2], cs->cast5.km[ 2]);
+    F1(r, l, cs->cast5.kr[ 3], cs->cast5.km[ 3]);
+    F2(l, r, cs->cast5.kr[ 4], cs->cast5.km[ 4]);
+    F3(r, l, cs->cast5.kr[ 5], cs->cast5.km[ 5]);
+    F1(l, r, cs->cast5.kr[ 6], cs->cast5.km[ 6]);
+    F2(r, l, cs->cast5.kr[ 7], cs->cast5.km[ 7]);
+    F3(l, r, cs->cast5.kr[ 8], cs->cast5.km[ 8]);
+    F1(r, l, cs->cast5.kr[ 9], cs->cast5.km[ 9]);
+    F2(l, r, cs->cast5.kr[10], cs->cast5.km[10]);
+    F3(r, l, cs->cast5.kr[11], cs->cast5.km[11]);
 
-    if(cs->cast128.nr == 16){
-	F1(l, r, cs->cast128.kr[12], cs->cast128.km[12]);
-	F2(r, l, cs->cast128.kr[13], cs->cast128.km[13]);
-	F3(l, r, cs->cast128.kr[14], cs->cast128.km[14]);
-	F1(r, l, cs->cast128.kr[15], cs->cast128.km[15]);
+    if(cs->cast5.nr == 16){
+	F1(l, r, cs->cast5.kr[12], cs->cast5.km[12]);
+	F2(r, l, cs->cast5.kr[13], cs->cast5.km[13]);
+	F3(l, r, cs->cast5.kr[14], cs->cast5.km[14]);
+	F1(r, l, cs->cast5.kr[15], cs->cast5.km[15]);
     }
 
     STORE32(r, out);
@@ -600,7 +600,7 @@ int cast128_encrypt(const unsigned char *in, unsigned char *out, const cipher_st
     return NBSCrypto_OK;
 }
 
-int cast256_encrypt(const unsigned char *input, unsigned char *output, const cipher_state *cs)
+int cast6_encrypt(const unsigned char *input, unsigned char *output, const cipher_state *cs)
 {
     unsigned a, b, c, d;
 
@@ -609,19 +609,19 @@ int cast256_encrypt(const unsigned char *input, unsigned char *output, const cip
     c = LOAD32(input +  8);
     d = LOAD32(input + 12);
 
-    Q(a, b, c, d, cs->cast256.kr[0], cs->cast256.km[0]);
-    Q(a, b, c, d, cs->cast256.kr[1], cs->cast256.km[1]);
-    Q(a, b, c, d, cs->cast256.kr[2], cs->cast256.km[2]);
-    Q(a, b, c, d, cs->cast256.kr[3], cs->cast256.km[3]);
-    Q(a, b, c, d, cs->cast256.kr[4], cs->cast256.km[4]);
-    Q(a, b, c, d, cs->cast256.kr[5], cs->cast256.km[5]);
+    Q(a, b, c, d, cs->cast6.kr[0], cs->cast6.km[0]);
+    Q(a, b, c, d, cs->cast6.kr[1], cs->cast6.km[1]);
+    Q(a, b, c, d, cs->cast6.kr[2], cs->cast6.km[2]);
+    Q(a, b, c, d, cs->cast6.kr[3], cs->cast6.km[3]);
+    Q(a, b, c, d, cs->cast6.kr[4], cs->cast6.km[4]);
+    Q(a, b, c, d, cs->cast6.kr[5], cs->cast6.km[5]);
 
-    QBAR(a, b, c, d, cs->cast256.kr[ 6], cs->cast256.km[ 6]);
-    QBAR(a, b, c, d, cs->cast256.kr[ 7], cs->cast256.km[ 7]);
-    QBAR(a, b, c, d, cs->cast256.kr[ 8], cs->cast256.km[ 8]);
-    QBAR(a, b, c, d, cs->cast256.kr[ 9], cs->cast256.km[ 9]);
-    QBAR(a, b, c, d, cs->cast256.kr[10], cs->cast256.km[10]);
-    QBAR(a, b, c, d, cs->cast256.kr[11], cs->cast256.km[11]);
+    QBAR(a, b, c, d, cs->cast6.kr[ 6], cs->cast6.km[ 6]);
+    QBAR(a, b, c, d, cs->cast6.kr[ 7], cs->cast6.km[ 7]);
+    QBAR(a, b, c, d, cs->cast6.kr[ 8], cs->cast6.km[ 8]);
+    QBAR(a, b, c, d, cs->cast6.kr[ 9], cs->cast6.km[ 9]);
+    QBAR(a, b, c, d, cs->cast6.kr[10], cs->cast6.km[10]);
+    QBAR(a, b, c, d, cs->cast6.kr[11], cs->cast6.km[11]);
 
     STORE32(a, output);
     STORE32(b, output +  4);
@@ -632,32 +632,32 @@ int cast256_encrypt(const unsigned char *input, unsigned char *output, const cip
 }
 
 
-int cast128_decrypt(const unsigned char *in, unsigned char *out, const cipher_state *cs)
+int cast5_decrypt(const unsigned char *in, unsigned char *out, const cipher_state *cs)
 {
     unsigned l, r;
 
     r = LOAD32(in);
     l = LOAD32(in + 4);
 
-    if(cs->cast128.nr == 16){
-	F1(r, l, cs->cast128.kr[15], cs->cast128.km[15]);
-	F3(l, r, cs->cast128.kr[14], cs->cast128.km[14]);
-	F2(r, l, cs->cast128.kr[13], cs->cast128.km[13]);
-	F1(l, r, cs->cast128.kr[12], cs->cast128.km[12]);
+    if(cs->cast5.nr == 16){
+	F1(r, l, cs->cast5.kr[15], cs->cast5.km[15]);
+	F3(l, r, cs->cast5.kr[14], cs->cast5.km[14]);
+	F2(r, l, cs->cast5.kr[13], cs->cast5.km[13]);
+	F1(l, r, cs->cast5.kr[12], cs->cast5.km[12]);
     }
 
-    F3(r, l, cs->cast128.kr[11], cs->cast128.km[11]);
-    F2(l, r, cs->cast128.kr[10], cs->cast128.km[10]);
-    F1(r, l, cs->cast128.kr[ 9], cs->cast128.km[ 9]);
-    F3(l, r, cs->cast128.kr[ 8], cs->cast128.km[ 8]);
-    F2(r, l, cs->cast128.kr[ 7], cs->cast128.km[ 7]);
-    F1(l, r, cs->cast128.kr[ 6], cs->cast128.km[ 6]);
-    F3(r, l, cs->cast128.kr[ 5], cs->cast128.km[ 5]);
-    F2(l, r, cs->cast128.kr[ 4], cs->cast128.km[ 4]);
-    F1(r, l, cs->cast128.kr[ 3], cs->cast128.km[ 3]);
-    F3(l, r, cs->cast128.kr[ 2], cs->cast128.km[ 2]);
-    F2(r, l, cs->cast128.kr[ 1], cs->cast128.km[ 1]);
-    F1(l, r, cs->cast128.kr[ 0], cs->cast128.km[ 0]);
+    F3(r, l, cs->cast5.kr[11], cs->cast5.km[11]);
+    F2(l, r, cs->cast5.kr[10], cs->cast5.km[10]);
+    F1(r, l, cs->cast5.kr[ 9], cs->cast5.km[ 9]);
+    F3(l, r, cs->cast5.kr[ 8], cs->cast5.km[ 8]);
+    F2(r, l, cs->cast5.kr[ 7], cs->cast5.km[ 7]);
+    F1(l, r, cs->cast5.kr[ 6], cs->cast5.km[ 6]);
+    F3(r, l, cs->cast5.kr[ 5], cs->cast5.km[ 5]);
+    F2(l, r, cs->cast5.kr[ 4], cs->cast5.km[ 4]);
+    F1(r, l, cs->cast5.kr[ 3], cs->cast5.km[ 3]);
+    F3(l, r, cs->cast5.kr[ 2], cs->cast5.km[ 2]);
+    F2(r, l, cs->cast5.kr[ 1], cs->cast5.km[ 1]);
+    F1(l, r, cs->cast5.kr[ 0], cs->cast5.km[ 0]);
 
     STORE32(l, out);
     STORE32(r, out + 4);
@@ -665,7 +665,7 @@ int cast128_decrypt(const unsigned char *in, unsigned char *out, const cipher_st
     return NBSCrypto_OK;
 }
 
-int cast256_decrypt(const unsigned char *input, unsigned char *output, const cipher_state *cs)
+int cast6_decrypt(const unsigned char *input, unsigned char *output, const cipher_state *cs)
 {
     unsigned a, b, c, d;
 
@@ -674,19 +674,19 @@ int cast256_decrypt(const unsigned char *input, unsigned char *output, const cip
     c = LOAD32(input + 8);
     d = LOAD32(input + 12);
 
-    Q(a, b, c, d, cs->cast256.kr[11], cs->cast256.km[11]);
-    Q(a, b, c, d, cs->cast256.kr[10], cs->cast256.km[10]);
-    Q(a, b, c, d, cs->cast256.kr[ 9], cs->cast256.km[ 9]);
-    Q(a, b, c, d, cs->cast256.kr[ 8], cs->cast256.km[ 8]);
-    Q(a, b, c, d, cs->cast256.kr[ 7], cs->cast256.km[ 7]);
-    Q(a, b, c, d, cs->cast256.kr[ 6], cs->cast256.km[ 6]);
+    Q(a, b, c, d, cs->cast6.kr[11], cs->cast6.km[11]);
+    Q(a, b, c, d, cs->cast6.kr[10], cs->cast6.km[10]);
+    Q(a, b, c, d, cs->cast6.kr[ 9], cs->cast6.km[ 9]);
+    Q(a, b, c, d, cs->cast6.kr[ 8], cs->cast6.km[ 8]);
+    Q(a, b, c, d, cs->cast6.kr[ 7], cs->cast6.km[ 7]);
+    Q(a, b, c, d, cs->cast6.kr[ 6], cs->cast6.km[ 6]);
 
-    QBAR(a, b, c, d, cs->cast256.kr[5], cs->cast256.km[5]);
-    QBAR(a, b, c, d, cs->cast256.kr[4], cs->cast256.km[4]);
-    QBAR(a, b, c, d, cs->cast256.kr[3], cs->cast256.km[3]);
-    QBAR(a, b, c, d, cs->cast256.kr[2], cs->cast256.km[2]);
-    QBAR(a, b, c, d, cs->cast256.kr[1], cs->cast256.km[1]);
-    QBAR(a, b, c, d, cs->cast256.kr[0], cs->cast256.km[0]);
+    QBAR(a, b, c, d, cs->cast6.kr[5], cs->cast6.km[5]);
+    QBAR(a, b, c, d, cs->cast6.kr[4], cs->cast6.km[4]);
+    QBAR(a, b, c, d, cs->cast6.kr[3], cs->cast6.km[3]);
+    QBAR(a, b, c, d, cs->cast6.kr[2], cs->cast6.km[2]);
+    QBAR(a, b, c, d, cs->cast6.kr[1], cs->cast6.km[1]);
+    QBAR(a, b, c, d, cs->cast6.kr[0], cs->cast6.km[0]);
 
     STORE32(a, output);
     STORE32(b, output + 4);
@@ -696,12 +696,12 @@ int cast256_decrypt(const unsigned char *input, unsigned char *output, const cip
     return NBSCrypto_OK;
 }
 
-void cast128_done(cipher_state *cs)
+void cast5_done(cipher_state *cs)
 {
-    zeromem(cs, sizeof(cs->cast128));
+    zeromem(cs, sizeof(cs->cast5));
 }
 
-void cast256_done(cipher_state *cs)
+void cast6_done(cipher_state *cs)
 {
-    zeromem(cs, sizeof(cs->cast256));
+    zeromem(cs, sizeof(cs->cast6));
 }

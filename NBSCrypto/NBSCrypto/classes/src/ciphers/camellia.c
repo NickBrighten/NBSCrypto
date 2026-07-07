@@ -29,7 +29,7 @@ const struct cipher_descriptor camellia_desc =
 	(y)[2] = (unsigned char)(((x)>>40)&255); (y)[3] = (unsigned char)(((x)>>32)&255);	\
 	(y)[4] = (unsigned char)(((x)>>24)&255); (y)[5] = (unsigned char)(((x)>>16)&255);	\
 	(y)[6] = (unsigned char)(((x)>> 8)&255); (y)[7] = (unsigned char)((x)&255);		\
-    } while(0)
+} while(0)
 
 #define LOAD64(x, y)					\
     do {x = (((unsigned long long)((y)[0] & 255))<<56)|	\
@@ -40,7 +40,7 @@ const struct cipher_descriptor camellia_desc =
 	    (((unsigned long long)((y)[5] & 255))<<16)|	\
 	    (((unsigned long long)((y)[6] & 255))<< 8)|	\
 	    (((unsigned long long)((y)[7] & 255)));	\
-    } while(0)
+} while(0)
 
 #define ROL(x, y)  ((((unsigned)(x)<<(unsigned)((y)&31)) | (((unsigned)(x)&0xFFFFFFFF)>>(unsigned)((32-((y)&31))&31))) & 0xFFFFFFFF)
 #define RORc(x, y) (((((unsigned)(x)&0xFFFFFFFF)>>(unsigned)((y)&31)) | ((unsigned)(x)<<(unsigned)((32-((y)&31))&31))) & 0xFFFFFFFF)
@@ -201,7 +201,7 @@ static inline unsigned long long _F(unsigned long long x)
 {
     unsigned D, U;
 
-    #define loc(i) ((8-i)*8)
+#define loc(i) ((8-i)*8)
 
     D = SP1110[(x >> loc(8)) & 0xFF] ^ SP0222[(x >> loc(5)) & 0xFF] ^ SP3033[(x >> loc(6)) & 0xFF] ^ SP4404[(x >> loc(7)) & 0xFF];
     U = SP1110[(x >> loc(1)) & 0xFF] ^ SP0222[(x >> loc(2)) & 0xFF] ^ SP3033[(x >> loc(3)) & 0xFF] ^ SP4404[(x >> loc(4)) & 0xFF];
@@ -209,7 +209,7 @@ static inline unsigned long long _F(unsigned long long x)
     D ^= U;
     U = D ^ RORc(U, 8);
 
-    #undef loc
+#undef loc
 
     return ((unsigned long long)U) | (((unsigned long long)D) << CONST64(32));
 }

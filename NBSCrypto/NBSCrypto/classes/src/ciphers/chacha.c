@@ -26,6 +26,7 @@ const struct cipher_descriptor chacha_desc =
 
 #define MIN(a, b) ((a) < (b) ? (a) : (b))
 #define ROL32(a, n) (((a) << (n)) | ((a) >> (32 - (n))))
+
 #define QR(a, b, c, d) {	\
     a += b;			\
     d ^= a;			\

@@ -41,12 +41,12 @@ const struct cipher_descriptor des3_desc = {
 #define STORE32(x, y)										\
     do {(y)[0] = (unsigned char)(((x)>>24)&255); (y)[1] = (unsigned char)(((x)>>16)&255);	\
 	(y)[2] = (unsigned char)(((x)>>8)&255); (y)[3] = (unsigned char)((x)&255);		\
-    } while(0)
+} while(0)
 
 #define LOAD32(x, y)										\
     do {x = ((unsigned)((y)[0] & 255)<<24) | ((unsigned)((y)[1] & 255)<<16) |			\
-	((unsigned)((y)[2] & 255)<<8)  | ((unsigned)((y)[3] & 255));				\
-    } while(0)
+	    ((unsigned)((y)[2] & 255)<<8)  | ((unsigned)((y)[3] & 255));				\
+} while(0)
 
 #define RORc(x, y) (((((unsigned)(x)&0xFFFFFFFF)>>(unsigned)((y)&31)) | ((unsigned)(x)<<(unsigned)((32-((y)&31))&31))) & 0xFFFFFFFF)
 #define CONST64(n) n ## ULL
@@ -1244,13 +1244,13 @@ static inline void _des_cookey(const unsigned *raw1, unsigned *keyout)
     cook = dough;
     for(i=0; i < 16; i++, raw1++){
 	raw0 = raw1++;
-	*cook    = (*raw0 & 0x00fc0000) << 6;
+	*cook    = (*raw0 & 0x00fc0000) <<  6;
 	*cook   |= (*raw0 & 0x00000fc0) << 10;
 	*cook   |= (*raw1 & 0x00fc0000) >> 10;
-	*cook++ |= (*raw1 & 0x00000fc0) >> 6;
+	*cook++ |= (*raw1 & 0x00000fc0) >>  6;
 	*cook    = (*raw0 & 0x0003f000) << 12;
 	*cook   |= (*raw0 & 0x0000003f) << 16;
-	*cook   |= (*raw1 & 0x0003f000) >> 4;
+	*cook   |= (*raw1 & 0x0003f000) >>  4;
 	*cook++ |= (*raw1 & 0x0000003f);
     }
 
@@ -1316,10 +1316,10 @@ static inline void _des_func(unsigned *block, const unsigned *keys)
     {
 	unsigned long long tmp;
 	tmp =
-	    des_ip[0][NBS_BYTE(leftt, 0)] ^ des_ip[1][NBS_BYTE(leftt, 1)] ^
-	    des_ip[2][NBS_BYTE(leftt, 2)] ^ des_ip[3][NBS_BYTE(leftt, 3)] ^
-	    des_ip[4][NBS_BYTE(right, 0)] ^ des_ip[5][NBS_BYTE(right, 1)] ^
-	    des_ip[6][NBS_BYTE(right, 2)] ^ des_ip[7][NBS_BYTE(right, 3)];
+	des_ip[0][NBS_BYTE(leftt, 0)] ^ des_ip[1][NBS_BYTE(leftt, 1)] ^
+	des_ip[2][NBS_BYTE(leftt, 2)] ^ des_ip[3][NBS_BYTE(leftt, 3)] ^
+	des_ip[4][NBS_BYTE(right, 0)] ^ des_ip[5][NBS_BYTE(right, 1)] ^
+	des_ip[6][NBS_BYTE(right, 2)] ^ des_ip[7][NBS_BYTE(right, 3)];
 	leftt = (unsigned)(tmp >> 32);
 	right = (unsigned)(tmp & 0xFFFFFFFFUL);
     }
@@ -1339,10 +1339,10 @@ static inline void _des_func(unsigned *block, const unsigned *keys)
     {
 	unsigned long long tmp;
 	tmp =
-	    des_fp[0][NBS_BYTE(leftt, 0)] ^ des_fp[1][NBS_BYTE(leftt, 1)] ^
-	    des_fp[2][NBS_BYTE(leftt, 2)] ^ des_fp[3][NBS_BYTE(leftt, 3)] ^
-	    des_fp[4][NBS_BYTE(right, 0)] ^ des_fp[5][NBS_BYTE(right, 1)] ^
-	    des_fp[6][NBS_BYTE(right, 2)] ^ des_fp[7][NBS_BYTE(right, 3)];
+	des_fp[0][NBS_BYTE(leftt, 0)] ^ des_fp[1][NBS_BYTE(leftt, 1)] ^
+	des_fp[2][NBS_BYTE(leftt, 2)] ^ des_fp[3][NBS_BYTE(leftt, 3)] ^
+	des_fp[4][NBS_BYTE(right, 0)] ^ des_fp[5][NBS_BYTE(right, 1)] ^
+	des_fp[6][NBS_BYTE(right, 2)] ^ des_fp[7][NBS_BYTE(right, 3)];
 	leftt = (unsigned)(tmp >> 32);
 	right = (unsigned)(tmp & 0xFFFFFFFFUL);
     }

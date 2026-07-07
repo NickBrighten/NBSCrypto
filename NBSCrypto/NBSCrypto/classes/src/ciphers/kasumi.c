@@ -28,13 +28,13 @@ const struct cipher_descriptor kasumi_desc =
 
 #define STORE32(x, y)										\
     do {(y)[0] = (unsigned char)(((x)>>24)&255); (y)[1] = (unsigned char)(((x)>>16)&255);	\
-	(y)[2] = (unsigned char)(((x)>>8)&255); (y)[3] = (unsigned char)((x)&255);		\
-    } while(0)
+	(y)[2] = (unsigned char)(((x)>> 8)&255); (y)[3] = (unsigned char)((x)&255);		\
+} while(0)
 
 #define LOAD32(x, y)										\
     do {x = ((unsigned)((y)[0] & 255)<<24) | ((unsigned)((y)[1] & 255)<<16) |			\
-	((unsigned)((y)[2] & 255)<<8)  | ((unsigned)((y)[3] & 255));				\
-    } while(0)
+	    ((unsigned)((y)[2] & 255)<< 8) | ((unsigned)((y)[3] & 255));			\
+} while(0)
 
 
 

@@ -35,7 +35,7 @@ typedef unsigned short int ushort16;
 	a = (ushort16)p - (ushort16)HIGH16(p);	\
     } else					\
 	a = 1 - a - b;				\
-    }
+}
 
 #define STORE16(x,y) { (y)[0] = (unsigned char)(((x)>>8)&255); (y)[1] = (unsigned char)((x)&255); }
 #define LOAD16(x,y)  { x = ((ushort16)((y)[0] & 255)<<8) | ((ushort16)((y)[1] & 255)); }
