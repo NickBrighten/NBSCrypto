@@ -262,6 +262,11 @@ struct md6_state{
     unsigned long long K[8];
 };
 
+struct meshhash2_state{
+    int hashbitlen, number_of_pipes, key_length, block_round_counter, key_counter, data_counter, squeezing;
+    unsigned long long *pipe, *key, *feedback[2], data_buffer, bit_counter[4], block_counter[4];
+};
+
 struct murmur3a_state{
     unsigned len;
     unsigned h;
@@ -465,6 +470,7 @@ typedef union hash_state{
     struct md4_state			md4;
     struct md5_state			md5;
     struct md6_state			md6;
+    struct meshhash2_state		meshhash2;
     struct murmur3a_state		murmur3a;
     struct murmur3c_state		murmur3c;
     struct murmur3f_state		murmur3f;
@@ -497,7 +503,7 @@ typedef union hash_state{
 #pragma mark - HASH DESCRIPTOR
 extern struct hash_descriptor {
     const char *name;
-    unsigned char ID;
+    unsigned long ID;
     unsigned long hashsize, blocksize;
 
     int (*init)(hash_state *hs);
@@ -1002,20 +1008,41 @@ extern const struct hash_descriptor md6_384_desc;
 extern const struct hash_descriptor md6_512_desc;
 
 
+#pragma mark MESHHASH2
+int meshhash2_128_init(hash_state *hs);
+int meshhash2_160_init(hash_state *hs);
+int meshhash2_192_init(hash_state *hs);
+int meshhash2_224_init(hash_state *hs);
+int meshhash2_256_init(hash_state *hs);
+int meshhash2_384_init(hash_state *hs);
+int meshhash2_512_init(hash_state *hs);
+int meshhash2_1024_init(hash_state *hs);
+int meshhash2_2048_init(hash_state *hs);
+int meshhash2_process(hash_state *hs, const unsigned char *in, unsigned long inlen);
+int meshhash2_done(hash_state *hs, unsigned char *out);
+extern const struct hash_descriptor meshhash2_128_desc;
+extern const struct hash_descriptor meshhash2_160_desc;
+extern const struct hash_descriptor meshhash2_192_desc;
+extern const struct hash_descriptor meshhash2_224_desc;
+extern const struct hash_descriptor meshhash2_256_desc;
+extern const struct hash_descriptor meshhash2_384_desc;
+extern const struct hash_descriptor meshhash2_512_desc;
+extern const struct hash_descriptor meshhash2_1024_desc;
+extern const struct hash_descriptor meshhash2_2048_desc;
+
+
 #pragma mark MURMUR
 int murmur3a_init(hash_state *hs);
-int murmur3a_process(hash_state *hs, const unsigned char *in, unsigned long inlen);
-int murmur3a_done(hash_state *hs, unsigned char *out);
-extern const struct hash_descriptor murmur3a_desc;
-
 int murmur3c_init(hash_state *hs);
-int murmur3c_process(hash_state *hs, const unsigned char *in, unsigned long inlen);
-int murmur3c_done(hash_state *hs, unsigned char *out);
-extern const struct hash_descriptor murmur3c_desc;
-
 int murmur3f_init(hash_state *hs);
+int murmur3a_process(hash_state *hs, const unsigned char *in, unsigned long inlen);
+int murmur3c_process(hash_state *hs, const unsigned char *in, unsigned long inlen);
 int murmur3f_process(hash_state *hs, const unsigned char *in, unsigned long inlen);
+int murmur3a_done(hash_state *hs, unsigned char *out);
+int murmur3c_done(hash_state *hs, unsigned char *out);
 int murmur3f_done(hash_state *hs, unsigned char *out);
+extern const struct hash_descriptor murmur3a_desc;
+extern const struct hash_descriptor murmur3c_desc;
 extern const struct hash_descriptor murmur3f_desc;
 
 
@@ -1259,7 +1286,7 @@ extern const struct hash_descriptor xxh_64_desc;
 
 
 #pragma mark - HASH GLOBAL FUNCTIONS
-int is_hash_valid(int idx);
+int is_hash_valid(unsigned long idx);
 int register_hash(const struct hash_descriptor *hash);
 int unregister_hash(const struct hash_descriptor *hash);
 
