@@ -11,7 +11,7 @@
 const struct hash_descriptor lane_224_desc =
 {
     "lane-224",
-    156,
+    10260224,
     28,
     64,
     &lane_224_init,
@@ -23,7 +23,7 @@ const struct hash_descriptor lane_224_desc =
 const struct hash_descriptor lane_256_desc =
 {
     "lane-256",
-    157,
+    10260256,
     32,
     64,
     &lane_256_init,
@@ -35,7 +35,7 @@ const struct hash_descriptor lane_256_desc =
 const struct hash_descriptor lane_384_desc =
 {
     "lane-384",
-    158,
+    10260384,
     48,
     128,
     &lane_384_init,
@@ -47,7 +47,7 @@ const struct hash_descriptor lane_384_desc =
 const struct hash_descriptor lane_512_desc =
 {
     "lane-512",
-    159,
+    10260512,
     64,
     128,
     &lane_512_init,
