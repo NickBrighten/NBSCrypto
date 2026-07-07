@@ -1,13 +1,16 @@
 //
 //	cfb.c
-//	Authors / Developers		: Morris J. Dworkin
-//	Last Modified (Original)	: 1980
+//	Authors / Developers		: Carl M. Campbell Jr., Barrie Morgan
+//	Last Modified (Original)	: February 1977
 //
 
 #include "nbs_crypto.h"
 
 
-int cfb_start(int cipher, const unsigned char *iv, const unsigned char *key, int keylen, int num_rounds, cm_CFB *cfb)
+
+
+#pragma mark - FUNCTIONS
+int cfb_start(unsigned long cipher, const unsigned char *iv, const unsigned char *key, int keylen, int num_rounds, cm_CFB *cfb)
 {
     int x, err;
 

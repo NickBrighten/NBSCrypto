@@ -7,6 +7,9 @@
 #include "nbs_crypto.h"
 
 
+
+
+#pragma mark - INLINE
 static inline int _ccm_process(unsigned char *pt, unsigned char *ct, unsigned long len, int direction, cm_CCM *ccm)
 {
     unsigned char z, b;
@@ -57,6 +60,10 @@ static inline int _ccm_process(unsigned char *pt, unsigned char *ct, unsigned lo
     return NBSCrypto_OK;
 }
 
+
+
+
+#pragma mark - FUNCTIONS
 int ccm_add_nonce(const unsigned char *nonce, unsigned long noncelen, cm_CCM *ccm)
 {
     unsigned long x, y, len;
@@ -168,7 +175,7 @@ int ccm_add_aad(const unsigned char *adata, unsigned long adatalen, cm_CCM *ccm)
     return NBSCrypto_OK;
 }
 
-int ccm_start(int cipher, const unsigned char *key, unsigned long keylen, unsigned long ptlen, unsigned long taglen, unsigned long aadlen, cm_CCM *ccm)
+int ccm_start(unsigned long cipher, const unsigned char *key, unsigned long keylen, unsigned long ptlen, unsigned long taglen, unsigned long aadlen, cm_CCM *ccm)
 {
     int err;
 

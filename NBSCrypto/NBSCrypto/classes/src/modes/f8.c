@@ -1,12 +1,15 @@
 //
 //	f8.c
-//	Authors / Developers		: ETSI
-//	Last Modified (Original)	: ???
+//	Authors / Developers		: SAGE, ETSI
+//	Last Modified (Original)	: September 2000
 //
 
 #include "nbs_crypto.h"
 
 
+
+
+#pragma mark - DEFINES
 #define STORE32H(x, y)					\
     do {						\
 	(y)[0] = (unsigned char)(((x)>>24)&255);	\
@@ -16,7 +19,10 @@
 } while(0)
 
 
-int f8_start(int cipher, const unsigned char *iv, const unsigned char *key, int keylen, const unsigned char *salt_key, int skeylen, int num_rounds, cm_F8 *f8)
+
+
+#pragma mark - FUNCTIONS
+int f8_start(unsigned long cipher, const unsigned char *iv, const unsigned char *key, int keylen, const unsigned char *salt_key, int skeylen, int num_rounds, cm_F8 *f8)
 {
     int x, err;
     unsigned char tkey[MAXBLOCKSIZE];

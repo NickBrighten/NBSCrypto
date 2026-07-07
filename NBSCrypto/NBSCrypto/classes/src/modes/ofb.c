@@ -7,7 +7,10 @@
 #include "nbs_crypto.h"
 
 
-int ofb_start(int cipher, const unsigned char *iv, const unsigned char *key, int keylen, int num_rounds, cm_OFB *ofb)
+
+
+#pragma mark - FUNCTIONS
+int ofb_start(unsigned long cipher, const unsigned char *iv, const unsigned char *key, int keylen, int num_rounds, cm_OFB *ofb)
 {
     int x, err;
 

@@ -1,12 +1,15 @@
 //
 //	ocb3.c
-//	Authors / Developers		: Ted Krovetz, Phillip Rogaway
+//	Authors / Developers		: Phillip Rogaway, Ted Krovetz
 //	Last Modified (Original)	: 2011
 //
 
 #include "nbs_crypto.h"
 
 
+
+
+#pragma mark - DEFINES
 static const struct {
     int len;
     unsigned char poly_mul[MAXBLOCKSIZE];
@@ -20,6 +23,10 @@ static const struct {
     }
 };
 
+
+
+
+#pragma mark - INLINE
 static inline void _ocb3_int_calc_offset_zero(cm_OCB3 *ocb, const unsigned char *nonce, unsigned long noncelen, unsigned long taglen)
 {
     int x, y, bottom;
@@ -243,7 +250,11 @@ int ocb3_add_aad(const unsigned char *aad, unsigned long aadlen, cm_OCB3 *ocb)
     return NBSCrypto_OK;
 }
 
-int ocb3_start(int cipher, const unsigned char *key, unsigned long keylen, const unsigned char *nonce, unsigned long noncelen, unsigned long taglen, cm_OCB3 *ocb)
+
+
+
+#pragma mark - FUNCTIONS
+int ocb3_start(unsigned long cipher, const unsigned char *key, unsigned long keylen, const unsigned char *nonce, unsigned long noncelen, unsigned long taglen, cm_OCB3 *ocb)
 {
     int poly, x, y, m, err;
     unsigned char *previous, *current;

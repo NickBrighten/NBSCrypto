@@ -1,13 +1,16 @@
 //
 //	eax.c
 //	Authors / Developers		: Mihir Bellare, Phillip Rogaway, David Wagner
-//	Last Modified (Original)	: 2003
+//	Last Modified (Original)	: April 2003
 //
 
 #include "nbs_crypto.h"
 
 
-int eax_start(int cipher, const unsigned char *key, unsigned long keylen, const unsigned char *nonce, unsigned long noncelen, const unsigned char *header, unsigned long headerlen, cm_EAX *eax)
+
+
+#pragma mark - FUNCTIONS
+int eax_start(unsigned long cipher, const unsigned char *key, unsigned long keylen, const unsigned char *nonce, unsigned long noncelen, const unsigned char *header, unsigned long headerlen, cm_EAX *eax)
 {
     int err, blklen;
     unsigned char *buf;

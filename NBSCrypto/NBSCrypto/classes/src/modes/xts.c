@@ -7,6 +7,9 @@
 #include "nbs_crypto.h"
 
 
+
+
+#pragma mark - INLINE
 static inline void _xts_mult_x(unsigned char *I)
 {
     int x;
@@ -68,7 +71,10 @@ static inline int _tweak_uncrypt(const unsigned char *C, unsigned char *P, unsig
 }
 
 
-int xts_start(int cipher, const unsigned char *key1, const unsigned char *key2, int keylen, int num_rounds, cm_XTS *xts)
+
+
+#pragma mark - FUNCTIONS
+int xts_start(unsigned long cipher, const unsigned char *key1, const unsigned char *key2, int keylen, int num_rounds, cm_XTS *xts)
 {
     int err;
 

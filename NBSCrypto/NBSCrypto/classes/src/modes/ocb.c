@@ -7,6 +7,9 @@
 #include "nbs_crypto.h"
 
 
+
+
+#pragma mark - DEFINES
 static const struct {
     int len;
     unsigned char poly_div[MAXBLOCKSIZE],
@@ -23,6 +26,10 @@ static const struct {
     }
 };
 
+
+
+
+#pragma mark - INLINE
 static inline int _ocb_ntz(unsigned long x)
 {
     int c;
@@ -127,7 +134,11 @@ ERR:
     return err;
 }
 
-int ocb_start(int cipher, const unsigned char *key, unsigned long keylen, const unsigned char *nonce, cm_OCB *ocb)
+
+
+
+#pragma mark - FUNCTIONS
+int ocb_start(unsigned long cipher, const unsigned char *key, unsigned long keylen, const unsigned char *nonce, cm_OCB *ocb)
 {
     int poly, x, y, m, err;
 

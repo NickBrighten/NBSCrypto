@@ -7,6 +7,9 @@
 #include "nbs_crypto.h"
 
 
+
+
+#pragma mark - INLINE
 static inline int _ctr_encrypt(const unsigned char *pt, unsigned char *ct, unsigned long len, cm_CTR *ctr)
 {
     int x, err;
@@ -41,7 +44,11 @@ static inline int _ctr_encrypt(const unsigned char *pt, unsigned char *ct, unsig
     return NBSCrypto_OK;
 }
 
-int ctr_start(int cipher, const unsigned char *iv, const unsigned char *key, int keylen, int num_rounds, int ctr_mode, cm_CTR *ctr)
+
+
+
+#pragma mark - FUNCTIONS
+int ctr_start(unsigned long cipher, const unsigned char *iv, const unsigned char *key, int keylen, int num_rounds, int ctr_mode, cm_CTR *ctr)
 {
     int x, err;
 

@@ -7,7 +7,10 @@
 #include "nbs_crypto.h"
 
 
-int cbc_start(int cipher, const unsigned char *iv, const unsigned char *key, int keylen, int num_rounds, cm_CBC *cbc)
+
+
+#pragma mark - FUNCTIONS
+int cbc_start(unsigned long cipher, const unsigned char *iv, const unsigned char *key, int keylen, int num_rounds, cm_CBC *cbc)
 {
     int x, err;
 

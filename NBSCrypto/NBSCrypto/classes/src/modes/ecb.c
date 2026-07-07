@@ -1,13 +1,16 @@
 //
 //	ecb.c
-//	Authors / Developers		: ???
-//	Last Modified (Original)	: ???
+//	Authors / Developers		: NIST
+//	Last Modified (Original)	: 1981
 //
 
 #include "nbs_crypto.h"
 
 
-int ecb_start(int cipher, const unsigned char *key, int keylen, int num_rounds, cm_ECB *ecb)
+
+
+#pragma mark - FUNCTIONS
+int ecb_start(unsigned long cipher, const unsigned char *key, int keylen, int num_rounds, cm_ECB *ecb)
 {
     int err;
 

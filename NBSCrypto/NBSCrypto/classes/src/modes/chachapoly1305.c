@@ -1,12 +1,15 @@
 //
 //	chachapoly1305.c
-//	Authors / Developers		: Daniel J. Bernstein
-//	Last Modified (Original)	: 2008
+//	Authors / Developers		: Daniel J. Bernstein, Adam Langley
+//	Last Modified (Original)	: 2013
 //
 
 #include "nbs_crypto.h"
 
 
+
+
+#pragma mark - DEFINES
 #define STORE64LE(a, p)								\
     ((unsigned char *)(p))[0] = ((unsigned long long)(a) >>  0) & 0xFFU,	\
     ((unsigned char *)(p))[1] = ((unsigned long long)(a) >>  8) & 0xFFU,	\
@@ -20,6 +23,7 @@
 
 
 
+#pragma mark - INLINE
 static inline int _chachaPoly1305_encrypt(const unsigned char *key, unsigned long keylen, const unsigned char *nonce, unsigned long noncelen, const unsigned char *aad, unsigned long aadlen, const unsigned char *pt, unsigned char *ct, unsigned long len, unsigned char *tag, unsigned long taglen, int num_rounds)
 {
     int error, padlen;
@@ -123,6 +127,10 @@ static inline int _chachaPoly1305_decrypt(const unsigned char *key, unsigned lon
     return NBSCrypto_OK;
 }
 
+
+
+
+#pragma mark - FUNCTIONS
 int chacha8poly1305_encrypt(const unsigned char *key, unsigned long keylen, const unsigned char *nonce, unsigned long noncelen, const unsigned char *aad, unsigned long aadlen, const unsigned char *pt, unsigned char *ct, unsigned long len, unsigned char *tag, unsigned long taglen)
 {
     return _chachaPoly1305_encrypt(key, keylen, nonce, noncelen, aad, aadlen, pt, ct, len, tag, taglen, 8);

@@ -7,6 +7,9 @@
 #include "nbs_crypto.h"
 
 
+
+
+#pragma mark - DEFINES
 #define BPD (sizeof(unsigned long long) * 8)
 #define M(x) ( ((x&8)>>3) | ((x&4)>>1) | ((x&2)<<1) | ((x&1)<<3) )
 #define WPV (1 + (16 / sizeof(unsigned long long)))
@@ -80,6 +83,10 @@ static const unsigned char _st[256*2] = {
     0xbb, 0xf0, 0xba, 0x32, 0xb8, 0x74, 0xb9, 0xb6, 0xbc, 0xf8, 0xbd, 0x3a, 0xbf, 0x7c, 0xbe, 0xbe
 };
 
+
+
+
+#pragma mark - INLINE
 static inline void _lrw_gf_mult(const unsigned char *a, const unsigned char *b, unsigned char *c)
 {
     int i, j, k, u;
@@ -199,6 +206,9 @@ static inline int _lrw_process(const unsigned char *pt, unsigned char *ct, unsig
 }
 
 
+
+
+#pragma mark - FUNCTIONS
 int lrw_add_iv(const unsigned char *iv, unsigned long ivlen, cm_LRW *lrw)
 {
     int err;
@@ -222,7 +232,7 @@ int lrw_add_iv(const unsigned char *iv, unsigned long ivlen, cm_LRW *lrw)
     return NBSCrypto_OK;
 }
 
-int lrw_start(int cipher, const unsigned char *iv, const unsigned char *key1, const unsigned char *key2, int keylen, int num_rounds, cm_LRW *lrw)
+int lrw_start(unsigned long cipher, const unsigned char *iv, const unsigned char *key1, const unsigned char *key2, int keylen, int num_rounds, cm_LRW *lrw)
 {
     int err;
 

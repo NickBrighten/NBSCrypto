@@ -7,6 +7,9 @@
 #include "nbs_crypto.h"
 
 
+
+
+#pragma mark - DEFINES
 #define CONST64(n) n ## ULL
 #define BPD (sizeof(unsigned long long) * 8)
 #define M(x) ( ((x&8)>>3) | ((x&4)>>1) | ((x&2)<<1) | ((x&1)<<3) )
@@ -14,24 +17,24 @@
 
 #define LOAD64H(x, y)					\
     do {x = (((unsigned long long)((y)[0] & 255))<<56)|	\
-	(((unsigned long long)((y)[1] & 255))<<48)|	\
-	(((unsigned long long)((y)[2] & 255))<<40)|	\
-	(((unsigned long long)((y)[3] & 255))<<32)|	\
-	(((unsigned long long)((y)[4] & 255))<<24)|	\
-	(((unsigned long long)((y)[5] & 255))<<16)|	\
-	(((unsigned long long)((y)[6] & 255))<<8)|	\
-	(((unsigned long long)((y)[7] & 255)));	\
+	    (((unsigned long long)((y)[1] & 255))<<48)|	\
+	    (((unsigned long long)((y)[2] & 255))<<40)|	\
+	    (((unsigned long long)((y)[3] & 255))<<32)|	\
+	    (((unsigned long long)((y)[4] & 255))<<24)|	\
+	    (((unsigned long long)((y)[5] & 255))<<16)|	\
+	    (((unsigned long long)((y)[6] & 255))<< 8)|	\
+	    (((unsigned long long)((y)[7] & 255)));	\
 } while(0)
 
 #define LOAD64L(x, y)					\
     do {x = (((unsigned long long)((y)[7] & 255))<<56)|	\
-	(((unsigned long long)((y)[6] & 255))<<48)|	\
-	(((unsigned long long)((y)[5] & 255))<<40)|	\
-	(((unsigned long long)((y)[4] & 255))<<32)|	\
-	(((unsigned long long)((y)[3] & 255))<<24)|	\
-	(((unsigned long long)((y)[2] & 255))<<16)|	\
-	(((unsigned long long)((y)[1] & 255))<<8)|	\
-	(((unsigned long long)((y)[0] & 255)));		\
+	    (((unsigned long long)((y)[6] & 255))<<48)|	\
+	    (((unsigned long long)((y)[5] & 255))<<40)|	\
+	    (((unsigned long long)((y)[4] & 255))<<32)|	\
+	    (((unsigned long long)((y)[3] & 255))<<24)|	\
+	    (((unsigned long long)((y)[2] & 255))<<16)|	\
+	    (((unsigned long long)((y)[1] & 255))<< 8)|	\
+	    (((unsigned long long)((y)[0] & 255)));	\
 }while(0)
 
 #define STORE64H(x, y)					\
@@ -41,7 +44,7 @@
 	(y)[3] = (unsigned char)(((x)>>32)&255);	\
 	(y)[4] = (unsigned char)(((x)>>24)&255);	\
 	(y)[5] = (unsigned char)(((x)>>16)&255);	\
-	(y)[6] = (unsigned char)(((x)>>8)&255);		\
+	(y)[6] = (unsigned char)(((x)>> 8)&255);	\
 	(y)[7] = (unsigned char)((x)&255);		\
 } while(0)
 
@@ -81,6 +84,10 @@ static const unsigned char _st[256*2] = {
     0xbb, 0xf0, 0xba, 0x32, 0xb8, 0x74, 0xb9, 0xb6, 0xbc, 0xf8, 0xbd, 0x3a, 0xbf, 0x7c, 0xbe, 0xbe
 };
 
+
+
+
+#pragma mark - INLINE
 static inline void _gcm_gf_mult(const unsigned char *a, const unsigned char *b, unsigned char *c)
 {
     int i, j, k, u;
@@ -236,6 +243,10 @@ static inline int _gcm_process(unsigned char *pt, unsigned char *ct, unsigned lo
     return NBSCrypto_OK;
 }
 
+
+
+
+#pragma mark - FUNCTIONS
 int gcm_add_iv(const unsigned char *iv, unsigned long ivlen, cm_GCM *gcm)
 {
     unsigned long x, y;
@@ -339,7 +350,7 @@ int gcm_add_aad(const unsigned char *aad, unsigned long aadlen, cm_GCM *gcm)
     return NBSCrypto_OK;
 }
 
-int gcm_start(int cipher, const unsigned char *key, unsigned long keylen, int num_rounds, cm_GCM *gcm)
+int gcm_start(unsigned long cipher, const unsigned char *key, unsigned long keylen, int num_rounds, cm_GCM *gcm)
 {
     unsigned char B[16];
     int err;
