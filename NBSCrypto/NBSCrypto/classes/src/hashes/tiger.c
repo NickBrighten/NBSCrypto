@@ -11,7 +11,7 @@
 const struct hash_descriptor tiger1_128_3_desc =
 {
     "tiger1-128-3",
-    226,
+    10483128,
     16,
     64,
     &tiger_init,
@@ -23,7 +23,7 @@ const struct hash_descriptor tiger1_128_3_desc =
 const struct hash_descriptor tiger1_160_3_desc =
 {
     "tiger1-160-3",
-    227,
+    10483160,
     20,
     64,
     &tiger_init,
@@ -35,7 +35,7 @@ const struct hash_descriptor tiger1_160_3_desc =
 const struct hash_descriptor tiger1_192_3_desc =
 {
     "tiger1-192-3",
-    228,
+    10483192,
     24,
     64,
     &tiger_init,
@@ -47,7 +47,7 @@ const struct hash_descriptor tiger1_192_3_desc =
 const struct hash_descriptor tiger1_128_4_desc =
 {
     "tiger1-128-4",
-    229,
+    10484128,
     16,
     64,
     &tiger_init,
@@ -59,7 +59,7 @@ const struct hash_descriptor tiger1_128_4_desc =
 const struct hash_descriptor tiger1_160_4_desc =
 {
     "tiger1-160-4",
-    230,
+    10484160,
     20,
     64,
     &tiger_init,
@@ -71,7 +71,7 @@ const struct hash_descriptor tiger1_160_4_desc =
 const struct hash_descriptor tiger1_192_4_desc =
 {
     "tiger1-192-4",
-    231,
+    10484192,
     24,
     64,
     &tiger_init,
@@ -83,7 +83,7 @@ const struct hash_descriptor tiger1_192_4_desc =
 const struct hash_descriptor tiger2_128_3_desc =
 {
     "tiger2-128-3",
-    232,
+    10493128,
     16,
     64,
     &tiger_init,
@@ -95,7 +95,7 @@ const struct hash_descriptor tiger2_128_3_desc =
 const struct hash_descriptor tiger2_160_3_desc =
 {
     "tiger2-160-3",
-    233,
+    10493160,
     20,
     64,
     &tiger_init,
@@ -107,7 +107,7 @@ const struct hash_descriptor tiger2_160_3_desc =
 const struct hash_descriptor tiger2_192_3_desc =
 {
     "tiger2-192-3",
-    234,
+    10493192,
     24,
     64,
     &tiger_init,
@@ -119,7 +119,7 @@ const struct hash_descriptor tiger2_192_3_desc =
 const struct hash_descriptor tiger2_128_4_desc =
 {
     "tiger2-128-4",
-    235,
+    10494128,
     16,
     64,
     &tiger_init,
@@ -131,7 +131,7 @@ const struct hash_descriptor tiger2_128_4_desc =
 const struct hash_descriptor tiger2_160_4_desc =
 {
     "tiger2-160-4",
-    236,
+    10494160,
     20,
     64,
     &tiger_init,
@@ -143,7 +143,7 @@ const struct hash_descriptor tiger2_160_4_desc =
 const struct hash_descriptor tiger2_192_4_desc =
 {
     "tiger2-192-4",
-    237,
+    10494192,
     24,
     64,
     &tiger_init,
@@ -167,7 +167,7 @@ const struct hash_descriptor tiger2_192_4_desc =
 	(y)[5] = (unsigned char)(((x)>>40)&255); (y)[4] = (unsigned char)(((x)>>32)&255);	\
 	(y)[3] = (unsigned char)(((x)>>24)&255); (y)[2] = (unsigned char)(((x)>>16)&255);	\
 	(y)[1] = (unsigned char)(((x)>> 8)&255); (y)[0] = (unsigned char)((x)&255);		\
-    } while(0)
+} while(0)
 
 #define LOAD64L(x, y)						\
     do {x =							\
@@ -179,7 +179,7 @@ const struct hash_descriptor tiger2_192_4_desc =
 	(((unsigned long long)((y)[2] & 255))<<16)|		\
 	(((unsigned long long)((y)[1] & 255))<< 8)|		\
 	(((unsigned long long)((y)[0] & 255)));			\
-    } while(0)
+} while(0)
 
 #define MIN(x, y) (((x)<(y))?(x):(y))
 #define CONST64(n) n ## ULL

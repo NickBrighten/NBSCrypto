@@ -12,7 +12,7 @@
 const struct hash_descriptor swifftx_224_desc =
 {
     "swifftx-224",
-    222,
+    10470224,
     28,
     64,
     &swifftx_224_init,
@@ -24,7 +24,7 @@ const struct hash_descriptor swifftx_224_desc =
 const struct hash_descriptor swifftx_256_desc =
 {
     "swifftx-256",
-    223,
+    10470256,
     32,
     64,
     &swifftx_256_init,
@@ -36,7 +36,7 @@ const struct hash_descriptor swifftx_256_desc =
 const struct hash_descriptor swifftx_384_desc =
 {
     "swifftx-384",
-    224,
+    10470384,
     48,
     64,
     &swifftx_384_init,
@@ -48,7 +48,7 @@ const struct hash_descriptor swifftx_384_desc =
 const struct hash_descriptor swifftx_512_desc =
 {
     "swifftx-512",
-    225,
+    10470512,
     64,
     64,
     &swifftx_512_init,
@@ -140,7 +140,7 @@ const int16_t As[3 * M * N] =
     235, 248, 237,  74,  72, 176, 210, 252,  45,  64, 165,  87, 202, 241, 236, 223,
     151, 242, 119, 239,  52, 112, 169,  28,  13,  37, 160,  60, 158,  81, 133,  60,
      16, 145, 249, 192, 173, 217, 214,  93, 141, 184,  54,  34, 161, 104, 157,  95,
-    38, 133, 218, 227, 211, 181,   9,  66, 137, 143,  77,  33, 248, 159,   4,  55,
+     38, 133, 218, 227, 211, 181,   9,  66, 137, 143,  77,  33, 248, 159,   4,  55,
     228,  48,  99, 219, 222, 184,  15,  36, 254, 256, 157, 237,  87, 139, 209, 113,
     232,  85, 126, 167, 197, 100, 103, 166,  64, 225, 125, 205, 117, 135,  84, 128,
     231, 112,  90, 241,  28,  22, 210, 147, 186,  49, 230,  21, 108,  39, 194,  47,

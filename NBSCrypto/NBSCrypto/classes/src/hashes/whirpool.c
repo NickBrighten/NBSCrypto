@@ -11,7 +11,7 @@
 const struct hash_descriptor whirlpool_desc =
 {
     "whirlpool",
-    238,
+    10500512,
     64,
     64,
     &whirlpool_init,
@@ -30,7 +30,7 @@ const struct hash_descriptor whirlpool_desc =
 	(y)[2] = (unsigned char)(((x)>>40)&255); (y)[3] = (unsigned char)(((x)>>32)&255);	\
 	(y)[4] = (unsigned char)(((x)>>24)&255); (y)[5] = (unsigned char)(((x)>>16)&255);	\
 	(y)[6] = (unsigned char)(((x)>>8)&255); (y)[7] = (unsigned char)((x)&255);		\
-    } while(0)
+} while(0)
 
 #define LOAD64H(x, y)						\
     do {x = (((unsigned long long)((y)[0] & 255))<<56)|		\
@@ -41,7 +41,7 @@ const struct hash_descriptor whirlpool_desc =
 	    (((unsigned long long)((y)[5] & 255))<<16)|		\
 	    (((unsigned long long)((y)[6] & 255))<<8)|		\
 	    (((unsigned long long)((y)[7] & 255)));		\
-    } while(0)
+} while(0)
 
 #define MIN(x, y) (((x)<(y))?(x):(y))
 
