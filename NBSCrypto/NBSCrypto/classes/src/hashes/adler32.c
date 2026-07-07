@@ -11,7 +11,7 @@
 const struct hash_descriptor adler32_desc =
 {
     "adler32",
-    1,
+    10010032,
     4,
     4,
     &adler32_init,

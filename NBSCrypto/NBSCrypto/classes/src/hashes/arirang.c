@@ -11,7 +11,7 @@
 const struct hash_descriptor arirang_224_desc =
 {
     "arirang-224",
-    2,
+    10020224,
     28,
     64,
     &arirang_224_init,
@@ -23,7 +23,7 @@ const struct hash_descriptor arirang_224_desc =
 const struct hash_descriptor arirang_256_desc =
 {
     "arirang-256",
-    3,
+    10020256,
     32,
     64,
     &arirang_256_init,
@@ -35,7 +35,7 @@ const struct hash_descriptor arirang_256_desc =
 const struct hash_descriptor arirang_384_desc =
 {
     "arirang-384",
-    4,
+    10020384,
     48,
     64,
     &arirang_384_init,
@@ -47,7 +47,7 @@ const struct hash_descriptor arirang_384_desc =
 const struct hash_descriptor arirang_512_desc =
 {
     "arirang-512",
-    5,
+    10020512,
     64,
     64,
     &arirang_512_init,
