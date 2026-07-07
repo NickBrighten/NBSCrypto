@@ -5,6 +5,9 @@
 #include "nbs_crypto.h"
 
 
+
+
+#pragma mark - DEFINES
 #define MIN(x, y) (((x)<(y))?(x):(y))
 
 
@@ -20,10 +23,13 @@ static const struct {
 	16,
 	{ 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x43 },
 	{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x87 }
-	}
+    }
 };
 
 
+
+
+#pragma mark - INLINE
 static inline int _ntz(unsigned long x)
 {
     int c;
@@ -45,7 +51,11 @@ static inline void _shift_xor(pmac_state *pmac)
     }
 }
 
-int pmac_init(int cipher, const unsigned char *key, unsigned long keylen, pmac_state *pmac)
+
+
+
+#pragma mark - FUNCTIONS
+int pmac_init(unsigned long cipher, const unsigned char *key, unsigned long keylen, pmac_state *pmac)
 {
     int poly, x, y, m, err;
     unsigned char *L;

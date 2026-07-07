@@ -5,6 +5,9 @@
 #include "nbs_crypto.h"
 
 
+
+
+#pragma mark - DEFINES
 #define Te0(x) TE0[x]
 #define Te1(x) TE1[x]
 #define Te2(x) TE2[x]
@@ -15,14 +18,14 @@
 	     ((unsigned)((y)[1] & 255)<<16) |	\
 	     ((unsigned)((y)[2] & 255)<< 8) |	\
 	     ((unsigned)((y)[3] & 255));	\
-    } while(0)
+} while(0)
 
 #define STORE32(x, y)					\
     do { (y)[0] = (unsigned char)(((x)>>24)&255);	\
 	 (y)[1] = (unsigned char)(((x)>>16)&255);	\
 	 (y)[2] = (unsigned char)(((x)>> 8)&255);	\
 	 (y)[3] = (unsigned char)((x)&255);		\
-    } while(0)
+} while(0)
 
 #define NBS_BYTE(x, n) (((x) >> (8 * (n))) & 255)
 
@@ -166,6 +169,7 @@ static const unsigned TE3[256] = {
 
 
 
+#pragma mark - INLINE
 static inline void _four_rounds(pelican_state *pelmac)
 {
     int r;
@@ -191,6 +195,7 @@ static inline void _four_rounds(pelican_state *pelmac)
 
 
 
+#pragma mark - FUNCTIONS
 int pelican_init(const unsigned char *key, unsigned long keylen, pelican_state *pelmac)
 {
     int err;

@@ -5,21 +5,27 @@
 #include "nbs_crypto.h"
 
 
+
+
+#pragma mark - DEFINES
 #define MIN(a, b) ((a) < (b) ? (a) : (b))
 
-#define LOAD32LE(p) (					\
+#define LOAD32(p) (					\
     ((unsigned int)(((unsigned char *)(p))[0]) <<  0) |	\
     ((unsigned int)(((unsigned char *)(p))[1]) <<  8) |	\
     ((unsigned int)(((unsigned char *)(p))[2]) << 16) |	\
     ((unsigned int)(((unsigned char *)(p))[3]) << 24))
 
-#define STORE32LE(a, p)							\
+#define STORE32(a, p)							\
     ((unsigned char *)(p))[0] = ((unsigned int)(a) >>  0) & 0xFFU,	\
     ((unsigned char *)(p))[1] = ((unsigned int)(a) >>  8) & 0xFFU,	\
     ((unsigned char *)(p))[2] = ((unsigned int)(a) >> 16) & 0xFFU,	\
     ((unsigned char *)(p))[3] = ((unsigned int)(a) >> 24) & 0xFFU
 
 
+
+
+#pragma mark - INLINE
 static inline void _poly1305_processBlock(poly1305_state *poly1305)
 {
     int n;
@@ -34,10 +40,10 @@ static inline void _poly1305_processBlock(poly1305_state *poly1305)
 	poly1305->buffer[n++] = 0x00;
     }
 
-    u[0] = LOAD32LE(poly1305->buffer);
-    u[1] = LOAD32LE(poly1305->buffer + 4);
-    u[2] = LOAD32LE(poly1305->buffer + 8);
-    u[3] = LOAD32LE(poly1305->buffer + 12);
+    u[0] = LOAD32(poly1305->buffer);
+    u[1] = LOAD32(poly1305->buffer + 4);
+    u[2] = LOAD32(poly1305->buffer + 8);
+    u[3] = LOAD32(poly1305->buffer + 12);
     u[4] = poly1305->buffer[16];
 
     temp  = (unsigned long long) poly1305->a[0] + u[0]; poly1305->a[0] = temp & 0xFFFFFFFF; temp >>= 32;
@@ -74,16 +80,20 @@ static inline void _poly1305_processBlock(poly1305_state *poly1305)
     temp += u[4] & 0x00000003; poly1305->a[4] = temp & 0xFFFFFFFF;
 }
 
+
+
+
+#pragma mark - FUNCTIONS
 int poly1305_init(const unsigned char *key, poly1305_state *poly1305)
 {
-    poly1305->r[0] = LOAD32LE(key);
-    poly1305->r[1] = LOAD32LE(key +  4);
-    poly1305->r[2] = LOAD32LE(key +  8);
-    poly1305->r[3] = LOAD32LE(key + 12);
-    poly1305->s[0] = LOAD32LE(key + 16);
-    poly1305->s[1] = LOAD32LE(key + 20);
-    poly1305->s[2] = LOAD32LE(key + 24);
-    poly1305->s[3] = LOAD32LE(key + 28);
+    poly1305->r[0] = LOAD32(key);
+    poly1305->r[1] = LOAD32(key +  4);
+    poly1305->r[2] = LOAD32(key +  8);
+    poly1305->r[3] = LOAD32(key + 12);
+    poly1305->s[0] = LOAD32(key + 16);
+    poly1305->s[1] = LOAD32(key + 20);
+    poly1305->s[2] = LOAD32(key + 24);
+    poly1305->s[3] = LOAD32(key + 28);
 
     poly1305->r[0] &= 0x0FFFFFFF;
     poly1305->r[1] &= 0x0FFFFFFC;
@@ -162,10 +172,10 @@ int poly1305_done(unsigned char *out, poly1305_state *poly1305)
     temp += (unsigned long long) poly1305->a[2] + poly1305->s[2]; b[2] = temp & 0xFFFFFFFF; temp >>= 32;
     temp += (unsigned long long) poly1305->a[3] + poly1305->s[3]; b[3] = temp & 0xFFFFFFFF;
 
-    STORE32LE(b[0], out);
-    STORE32LE(b[1], out +  4);
-    STORE32LE(b[2], out +  8);
-    STORE32LE(b[3], out + 12);
+    STORE32(b[0], out);
+    STORE32(b[1], out +  4);
+    STORE32(b[2], out +  8);
+    STORE32(b[3], out + 12);
 
     poly1305->a[0] = 0;
     poly1305->a[1] = 0;

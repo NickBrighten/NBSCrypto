@@ -5,7 +5,10 @@
 #include "nbs_crypto.h"
 
 
-int f9_init(int cipher, const unsigned char *key, unsigned long keylen, f9_state *f9)
+
+
+#pragma mark - FUNCTIONS
+int f9_init(unsigned long cipher, const unsigned char *key, unsigned long keylen, f9_state *f9)
 {
     int x, err;
 

@@ -5,7 +5,10 @@
 #include "nbs_crypto.h"
 
 
-static inline int _hash_memory(int hash, const unsigned char *in, unsigned long inlen, unsigned char *out, unsigned long *outlen)
+
+
+#pragma mark - INLINE
+static inline int _hash_memory(unsigned long hash, const unsigned char *in, unsigned long inlen, unsigned char *out, unsigned long *outlen)
 {
     hash_state *hs;
     int err;
@@ -39,7 +42,11 @@ ERR:
     return err;
 }
 
-int hmac_init(int hash, const unsigned char *key, unsigned long keylen, hmac_state *hmac)
+
+
+
+#pragma mark - FUNCTIONS
+int hmac_init(unsigned long hash, const unsigned char *key, unsigned long keylen, hmac_state *hmac)
 {
     unsigned char *buf;
     unsigned long hashsize;
@@ -113,8 +120,8 @@ int hmac_process(const unsigned char *in, unsigned long inlen, hmac_state *hmac)
 int hmac_done(unsigned char *out, unsigned long *outlen, hmac_state *hmac)
 {
     unsigned char *buf, *isha;
-    unsigned long hashsize, i;
-    int hash, err;
+    unsigned long hash, hashsize, i;
+    int err;
 
 
     hash = hmac->hash;

@@ -5,10 +5,16 @@
 #include "nbs_crypto.h"
 
 
+
+
+#pragma mark - DEFINES
 #define MIN(x, y) (((x)<(y))?(x):(y))
 
 
-int omac_init(int cipher, const unsigned char *key, unsigned long keylen, omac_state *omac)
+
+
+#pragma mark - FUNCTIONS
+int omac_init(unsigned long cipher, const unsigned char *key, unsigned long keylen, omac_state *omac)
 {
     int err, x, y, mask, msb, len;
 
