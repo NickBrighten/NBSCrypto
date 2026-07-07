@@ -11,7 +11,7 @@
 const struct hash_descriptor fugue_224_desc =
 {
     "fugue-224",
-    116,
+    10170224,
     28,
     64,
     &fugue_224_init,
@@ -23,7 +23,7 @@ const struct hash_descriptor fugue_224_desc =
 const struct hash_descriptor fugue_256_desc =
 {
     "fugue-256",
-    117,
+    10170256,
     32,
     64,
     &fugue_256_init,
@@ -35,7 +35,7 @@ const struct hash_descriptor fugue_256_desc =
 const struct hash_descriptor fugue_384_desc =
 {
     "fugue-384",
-    118,
+    10170384,
     48,
     64,
     &fugue_384_init,
@@ -47,7 +47,7 @@ const struct hash_descriptor fugue_384_desc =
 const struct hash_descriptor fugue_512_desc =
 {
     "fugue-512",
-    119,
+    10170512,
     64,
     64,
     &fugue_512_init,

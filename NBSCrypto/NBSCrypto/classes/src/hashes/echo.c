@@ -12,7 +12,7 @@
 const struct hash_descriptor echo_224_desc =
 {
     "echo-224",
-    101,
+    10130224,
     28,
     64,
     &echo_224_init,
@@ -24,7 +24,7 @@ const struct hash_descriptor echo_224_desc =
 const struct hash_descriptor echo_256_desc =
 {
     "echo-256",
-    102,
+    10130256,
     32,
     64,
     &echo_256_init,
@@ -36,7 +36,7 @@ const struct hash_descriptor echo_256_desc =
 const struct hash_descriptor echo_384_desc =
 {
     "echo-384",
-    103,
+    10130384,
     48,
     128,
     &echo_384_init,
@@ -48,7 +48,7 @@ const struct hash_descriptor echo_384_desc =
 const struct hash_descriptor echo_512_desc =
 {
     "echo-512",
-    104,
+    10130512,
     64,
     128,
     &echo_512_init,
