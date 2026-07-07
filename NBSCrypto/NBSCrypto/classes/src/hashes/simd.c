@@ -11,7 +11,7 @@
 const struct hash_descriptor simd_224_desc =
 {
     "simd-224",
-    207,
+    10420224,
     28,
     64,
     &simd_224_init,
@@ -23,7 +23,7 @@ const struct hash_descriptor simd_224_desc =
 const struct hash_descriptor simd_256_desc =
 {
     "simd-256",
-    208,
+    10420256,
     32,
     64,
     &simd_256_init,
@@ -35,7 +35,7 @@ const struct hash_descriptor simd_256_desc =
 const struct hash_descriptor simd_384_desc =
 {
     "simd-384",
-    209,
+    10420384,
     48,
     64,
     &simd_384_init,
@@ -47,7 +47,7 @@ const struct hash_descriptor simd_384_desc =
 const struct hash_descriptor simd_512_desc =
 {
     "simd-512",
-    210,
+    10420512,
     64,
     64,
     &simd_512_init,

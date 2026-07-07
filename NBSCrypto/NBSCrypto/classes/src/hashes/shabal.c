@@ -11,7 +11,7 @@
 const struct hash_descriptor shabal_192_desc =
 {
     "shabal-192",
-    196,
+    10390192,
     24,
     64,
     &shabal_192_init,
@@ -23,7 +23,7 @@ const struct hash_descriptor shabal_192_desc =
 const struct hash_descriptor shabal_224_desc =
 {
     "shabal-224",
-    197,
+    10390224,
     28,
     64,
     &shabal_224_init,
@@ -35,7 +35,7 @@ const struct hash_descriptor shabal_224_desc =
 const struct hash_descriptor shabal_256_desc =
 {
     "shabal-256",
-    198,
+    10390256,
     32,
     64,
     &shabal_256_init,
@@ -47,7 +47,7 @@ const struct hash_descriptor shabal_256_desc =
 const struct hash_descriptor shabal_384_desc =
 {
     "shabal-384",
-    199,
+    10390384,
     48,
     64,
     &shabal_384_init,
@@ -59,7 +59,7 @@ const struct hash_descriptor shabal_384_desc =
 const struct hash_descriptor shabal_512_desc =
 {
     "shabal-521",
-    200,
+    10390512,
     64,
     64,
     &shabal_512_init,
