@@ -28,7 +28,7 @@ NSUInteger mode;
 - (const struct cipher_descriptor*)_getCipherDescriptor{
     const struct cipher_descriptor* r = NULL;
 
-    for (int i=0; i<(sizeof(_CIPHER_PRESETS)/16); i++) {
+    for (int i=0; i<(sizeof(_CIPHER_PRESETS)); i++) {
 	if (_CIPHER_PRESETS[i][0] == _algorithm) {
 	    switch (_CIPHER_PRESETS[i][1]) {
 		case _CIPHER_AES:		{r=&aes_desc;break;}
@@ -45,6 +45,7 @@ NSUInteger mode;
 		case _CIPHER_IDEA:		{r=&idea_desc;break;}
 		case _CIPHER_KASUMI:		{r=&kasumi_desc;break;}
 		case _CIPHER_KHAZAD:		{r=&khazad_desc;break;}
+		case _CIPHER_KUZNYECHIK:	{r=&kuznyechik_desc;break;}
 		case _CIPHER_LEA:		{r=&lea_desc;break;}
 		case _CIPHER_MARS:		{r=&mars_desc;break;}
 		case _CIPHER_NOEKEON:		{r=&noekeon_desc;break;}
@@ -1085,6 +1086,7 @@ const unsigned char* _charFromHex(const char* str)
 	    rc4_done(&m);
 	    break;
 	}
+
     }
 
     unregister_cipher(cD);
@@ -1131,9 +1133,9 @@ const unsigned char* _charFromHex(const char* str)
 }
 
 /*
-- (void)setInputFormat:(NBSCrypto_CIPHER_IO)INPUTFORMAT{
-    _inputformat=INPUTFORMAT;
-}
+ - (void)setInputFormat:(NBSCrypto_CIPHER_IO)INPUTFORMAT{
+ _inputformat=INPUTFORMAT;
+ }
  */
 
 - (void)setOutputFormat:(NBSCrypto_CIPHER_IO)OUTPUTFORMAT{
