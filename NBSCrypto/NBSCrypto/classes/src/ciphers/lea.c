@@ -12,7 +12,7 @@
 const struct cipher_descriptor lea_desc =
 {
     "lea",
-    15,
+    16,
     16, 32, 16, 24,
     &lea_setup,
     &lea_encrypt,
