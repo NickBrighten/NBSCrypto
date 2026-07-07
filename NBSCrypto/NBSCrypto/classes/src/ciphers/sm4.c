@@ -12,7 +12,7 @@
 const struct cipher_descriptor sm4_desc =
 {
     "sm4",
-    30,
+    34,
     16, 16, 16, 16,
     &sm4_setup,
     &sm4_encrypt,
