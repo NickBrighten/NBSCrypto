@@ -11,7 +11,7 @@
 const struct cipher_descriptor safer_k64_desc =
 {
     "safer-k64",
-    22,
+    26,
     8, 8, 8, 6,
     &safer_k64_setup,
     &safer_encrypt,
@@ -22,7 +22,7 @@ const struct cipher_descriptor safer_k64_desc =
 const struct cipher_descriptor safer_k128_desc =
 {
     "safer-k128",
-    23,
+    27,
     16, 16, 8, 10,
     &safer_k128_setup,
     &safer_encrypt,
@@ -33,7 +33,7 @@ const struct cipher_descriptor safer_k128_desc =
 const struct cipher_descriptor safer_sk64_desc =
 {
     "safer-sk64",
-    24,
+    28,
     8, 8, 8, 8,
     &safer_sk64_setup,
     &safer_encrypt,
@@ -44,7 +44,7 @@ const struct cipher_descriptor safer_sk64_desc =
 const struct cipher_descriptor safer_sk128_desc =
 {
     "safer-sk128",
-    25,
+    29,
     16, 16, 8, 10,
     &safer_sk128_setup,
     &safer_encrypt,
@@ -55,7 +55,7 @@ const struct cipher_descriptor safer_sk128_desc =
 const struct cipher_descriptor saferp_desc =
 {
     "saferp",
-    26,
+    30,
     16, 32, 16, 8,
     &saferp_setup,
     &saferp_encrypt,
@@ -152,7 +152,7 @@ const struct cipher_descriptor saferp_desc =
 	b2[13] = b[ 7];	\
 	b2[14] = b[ 4];	\
 	b2[15] = b[ 3];	\
-    } while (0)
+} while (0)
 
 #define SP_iSHUF(b, b2)	\
     do {		\
@@ -172,7 +172,7 @@ const struct cipher_descriptor saferp_desc =
 	b2[13] = b[11];	\
 	b2[14] = b[10];	\
 	b2[15] = b[ 3];	\
-    } while (0)
+} while (0)
 
 #define SP_LT(b, b2)	\
     do {		\
@@ -194,7 +194,7 @@ const struct cipher_descriptor saferp_desc =
 	SP_iPHT(b);	\
 	SP_iSHUF(b, b2);\
 	SP_iPHT(b2);	\
-    } while (0)
+} while (0)
 
 
 static const unsigned char safer_ebox[256] = {

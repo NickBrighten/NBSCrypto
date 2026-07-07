@@ -11,7 +11,7 @@
 const struct cipher_descriptor noekeon_desc =
 {
     "noekeon",
-    17,
+    20,
     16, 16, 16, 16,
     &noekeon_setup,
     &noekeon_encrypt,
@@ -74,12 +74,12 @@ const struct cipher_descriptor noekeon_desc =
 #define STORE32(x, y)										\
     do {(y)[0] = (unsigned char)(((x)>>24)&255); (y)[1] = (unsigned char)(((x)>>16)&255);	\
 	(y)[2] = (unsigned char)(((x)>>8)&255); (y)[3] = (unsigned char)((x)&255);		\
-    } while(0)
+} while(0)
 
 #define LOAD32(x, y)										\
     do {x = ((unsigned)((y)[0] & 255)<<24) | ((unsigned)((y)[1] & 255)<<16) |			\
-	((unsigned)((y)[2] & 255)<<8)  | ((unsigned)((y)[3] & 255));				\
-    } while(0)
+	    ((unsigned)((y)[2] & 255)<<8)  | ((unsigned)((y)[3] & 255));			\
+} while(0)
 
 #define ROLc(x, y) ((((unsigned)(x)<<(unsigned)((y)&31)) | (((unsigned)(x)&0xFFFFFFFF)>>(unsigned)((32-((y)&31))&31))) & 0xFFFFFFFF)
 #define RORc(x, y) (((((unsigned)(x)&0xFFFFFFFF)>>(unsigned)((y)&31)) | ((unsigned)(x)<<(unsigned)((32-((y)&31))&31))) & 0xFFFFFFFF)
