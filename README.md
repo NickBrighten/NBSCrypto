@@ -98,6 +98,9 @@ Please have a look [here](https://help.github.com/articles/approving-a-pull-requ
 - __KHAZAD__
     - BIT-LENGTH: `128`
     - MODES: `CBC` `CFB` `CTR` `EAX` `ECB` `F8` `OCB` `OFB`
+- __KUZNYECHIK__
+    - BIT-LENGTH: `256`
+    - MODES: `CBC` `CCM` `CFB` `CTR` `EAX` `ECB` `F8` `GCM` `LRW` `OCB` `OCB3` `OFB` `XTS`
 - __LEA__
     - BIT-LENGTH: `128` `192` `256`
     - MODES: `CBC` `CCM` `CFB` `CTR` `EAX` `ECB` `F8` `GCM` `LRW` `OCB` `OCB3` `OFB` `XTS`
@@ -262,6 +265,8 @@ NSLog("OUTPUT MAC: %@", MAChash);
     - BIT-LENGTH: `128`
 - __MD6__
     - BIT-LENGTH: `128` `160` `192` `224` `256` `384` `512`
+- __MESHHASH2__
+    - BIT-LENGTH: `128` `160` `192` `224` `256` `384` `512` `1024` `2048`
 - __MURMUR3A__
     - BIT-LENGTH: `32`
 - __MURMUR3C / MURMUR3F__
