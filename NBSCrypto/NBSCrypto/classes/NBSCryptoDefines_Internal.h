@@ -7,6 +7,7 @@
 #define NBSCryptoDefines_Internal_h
 
 
+//IN BITS			//IN BYTES
 #define _BIT_LENGTH_8		  1
 #define _BIT_LENGTH_16		  2
 #define _BIT_LENGTH_24		  3
@@ -32,6 +33,7 @@
 #define _BIT_LENGTH_768		 96
 #define _BIT_LENGTH_1024	128
 #define _BIT_LENGTH_1152	144
+#define _BIT_LENGTH_2040	255
 #define _BIT_LENGTH_2048	256
 
 
