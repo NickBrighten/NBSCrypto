@@ -11,7 +11,7 @@
 const struct hash_descriptor murmur3a_desc =
 {
     "murmur3a",
-    178,
+    10341032,
     4,
     4,
     &murmur3a_init,
@@ -23,7 +23,7 @@ const struct hash_descriptor murmur3a_desc =
 const struct hash_descriptor murmur3c_desc =
 {
     "murmur3c",
-    179,
+    10342128,
     16,
     16,
     &murmur3c_init,
@@ -35,7 +35,7 @@ const struct hash_descriptor murmur3c_desc =
 const struct hash_descriptor murmur3f_desc =
 {
     "murmur3f",
-    180,
+    10343128,
     16,
     16,
     &murmur3f_init,
@@ -361,18 +361,18 @@ static inline void _murmur128x86_result(const unsigned ph[4], const unsigned pca
 	default:
 	    goto skiprot;
     }
-    finrot_k4321:
-	k4 *= kC4_64; k4  = ROTL32(k4,18); k4 *= kC1_64; h4 ^= k4;
-	k3 = pcarry[2];
-    finrot_k321:
-	k3 *= kC3_64; k3  = ROTL32(k3,17); k3 *= kC4_64; h3 ^= k3;
-	k2 = pcarry[1];
-    finrot_k21:
-	k2 *= kC2_64; k2  = ROTL32(k2,16); k2 *= kC3_64; h2 ^= k2;
-	k1 = pcarry[0];
-    finrot_k1:
-	k1 *= kC1_64; k1  = ROTL32(k1,15); k1 *= kC2_64; h1 ^= k1;
-    skiprot:
+finrot_k4321:
+    k4 *= kC4_64; k4  = ROTL32(k4,18); k4 *= kC1_64; h4 ^= k4;
+    k3 = pcarry[2];
+finrot_k321:
+    k3 *= kC3_64; k3  = ROTL32(k3,17); k3 *= kC4_64; h3 ^= k3;
+    k2 = pcarry[1];
+finrot_k21:
+    k2 *= kC2_64; k2  = ROTL32(k2,16); k2 *= kC3_64; h2 ^= k2;
+    k1 = pcarry[0];
+finrot_k1:
+    k1 *= kC1_64; k1  = ROTL32(k1,15); k1 *= kC2_64; h1 ^= k1;
+skiprot:
 
     h1 ^= total_length; h2 ^= total_length;
     h3 ^= total_length; h4 ^= total_length;

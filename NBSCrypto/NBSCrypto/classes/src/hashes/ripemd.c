@@ -11,7 +11,7 @@
 const struct hash_descriptor ripemd_128_desc =
 {
     "ripemd-128",
-    181,
+    10350128,
     16,
     64,
     &ripemd_128_init,
@@ -23,7 +23,7 @@ const struct hash_descriptor ripemd_128_desc =
 const struct hash_descriptor ripemd_160_desc =
 {
     "ripemd-160",
-    182,
+    10350160,
     20,
     64,
     &ripemd_160_init,
@@ -35,7 +35,7 @@ const struct hash_descriptor ripemd_160_desc =
 const struct hash_descriptor ripemd_256_desc =
 {
     "ripemd-256",
-    183,
+    10350256,
     32,
     64,
     &ripemd_256_init,
@@ -47,7 +47,7 @@ const struct hash_descriptor ripemd_256_desc =
 const struct hash_descriptor ripemd_320_desc =
 {
     "ripemd-320",
-    184,
+    10350320,
     40,
     64,
     &ripemd_320_init,
@@ -152,19 +152,19 @@ const struct hash_descriptor ripemd_320_desc =
     do {											\
 	(y)[3] = (unsigned char)(((x)>>24)&255); (y)[2] = (unsigned char)(((x)>>16)&255);	\
 	(y)[1] = (unsigned char)(((x)>> 8)&255); (y)[0] = (unsigned char)((x)&255);		\
-    } while(0)
+} while(0)
 
 #define LOAD32L(x, y)										\
     do {x = ((unsigned)((y)[3] & 255)<<24) | ((unsigned)((y)[2] & 255)<<16) |			\
 	    ((unsigned)((y)[1] & 255)<< 8) | ((unsigned)((y)[0] & 255));			\
-    } while(0)
+} while(0)
 
 #define STORE64L(x,y)										\
     do {(y)[7] = (unsigned char)(((x)>>56)&255); (y)[6] = (unsigned char)(((x)>>48)&255);	\
 	(y)[5] = (unsigned char)(((x)>>40)&255); (y)[4] = (unsigned char)(((x)>>32)&255);	\
 	(y)[3] = (unsigned char)(((x)>>24)&255); (y)[2] = (unsigned char)(((x)>>16)&255);	\
 	(y)[1] = (unsigned char)(((x)>> 8)&255); (y)[0] = (unsigned char)((x)&255);		\
-    } while(0)
+} while(0)
 
 #define ROLc(x, y) ((((unsigned)(x)<<(unsigned)((y)&31)) | (((unsigned)(x)&0xFFFFFFFF)>>(unsigned)((32-((y)&31))&31))) & 0xFFFFFFFF)
 
