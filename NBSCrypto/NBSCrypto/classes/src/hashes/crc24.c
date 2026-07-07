@@ -11,7 +11,7 @@
 const struct hash_descriptor crc24_BLE_desc =
 {
     "crc24-BLE",
-    74,
+    10100001,
     3,
     3,
     &crc24_BLE_init,
@@ -23,7 +23,7 @@ const struct hash_descriptor crc24_BLE_desc =
 const struct hash_descriptor crc24_FLEXRAY_A_desc =
 {
     "crc24-FLEXRAY-A",
-    75,
+    10100002,
     3,
     3,
     &crc24_FLEXRAY_A_init,
@@ -35,7 +35,7 @@ const struct hash_descriptor crc24_FLEXRAY_A_desc =
 const struct hash_descriptor crc24_FLEXRAY_B_desc =
 {
     "crc24-FLEXRAY-B",
-    76,
+    10100003,
     3,
     3,
     &crc24_FLEXRAY_B_init,
@@ -47,7 +47,7 @@ const struct hash_descriptor crc24_FLEXRAY_B_desc =
 const struct hash_descriptor crc24_INTERLAKEN_desc =
 {
     "crc24-INTERLAKEN",
-    77,
+    10100004,
     3,
     3,
     &crc24_INTERLAKEN_init,
@@ -59,7 +59,7 @@ const struct hash_descriptor crc24_INTERLAKEN_desc =
 const struct hash_descriptor crc24_LTE_A_desc =
 {
     "crc24-LTE-A",
-    78,
+    10100005,
     3,
     3,
     &crc24_LTE_A_init,
@@ -71,7 +71,7 @@ const struct hash_descriptor crc24_LTE_A_desc =
 const struct hash_descriptor crc24_LTE_B_desc =
 {
     "crc24-LTE-B",
-    79,
+    10100006,
     3,
     3,
     &crc24_LTE_B_init,
@@ -83,7 +83,7 @@ const struct hash_descriptor crc24_LTE_B_desc =
 const struct hash_descriptor crc24_OPENPGP_desc =
 {
     "crc24-OPENPGP",
-    80,
+    10100007,
     3,
     3,
     &crc24_OPENPGP_init,
@@ -95,7 +95,7 @@ const struct hash_descriptor crc24_OPENPGP_desc =
 const struct hash_descriptor crc24_OS_9_desc =
 {
     "crc24-OS-9",
-    81,
+    10100008,
     3,
     3,
     &crc24_OS_9_init,

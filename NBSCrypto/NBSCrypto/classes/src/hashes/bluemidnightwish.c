@@ -12,7 +12,7 @@
 const struct hash_descriptor bluemidnightwish_224_desc =
 {
     "bluemidnightwish-224",
-    15,
+    10060224,
     28,
     64,
     &bluemidnightwish_224_init,
@@ -24,7 +24,7 @@ const struct hash_descriptor bluemidnightwish_224_desc =
 const struct hash_descriptor bluemidnightwish_256_desc =
 {
     "bluemidnightwish-256",
-    16,
+    10060256,
     32,
     64,
     &bluemidnightwish_256_init,
@@ -36,7 +36,7 @@ const struct hash_descriptor bluemidnightwish_256_desc =
 const struct hash_descriptor bluemidnightwish_384_desc =
 {
     "bluemidnightwish-384",
-    17,
+    10060384,
     48,
     64,
     &bluemidnightwish_384_init,
@@ -48,7 +48,7 @@ const struct hash_descriptor bluemidnightwish_384_desc =
 const struct hash_descriptor bluemidnightwish_512_desc =
 {
     "bluemidnightwish-512",
-    18,
+    10060512,
     64,
     64,
     &bluemidnightwish_512_init,
