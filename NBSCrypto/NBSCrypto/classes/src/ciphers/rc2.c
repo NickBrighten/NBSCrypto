@@ -48,7 +48,7 @@ static const unsigned char permute[256] = {
 
 
 #pragma mark - INLINE
-static inline int _rc2_init(const unsigned char *key, int keylen, int bits, int num_rounds, cipher_state *cs)
+static inline int _rc2_setup(const unsigned char *key, int keylen, int bits, int num_rounds, cipher_state *cs)
 {
     int i;
     unsigned *xkey = cs->rc2.xkey, T8, TM;
@@ -96,7 +96,7 @@ static inline int _rc2_init(const unsigned char *key, int keylen, int bits, int 
 #pragma mark - FUNCTIONS
 int rc2_setup(const unsigned char *key, int keylen, int num_rounds, cipher_state *cs)
 {
-    return _rc2_init(key, keylen, keylen * 8, num_rounds, cs);
+    return _rc2_setup(key, keylen, keylen * 8, num_rounds, cs);
 }
 
 int rc2_encrypt( const unsigned char *pt, unsigned char *ct, const cipher_state *cs)
