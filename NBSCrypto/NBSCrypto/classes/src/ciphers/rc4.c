@@ -24,7 +24,7 @@ const struct cipher_descriptor rc4_desc =
 
 
 #pragma mark - INLINE
-static inline int _rc4_crypt(const unsigned char *in, unsigned char *out, unsigned long len, cipher_state *cs)
+static inline int _rc4_endecrypt(const unsigned char *in, unsigned char *out, unsigned long len, cipher_state *cs)
 {
     unsigned char x, y, *s, tmp;
 
@@ -76,12 +76,12 @@ int rc4_setup(const unsigned char *key, int keylen, int num_rounds, cipher_state
 
 int rc4_encrypt(const unsigned char *pt, unsigned char *ct, unsigned long len, cipher_state *cs)
 {
-    return _rc4_crypt(pt, ct, len, cs);
+    return _rc4_endecrypt(pt, ct, len, cs);
 }
 
 int rc4_decrypt(const unsigned char *ct, unsigned char *pt, unsigned long len, cipher_state *cs)
 {
-    return _rc4_crypt(ct, pt, len, cs);
+    return _rc4_endecrypt(ct, pt, len, cs);
 }
 
 void rc4_done(cipher_state *cs)
