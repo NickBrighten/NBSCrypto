@@ -11,7 +11,7 @@
 const struct cipher_descriptor seed_desc =
 {
     "seed",
-    31,
+    32,
     16, 16, 16, 16,
     &seed_setup,
     &seed_encrypt,

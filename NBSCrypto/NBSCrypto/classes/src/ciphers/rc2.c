@@ -12,7 +12,7 @@
 const struct cipher_descriptor rc2_desc =
 {
     "rc2",
-    23,
+    24,
     1, 128, 8, 16,
     &rc2_setup,
     &rc2_encrypt,

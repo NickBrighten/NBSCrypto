@@ -11,7 +11,7 @@
 const struct cipher_descriptor serpent_desc =
 {
     "serpent",
-    32,
+    33,
     16, 32, 16, 32,
     &serpent_setup,
     &serpent_encrypt,

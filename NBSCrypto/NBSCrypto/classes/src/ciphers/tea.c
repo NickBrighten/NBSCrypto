@@ -11,7 +11,7 @@
 const struct cipher_descriptor tea_desc =
 {
     "tea",
-    35,
+    38,
     16, 16, 8, 32,
     &tea_setup,
     &tea_encrypt,
