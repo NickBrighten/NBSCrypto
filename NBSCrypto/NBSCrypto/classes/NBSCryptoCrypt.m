@@ -50,6 +50,7 @@ NSUInteger mode;
 		case _CIPHER_MARS:		{r=&mars_desc;break;}
 		case _CIPHER_NOEKEON:		{r=&noekeon_desc;break;}
 		case _CIPHER_PRESENT:		{r=&present_desc;break;}
+		case _CIPHER_RABBIT:		{r=&rabbit_desc;break;}
 		case _CIPHER_RC2:		{r=&rc2_desc;break;}
 		case _CIPHER_RC4:		{r=&rc4_desc;break;}
 		case _CIPHER_RC6:		{r=&rc6_desc;break;}
@@ -62,6 +63,8 @@ NSUInteger mode;
 		case _CIPHER_SERPENT:		{r=&serpent_desc;break;}
 		case _CIPHER_SKIPJACK:		{r=&skipjack_desc;break;}
 		case _CIPHER_SM4:		{r=&sm4_desc;break;}
+		case _CIPHER_SOBER128:		{r=&sober128_desc;break;}
+		case _CIPHER_SOSEMANUK:		{r=&sosemanuk_desc;break;}
 		case _CIPHER_TEA:		{r=&tea_desc;break;}
 		case _CIPHER_TWOFISH:		{r=&twofish_desc;break;}
 		case _CIPHER_XTEA:		{r=&xtea_desc;break;}
@@ -1049,6 +1052,44 @@ const unsigned char* _charFromHex(const char* str)
 
 	    break;
 	}
+#pragma mark RABBIT
+	case _CIPHER_MODE_RABBIT:{
+	    cipher_state m;
+
+	    rabbit_setup((const unsigned char *)[sKEY UTF8String], (int)sKEY.length, 0, &m);
+	    rabbit_setiv((const unsigned char *)[sIV UTF8String], (unsigned long)sIV.length, &m);
+
+	    if (eod) {
+		unsigned long eTL=dTE.length;
+		unsigned char eT[eTL];
+		base64_decode(dTE.bytes, dTE.length, eT, &eTL);
+
+		unsigned long dTL=eTL;
+		unsigned char dT[dTL];
+		rabbit_decrypt(eT, dT, dTL, &m);
+
+		r = [self _stringFromChar:dT withLength:dTL delHStr:false];
+	    }else{
+		unsigned long eTL=dTE.length;
+		unsigned char eT[eTL];
+		rabbit_encrypt(dTE.bytes, eT, eTL, &m);
+
+		switch (_outputformat) {
+		    case 1:{ //BASE64
+			r = [self _base64FromChar:eT withLength:eTL];
+			break;
+		    }
+		    case 2:{ //HEX
+			r = [self _hexFromChar:eT withLength:eTL];
+			break;
+		    }
+		}
+
+	    }
+
+	    rc4_done(&m);
+	    break;
+	}
 #pragma mark RC4
 	case _CIPHER_MODE_RC4:{
 	    cipher_state m;
@@ -1084,6 +1125,82 @@ const unsigned char* _charFromHex(const char* str)
 	    }
 
 	    rc4_done(&m);
+	    break;
+	}
+#pragma mark SOBER128
+	case _CIPHER_MODE_SOBER128:{
+	    cipher_state m;
+
+	    sober128_setup((const unsigned char *)[sKEY UTF8String], (int)sKEY.length, 0, &m);
+	    sober128_setiv((const unsigned char *)[sIV UTF8String], (unsigned long)sIV.length, &m);
+
+	    if (eod) {
+		unsigned long eTL=dTE.length;
+		unsigned char eT[eTL];
+		base64_decode(dTE.bytes, dTE.length, eT, &eTL);
+
+		unsigned long dTL=eTL;
+		unsigned char dT[dTL];
+		sober128_decrypt(eT, dT, dTL, &m);
+
+		r = [self _stringFromChar:dT withLength:dTL delHStr:false];
+	    }else{
+		unsigned long eTL=dTE.length;
+		unsigned char eT[eTL];
+		sober128_encrypt(dTE.bytes, eT, eTL, &m);
+
+		switch (_outputformat) {
+		    case 1:{ //BASE64
+			r = [self _base64FromChar:eT withLength:eTL];
+			break;
+		    }
+		    case 2:{ //HEX
+			r = [self _hexFromChar:eT withLength:eTL];
+			break;
+		    }
+		}
+
+	    }
+
+	    sober128_done(&m);
+	    break;
+	}
+#pragma mark SOSEMANUK
+	case _CIPHER_MODE_SOSEMANUK:{
+	    cipher_state m;
+
+	    sosemanuk_setup((const unsigned char *)[sKEY UTF8String], (int)sKEY.length, 0, &m);
+	    sosemanuk_setiv((const unsigned char *)[sIV UTF8String], (unsigned long)sIV.length, &m);
+
+	    if (eod) {
+		unsigned long eTL=dTE.length;
+		unsigned char eT[eTL];
+		base64_decode(dTE.bytes, dTE.length, eT, &eTL);
+
+		unsigned long dTL=eTL;
+		unsigned char dT[dTL];
+		sosemanuk_decrypt(eT, dT, dTL, &m);
+
+		r = [self _stringFromChar:dT withLength:dTL delHStr:false];
+	    }else{
+		unsigned long eTL=dTE.length;
+		unsigned char eT[eTL];
+		sosemanuk_encrypt(dTE.bytes, eT, eTL, &m);
+
+		switch (_outputformat) {
+		    case 1:{ //BASE64
+			r = [self _base64FromChar:eT withLength:eTL];
+			break;
+		    }
+		    case 2:{ //HEX
+			r = [self _hexFromChar:eT withLength:eTL];
+			break;
+		    }
+		}
+
+	    }
+
+	    sosemanuk_done(&m);
 	    break;
 	}
 
