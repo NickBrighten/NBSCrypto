@@ -92,6 +92,14 @@ struct present_state{
     unsigned long long ks[32];
 };
 
+typedef struct{unsigned x[8], c[8], carry;}rabbit_ctx;
+struct rabbit_state{
+    unsigned unused;
+    unsigned char block[16];
+    rabbit_ctx master_ctx;
+    rabbit_ctx work_ctx;
+};
+
 struct rc2_state{
     unsigned xkey[64];
 };
@@ -133,6 +141,19 @@ struct sm4_state{
     unsigned long keylen;
 };
 
+struct sober128_state{
+    int nbuf;
+    unsigned R[17], initR[17], konst, sbuf;
+};
+
+struct sosemanuk_state{
+    unsigned kc[100];
+    unsigned ptr;
+    unsigned r1, r2;
+    unsigned s00, s01, s02, s03, s04, s05, s06, s07, s08, s09;
+    unsigned char buf[80];
+};
+
 struct tea_state{
     unsigned long k[4];
 };
@@ -170,6 +191,7 @@ typedef union cipher_state{
     struct mars_state		mars;
     struct noekeon_state	noekeon;
     struct present_state	present;
+    struct rabbit_state		rabbit;
     struct rc2_state		rc2;
     struct rc4_state		rc4;
     struct rc6_state		rc6;
@@ -179,6 +201,8 @@ typedef union cipher_state{
     struct serpent_state	serpent;
     struct skipjack_state	skipjack;
     struct sm4_state		sm4;
+    struct sober128_state	sober128;
+    struct sosemanuk_state	sosemanuk;
     struct tea_state		tea;
     struct twofish_state	twofish;
     struct xtea_state		xtea;
@@ -377,6 +401,15 @@ void present_done(cipher_state *cs);
 extern const struct cipher_descriptor present_desc;
 
 
+#pragma mark RABBIT
+int  rabbit_setup(const unsigned char *key, int keylen, int num_rounds, cipher_state *cs);
+int  rabbit_setiv(const unsigned char *iv, unsigned long ivlen, cipher_state* cs);
+int  rabbit_encrypt(const unsigned char *pt, unsigned char *ct, unsigned long len, cipher_state *cs);
+int  rabbit_decrypt(const unsigned char *ct, unsigned char *pt, unsigned long len, cipher_state *cs);
+void rabbit_done(cipher_state *cs);
+extern const struct cipher_descriptor rabbit_desc;
+
+
 #pragma mark RC2
 int  rc2_setup(const unsigned char *key, int keylen, int num_rounds, cipher_state *cs);
 int  rc2_encrypt(const unsigned char *pt, unsigned char *ct, const cipher_state *cs);
@@ -450,6 +483,24 @@ int  sm4_encrypt(const unsigned char *pt, unsigned char *ct, const cipher_state 
 int  sm4_decrypt(const unsigned char *ct, unsigned char *pt, const cipher_state *cs);
 void sm4_done(cipher_state *cs);
 extern const struct cipher_descriptor sm4_desc;
+
+
+#pragma mark SOBER128
+int  sober128_setup(const unsigned char *key, unsigned long keylen, int num_rounds, cipher_state *cs);
+int  sober128_setiv(const unsigned char *iv, unsigned long ivlen, cipher_state* cs);
+int  sober128_encrypt(const unsigned char *pt, unsigned char *ct, unsigned long len, cipher_state *cs);
+int  sober128_decrypt(const unsigned char *ct, unsigned char *pt, unsigned long len, cipher_state *cs);
+void sober128_done(cipher_state *cs);
+extern const struct cipher_descriptor sober128_desc;
+
+
+#pragma mark SOSEMANUK
+int  sosemanuk_setup(const unsigned char *key, unsigned long keylen, int num_rounds, cipher_state *cs);
+int  sosemanuk_setiv(const unsigned char *iv, unsigned long ivlen, cipher_state* cs);
+int  sosemanuk_encrypt(const unsigned char *pt, unsigned char *ct, unsigned long len, cipher_state *cs);
+int  sosemanuk_decrypt(const unsigned char *ct, unsigned char *pt, unsigned long len, cipher_state *cs);
+void sosemanuk_done(cipher_state *cs);
+extern const struct cipher_descriptor sosemanuk_desc;
 
 
 #pragma mark TEA
