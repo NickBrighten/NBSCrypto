@@ -11,6 +11,18 @@
 		1D0A41072FF43408001320C2 /* skein.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D0A41052FF43408001320C2 /* skein.c */; };
 		1D0A41082FF43408001320C2 /* skein.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D0A41052FF43408001320C2 /* skein.c */; };
 		1D0A41092FF43408001320C2 /* skein.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D0A41052FF43408001320C2 /* skein.c */; };
+		1D0B86163002B23600F7AD70 /* rabbit.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D0B86153002B23600F7AD70 /* rabbit.c */; };
+		1D0B86173002B23600F7AD70 /* rabbit.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D0B86153002B23600F7AD70 /* rabbit.c */; };
+		1D0B86183002B23600F7AD70 /* rabbit.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D0B86153002B23600F7AD70 /* rabbit.c */; };
+		1D0B86193002B23600F7AD70 /* rabbit.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D0B86153002B23600F7AD70 /* rabbit.c */; };
+		1D0B861B3002B24400F7AD70 /* sober128.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D0B861A3002B24400F7AD70 /* sober128.c */; };
+		1D0B861C3002B24400F7AD70 /* sober128.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D0B861A3002B24400F7AD70 /* sober128.c */; };
+		1D0B861D3002B24400F7AD70 /* sober128.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D0B861A3002B24400F7AD70 /* sober128.c */; };
+		1D0B861E3002B24400F7AD70 /* sober128.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D0B861A3002B24400F7AD70 /* sober128.c */; };
+		1D0B86203002B25000F7AD70 /* sosemanuk.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D0B861F3002B25000F7AD70 /* sosemanuk.c */; };
+		1D0B86213002B25000F7AD70 /* sosemanuk.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D0B861F3002B25000F7AD70 /* sosemanuk.c */; };
+		1D0B86223002B25000F7AD70 /* sosemanuk.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D0B861F3002B25000F7AD70 /* sosemanuk.c */; };
+		1D0B86233002B25000F7AD70 /* sosemanuk.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D0B861F3002B25000F7AD70 /* sosemanuk.c */; };
 		1D0E78BF2FC60F91005EE298 /* simd.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D0E78BE2FC60F91005EE298 /* simd.c */; };
 		1D0E78C02FC60F91005EE298 /* simd.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D0E78BE2FC60F91005EE298 /* simd.c */; };
 		1D0E78C12FC60F91005EE298 /* simd.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D0E78BE2FC60F91005EE298 /* simd.c */; };
@@ -446,6 +458,9 @@
 
 /* Begin PBXFileReference section */
 		1D0A41052FF43408001320C2 /* skein.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = skein.c; sourceTree = "<group>"; tabWidth = 8; };
+		1D0B86153002B23600F7AD70 /* rabbit.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = rabbit.c; sourceTree = "<group>"; tabWidth = 8; };
+		1D0B861A3002B24400F7AD70 /* sober128.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sober128.c; sourceTree = "<group>"; tabWidth = 8; };
+		1D0B861F3002B25000F7AD70 /* sosemanuk.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sosemanuk.c; sourceTree = "<group>"; tabWidth = 8; };
 		1D0E78BE2FC60F91005EE298 /* simd.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = simd.c; sourceTree = "<group>"; tabWidth = 8; };
 		1D2E69052FFD54F200E6A753 /* meshhash2.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = meshhash2.c; sourceTree = "<group>"; tabWidth = 8; };
 		1D2E690A2FFD724B00E6A753 /* kuznyechik.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = kuznyechik.c; sourceTree = "<group>"; tabWidth = 8; };
@@ -787,6 +802,7 @@
 				1D419E5D2FC06D47003A7B83 /* mars.c */,
 				1D419E532FC06D47003A7B83 /* noekeon.c */,
 				1D419E5C2FC06D47003A7B83 /* present.c */,
+				1D0B86153002B23600F7AD70 /* rabbit.c */,
 				1D419E5B2FC06D47003A7B83 /* rc2.c */,
 				1D419E552FC06D47003A7B83 /* rc4.c */,
 				1D419E562FC06D47003A7B83 /* rc6.c */,
@@ -795,6 +811,8 @@
 				1D419E652FC06D48003A7B83 /* serpent.c */,
 				1D419E582FC06D47003A7B83 /* skipjack.c */,
 				1D419E592FC06D47003A7B83 /* sm4.c */,
+				1D0B861A3002B24400F7AD70 /* sober128.c */,
+				1D0B861F3002B25000F7AD70 /* sosemanuk.c */,
 				1D419E542FC06D47003A7B83 /* tea.c */,
 				1D419E6C2FC06D48003A7B83 /* twofish.c */,
 				1D419E662FC06D48003A7B83 /* xtea.c */,
@@ -1045,10 +1063,12 @@
 				1D419EB12FC06D49003A7B83 /* idea.c in Sources */,
 				1D419EC52FC06D4A003A7B83 /* kasumi.c in Sources */,
 				1D419EA52FC06D49003A7B83 /* khazad.c in Sources */,
+				1D2E690B2FFD724B00E6A753 /* kuznyechik.c in Sources */,
 				1D419E7D2FC06D49003A7B83 /* lea.c in Sources */,
 				1D419E952FC06D49003A7B83 /* mars.c in Sources */,
 				1D419E6D2FC06D48003A7B83 /* noekeon.c in Sources */,
 				1D419E912FC06D49003A7B83 /* present.c in Sources */,
+				1D0B86163002B23600F7AD70 /* rabbit.c in Sources */,
 				1D419E8D2FC06D49003A7B83 /* rc2.c in Sources */,
 				1D419E752FC06D49003A7B83 /* rc4.c in Sources */,
 				1D419E792FC06D49003A7B83 /* rc6.c in Sources */,
@@ -1057,6 +1077,8 @@
 				1D419EB52FC06D49003A7B83 /* serpent.c in Sources */,
 				1D419E812FC06D49003A7B83 /* skipjack.c in Sources */,
 				1D419E852FC06D49003A7B83 /* sm4.c in Sources */,
+				1D0B861B3002B24400F7AD70 /* sober128.c in Sources */,
+				1D0B86203002B25000F7AD70 /* sosemanuk.c in Sources */,
 				1D419E712FC06D49003A7B83 /* tea.c in Sources */,
 				1D419ED12FC06D4A003A7B83 /* twofish.c in Sources */,
 				1D419EB92FC06D49003A7B83 /* xtea.c in Sources */,
@@ -1085,7 +1107,6 @@
 				1D419DCA2FC06C96003A7B83 /* lane.c in Sources */,
 				1D419E0E2FC06C97003A7B83 /* lesamnta.c in Sources */,
 				1D419E0A2FC06C97003A7B83 /* luffa.c in Sources */,
-				1D2E690B2FFD724B00E6A753 /* kuznyechik.c in Sources */,
 				1D419DEE2FC06C97003A7B83 /* md2.c in Sources */,
 				1D419DFE2FC06C97003A7B83 /* md4.c in Sources */,
 				1D419E422FC06C98003A7B83 /* md5.c in Sources */,
@@ -1153,10 +1174,12 @@
 				1D419EB22FC06D49003A7B83 /* idea.c in Sources */,
 				1D419EC62FC06D4A003A7B83 /* kasumi.c in Sources */,
 				1D419EA62FC06D49003A7B83 /* khazad.c in Sources */,
+				1D2E690C2FFD724B00E6A753 /* kuznyechik.c in Sources */,
 				1D419E7E2FC06D49003A7B83 /* lea.c in Sources */,
 				1D419E962FC06D49003A7B83 /* mars.c in Sources */,
 				1D419E6E2FC06D49003A7B83 /* noekeon.c in Sources */,
 				1D419E922FC06D49003A7B83 /* present.c in Sources */,
+				1D0B86173002B23600F7AD70 /* rabbit.c in Sources */,
 				1D419E8E2FC06D49003A7B83 /* rc2.c in Sources */,
 				1D419E762FC06D49003A7B83 /* rc4.c in Sources */,
 				1D419E7A2FC06D49003A7B83 /* rc6.c in Sources */,
@@ -1165,6 +1188,8 @@
 				1D419EB62FC06D49003A7B83 /* serpent.c in Sources */,
 				1D419E822FC06D49003A7B83 /* skipjack.c in Sources */,
 				1D419E862FC06D49003A7B83 /* sm4.c in Sources */,
+				1D0B861C3002B24400F7AD70 /* sober128.c in Sources */,
+				1D0B86213002B25000F7AD70 /* sosemanuk.c in Sources */,
 				1D419E722FC06D49003A7B83 /* tea.c in Sources */,
 				1D419ED22FC06D4A003A7B83 /* twofish.c in Sources */,
 				1D419EBA2FC06D49003A7B83 /* xtea.c in Sources */,
@@ -1193,7 +1218,6 @@
 				1D419DCB2FC06C96003A7B83 /* lane.c in Sources */,
 				1D419E0F2FC06C97003A7B83 /* lesamnta.c in Sources */,
 				1D419E0B2FC06C97003A7B83 /* luffa.c in Sources */,
-				1D2E690C2FFD724B00E6A753 /* kuznyechik.c in Sources */,
 				1D419DEF2FC06C97003A7B83 /* md2.c in Sources */,
 				1D419DFF2FC06C97003A7B83 /* md4.c in Sources */,
 				1D419E432FC06C98003A7B83 /* md5.c in Sources */,
@@ -1261,10 +1285,12 @@
 				1D419EB32FC06D49003A7B83 /* idea.c in Sources */,
 				1D419EC72FC06D4A003A7B83 /* kasumi.c in Sources */,
 				1D419EA72FC06D49003A7B83 /* khazad.c in Sources */,
+				1D2E690D2FFD724B00E6A753 /* kuznyechik.c in Sources */,
 				1D419E7F2FC06D49003A7B83 /* lea.c in Sources */,
 				1D419E972FC06D49003A7B83 /* mars.c in Sources */,
 				1D419E6F2FC06D49003A7B83 /* noekeon.c in Sources */,
 				1D419E932FC06D49003A7B83 /* present.c in Sources */,
+				1D0B86183002B23600F7AD70 /* rabbit.c in Sources */,
 				1D419E8F2FC06D49003A7B83 /* rc2.c in Sources */,
 				1D419E772FC06D49003A7B83 /* rc4.c in Sources */,
 				1D419E7B2FC06D49003A7B83 /* rc6.c in Sources */,
@@ -1273,6 +1299,8 @@
 				1D419EB72FC06D49003A7B83 /* serpent.c in Sources */,
 				1D419E832FC06D49003A7B83 /* skipjack.c in Sources */,
 				1D419E872FC06D49003A7B83 /* sm4.c in Sources */,
+				1D0B861D3002B24400F7AD70 /* sober128.c in Sources */,
+				1D0B86223002B25000F7AD70 /* sosemanuk.c in Sources */,
 				1D419E732FC06D49003A7B83 /* tea.c in Sources */,
 				1D419ED32FC06D4A003A7B83 /* twofish.c in Sources */,
 				1D419EBB2FC06D49003A7B83 /* xtea.c in Sources */,
@@ -1301,7 +1329,6 @@
 				1D419DCC2FC06C96003A7B83 /* lane.c in Sources */,
 				1D419E102FC06C97003A7B83 /* lesamnta.c in Sources */,
 				1D419E0C2FC06C97003A7B83 /* luffa.c in Sources */,
-				1D2E690D2FFD724B00E6A753 /* kuznyechik.c in Sources */,
 				1D419DF02FC06C97003A7B83 /* md2.c in Sources */,
 				1D419E002FC06C97003A7B83 /* md4.c in Sources */,
 				1D419E442FC06C98003A7B83 /* md5.c in Sources */,
@@ -1369,10 +1396,12 @@
 				1D419EB42FC06D49003A7B83 /* idea.c in Sources */,
 				1D419EC82FC06D4A003A7B83 /* kasumi.c in Sources */,
 				1D419EA82FC06D49003A7B83 /* khazad.c in Sources */,
+				1D2E690E2FFD724B00E6A753 /* kuznyechik.c in Sources */,
 				1D419E802FC06D49003A7B83 /* lea.c in Sources */,
 				1D419E982FC06D49003A7B83 /* mars.c in Sources */,
 				1D419E702FC06D49003A7B83 /* noekeon.c in Sources */,
 				1D419E942FC06D49003A7B83 /* present.c in Sources */,
+				1D0B86193002B23600F7AD70 /* rabbit.c in Sources */,
 				1D419E902FC06D49003A7B83 /* rc2.c in Sources */,
 				1D419E782FC06D49003A7B83 /* rc4.c in Sources */,
 				1D419E7C2FC06D49003A7B83 /* rc6.c in Sources */,
@@ -1380,8 +1409,9 @@
 				1D419EA42FC06D49003A7B83 /* seed.c in Sources */,
 				1D419EB82FC06D49003A7B83 /* serpent.c in Sources */,
 				1D419E842FC06D49003A7B83 /* skipjack.c in Sources */,
-				1D2E690E2FFD724B00E6A753 /* kuznyechik.c in Sources */,
 				1D419E882FC06D49003A7B83 /* sm4.c in Sources */,
+				1D0B861E3002B24400F7AD70 /* sober128.c in Sources */,
+				1D0B86233002B25000F7AD70 /* sosemanuk.c in Sources */,
 				1D419E742FC06D49003A7B83 /* tea.c in Sources */,
 				1D419ED42FC06D4A003A7B83 /* twofish.c in Sources */,
 				1D419EBC2FC06D49003A7B83 /* xtea.c in Sources */,
@@ -1519,7 +1549,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 260707;
+				CURRENT_PROJECT_VERSION = 260711;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -1551,7 +1581,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 260707;
+				CURRENT_PROJECT_VERSION = 260711;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -1580,7 +1610,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 260707;
+				CURRENT_PROJECT_VERSION = 260711;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -1611,7 +1641,7 @@
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = NO;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 260707;
+				CURRENT_PROJECT_VERSION = 260711;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
