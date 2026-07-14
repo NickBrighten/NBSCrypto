@@ -11,7 +11,7 @@
 const struct hash_descriptor sm3_desc =
 {
     "sm3",
-    10440128,
+    227,
     32,
     64,
     &sm3_init,

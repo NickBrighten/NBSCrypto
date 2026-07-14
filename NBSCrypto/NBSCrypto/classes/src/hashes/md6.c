@@ -11,7 +11,7 @@
 const struct hash_descriptor md6_128_desc =
 {
     "md6-128",
-    10320128,
+    171,
     16,
     64,
     &md6_128_init,
@@ -23,7 +23,7 @@ const struct hash_descriptor md6_128_desc =
 const struct hash_descriptor md6_160_desc =
 {
     "md6-160",
-    10320160,
+    172,
     20,
     64,
     &md6_160_init,
@@ -35,7 +35,7 @@ const struct hash_descriptor md6_160_desc =
 const struct hash_descriptor md6_192_desc =
 {
     "md6-192",
-    10320192,
+    173,
     24,
     64,
     &md6_192_init,
@@ -47,7 +47,7 @@ const struct hash_descriptor md6_192_desc =
 const struct hash_descriptor md6_224_desc =
 {
     "md6-224",
-    10320224,
+    174,
     28,
     64,
     &md6_224_init,
@@ -59,7 +59,7 @@ const struct hash_descriptor md6_224_desc =
 const struct hash_descriptor md6_256_desc =
 {
     "md6-256",
-    10320256,
+    175,
     32,
     64,
     &md6_256_init,
@@ -71,7 +71,7 @@ const struct hash_descriptor md6_256_desc =
 const struct hash_descriptor md6_384_desc =
 {
     "md6-384",
-    10320384,
+    176,
     48,
     64,
     &md6_384_init,
@@ -83,7 +83,7 @@ const struct hash_descriptor md6_384_desc =
 const struct hash_descriptor md6_512_desc =
 {
     "md6-512",
-    10320512,
+    177,
     64,
     64,
     &md6_512_init,

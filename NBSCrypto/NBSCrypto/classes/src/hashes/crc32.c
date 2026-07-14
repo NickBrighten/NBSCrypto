@@ -11,7 +11,7 @@
 const struct hash_descriptor crc32_AIXM_desc =
 {
     "crc32-AIXM",
-    10110001,
+    82,
     4,
     4,
     &crc32_AIXM_init,
@@ -23,7 +23,7 @@ const struct hash_descriptor crc32_AIXM_desc =
 const struct hash_descriptor crc32_AUTOSAR_desc =
 {
     "crc32-AUTOSAR",
-    10110002,
+    83,
     4,
     4,
     &crc32_AUTOSAR_init,
@@ -35,7 +35,7 @@ const struct hash_descriptor crc32_AUTOSAR_desc =
 const struct hash_descriptor crc32_BASE91_D_desc =
 {
     "crc32-BASE91-D",
-    10110003,
+    84,
     4,
     4,
     &crc32_BASE91_D_init,
@@ -47,7 +47,7 @@ const struct hash_descriptor crc32_BASE91_D_desc =
 const struct hash_descriptor crc32_BZIP2_desc =
 {
     "crc32-BZIP2",
-    10110004,
+    85,
     4,
     4,
     &crc32_BZIP2_init,
@@ -59,7 +59,7 @@ const struct hash_descriptor crc32_BZIP2_desc =
 const struct hash_descriptor crc32_CD_ROM_EDC_desc =
 {
     "crc32-CD-ROM-EDC",
-    10110005,
+    86,
     4,
     4,
     &crc32_CD_ROM_EDC_init,
@@ -71,7 +71,7 @@ const struct hash_descriptor crc32_CD_ROM_EDC_desc =
 const struct hash_descriptor crc32_CKSUM_desc =
 {
     "crc32-CKSUM",
-    10110006,
+    87,
     4,
     4,
     &crc32_CKSUM_init,
@@ -83,7 +83,7 @@ const struct hash_descriptor crc32_CKSUM_desc =
 const struct hash_descriptor crc32_ISCSI_desc =
 {
     "crc32-ISCSI",
-    10110007,
+    88,
     4,
     4,
     &crc32_ISCSI_init,
@@ -95,7 +95,7 @@ const struct hash_descriptor crc32_ISCSI_desc =
 const struct hash_descriptor crc32_ISO_HDLC_desc =
 {
     "crc32-ISO-HDLC",
-    10110008,
+    89,
     4,
     4,
     &crc32_ISO_HDLC_init,
@@ -107,7 +107,7 @@ const struct hash_descriptor crc32_ISO_HDLC_desc =
 const struct hash_descriptor crc32_JAMCRC_desc =
 {
     "crc32-JAMCRC",
-    10110009,
+    90,
     4,
     4,
     &crc32_JAMCRC_init,
@@ -119,7 +119,7 @@ const struct hash_descriptor crc32_JAMCRC_desc =
 const struct hash_descriptor crc32_MEF_desc =
 {
     "crc32-MEF",
-    10110010,
+    91,
     4,
     4,
     &crc32_MEF_init,
@@ -131,7 +131,7 @@ const struct hash_descriptor crc32_MEF_desc =
 const struct hash_descriptor crc32_MPEG2_desc =
 {
     "crc32-MPEG2",
-    10110011,
+    92,
     4,
     4,
     &crc32_MPEG2_init,
@@ -143,7 +143,7 @@ const struct hash_descriptor crc32_MPEG2_desc =
 const struct hash_descriptor crc32_XFER_desc =
 {
     "crc32-XFER",
-    10110012,
+    93,
     4,
     4,
     &crc32_XFER_init,

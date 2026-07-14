@@ -12,7 +12,7 @@
 const struct hash_descriptor xxh_32_desc =
 {
     "xxh-32",
-    10510032,
+    248,
     4,
     16,
     &xxh_32_init,
@@ -24,7 +24,7 @@ const struct hash_descriptor xxh_32_desc =
 const struct hash_descriptor xxh_64_desc =
 {
     "xxh-64",
-    10510064,
+    249,
     8,
     32,
     &xxh_64_init,
@@ -36,7 +36,7 @@ const struct hash_descriptor xxh_64_desc =
 const struct hash_descriptor xxh3_64_desc =
 {
     "xxh3-64",
-    10513064,
+    250,
     8,
     32,
     &xxh3_64_init,
@@ -48,7 +48,7 @@ const struct hash_descriptor xxh3_64_desc =
 const struct hash_descriptor xxh3_128_desc =
 {
     "xxh3-128",
-    10513128,
+    251,
     16,
     32,
     &xxh3_128_init,

@@ -11,7 +11,7 @@
 const struct hash_descriptor blake3_desc =
 {
     "blake3",
-    10050256,
+    14,
     32,
     64,
     &blake3_init,

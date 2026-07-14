@@ -11,7 +11,7 @@
 const struct hash_descriptor hamsi_224_desc =
 {
     "hamsi-224",
-    10200224,
+    126,
     28,
     32,
     &hamsi_224_init,
@@ -23,7 +23,7 @@ const struct hash_descriptor hamsi_224_desc =
 const struct hash_descriptor hamsi_256_desc =
 {
     "hamsi-256",
-    10200256,
+    127,
     32,
     32,
     &hamsi_256_init,
@@ -35,7 +35,7 @@ const struct hash_descriptor hamsi_256_desc =
 const struct hash_descriptor hamsi_384_desc =
 {
     "hamsi-384",
-    10200384,
+    128,
     48,
     32,
     &hamsi_384_init,
@@ -47,7 +47,7 @@ const struct hash_descriptor hamsi_384_desc =
 const struct hash_descriptor hamsi_512_desc =
 {
     "hamsi-512",
-    10200512,
+    129,
     64,
     32,
     &hamsi_512_init,

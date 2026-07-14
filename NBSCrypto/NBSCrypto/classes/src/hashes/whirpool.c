@@ -11,7 +11,7 @@
 const struct hash_descriptor whirlpool_desc =
 {
     "whirlpool",
-    10500512,
+    247,
     64,
     64,
     &whirlpool_init,

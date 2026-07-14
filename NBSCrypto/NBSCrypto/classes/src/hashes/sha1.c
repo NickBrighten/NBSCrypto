@@ -11,7 +11,7 @@
 const struct hash_descriptor sha1_desc =
 {
     "sha1",
-    10360160,
+    194,
     20,
     64,
     &sha1_init,

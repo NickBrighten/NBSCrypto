@@ -11,7 +11,7 @@
 const struct hash_descriptor lesamnta_224_desc =
 {
     "lesamnta-224",
-    10270224,
+    160,
     28,
     32,
     &lesamnta_224_init,
@@ -23,7 +23,7 @@ const struct hash_descriptor lesamnta_224_desc =
 const struct hash_descriptor lesamnta_256_desc =
 {
     "lesamnta-256",
-    10270256,
+    161,
     32,
     32,
     &lesamnta_256_init,
@@ -35,7 +35,7 @@ const struct hash_descriptor lesamnta_256_desc =
 const struct hash_descriptor lesamnta_384_desc =
 {
     "lesamnta-384",
-    10270384,
+    162,
     48,
     64,
     &lesamnta_384_init,
@@ -47,7 +47,7 @@ const struct hash_descriptor lesamnta_384_desc =
 const struct hash_descriptor lesamnta_512_desc =
 {
     "lesamnta-512",
-    10270512,
+    163,
     64,
     64,
     &lesamnta_512_init,

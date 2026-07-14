@@ -11,7 +11,7 @@
 const struct hash_descriptor tiger1_128_3_desc =
 {
     "tiger1-128-3",
-    10483128,
+    235,
     16,
     64,
     &tiger_init,
@@ -23,7 +23,7 @@ const struct hash_descriptor tiger1_128_3_desc =
 const struct hash_descriptor tiger1_160_3_desc =
 {
     "tiger1-160-3",
-    10483160,
+    236,
     20,
     64,
     &tiger_init,
@@ -35,7 +35,7 @@ const struct hash_descriptor tiger1_160_3_desc =
 const struct hash_descriptor tiger1_192_3_desc =
 {
     "tiger1-192-3",
-    10483192,
+    237,
     24,
     64,
     &tiger_init,
@@ -47,7 +47,7 @@ const struct hash_descriptor tiger1_192_3_desc =
 const struct hash_descriptor tiger1_128_4_desc =
 {
     "tiger1-128-4",
-    10484128,
+    238,
     16,
     64,
     &tiger_init,
@@ -59,7 +59,7 @@ const struct hash_descriptor tiger1_128_4_desc =
 const struct hash_descriptor tiger1_160_4_desc =
 {
     "tiger1-160-4",
-    10484160,
+    239,
     20,
     64,
     &tiger_init,
@@ -71,7 +71,7 @@ const struct hash_descriptor tiger1_160_4_desc =
 const struct hash_descriptor tiger1_192_4_desc =
 {
     "tiger1-192-4",
-    10484192,
+    240,
     24,
     64,
     &tiger_init,
@@ -83,7 +83,7 @@ const struct hash_descriptor tiger1_192_4_desc =
 const struct hash_descriptor tiger2_128_3_desc =
 {
     "tiger2-128-3",
-    10493128,
+    241,
     16,
     64,
     &tiger_init,
@@ -95,7 +95,7 @@ const struct hash_descriptor tiger2_128_3_desc =
 const struct hash_descriptor tiger2_160_3_desc =
 {
     "tiger2-160-3",
-    10493160,
+    242,
     20,
     64,
     &tiger_init,
@@ -107,7 +107,7 @@ const struct hash_descriptor tiger2_160_3_desc =
 const struct hash_descriptor tiger2_192_3_desc =
 {
     "tiger2-192-3",
-    10493192,
+    243,
     24,
     64,
     &tiger_init,
@@ -119,7 +119,7 @@ const struct hash_descriptor tiger2_192_3_desc =
 const struct hash_descriptor tiger2_128_4_desc =
 {
     "tiger2-128-4",
-    10494128,
+    244,
     16,
     64,
     &tiger_init,
@@ -131,7 +131,7 @@ const struct hash_descriptor tiger2_128_4_desc =
 const struct hash_descriptor tiger2_160_4_desc =
 {
     "tiger2-160-4",
-    10494160,
+    245,
     20,
     64,
     &tiger_init,
@@ -143,7 +143,7 @@ const struct hash_descriptor tiger2_160_4_desc =
 const struct hash_descriptor tiger2_192_4_desc =
 {
     "tiger2-192-4",
-    10494192,
+    246,
     24,
     64,
     &tiger_init,

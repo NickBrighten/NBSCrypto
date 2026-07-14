@@ -11,7 +11,7 @@
 const struct hash_descriptor sha224_desc =
 {
     "sha224",
-    10370244,
+    195,
     28,
     64,
     &sha224_init,
@@ -23,7 +23,7 @@ const struct hash_descriptor sha224_desc =
 const struct hash_descriptor sha256_desc =
 {
     "sha256",
-    10370256,
+    196,
     32,
     64,
     &sha256_init,
@@ -35,7 +35,7 @@ const struct hash_descriptor sha256_desc =
 const struct hash_descriptor sha384_desc =
 {
     "sha384",
-    10370384,
+    197,
     48,
     128,
     &sha384_init,
@@ -47,7 +47,7 @@ const struct hash_descriptor sha384_desc =
 const struct hash_descriptor sha512_desc =
 {
     "sha512",
-    10370512,
+    198,
     64,
     128,
     &sha512_init,
@@ -59,7 +59,7 @@ const struct hash_descriptor sha512_desc =
 const struct hash_descriptor sha512_224_desc =
 {
     "sha512-224",
-    10375244,
+    199,
     28,
     128,
     &sha512_224_init,
@@ -71,7 +71,7 @@ const struct hash_descriptor sha512_224_desc =
 const struct hash_descriptor sha512_256_desc =
 {
     "sha512-256",
-    10375256,
+    200,
     32,
     128,
     &sha512_256_init,

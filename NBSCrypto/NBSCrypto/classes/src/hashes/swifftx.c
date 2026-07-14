@@ -12,7 +12,7 @@
 const struct hash_descriptor swifftx_224_desc =
 {
     "swifftx-224",
-    10470224,
+    231,
     28,
     64,
     &swifftx_224_init,
@@ -24,7 +24,7 @@ const struct hash_descriptor swifftx_224_desc =
 const struct hash_descriptor swifftx_256_desc =
 {
     "swifftx-256",
-    10470256,
+    232,
     32,
     64,
     &swifftx_256_init,
@@ -36,7 +36,7 @@ const struct hash_descriptor swifftx_256_desc =
 const struct hash_descriptor swifftx_384_desc =
 {
     "swifftx-384",
-    10470384,
+    233,
     48,
     64,
     &swifftx_384_init,
@@ -48,7 +48,7 @@ const struct hash_descriptor swifftx_384_desc =
 const struct hash_descriptor swifftx_512_desc =
 {
     "swifftx-512",
-    10470512,
+    234,
     64,
     64,
     &swifftx_512_init,

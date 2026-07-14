@@ -11,7 +11,7 @@
 const struct hash_descriptor gost_desc =
 {
     "gost",
-    10181256,
+    120,
     32,
     64,
     &gost_init,
@@ -23,7 +23,7 @@ const struct hash_descriptor gost_desc =
 const struct hash_descriptor gost_crypto_desc =
 {
     "gost-crypto",
-    10182256,
+    121,
     32,
     64,
     &gost_crypto_init,

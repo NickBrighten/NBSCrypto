@@ -12,7 +12,7 @@
 const struct hash_descriptor groestl_224_desc =
 {
     "groestl-224",
-    10190224,
+    122,
     28,
     64,
     &groestl_224_init,
@@ -24,7 +24,7 @@ const struct hash_descriptor groestl_224_desc =
 const struct hash_descriptor groestl_256_desc =
 {
     "groestl-256",
-    10190256,
+    123,
     32,
     64,
     &groestl_256_init,
@@ -36,7 +36,7 @@ const struct hash_descriptor groestl_256_desc =
 const struct hash_descriptor groestl_384_desc =
 {
     "groestl-384",
-    10190384,
+    124,
     48,
     128,
     &groestl_384_init,
@@ -48,7 +48,7 @@ const struct hash_descriptor groestl_384_desc =
 const struct hash_descriptor groestl_512_desc =
 {
     "groestl-512",
-    10190512,
+    125,
     64,
     128,
     &groestl_512_init,

@@ -11,7 +11,7 @@
 const struct hash_descriptor md4_desc =
 {
     "md4",
-    10300128,
+    169,
     16,
     64,
     &md4_init,

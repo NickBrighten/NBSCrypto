@@ -11,7 +11,7 @@
 const struct hash_descriptor murmur3a_desc =
 {
     "murmur3a",
-    10341032,
+    187,
     4,
     4,
     &murmur3a_init,
@@ -23,7 +23,7 @@ const struct hash_descriptor murmur3a_desc =
 const struct hash_descriptor murmur3c_desc =
 {
     "murmur3c",
-    10342128,
+    188,
     16,
     16,
     &murmur3c_init,
@@ -35,7 +35,7 @@ const struct hash_descriptor murmur3c_desc =
 const struct hash_descriptor murmur3f_desc =
 {
     "murmur3f",
-    10343128,
+    189,
     16,
     16,
     &murmur3f_init,

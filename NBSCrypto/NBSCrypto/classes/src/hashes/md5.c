@@ -11,7 +11,7 @@
 const struct hash_descriptor md5_desc =
 {
     "md5",
-    10310128,
+    170,
     16,
     64,
     &md5_init,

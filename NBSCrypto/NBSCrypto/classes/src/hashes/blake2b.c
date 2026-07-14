@@ -11,7 +11,7 @@
 const struct hash_descriptor blake2b_160_desc =
 {
     "blake2b-160",
-    10030160,
+    6,
     20,
     128,
     &blake2b_160_init,
@@ -23,7 +23,7 @@ const struct hash_descriptor blake2b_160_desc =
 const struct hash_descriptor blake2b_256_desc =
 {
     "blake2b-256",
-    10030256,
+    7,
     32,
     128,
     &blake2b_256_init,
@@ -35,7 +35,7 @@ const struct hash_descriptor blake2b_256_desc =
 const struct hash_descriptor blake2b_384_desc =
 {
     "blake2b-384",
-    10030384,
+    8,
     48,
     128,
     &blake2b_384_init,
@@ -47,7 +47,7 @@ const struct hash_descriptor blake2b_384_desc =
 const struct hash_descriptor blake2b_512_desc =
 {
     "blake2b-512",
-    10030512,
+    9,
     64,
     128,
     &blake2b_512_init,

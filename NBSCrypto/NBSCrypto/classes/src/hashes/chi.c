@@ -11,7 +11,7 @@
 const struct hash_descriptor chi_224_desc =
 {
     "chi-224",
-    10070224,
+    19,
     28,
     64,
     &chi_224_init,
@@ -23,7 +23,7 @@ const struct hash_descriptor chi_224_desc =
 const struct hash_descriptor chi_256_desc =
 {
     "chi-256",
-    10070256,
+    20,
     32,
     64,
     &chi_256_init,
@@ -35,7 +35,7 @@ const struct hash_descriptor chi_256_desc =
 const struct hash_descriptor chi_384_desc =
 {
     "chi-384",
-    10070384,
+    21,
     48,
     64,
     &chi_384_init,
@@ -47,7 +47,7 @@ const struct hash_descriptor chi_384_desc =
 const struct hash_descriptor chi_512_desc =
 {
     "chi-512",
-    10070512,
+    22,
     64,
     64,
     &chi_512_init,

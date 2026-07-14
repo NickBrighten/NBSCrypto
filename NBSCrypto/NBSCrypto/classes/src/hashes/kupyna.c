@@ -13,7 +13,7 @@
 const struct hash_descriptor kupyna_256_desc =
 {
     "kupyna-256",
-    10250256,
+    154,
     32,
     64,
     &kupyna_256_init,
@@ -25,7 +25,7 @@ const struct hash_descriptor kupyna_256_desc =
 const struct hash_descriptor kupyna_512_desc =
 {
     "kupyna-512",
-    10250512,
+    155,
     64,
     64,
     &kupyna_512_init,
