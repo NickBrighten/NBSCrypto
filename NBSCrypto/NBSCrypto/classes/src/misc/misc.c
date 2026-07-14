@@ -5,11 +5,14 @@
 #include "nbs_crypto.h"
 
 
-#define TAB_SIZE 512
+#define CIPHER_TBL_SIZE	40
+#define HASH_TBL_SIZE	251
+
+
 
 
 #pragma mark - Hash Functions
-struct hash_descriptor hash_descriptor[TAB_SIZE] = {
+struct hash_descriptor hash_descriptor[HASH_TBL_SIZE] = {
     {
 	NULL,	//Name of Hash
 	0,	//Internal ID
@@ -24,7 +27,7 @@ struct hash_descriptor hash_descriptor[TAB_SIZE] = {
 
 int is_hash_valid(unsigned long idx)
 {
-    if (idx < 0 || idx >= TAB_SIZE || hash_descriptor[idx].name == NULL) {
+    if (idx < 0 || idx >= HASH_TBL_SIZE || hash_descriptor[idx].name == NULL) {
 	return NBSCrypto_ERROR;
     }
     return NBSCrypto_OK;
@@ -33,13 +36,13 @@ int is_hash_valid(unsigned long idx)
 int register_hash(const struct hash_descriptor *hash)
 {
     int x;
-    for (x = 0; x < TAB_SIZE; x++) {
+    for (x = 0; x < HASH_TBL_SIZE; x++) {
 	if (hash_descriptor[x].name != NULL && hash_descriptor[x].ID == hash->ID) {
 	    return x;
 	}
     }
 
-    for (x = 0; x < TAB_SIZE; x++) {
+    for (x = 0; x < HASH_TBL_SIZE; x++) {
 	if (hash_descriptor[x].name == NULL) {
 	    memcpy(&hash_descriptor[x], hash, sizeof(struct hash_descriptor));
 	    return x;
@@ -52,7 +55,7 @@ int register_hash(const struct hash_descriptor *hash)
 int unregister_hash(const struct hash_descriptor *hash)
 {
     int x;
-    for (x = 0; x < TAB_SIZE; x++) {
+    for (x = 0; x < HASH_TBL_SIZE; x++) {
 	if (memcpy(&hash_descriptor[x], hash, sizeof(struct hash_descriptor)) == 0) {
 	    hash_descriptor[x].name = NULL;
 	    hash_descriptor[x].ID   = 0;
@@ -66,7 +69,7 @@ int unregister_hash(const struct hash_descriptor *hash)
 
 
 #pragma mark - Cipher Functions
-struct cipher_descriptor cipher_descriptor[TAB_SIZE] = {
+struct cipher_descriptor cipher_descriptor[CIPHER_TBL_SIZE] = {
     {
 	NULL,	//Name of Cipher
 	0,	//Internal ID
@@ -83,7 +86,7 @@ struct cipher_descriptor cipher_descriptor[TAB_SIZE] = {
 
 int is_cipher_valid(unsigned long idx)
 {
-    if (idx < 0 || idx >= TAB_SIZE || cipher_descriptor[idx].name == NULL) {
+    if (idx < 0 || idx >= CIPHER_TBL_SIZE || cipher_descriptor[idx].name == NULL) {
 	return NBSCrypto_ERROR;
     }
     return NBSCrypto_OK;
@@ -92,13 +95,13 @@ int is_cipher_valid(unsigned long idx)
 int register_cipher(const struct cipher_descriptor *cipher)
 {
     int x;
-    for (x = 0; x < TAB_SIZE; x++) {
+    for (x = 0; x < CIPHER_TBL_SIZE; x++) {
 	if (cipher_descriptor[x].name != NULL && cipher_descriptor[x].ID == cipher->ID) {
 	    return x;
 	}
     }
 
-    for (x = 0; x < TAB_SIZE; x++) {
+    for (x = 0; x < CIPHER_TBL_SIZE; x++) {
 	if (cipher_descriptor[x].name == NULL) {
 	    memcpy(&cipher_descriptor[x], cipher, sizeof(struct cipher_descriptor));
 	    return x;
@@ -111,7 +114,7 @@ int register_cipher(const struct cipher_descriptor *cipher)
 int unregister_cipher(const struct cipher_descriptor *cipher)
 {
     int x;
-    for (x = 0; x < TAB_SIZE; x++) {
+    for (x = 0; x < CIPHER_TBL_SIZE; x++) {
 	if (memcpy(&cipher_descriptor[x], cipher, sizeof(struct cipher_descriptor)) == 0) {
 	    cipher_descriptor[x].name = NULL;
 	    cipher_descriptor[x].ID   = 0;
@@ -155,3 +158,16 @@ void zeromem(volatile void *o, size_t ol)
 	*m++ = '\0';
     }
 }
+
+/*
+ void copy_or_zeromem(const unsigned char* s, unsigned char* d, unsigned long l, int c)
+ {
+ unsigned long y;
+ unsigned char m = 0xff;
+ if (c != 0) c = 1;
+ y = 0;
+ m *= 1 - c;
+ for (; y < l; y++) {d[y] = s[y] & m;}
+ m = 0;
+ }
+ */
