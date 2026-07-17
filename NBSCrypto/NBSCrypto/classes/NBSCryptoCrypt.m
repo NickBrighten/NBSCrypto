@@ -216,6 +216,8 @@ const unsigned char* _charFromHex(const char* str)
 	(mode == _CIPHER_MODE_SALSA8) |
 	(mode == _CIPHER_MODE_SALSA12) |
 	(mode == _CIPHER_MODE_SALSA20) |
+	(mode == _CIPHER_MODE_XSALSA8) |
+	(mode == _CIPHER_MODE_XSALSA12) |
 	(mode == _CIPHER_MODE_XSALSA20)) {
 	//STREAM-MODES
 	if ((mode == _CIPHER_MODE_CHACHA8) |
@@ -243,7 +245,9 @@ const unsigned char* _charFromHex(const char* str)
 	    if (_iv.length != _BIT_LENGTH_64) {
 		sIV = [self _paddingString:sIV withLength:_BIT_LENGTH_64];
 	    }
-	}else if (mode == _CIPHER_MODE_XSALSA20){
+	}else if ((mode == _CIPHER_MODE_XSALSA8) |
+		  (mode == _CIPHER_MODE_XSALSA12) |
+		  (mode == _CIPHER_MODE_XSALSA20)){
 	    sIV = [self _paddingString:sIV withLength:_BIT_LENGTH_192];
 	}else{
 	    sIV = [self _paddingString:sIV withLength:_iv.length];
