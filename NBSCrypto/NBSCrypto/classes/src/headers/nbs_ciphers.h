@@ -123,6 +123,13 @@ struct saferp_state{
     unsigned char k[33][16];
 };
 
+struct salsa_state{
+    int rounds;
+    unsigned input[16];
+    unsigned char kstream[64];
+    unsigned long ksleft, ivlen;
+};
+
 struct seed_state{
     unsigned eK[32], dK[32];
 };
@@ -197,6 +204,7 @@ typedef union cipher_state{
     struct rc6_state		rc6;
     struct safer_state		safer;
     struct saferp_state		saferp;
+    struct salsa_state		salsa;
     struct seed_state		seed;
     struct serpent_state	serpent;
     struct skipjack_state	skipjack;
@@ -451,6 +459,15 @@ extern const struct cipher_descriptor safer_k128_desc;
 extern const struct cipher_descriptor safer_sk64_desc;
 extern const struct cipher_descriptor safer_sk128_desc;
 extern const struct cipher_descriptor saferp_desc;
+
+
+#pragma mark SALSA
+int  salsa_setup(const unsigned char *key, int keylen, int num_rounds, cipher_state *cs);
+int  salsa_setiv(const unsigned char *iv, unsigned long ivlen, unsigned long long counter, cipher_state *cs);
+int  salsa_encrypt(const unsigned char *pt, unsigned char *ct, unsigned long len, cipher_state *cs);
+int  salsa_decrypt(const unsigned char *ct, unsigned char *pt, unsigned long len, cipher_state *cs);
+void salsa_done(cipher_state *cs);
+extern const struct cipher_descriptor salsa_desc;
 
 
 #pragma mark SEED
