@@ -215,7 +215,8 @@ const unsigned char* _charFromHex(const char* str)
 	(mode == _CIPHER_MODE_CHACHA20POLY1305) |
 	(mode == _CIPHER_MODE_SALSA8) |
 	(mode == _CIPHER_MODE_SALSA12) |
-	(mode == _CIPHER_MODE_SALSA20)) {
+	(mode == _CIPHER_MODE_SALSA20) |
+	(mode == _CIPHER_MODE_XSALSA20)) {
 	//STREAM-MODES
 	if ((mode == _CIPHER_MODE_CHACHA8) |
 	    (mode == _CIPHER_MODE_CHACHA12) |
@@ -224,12 +225,6 @@ const unsigned char* _charFromHex(const char* str)
 		sIV = [self _paddingString:sIV withLength:_BIT_LENGTH_64];
 	    }else if (_iv.length >= _BIT_LENGTH_96){
 		sIV = [self _paddingString:sIV withLength:_BIT_LENGTH_96];
-	    }
-	}else if ((mode == _CIPHER_MODE_SALSA8) |
-		  (mode == _CIPHER_MODE_SALSA12) |
-		  (mode == _CIPHER_MODE_SALSA20)){
-	    if (_iv.length != _BIT_LENGTH_64) {
-		sIV = [self _paddingString:sIV withLength:_BIT_LENGTH_64];
 	    }
 	}else if ((mode == _CIPHER_MODE_CHACHA8POLY1305) |
 		  (mode == _CIPHER_MODE_CHACHA12POLY1305) |
@@ -242,6 +237,14 @@ const unsigned char* _charFromHex(const char* str)
 		sIV = [self _paddingString:sIV withLength:_BIT_LENGTH_128];
 	    }
 	    sAAD = [self _paddingString:sAAD withLength:_aad.length];
+	}else if ((mode == _CIPHER_MODE_SALSA8) |
+		  (mode == _CIPHER_MODE_SALSA12) |
+		  (mode == _CIPHER_MODE_SALSA20)){
+	    if (_iv.length != _BIT_LENGTH_64) {
+		sIV = [self _paddingString:sIV withLength:_BIT_LENGTH_64];
+	    }
+	}else if (mode == _CIPHER_MODE_XSALSA20){
+	    sIV = [self _paddingString:sIV withLength:_BIT_LENGTH_192];
 	}else{
 	    sIV = [self _paddingString:sIV withLength:_iv.length];
 	    sAAD = [self _paddingString:sAAD withLength:_aad.length];
@@ -1238,6 +1241,117 @@ const unsigned char* _charFromHex(const char* str)
 
 	    salsa_setup((const unsigned char *)[sKEY UTF8String], (int)sKEY.length, 20, &m);
 	    salsa_setiv((const unsigned char *)[sIV UTF8String], (unsigned long)sIV.length, 1, &m);
+
+	    if (eod) {
+		unsigned long eTL=dTE.length;
+		unsigned char eT[eTL];
+		base64_decode(dTE.bytes, dTE.length, eT, &eTL);
+
+		unsigned long dTL=eTL;
+		unsigned char dT[dTL];
+		salsa_decrypt(eT, dT, dTL, &m);
+
+		r = [self _stringFromChar:dT withLength:dTL delHStr:false];
+	    }else{
+		unsigned long eTL=dTE.length;
+		unsigned char eT[eTL];
+		salsa_encrypt(dTE.bytes, eT, eTL, &m);
+
+		switch (_outputformat) {
+		    case 1:{ //BASE64
+			r = [self _base64FromChar:eT withLength:eTL];
+			break;
+		    }
+		    case 2:{ //HEX
+			r = [self _hexFromChar:eT withLength:eTL];
+			break;
+		    }
+		}
+
+	    }
+
+	    salsa_done(&m);
+	    break;
+	}
+#pragma mark XSALSA8
+	case _CIPHER_MODE_XSALSA8:{
+	    cipher_state m;
+
+	    xsalsa_setup((const unsigned char *)[sKEY UTF8String], (int)sKEY.length, (const unsigned char *)[sIV UTF8String], (unsigned long)sIV.length, 8, &m);
+
+	    if (eod) {
+		unsigned long eTL=dTE.length;
+		unsigned char eT[eTL];
+		base64_decode(dTE.bytes, dTE.length, eT, &eTL);
+
+		unsigned long dTL=eTL;
+		unsigned char dT[dTL];
+		salsa_decrypt(eT, dT, dTL, &m);
+
+		r = [self _stringFromChar:dT withLength:dTL delHStr:false];
+	    }else{
+		unsigned long eTL=dTE.length;
+		unsigned char eT[eTL];
+		salsa_encrypt(dTE.bytes, eT, eTL, &m);
+
+		switch (_outputformat) {
+		    case 1:{ //BASE64
+			r = [self _base64FromChar:eT withLength:eTL];
+			break;
+		    }
+		    case 2:{ //HEX
+			r = [self _hexFromChar:eT withLength:eTL];
+			break;
+		    }
+		}
+
+	    }
+
+	    salsa_done(&m);
+	    break;
+	}
+#pragma mark XSALSA12
+	case _CIPHER_MODE_XSALSA12:{
+	    cipher_state m;
+
+	    xsalsa_setup((const unsigned char *)[sKEY UTF8String], (int)sKEY.length, (const unsigned char *)[sIV UTF8String], (unsigned long)sIV.length, 12, &m);
+
+	    if (eod) {
+		unsigned long eTL=dTE.length;
+		unsigned char eT[eTL];
+		base64_decode(dTE.bytes, dTE.length, eT, &eTL);
+
+		unsigned long dTL=eTL;
+		unsigned char dT[dTL];
+		salsa_decrypt(eT, dT, dTL, &m);
+
+		r = [self _stringFromChar:dT withLength:dTL delHStr:false];
+	    }else{
+		unsigned long eTL=dTE.length;
+		unsigned char eT[eTL];
+		salsa_encrypt(dTE.bytes, eT, eTL, &m);
+
+		switch (_outputformat) {
+		    case 1:{ //BASE64
+			r = [self _base64FromChar:eT withLength:eTL];
+			break;
+		    }
+		    case 2:{ //HEX
+			r = [self _hexFromChar:eT withLength:eTL];
+			break;
+		    }
+		}
+
+	    }
+
+	    salsa_done(&m);
+	    break;
+	}
+#pragma mark XSALSA20
+	case _CIPHER_MODE_XSALSA20:{
+	    cipher_state m;
+
+	    xsalsa_setup((const unsigned char *)[sKEY UTF8String], (int)sKEY.length, (const unsigned char *)[sIV UTF8String], (unsigned long)sIV.length, 20, &m);
 
 	    if (eod) {
 		unsigned long eTL=dTE.length;

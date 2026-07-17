@@ -463,6 +463,7 @@ extern const struct cipher_descriptor saferp_desc;
 
 #pragma mark SALSA
 int  salsa_setup(const unsigned char *key, int keylen, int num_rounds, cipher_state *cs);
+int  xsalsa_setup(const unsigned char *key, unsigned long keylen, const unsigned char *nonce, unsigned long noncelen, int rounds, cipher_state *cs);
 int  salsa_setiv(const unsigned char *iv, unsigned long ivlen, unsigned long long counter, cipher_state *cs);
 int  salsa_encrypt(const unsigned char *pt, unsigned char *ct, unsigned long len, cipher_state *cs);
 int  salsa_decrypt(const unsigned char *ct, unsigned char *pt, unsigned long len, cipher_state *cs);
