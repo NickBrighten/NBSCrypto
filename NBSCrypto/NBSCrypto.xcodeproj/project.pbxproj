@@ -442,6 +442,10 @@
 		1DB25A672FC7630900E0D9E3 /* chi.c in Sources */ = {isa = PBXBuildFile; fileRef = 1DB25A652FC7630900E0D9E3 /* chi.c */; };
 		1DB25A682FC7630900E0D9E3 /* chi.c in Sources */ = {isa = PBXBuildFile; fileRef = 1DB25A652FC7630900E0D9E3 /* chi.c */; };
 		1DB25A692FC7630900E0D9E3 /* chi.c in Sources */ = {isa = PBXBuildFile; fileRef = 1DB25A652FC7630900E0D9E3 /* chi.c */; };
+		1DB89B1B300A604000350E39 /* salsa.c in Sources */ = {isa = PBXBuildFile; fileRef = 1DB89B1A300A604000350E39 /* salsa.c */; };
+		1DB89B1C300A604000350E39 /* salsa.c in Sources */ = {isa = PBXBuildFile; fileRef = 1DB89B1A300A604000350E39 /* salsa.c */; };
+		1DB89B1D300A604000350E39 /* salsa.c in Sources */ = {isa = PBXBuildFile; fileRef = 1DB89B1A300A604000350E39 /* salsa.c */; };
+		1DB89B1E300A604000350E39 /* salsa.c in Sources */ = {isa = PBXBuildFile; fileRef = 1DB89B1A300A604000350E39 /* salsa.c */; };
 		1DE68D442FEAE7570035A45E /* md6.c in Sources */ = {isa = PBXBuildFile; fileRef = 1DE68D432FEAE7570035A45E /* md6.c */; };
 		1DE68D452FEAE7570035A45E /* md6.c in Sources */ = {isa = PBXBuildFile; fileRef = 1DE68D432FEAE7570035A45E /* md6.c */; };
 		1DE68D462FEAE7570035A45E /* md6.c in Sources */ = {isa = PBXBuildFile; fileRef = 1DE68D432FEAE7570035A45E /* md6.c */; };
@@ -577,6 +581,7 @@
 		1D8377742FCF5FC6008E8D31 /* blake3.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = blake3.c; sourceTree = "<group>"; tabWidth = 8; };
 		1D8475EC2FDDB0C300E0836C /* pelican.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pelican.c; sourceTree = "<group>"; tabWidth = 8; };
 		1DB25A652FC7630900E0D9E3 /* chi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = chi.c; sourceTree = "<group>"; tabWidth = 8; };
+		1DB89B1A300A604000350E39 /* salsa.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = salsa.c; sourceTree = "<group>"; tabWidth = 8; };
 		1DE68D432FEAE7570035A45E /* md6.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = md6.c; sourceTree = "<group>"; tabWidth = 8; };
 		1DF2EE352FCB2A9400A72997 /* shavite3.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = shavite3.c; sourceTree = "<group>"; tabWidth = 8; };
 		1DF7F14A2FC8C26B00CA2560 /* arirang.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = arirang.c; sourceTree = "<group>"; tabWidth = 8; };
@@ -807,6 +812,7 @@
 				1D419E552FC06D47003A7B83 /* rc4.c */,
 				1D419E562FC06D47003A7B83 /* rc6.c */,
 				1D419E672FC06D48003A7B83 /* safer.c */,
+				1DB89B1A300A604000350E39 /* salsa.c */,
 				1D419E602FC06D48003A7B83 /* seed.c */,
 				1D419E652FC06D48003A7B83 /* serpent.c */,
 				1D419E582FC06D47003A7B83 /* skipjack.c */,
@@ -1073,6 +1079,7 @@
 				1D419E752FC06D49003A7B83 /* rc4.c in Sources */,
 				1D419E792FC06D49003A7B83 /* rc6.c in Sources */,
 				1D419EBD2FC06D49003A7B83 /* safer.c in Sources */,
+				1DB89B1B300A604000350E39 /* salsa.c in Sources */,
 				1D419EA12FC06D49003A7B83 /* seed.c in Sources */,
 				1D419EB52FC06D49003A7B83 /* serpent.c in Sources */,
 				1D419E812FC06D49003A7B83 /* skipjack.c in Sources */,
@@ -1184,6 +1191,7 @@
 				1D419E762FC06D49003A7B83 /* rc4.c in Sources */,
 				1D419E7A2FC06D49003A7B83 /* rc6.c in Sources */,
 				1D419EBE2FC06D49003A7B83 /* safer.c in Sources */,
+				1DB89B1C300A604000350E39 /* salsa.c in Sources */,
 				1D419EA22FC06D49003A7B83 /* seed.c in Sources */,
 				1D419EB62FC06D49003A7B83 /* serpent.c in Sources */,
 				1D419E822FC06D49003A7B83 /* skipjack.c in Sources */,
@@ -1295,6 +1303,7 @@
 				1D419E772FC06D49003A7B83 /* rc4.c in Sources */,
 				1D419E7B2FC06D49003A7B83 /* rc6.c in Sources */,
 				1D419EBF2FC06D49003A7B83 /* safer.c in Sources */,
+				1DB89B1D300A604000350E39 /* salsa.c in Sources */,
 				1D419EA32FC06D49003A7B83 /* seed.c in Sources */,
 				1D419EB72FC06D49003A7B83 /* serpent.c in Sources */,
 				1D419E832FC06D49003A7B83 /* skipjack.c in Sources */,
@@ -1406,6 +1415,7 @@
 				1D419E782FC06D49003A7B83 /* rc4.c in Sources */,
 				1D419E7C2FC06D49003A7B83 /* rc6.c in Sources */,
 				1D419EC02FC06D49003A7B83 /* safer.c in Sources */,
+				1DB89B1E300A604000350E39 /* salsa.c in Sources */,
 				1D419EA42FC06D49003A7B83 /* seed.c in Sources */,
 				1D419EB82FC06D49003A7B83 /* serpent.c in Sources */,
 				1D419E842FC06D49003A7B83 /* skipjack.c in Sources */,
@@ -1549,7 +1559,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 260714;
+				CURRENT_PROJECT_VERSION = 260717;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -1581,7 +1591,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 260714;
+				CURRENT_PROJECT_VERSION = 260717;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -1610,7 +1620,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 260714;
+				CURRENT_PROJECT_VERSION = 260717;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -1641,7 +1651,7 @@
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = NO;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 260714;
+				CURRENT_PROJECT_VERSION = 260717;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
