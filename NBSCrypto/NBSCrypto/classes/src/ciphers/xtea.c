@@ -11,7 +11,7 @@
 const struct cipher_descriptor xtea_desc =
 {
     "xtea",
-    40,
+    41,
     16, 16, 8, 32,
     &xtea_setup,
     &xtea_encrypt,
