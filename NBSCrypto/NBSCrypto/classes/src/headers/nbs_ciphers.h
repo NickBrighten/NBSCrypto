@@ -84,6 +84,11 @@ struct mars_state{
     unsigned int k[40];
 };
 
+struct multi2_state {
+    int N;
+    unsigned uk[8];
+};
+
 struct noekeon_state{
     unsigned eK[4], dK[4];
 };
@@ -196,6 +201,7 @@ typedef union cipher_state{
     struct kuznyechik_state	kuznyechik;
     struct lea_state		lea;
     struct mars_state		mars;
+    struct multi2_state		multi2;
     struct noekeon_state	noekeon;
     struct present_state	present;
     struct rabbit_state		rabbit;
@@ -391,6 +397,14 @@ int  mars_encrypt(const unsigned char *pt, unsigned char *ct, const cipher_state
 int  mars_decrypt(const unsigned char *ct, unsigned char *pt, const cipher_state *cs);
 void mars_done(cipher_state *cs);
 extern const struct cipher_descriptor mars_desc;
+
+
+#pragma mark MULTI2
+int  multi2_setup(const unsigned char *key, int keylen, int num_rounds, cipher_state *cs);
+int  multi2_encrypt(const unsigned char *pt, unsigned char *ct, const cipher_state *cs);
+int  multi2_decrypt(const unsigned char *ct, unsigned char *pt, const cipher_state *cs);
+void multi2_done(cipher_state *cs);
+extern const struct cipher_descriptor multi2_desc;
 
 
 #pragma mark NOEKEON
