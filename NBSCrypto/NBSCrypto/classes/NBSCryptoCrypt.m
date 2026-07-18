@@ -213,13 +213,17 @@ const unsigned char* _charFromHex(const char* str)
 	(mode == _CIPHER_MODE_CHACHA8POLY1305) |
 	(mode == _CIPHER_MODE_CHACHA12POLY1305) |
 	(mode == _CIPHER_MODE_CHACHA20POLY1305) |
+	(mode == _CIPHER_MODE_RABBIT) |
 	(mode == _CIPHER_MODE_SALSA8) |
 	(mode == _CIPHER_MODE_SALSA12) |
 	(mode == _CIPHER_MODE_SALSA20) |
+	(mode == _CIPHER_MODE_SOBER128) |
+	(mode == _CIPHER_MODE_SOSEMANUK) |
 	(mode == _CIPHER_MODE_XSALSA8) |
 	(mode == _CIPHER_MODE_XSALSA12) |
 	(mode == _CIPHER_MODE_XSALSA20)) {
 	//STREAM-MODES
+	///CHACHA
 	if ((mode == _CIPHER_MODE_CHACHA8) |
 	    (mode == _CIPHER_MODE_CHACHA12) |
 	    (mode == _CIPHER_MODE_CHACHA20)){
@@ -228,6 +232,7 @@ const unsigned char* _charFromHex(const char* str)
 	    }else if (_iv.length >= _BIT_LENGTH_96){
 		sIV = [self _paddingString:sIV withLength:_BIT_LENGTH_96];
 	    }
+	///CHACHA-POLY1305
 	}else if ((mode == _CIPHER_MODE_CHACHA8POLY1305) |
 		  (mode == _CIPHER_MODE_CHACHA12POLY1305) |
 		  (mode == _CIPHER_MODE_CHACHA20POLY1305)) {
@@ -239,16 +244,26 @@ const unsigned char* _charFromHex(const char* str)
 		sIV = [self _paddingString:sIV withLength:_BIT_LENGTH_128];
 	    }
 	    sAAD = [self _paddingString:sAAD withLength:_aad.length];
+	///RABBIT
+	}else if (mode == _CIPHER_MODE_RABBIT){
+	    sIV = [self _paddingString:sIV withLength:_BIT_LENGTH_64];
+	///SALSA
 	}else if ((mode == _CIPHER_MODE_SALSA8) |
 		  (mode == _CIPHER_MODE_SALSA12) |
 		  (mode == _CIPHER_MODE_SALSA20)){
 	    if (_iv.length != _BIT_LENGTH_64) {
 		sIV = [self _paddingString:sIV withLength:_BIT_LENGTH_64];
 	    }
+	///SOBER128
+	}else if ((mode == _CIPHER_MODE_SOBER128)|
+		  (mode == _CIPHER_MODE_SOSEMANUK)){
+	    sIV = [self _paddingString:sIV withLength:_BIT_LENGTH_128];
+	///XSALSA
 	}else if ((mode == _CIPHER_MODE_XSALSA8) |
 		  (mode == _CIPHER_MODE_XSALSA12) |
 		  (mode == _CIPHER_MODE_XSALSA20)){
 	    sIV = [self _paddingString:sIV withLength:_BIT_LENGTH_192];
+	///ALL OTHERS
 	}else{
 	    sIV = [self _paddingString:sIV withLength:_iv.length];
 	    sAAD = [self _paddingString:sAAD withLength:_aad.length];
@@ -1277,6 +1292,82 @@ const unsigned char* _charFromHex(const char* str)
 	    salsa_done(&m);
 	    break;
 	}
+#pragma mark SOBER128
+	case _CIPHER_MODE_SOBER128:{
+	    cipher_state m;
+
+	    sober128_setup((const unsigned char *)[sKEY UTF8String], (int)sKEY.length, 0, &m);
+	    sober128_setiv((const unsigned char *)[sIV UTF8String], (unsigned long)sIV.length, &m);
+
+	    if (eod) {
+		unsigned long eTL=dTE.length;
+		unsigned char eT[eTL];
+		base64_decode(dTE.bytes, dTE.length, eT, &eTL);
+
+		unsigned long dTL=eTL;
+		unsigned char dT[dTL];
+		sober128_decrypt(eT, dT, dTL, &m);
+
+		r = [self _stringFromChar:dT withLength:dTL delHStr:false];
+	    }else{
+		unsigned long eTL=dTE.length;
+		unsigned char eT[eTL];
+		sober128_encrypt(dTE.bytes, eT, eTL, &m);
+
+		switch (_outputformat) {
+		    case 1:{ //BASE64
+			r = [self _base64FromChar:eT withLength:eTL];
+			break;
+		    }
+		    case 2:{ //HEX
+			r = [self _hexFromChar:eT withLength:eTL];
+			break;
+		    }
+		}
+
+	    }
+
+	    sober128_done(&m);
+	    break;
+	}
+#pragma mark SOSEMANUK
+	case _CIPHER_MODE_SOSEMANUK:{
+	    cipher_state m;
+
+	    sosemanuk_setup((const unsigned char *)[sKEY UTF8String], (int)sKEY.length, 0, &m);
+	    sosemanuk_setiv((const unsigned char *)[sIV UTF8String], (unsigned long)sIV.length, &m);
+
+	    if (eod) {
+		unsigned long eTL=dTE.length;
+		unsigned char eT[eTL];
+		base64_decode(dTE.bytes, dTE.length, eT, &eTL);
+
+		unsigned long dTL=eTL;
+		unsigned char dT[dTL];
+		sosemanuk_decrypt(eT, dT, dTL, &m);
+
+		r = [self _stringFromChar:dT withLength:dTL delHStr:false];
+	    }else{
+		unsigned long eTL=dTE.length;
+		unsigned char eT[eTL];
+		sosemanuk_encrypt(dTE.bytes, eT, eTL, &m);
+
+		switch (_outputformat) {
+		    case 1:{ //BASE64
+			r = [self _base64FromChar:eT withLength:eTL];
+			break;
+		    }
+		    case 2:{ //HEX
+			r = [self _hexFromChar:eT withLength:eTL];
+			break;
+		    }
+		}
+
+	    }
+
+	    sosemanuk_done(&m);
+	    break;
+	}
 #pragma mark XSALSA8
 	case _CIPHER_MODE_XSALSA8:{
 	    cipher_state m;
@@ -1386,82 +1477,6 @@ const unsigned char* _charFromHex(const char* str)
 	    }
 
 	    salsa_done(&m);
-	    break;
-	}
-#pragma mark SOBER128
-	case _CIPHER_MODE_SOBER128:{
-	    cipher_state m;
-
-	    sober128_setup((const unsigned char *)[sKEY UTF8String], (int)sKEY.length, 0, &m);
-	    sober128_setiv((const unsigned char *)[sIV UTF8String], (unsigned long)sIV.length, &m);
-
-	    if (eod) {
-		unsigned long eTL=dTE.length;
-		unsigned char eT[eTL];
-		base64_decode(dTE.bytes, dTE.length, eT, &eTL);
-
-		unsigned long dTL=eTL;
-		unsigned char dT[dTL];
-		sober128_decrypt(eT, dT, dTL, &m);
-
-		r = [self _stringFromChar:dT withLength:dTL delHStr:false];
-	    }else{
-		unsigned long eTL=dTE.length;
-		unsigned char eT[eTL];
-		sober128_encrypt(dTE.bytes, eT, eTL, &m);
-
-		switch (_outputformat) {
-		    case 1:{ //BASE64
-			r = [self _base64FromChar:eT withLength:eTL];
-			break;
-		    }
-		    case 2:{ //HEX
-			r = [self _hexFromChar:eT withLength:eTL];
-			break;
-		    }
-		}
-
-	    }
-
-	    sober128_done(&m);
-	    break;
-	}
-#pragma mark SOSEMANUK
-	case _CIPHER_MODE_SOSEMANUK:{
-	    cipher_state m;
-
-	    sosemanuk_setup((const unsigned char *)[sKEY UTF8String], (int)sKEY.length, 0, &m);
-	    sosemanuk_setiv((const unsigned char *)[sIV UTF8String], (unsigned long)sIV.length, &m);
-
-	    if (eod) {
-		unsigned long eTL=dTE.length;
-		unsigned char eT[eTL];
-		base64_decode(dTE.bytes, dTE.length, eT, &eTL);
-
-		unsigned long dTL=eTL;
-		unsigned char dT[dTL];
-		sosemanuk_decrypt(eT, dT, dTL, &m);
-
-		r = [self _stringFromChar:dT withLength:dTL delHStr:false];
-	    }else{
-		unsigned long eTL=dTE.length;
-		unsigned char eT[eTL];
-		sosemanuk_encrypt(dTE.bytes, eT, eTL, &m);
-
-		switch (_outputformat) {
-		    case 1:{ //BASE64
-			r = [self _base64FromChar:eT withLength:eTL];
-			break;
-		    }
-		    case 2:{ //HEX
-			r = [self _hexFromChar:eT withLength:eTL];
-			break;
-		    }
-		}
-
-	    }
-
-	    sosemanuk_done(&m);
 	    break;
 	}
 
