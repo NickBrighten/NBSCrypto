@@ -27,6 +27,10 @@
 		1D0E78C02FC60F91005EE298 /* simd.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D0E78BE2FC60F91005EE298 /* simd.c */; };
 		1D0E78C12FC60F91005EE298 /* simd.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D0E78BE2FC60F91005EE298 /* simd.c */; };
 		1D0E78C22FC60F91005EE298 /* simd.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D0E78BE2FC60F91005EE298 /* simd.c */; };
+		1D1BA887300C181E00D6D33D /* multi2.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D1BA886300C181E00D6D33D /* multi2.c */; };
+		1D1BA888300C181E00D6D33D /* multi2.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D1BA886300C181E00D6D33D /* multi2.c */; };
+		1D1BA889300C181E00D6D33D /* multi2.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D1BA886300C181E00D6D33D /* multi2.c */; };
+		1D1BA88A300C181E00D6D33D /* multi2.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D1BA886300C181E00D6D33D /* multi2.c */; };
 		1D2E69062FFD54F200E6A753 /* meshhash2.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D2E69052FFD54F200E6A753 /* meshhash2.c */; };
 		1D2E69072FFD54F200E6A753 /* meshhash2.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D2E69052FFD54F200E6A753 /* meshhash2.c */; };
 		1D2E69082FFD54F200E6A753 /* meshhash2.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D2E69052FFD54F200E6A753 /* meshhash2.c */; };
@@ -466,6 +470,7 @@
 		1D0B861A3002B24400F7AD70 /* sober128.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sober128.c; sourceTree = "<group>"; tabWidth = 8; };
 		1D0B861F3002B25000F7AD70 /* sosemanuk.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sosemanuk.c; sourceTree = "<group>"; tabWidth = 8; };
 		1D0E78BE2FC60F91005EE298 /* simd.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = simd.c; sourceTree = "<group>"; tabWidth = 8; };
+		1D1BA886300C181E00D6D33D /* multi2.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = multi2.c; sourceTree = "<group>"; tabWidth = 8; };
 		1D2E69052FFD54F200E6A753 /* meshhash2.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = meshhash2.c; sourceTree = "<group>"; tabWidth = 8; };
 		1D2E690A2FFD724B00E6A753 /* kuznyechik.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = kuznyechik.c; sourceTree = "<group>"; tabWidth = 8; };
 		1D30115B2FE9720F00C5E200 /* fugue.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = fugue.c; sourceTree = "<group>"; tabWidth = 8; };
@@ -805,6 +810,7 @@
 				1D2E690A2FFD724B00E6A753 /* kuznyechik.c */,
 				1D419E572FC06D47003A7B83 /* lea.c */,
 				1D419E5D2FC06D47003A7B83 /* mars.c */,
+				1D1BA886300C181E00D6D33D /* multi2.c */,
 				1D419E532FC06D47003A7B83 /* noekeon.c */,
 				1D419E5C2FC06D47003A7B83 /* present.c */,
 				1D0B86153002B23600F7AD70 /* rabbit.c */,
@@ -1072,6 +1078,7 @@
 				1D2E690B2FFD724B00E6A753 /* kuznyechik.c in Sources */,
 				1D419E7D2FC06D49003A7B83 /* lea.c in Sources */,
 				1D419E952FC06D49003A7B83 /* mars.c in Sources */,
+				1D1BA887300C181E00D6D33D /* multi2.c in Sources */,
 				1D419E6D2FC06D48003A7B83 /* noekeon.c in Sources */,
 				1D419E912FC06D49003A7B83 /* present.c in Sources */,
 				1D0B86163002B23600F7AD70 /* rabbit.c in Sources */,
@@ -1184,6 +1191,7 @@
 				1D2E690C2FFD724B00E6A753 /* kuznyechik.c in Sources */,
 				1D419E7E2FC06D49003A7B83 /* lea.c in Sources */,
 				1D419E962FC06D49003A7B83 /* mars.c in Sources */,
+				1D1BA888300C181E00D6D33D /* multi2.c in Sources */,
 				1D419E6E2FC06D49003A7B83 /* noekeon.c in Sources */,
 				1D419E922FC06D49003A7B83 /* present.c in Sources */,
 				1D0B86173002B23600F7AD70 /* rabbit.c in Sources */,
@@ -1296,6 +1304,7 @@
 				1D2E690D2FFD724B00E6A753 /* kuznyechik.c in Sources */,
 				1D419E7F2FC06D49003A7B83 /* lea.c in Sources */,
 				1D419E972FC06D49003A7B83 /* mars.c in Sources */,
+				1D1BA889300C181E00D6D33D /* multi2.c in Sources */,
 				1D419E6F2FC06D49003A7B83 /* noekeon.c in Sources */,
 				1D419E932FC06D49003A7B83 /* present.c in Sources */,
 				1D0B86183002B23600F7AD70 /* rabbit.c in Sources */,
@@ -1408,6 +1417,7 @@
 				1D2E690E2FFD724B00E6A753 /* kuznyechik.c in Sources */,
 				1D419E802FC06D49003A7B83 /* lea.c in Sources */,
 				1D419E982FC06D49003A7B83 /* mars.c in Sources */,
+				1D1BA88A300C181E00D6D33D /* multi2.c in Sources */,
 				1D419E702FC06D49003A7B83 /* noekeon.c in Sources */,
 				1D419E942FC06D49003A7B83 /* present.c in Sources */,
 				1D0B86193002B23600F7AD70 /* rabbit.c in Sources */,
