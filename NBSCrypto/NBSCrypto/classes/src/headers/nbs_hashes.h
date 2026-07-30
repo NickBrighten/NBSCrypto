@@ -14,37 +14,25 @@ struct adler32_state{
 
 struct arirang_state{
     int hashbitlen;
-    unsigned int blocklen;
-    unsigned int remainderbit;
+    unsigned int blocklen, remainderbit;
     unsigned char block[128];
-    unsigned long long count[2];
-    unsigned long long counter[2];
-    unsigned long long workingvar[8];
+    unsigned long long count[2], counter[2], workingvar[8];
 };
 
 struct blake2b_state{
-    unsigned char buf[128];
-    unsigned char last_node;
-    unsigned long curlen;
-    unsigned long outlen;
-    unsigned long long h[8];
-    unsigned long long t[2];
-    unsigned long long f[2];
+    unsigned char buf[128], last_node;
+    unsigned long curlen, outlen;
+    unsigned long long f[2], h[8], t[2];
 };
 
 struct blake2s_state{
-    unsigned h[8];
-    unsigned t[2];
-    unsigned f[2];
-    unsigned char buf[64];
-    unsigned char last_node;
-    unsigned long curlen;
-    unsigned long outlen;
+    unsigned f[2], h[8], t[2];
+    unsigned char buf[64], last_node;
+    unsigned long curlen, outlen;
 };
 
 struct blake3_state {
-    unsigned block;
-    unsigned bytes;
+    unsigned block, bytes;
     unsigned int *cv, cv_buf[54 * 8];
     unsigned char input[64];
     unsigned long long chunk;
@@ -65,17 +53,11 @@ struct bluemidnightwish_state {
 
 struct chi_state{
     union {
-	unsigned long long small[6];
-	unsigned long long large[9];
-	unsigned long long small32[2*6];
-	unsigned long long large32[2*9];
+	unsigned long long large[9], large32[2*9], small[6], small32[2*6];
     } State;
-    unsigned int HashBitLen;
-    unsigned int MessageLen;
-    unsigned int DataLen;
+    unsigned int DataLen, HashBitLen, MessageLen;
     unsigned char DataBuffer[128];
-    unsigned long long TotalLenLow;
-    unsigned long long TotalLenHigh;
+    unsigned long long TotalLenHigh, TotalLenLow;
 };
 
 struct crc8_state{
@@ -104,13 +86,9 @@ struct crc64_state{
 };
 
 struct echo_state{
-    int cv_blocks;
-    int inlen;
-    int outlen;
+    int cv_blocks, inlen, outlen;
     unsigned char SALT[128];
-    unsigned long long counter;
-    unsigned long long CV[8*2];
-    unsigned long long state[16*2];
+    unsigned long long counter, CV[8*2], state[16*2];
 };
 
 struct fnv132_state{
@@ -124,8 +102,7 @@ struct fnv164_state{
 typedef union{unsigned int d;unsigned char b[4];}fugue_hash32_s;
 typedef struct {int n, s, k, r, t;}fugue_hashCfg;
 struct fugue_state {
-    int hashbitlen;
-    int Base;
+    int Base, hashbitlen;
     fugue_hashCfg *Cfg;
     fugue_hash32_s State[36];
     unsigned int Partial[1];
@@ -140,22 +117,15 @@ struct gost_state{
 };
 
 struct groestl_state{
-    int buf_ptr;
-    int bits_in_last_byte;
-    int hashbitlen;
-    int size;
+    int bits_in_last_byte, buf_ptr, hashbitlen, size;
     unsigned char *buffer;
-    unsigned long long *chaining __attribute__((aligned(16)));
     unsigned long long block_counter;
+    unsigned long long *chaining __attribute__((aligned(16)));
 };
 
 struct hamsi_state{
-    int hashbitlen;
-    int cvsize;
-    int ROUNDS;
-    int PFROUNDS;
-    unsigned int state[16];
-    unsigned int counter;
+    int cvsize, hashbitlen, PFROUNDS, ROUNDS;
+    unsigned int counter, state[16];
     unsigned char leftdata[8];
     unsigned long leftbits;
 };
@@ -163,20 +133,15 @@ struct hamsi_state{
 struct haval_state{
     char passes;
     short output;
-    unsigned state[8];
-    unsigned count[2];
+    unsigned count[2], state[8];
     unsigned char buffer[128];
     void (*transform)(unsigned state[8], const unsigned char block[128], char passes);
 };
 
 struct jh_state{
     int hashbitlen;
-    unsigned char H[128];
-    unsigned char A[256];
-    unsigned char roundconstant[64];
-    unsigned char buffer[64];
-    unsigned long long databitlen;
-    unsigned long long datasize_in_buffer;
+    unsigned char A[256], buffer[64], H[128], roundconstant[64];
+    unsigned long long databitlen, datasize_in_buffer;
 };
 
 struct joaat_state{
@@ -202,34 +167,25 @@ struct kupyna512_state {
 
 struct lane_state{
     int hashbitlen;
-    unsigned char buffer[128];
-    unsigned char hash[64];
+    unsigned char buffer[128], hash[64];
     unsigned long databitcount;
 };
 
 struct lesamnta256_state{
     int hashbitlen;
-    unsigned int buffer[8];
-    unsigned int hash[8];
-    unsigned int rembitlen;
+    unsigned int buffer[8], hash[8], rembitlen;
     unsigned long long bitlen[1];
 };
 
 struct lesamnta512_state{
     int hashbitlen;
     unsigned int rembitlen;
-    unsigned long long bitlen[2];
-    unsigned long long buffer[8];
-    unsigned long long hash[8];
+    unsigned long long bitlen[2], buffer[8], hash[8];
 };
 
 struct luffa_state{
-    int hashbitlen;
-    int width;
-    int limit;
-    unsigned int rembitlen;
-    unsigned int buffer[8];
-    unsigned int chainv[40];
+    int hashbitlen, limit, width;
+    unsigned int buffer[8], chainv[40], rembitlen;
     unsigned long long bitlen[2];
 };
 
@@ -253,13 +209,8 @@ struct md5_state{
 struct md6_state{
     int d, finalized, hashbitlen, initialized, keylen, L, r, top;
     unsigned int bits[29];
-    unsigned char hashval[16*(64/8)];
-    unsigned char hexhashval[(16*(64/8))+1];
-    unsigned long long B[29][64];
-    unsigned long long bits_processed;
-    unsigned long long compression_calls;
-    unsigned long long i_for_level[29];
-    unsigned long long K[8];
+    unsigned char hashval[16*(64/8)], hexhashval[(16*(64/8))+1];
+    unsigned long long B[29][64], bits_processed, compression_calls, i_for_level[29], K[8];
 };
 
 struct meshhash2_state{
@@ -268,21 +219,16 @@ struct meshhash2_state{
 };
 
 struct murmur3a_state{
-    unsigned len;
-    unsigned h;
-    unsigned carry;
+    unsigned carry, h, len;
 };
 
 struct murmur3c_state{
-    unsigned len;
-    unsigned h[4];
-    unsigned carry[4];
+    unsigned carry[4], h[4], len;
 };
 
 struct murmur3f_state{
     unsigned len;
-    unsigned long long h[4];
-    unsigned long long carry[4];
+    unsigned long long carry[4], h[4];
 };
 
 struct ripemd128_state{
@@ -329,42 +275,28 @@ struct sha512_state{
 
 struct sha3_state{
     unsigned char sb[25*8];
-    unsigned short byte_index;
-    unsigned short capacity_words;
-    unsigned short word_index;
-    unsigned short xof_flag;
-    unsigned long long saved;
-    unsigned long long s[25];
+    unsigned short byte_index, capacity_words, word_index, xof_flag;
+    unsigned long long s[25], saved;
 };
 
 struct shabal_state{
-    int hashbitlen;
     size_t buffer_ptr;
-    unsigned A[12];
-    unsigned B[16];
-    unsigned C[16];
-    unsigned last_byte_significant_bits;
-    unsigned Whigh, Wlow;
+    int hashbitlen;
+    unsigned A[12], B[16], C[16], last_byte_significant_bits, Whigh, Wlow;
     unsigned char buffer[16*4];
 };
 
 struct shavite3_state{
-    int BlockSize;
-    int DigestSize;
-    unsigned char chaining_value[64];
-    unsigned char buffer[128];
-    unsigned char partial_byte;
-    unsigned char salt[64];
+    int BlockSize, DigestSize;
+    unsigned char chaining_value[64], buffer[128], partial_byte, salt[64];
     unsigned long long bitcount;
 };
 
 struct simd_state{
-    unsigned int hashbitlen;
-    unsigned int blocksize;
-    unsigned int n_feistels;
-    unsigned char* buffer;
+    unsigned int *A, *B, *C, *D;
+    unsigned int blocksize, hashbitlen, n_feistels;
+    unsigned char *buffer;
     unsigned long long count;
-    uint32_t *A, *B, *C, *D;
 };
 
 typedef struct{size_t hashBitLen, bCnt;unsigned long long T[2];}Skein_Ctxt_Hdr_t;
@@ -383,15 +315,13 @@ struct skein_state{
 };
 
 struct sm3_state{
-    unsigned total[2];
-    unsigned state[8];
+    unsigned total[2], state[8];
     unsigned char buf[64];
 };
 
 struct snefru_state{
     unsigned s[16], cnt[2];
-    unsigned char len;
-    unsigned char buf[32];
+    unsigned char buf[32], len;
 };
 
 union streebog512{unsigned long long QWORD[8];} __attribute__((__aligned__(16)));
@@ -407,10 +337,7 @@ struct streebog_state{
 
 struct swifftx_state{
     unsigned int remainingSize;
-    unsigned char remaining[175 + 1];
-    unsigned char currOutputBlock[65];
-    unsigned char numOfBitsChar[8];
-    unsigned char salt[8];
+    unsigned char currOutputBlock[65], numOfBitsChar[8], remaining[175 + 1], salt[8];
     unsigned short hashbitlen;
     bool wasUpdated;
 };
@@ -422,8 +349,8 @@ struct tiger_state{
 };
 
 struct whirlpool_state{
-    unsigned char buf[64];
     unsigned clen;
+    unsigned char buf[64];
     unsigned long long s[8], len;
 };
 

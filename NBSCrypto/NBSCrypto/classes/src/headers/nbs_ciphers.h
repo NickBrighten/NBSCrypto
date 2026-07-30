@@ -33,9 +33,8 @@ struct camellia_state{
 };
 
 struct cast5_state{
+    unsigned km[16], kr[16];
     unsigned int nr;
-    unsigned km[16];
-    unsigned kr[16];
 };
 
 struct cast6_state{
@@ -65,19 +64,16 @@ struct kasumi_state{
 };
 
 struct khazad_state {
-    unsigned long long eK[8+1];
-    unsigned long long dK[8+1];
+    unsigned long long eK[8+1], dK[8+1];
 };
 
 struct kuznyechik_state
 {
-    unsigned long long eK[20];
-    unsigned long long dK[20];
+    unsigned long long eK[20], dK[20];
 };
 
 struct lea_state{
-    unsigned int rk[192];
-    unsigned int round;
+    unsigned int rk[192], round;
 };
 
 struct mars_state{
@@ -101,8 +97,7 @@ typedef struct{unsigned x[8], c[8], carry;}rabbit_ctx;
 struct rabbit_state{
     unsigned unused;
     unsigned char block[16];
-    rabbit_ctx master_ctx;
-    rabbit_ctx work_ctx;
+    rabbit_ctx master_ctx, work_ctx;
 };
 
 struct rc2_state{
@@ -115,8 +110,7 @@ struct rc4_state{
 };
 
 struct rc6_state {
-    unsigned int l[32 / 4];
-    unsigned int s[2 * 20 + 4];
+    unsigned int l[32 / 4], s[2 * 20 + 4];
 };
 
 typedef unsigned char safer_key_t[217];
@@ -148,9 +142,7 @@ struct skipjack_state{
 };
 
 struct sm4_state{
-    unsigned long eK[32];
-    unsigned long dK[32];
-    unsigned long keylen;
+    unsigned long eK[32], dK[32], keylen;
 };
 
 struct sober128_state{
@@ -159,10 +151,7 @@ struct sober128_state{
 };
 
 struct sosemanuk_state{
-    unsigned kc[100];
-    unsigned ptr;
-    unsigned r1, r2;
-    unsigned s00, s01, s02, s03, s04, s05, s06, s07, s08, s09;
+    unsigned kc[100], ptr, r1, r2, s00, s01, s02, s03, s04, s05, s06, s07, s08, s09;
     unsigned char buf[80];
 };
 
