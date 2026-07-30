@@ -119,6 +119,9 @@ Please have a look [here](https://help.github.com/articles/approving-a-pull-requ
 - __MARS__
     - BIT-LENGTH: `128` `160` `192` `224` `256` `288` `320` `352` `384` `416` `448`
     - MODES: `CBC` `CCM` `CFB` `CTR` `EAX` `ECB` `F8` `GCM` `LRW` `OCB` `OCB3` `OFB` `XTS`
+- __MULTI2__
+    - BIT-LENGTH: `320`
+    - MODES: `CBC` `CFB` `CTR` `EAX` `ECB` `F8` `OFB`
 - __NOEKEON__
     - BIT-LENGTH: `128`
     - MODES: `CBC` `CCM` `CFB` `CTR` `EAX` `ECB` `F8` `GCM` `LRW` `OCB` `OCB3` `OFB` `XTS`
@@ -146,6 +149,15 @@ Please have a look [here](https://help.github.com/articles/approving-a-pull-requ
 - __SAFER+__
     - BIT-LENGTH: `128` `192` `256`
     - MODES: `CBC` `CCM` `CFB` `CTR` `EAX` `ECB` `F8` `GCM` `LRW` `OCB` `OCB3` `OFB` `XTS`
+- __SALSA8__
+    - BIT-LENGTH: `128` `256`
+    - MODES: `none`
+- __SALSA12__
+    - BIT-LENGTH: `128` `256`
+    - MODES: `none`
+- __SALSA20__
+    - BIT-LENGTH: `128` `256`
+    - MODES: `none`
 - __SEED__
     - BIT-LENGTH: `128`
     - MODES: `CBC` `CCM` `CFB` `CTR` `EAX` `ECB` `F8` `GCM` `LRW` `OCB` `OCB3` `OFB` `XTS`
@@ -170,6 +182,15 @@ Please have a look [here](https://help.github.com/articles/approving-a-pull-requ
 - __TWOFISH__
     - BIT-LENGTH: `128` `192` `256`
     - MODES: `CBC` `CCM` `CFB` `CTR` `EAX` `ECB` `F8` `GCM` `LRW` `OCB` `OCB3` `OFB` `XTS`
+- __XSALSA8__
+    - BIT-LENGTH: `256`
+    - MODES: `none`
+- __XSALSA12__
+    - BIT-LENGTH: `256`
+    - MODES: `none`
+- __XSALSA20__
+    - BIT-LENGTH: `256`
+    - MODES: `none`
 - __XTEA__
     - BIT-LENGTH: `128`
     - MODES: `CBC` `CFB` `CTR` `EAX` `ECB` `F8` `OCB` `OFB`

@@ -23,6 +23,8 @@ const struct cipher_descriptor lea_desc =
 
 
 
+#pragma mark - DEFINES
+
 #define ROR(W,i) (((W) >> (i)) | ((W) << (32 - (i))))
 #define ROL(W,i) (((W) << (i)) | ((W) >> (32 - (i))))
 #define LOAD32(v)			\
@@ -91,6 +93,11 @@ static const unsigned int delta[8][36] = {
 	0xf9710255, 0xf2e204ab, 0xe5c40957, 0xcb8812af, 0x9710255f, 0x2e204abf
     }
 };
+
+
+
+
+#pragma mark - FUNCTIONS
 
 int lea_setup(const unsigned char *key, int keylen, int num_rounds, cipher_state *cs)
 {

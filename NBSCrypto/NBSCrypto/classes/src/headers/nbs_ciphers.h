@@ -33,9 +33,8 @@ struct camellia_state{
 };
 
 struct cast5_state{
+    unsigned km[16], kr[16];
     unsigned int nr;
-    unsigned km[16];
-    unsigned kr[16];
 };
 
 struct cast6_state{
@@ -65,23 +64,25 @@ struct kasumi_state{
 };
 
 struct khazad_state {
-    unsigned long long eK[8+1];
-    unsigned long long dK[8+1];
+    unsigned long long eK[8+1], dK[8+1];
 };
 
 struct kuznyechik_state
 {
-    unsigned long long eK[20];
-    unsigned long long dK[20];
+    unsigned long long eK[20], dK[20];
 };
 
 struct lea_state{
-    unsigned int rk[192];
-    unsigned int round;
+    unsigned int rk[192], round;
 };
 
 struct mars_state{
     unsigned int k[40];
+};
+
+struct multi2_state {
+    int N;
+    unsigned uk[8];
 };
 
 struct noekeon_state{
@@ -96,8 +97,7 @@ typedef struct{unsigned x[8], c[8], carry;}rabbit_ctx;
 struct rabbit_state{
     unsigned unused;
     unsigned char block[16];
-    rabbit_ctx master_ctx;
-    rabbit_ctx work_ctx;
+    rabbit_ctx master_ctx, work_ctx;
 };
 
 struct rc2_state{
@@ -110,8 +110,7 @@ struct rc4_state{
 };
 
 struct rc6_state {
-    unsigned int l[32 / 4];
-    unsigned int s[2 * 20 + 4];
+    unsigned int l[32 / 4], s[2 * 20 + 4];
 };
 
 typedef unsigned char safer_key_t[217];
@@ -121,6 +120,13 @@ struct safer_state{
 struct saferp_state{
     long R;
     unsigned char k[33][16];
+};
+
+struct salsa_state{
+    int rounds;
+    unsigned input[16];
+    unsigned char kstream[64];
+    unsigned long ksleft, ivlen;
 };
 
 struct seed_state{
@@ -136,9 +142,7 @@ struct skipjack_state{
 };
 
 struct sm4_state{
-    unsigned long eK[32];
-    unsigned long dK[32];
-    unsigned long keylen;
+    unsigned long eK[32], dK[32], keylen;
 };
 
 struct sober128_state{
@@ -147,10 +151,7 @@ struct sober128_state{
 };
 
 struct sosemanuk_state{
-    unsigned kc[100];
-    unsigned ptr;
-    unsigned r1, r2;
-    unsigned s00, s01, s02, s03, s04, s05, s06, s07, s08, s09;
+    unsigned kc[100], ptr, r1, r2, s00, s01, s02, s03, s04, s05, s06, s07, s08, s09;
     unsigned char buf[80];
 };
 
@@ -189,6 +190,7 @@ typedef union cipher_state{
     struct kuznyechik_state	kuznyechik;
     struct lea_state		lea;
     struct mars_state		mars;
+    struct multi2_state		multi2;
     struct noekeon_state	noekeon;
     struct present_state	present;
     struct rabbit_state		rabbit;
@@ -197,6 +199,7 @@ typedef union cipher_state{
     struct rc6_state		rc6;
     struct safer_state		safer;
     struct saferp_state		saferp;
+    struct salsa_state		salsa;
     struct seed_state		seed;
     struct serpent_state	serpent;
     struct skipjack_state	skipjack;
@@ -385,6 +388,14 @@ void mars_done(cipher_state *cs);
 extern const struct cipher_descriptor mars_desc;
 
 
+#pragma mark MULTI2
+int  multi2_setup(const unsigned char *key, int keylen, int num_rounds, cipher_state *cs);
+int  multi2_encrypt(const unsigned char *pt, unsigned char *ct, const cipher_state *cs);
+int  multi2_decrypt(const unsigned char *ct, unsigned char *pt, const cipher_state *cs);
+void multi2_done(cipher_state *cs);
+extern const struct cipher_descriptor multi2_desc;
+
+
 #pragma mark NOEKEON
 int  noekeon_setup(const unsigned char *key, int keylen, int num_rounds, cipher_state *cs);
 int  noekeon_encrypt(const unsigned char *pt, unsigned char *ct, const cipher_state *cs);
@@ -451,6 +462,16 @@ extern const struct cipher_descriptor safer_k128_desc;
 extern const struct cipher_descriptor safer_sk64_desc;
 extern const struct cipher_descriptor safer_sk128_desc;
 extern const struct cipher_descriptor saferp_desc;
+
+
+#pragma mark SALSA
+int  salsa_setup(const unsigned char *key, int keylen, int num_rounds, cipher_state *cs);
+int  xsalsa_setup(const unsigned char *key, unsigned long keylen, const unsigned char *nonce, unsigned long noncelen, int rounds, cipher_state *cs);
+int  salsa_setiv(const unsigned char *iv, unsigned long ivlen, unsigned long long counter, cipher_state *cs);
+int  salsa_encrypt(const unsigned char *pt, unsigned char *ct, unsigned long len, cipher_state *cs);
+int  salsa_decrypt(const unsigned char *ct, unsigned char *pt, unsigned long len, cipher_state *cs);
+void salsa_done(cipher_state *cs);
+extern const struct cipher_descriptor salsa_desc;
 
 
 #pragma mark SEED

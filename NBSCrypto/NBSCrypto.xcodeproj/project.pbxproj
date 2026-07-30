@@ -27,6 +27,10 @@
 		1D0E78C02FC60F91005EE298 /* simd.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D0E78BE2FC60F91005EE298 /* simd.c */; };
 		1D0E78C12FC60F91005EE298 /* simd.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D0E78BE2FC60F91005EE298 /* simd.c */; };
 		1D0E78C22FC60F91005EE298 /* simd.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D0E78BE2FC60F91005EE298 /* simd.c */; };
+		1D1BA887300C181E00D6D33D /* multi2.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D1BA886300C181E00D6D33D /* multi2.c */; };
+		1D1BA888300C181E00D6D33D /* multi2.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D1BA886300C181E00D6D33D /* multi2.c */; };
+		1D1BA889300C181E00D6D33D /* multi2.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D1BA886300C181E00D6D33D /* multi2.c */; };
+		1D1BA88A300C181E00D6D33D /* multi2.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D1BA886300C181E00D6D33D /* multi2.c */; };
 		1D2E69062FFD54F200E6A753 /* meshhash2.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D2E69052FFD54F200E6A753 /* meshhash2.c */; };
 		1D2E69072FFD54F200E6A753 /* meshhash2.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D2E69052FFD54F200E6A753 /* meshhash2.c */; };
 		1D2E69082FFD54F200E6A753 /* meshhash2.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D2E69052FFD54F200E6A753 /* meshhash2.c */; };
@@ -442,6 +446,10 @@
 		1DB25A672FC7630900E0D9E3 /* chi.c in Sources */ = {isa = PBXBuildFile; fileRef = 1DB25A652FC7630900E0D9E3 /* chi.c */; };
 		1DB25A682FC7630900E0D9E3 /* chi.c in Sources */ = {isa = PBXBuildFile; fileRef = 1DB25A652FC7630900E0D9E3 /* chi.c */; };
 		1DB25A692FC7630900E0D9E3 /* chi.c in Sources */ = {isa = PBXBuildFile; fileRef = 1DB25A652FC7630900E0D9E3 /* chi.c */; };
+		1DB89B1B300A604000350E39 /* salsa.c in Sources */ = {isa = PBXBuildFile; fileRef = 1DB89B1A300A604000350E39 /* salsa.c */; };
+		1DB89B1C300A604000350E39 /* salsa.c in Sources */ = {isa = PBXBuildFile; fileRef = 1DB89B1A300A604000350E39 /* salsa.c */; };
+		1DB89B1D300A604000350E39 /* salsa.c in Sources */ = {isa = PBXBuildFile; fileRef = 1DB89B1A300A604000350E39 /* salsa.c */; };
+		1DB89B1E300A604000350E39 /* salsa.c in Sources */ = {isa = PBXBuildFile; fileRef = 1DB89B1A300A604000350E39 /* salsa.c */; };
 		1DE68D442FEAE7570035A45E /* md6.c in Sources */ = {isa = PBXBuildFile; fileRef = 1DE68D432FEAE7570035A45E /* md6.c */; };
 		1DE68D452FEAE7570035A45E /* md6.c in Sources */ = {isa = PBXBuildFile; fileRef = 1DE68D432FEAE7570035A45E /* md6.c */; };
 		1DE68D462FEAE7570035A45E /* md6.c in Sources */ = {isa = PBXBuildFile; fileRef = 1DE68D432FEAE7570035A45E /* md6.c */; };
@@ -462,6 +470,7 @@
 		1D0B861A3002B24400F7AD70 /* sober128.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sober128.c; sourceTree = "<group>"; tabWidth = 8; };
 		1D0B861F3002B25000F7AD70 /* sosemanuk.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sosemanuk.c; sourceTree = "<group>"; tabWidth = 8; };
 		1D0E78BE2FC60F91005EE298 /* simd.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = simd.c; sourceTree = "<group>"; tabWidth = 8; };
+		1D1BA886300C181E00D6D33D /* multi2.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = multi2.c; sourceTree = "<group>"; tabWidth = 8; };
 		1D2E69052FFD54F200E6A753 /* meshhash2.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = meshhash2.c; sourceTree = "<group>"; tabWidth = 8; };
 		1D2E690A2FFD724B00E6A753 /* kuznyechik.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = kuznyechik.c; sourceTree = "<group>"; tabWidth = 8; };
 		1D30115B2FE9720F00C5E200 /* fugue.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = fugue.c; sourceTree = "<group>"; tabWidth = 8; };
@@ -577,6 +586,7 @@
 		1D8377742FCF5FC6008E8D31 /* blake3.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = blake3.c; sourceTree = "<group>"; tabWidth = 8; };
 		1D8475EC2FDDB0C300E0836C /* pelican.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pelican.c; sourceTree = "<group>"; tabWidth = 8; };
 		1DB25A652FC7630900E0D9E3 /* chi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = chi.c; sourceTree = "<group>"; tabWidth = 8; };
+		1DB89B1A300A604000350E39 /* salsa.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = salsa.c; sourceTree = "<group>"; tabWidth = 8; };
 		1DE68D432FEAE7570035A45E /* md6.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = md6.c; sourceTree = "<group>"; tabWidth = 8; };
 		1DF2EE352FCB2A9400A72997 /* shavite3.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = shavite3.c; sourceTree = "<group>"; tabWidth = 8; };
 		1DF7F14A2FC8C26B00CA2560 /* arirang.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = arirang.c; sourceTree = "<group>"; tabWidth = 8; };
@@ -800,6 +810,7 @@
 				1D2E690A2FFD724B00E6A753 /* kuznyechik.c */,
 				1D419E572FC06D47003A7B83 /* lea.c */,
 				1D419E5D2FC06D47003A7B83 /* mars.c */,
+				1D1BA886300C181E00D6D33D /* multi2.c */,
 				1D419E532FC06D47003A7B83 /* noekeon.c */,
 				1D419E5C2FC06D47003A7B83 /* present.c */,
 				1D0B86153002B23600F7AD70 /* rabbit.c */,
@@ -807,6 +818,7 @@
 				1D419E552FC06D47003A7B83 /* rc4.c */,
 				1D419E562FC06D47003A7B83 /* rc6.c */,
 				1D419E672FC06D48003A7B83 /* safer.c */,
+				1DB89B1A300A604000350E39 /* salsa.c */,
 				1D419E602FC06D48003A7B83 /* seed.c */,
 				1D419E652FC06D48003A7B83 /* serpent.c */,
 				1D419E582FC06D47003A7B83 /* skipjack.c */,
@@ -1066,6 +1078,7 @@
 				1D2E690B2FFD724B00E6A753 /* kuznyechik.c in Sources */,
 				1D419E7D2FC06D49003A7B83 /* lea.c in Sources */,
 				1D419E952FC06D49003A7B83 /* mars.c in Sources */,
+				1D1BA887300C181E00D6D33D /* multi2.c in Sources */,
 				1D419E6D2FC06D48003A7B83 /* noekeon.c in Sources */,
 				1D419E912FC06D49003A7B83 /* present.c in Sources */,
 				1D0B86163002B23600F7AD70 /* rabbit.c in Sources */,
@@ -1073,6 +1086,7 @@
 				1D419E752FC06D49003A7B83 /* rc4.c in Sources */,
 				1D419E792FC06D49003A7B83 /* rc6.c in Sources */,
 				1D419EBD2FC06D49003A7B83 /* safer.c in Sources */,
+				1DB89B1B300A604000350E39 /* salsa.c in Sources */,
 				1D419EA12FC06D49003A7B83 /* seed.c in Sources */,
 				1D419EB52FC06D49003A7B83 /* serpent.c in Sources */,
 				1D419E812FC06D49003A7B83 /* skipjack.c in Sources */,
@@ -1177,6 +1191,7 @@
 				1D2E690C2FFD724B00E6A753 /* kuznyechik.c in Sources */,
 				1D419E7E2FC06D49003A7B83 /* lea.c in Sources */,
 				1D419E962FC06D49003A7B83 /* mars.c in Sources */,
+				1D1BA888300C181E00D6D33D /* multi2.c in Sources */,
 				1D419E6E2FC06D49003A7B83 /* noekeon.c in Sources */,
 				1D419E922FC06D49003A7B83 /* present.c in Sources */,
 				1D0B86173002B23600F7AD70 /* rabbit.c in Sources */,
@@ -1184,6 +1199,7 @@
 				1D419E762FC06D49003A7B83 /* rc4.c in Sources */,
 				1D419E7A2FC06D49003A7B83 /* rc6.c in Sources */,
 				1D419EBE2FC06D49003A7B83 /* safer.c in Sources */,
+				1DB89B1C300A604000350E39 /* salsa.c in Sources */,
 				1D419EA22FC06D49003A7B83 /* seed.c in Sources */,
 				1D419EB62FC06D49003A7B83 /* serpent.c in Sources */,
 				1D419E822FC06D49003A7B83 /* skipjack.c in Sources */,
@@ -1288,6 +1304,7 @@
 				1D2E690D2FFD724B00E6A753 /* kuznyechik.c in Sources */,
 				1D419E7F2FC06D49003A7B83 /* lea.c in Sources */,
 				1D419E972FC06D49003A7B83 /* mars.c in Sources */,
+				1D1BA889300C181E00D6D33D /* multi2.c in Sources */,
 				1D419E6F2FC06D49003A7B83 /* noekeon.c in Sources */,
 				1D419E932FC06D49003A7B83 /* present.c in Sources */,
 				1D0B86183002B23600F7AD70 /* rabbit.c in Sources */,
@@ -1295,6 +1312,7 @@
 				1D419E772FC06D49003A7B83 /* rc4.c in Sources */,
 				1D419E7B2FC06D49003A7B83 /* rc6.c in Sources */,
 				1D419EBF2FC06D49003A7B83 /* safer.c in Sources */,
+				1DB89B1D300A604000350E39 /* salsa.c in Sources */,
 				1D419EA32FC06D49003A7B83 /* seed.c in Sources */,
 				1D419EB72FC06D49003A7B83 /* serpent.c in Sources */,
 				1D419E832FC06D49003A7B83 /* skipjack.c in Sources */,
@@ -1399,6 +1417,7 @@
 				1D2E690E2FFD724B00E6A753 /* kuznyechik.c in Sources */,
 				1D419E802FC06D49003A7B83 /* lea.c in Sources */,
 				1D419E982FC06D49003A7B83 /* mars.c in Sources */,
+				1D1BA88A300C181E00D6D33D /* multi2.c in Sources */,
 				1D419E702FC06D49003A7B83 /* noekeon.c in Sources */,
 				1D419E942FC06D49003A7B83 /* present.c in Sources */,
 				1D0B86193002B23600F7AD70 /* rabbit.c in Sources */,
@@ -1406,6 +1425,7 @@
 				1D419E782FC06D49003A7B83 /* rc4.c in Sources */,
 				1D419E7C2FC06D49003A7B83 /* rc6.c in Sources */,
 				1D419EC02FC06D49003A7B83 /* safer.c in Sources */,
+				1DB89B1E300A604000350E39 /* salsa.c in Sources */,
 				1D419EA42FC06D49003A7B83 /* seed.c in Sources */,
 				1D419EB82FC06D49003A7B83 /* serpent.c in Sources */,
 				1D419E842FC06D49003A7B83 /* skipjack.c in Sources */,
@@ -1549,7 +1569,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 260714;
+				CURRENT_PROJECT_VERSION = 260730;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -1581,7 +1601,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 260714;
+				CURRENT_PROJECT_VERSION = 260730;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -1610,7 +1630,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 260714;
+				CURRENT_PROJECT_VERSION = 260730;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -1641,7 +1661,7 @@
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = NO;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 260714;
+				CURRENT_PROJECT_VERSION = 260730;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;

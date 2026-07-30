@@ -4,7 +4,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "NBSCryptoDefines.h"
+#import <NBSCrypto/NBSCryptoDefines.h>
 
 
 NS_ASSUME_NONNULL_BEGIN
