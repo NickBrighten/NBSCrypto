@@ -284,10 +284,16 @@
 
     unsigned char h[hash_descriptor[0].hashsize];
 
-    switch (_mac) {
+    switch(_mac){
+	case NBSCrypto_MAC_NONE:{
+	    hash_state s;
+	    hash_descriptor[0].init(&s);
+	    hash_descriptor[0].process(&s, d.bytes, d.length);
+	    hash_descriptor[0].done(&s, h);
+	    break;
+	}
 	case NBSCrypto_MAC_HMAC:{
 	    NSString *sKEY=[_key stringByAppendingString:[_HEX_PADDING objectAtIndex:0]];
-
 	    if (_key.length >= hash_descriptor[0].blocksize) {
 		sKEY = _key;
 	    }else{
@@ -334,14 +340,6 @@
 	    for(int i=0;i<_BIT_LENGTH_128;i++){[pr appendFormat:@"%02x",out[i]];}
 	    return pr;
 
-	    break;
-	}
-
-	default:{
-	    hash_state s;
-	    hash_descriptor[0].init(&s);
-	    hash_descriptor[0].process(&s, d.bytes, d.length);
-	    hash_descriptor[0].done(&s, h);
 	    break;
 	}
     }
@@ -406,8 +404,8 @@
 +(NSString*)hashString:(NSString*)s withAlgorithm:(NBSCrypto_HASH)a useMAC:(NBSCrypto_MAC)m setKeyForMAC:(NSString*)k{
     NBSCryptoHash *r = [[self alloc] init];
     [r setAlgorithm:a];
-    [r useMAC:m];
     if (m) {
+	[r useMAC:m];
 	[r setKeyForMAC:k];
     }
     return [r hashString:s];
