@@ -588,9 +588,9 @@ int tiger_3_process(hash_state *hs, const unsigned char *in, unsigned long inlen
 	    if ((err = _tiger_3_compress(hs, in)) != NBSCrypto_OK) {
 		return err;
 	    }
-	    hs->tiger.len += 64 * 8;
-	    in		+= 64;
-	    inlen	-= 64;
+	    hs->tiger.len	+= 64 * 8;
+	    in			+= 64;
+	    inlen		-= 64;
 	} else {
 	    n = MIN(inlen, (64 - hs->tiger.clen));
 	    memcpy(hs->tiger.buf + hs->tiger.clen, in, (size_t)n);
