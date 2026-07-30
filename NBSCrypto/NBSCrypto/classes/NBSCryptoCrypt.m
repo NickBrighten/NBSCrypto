@@ -48,6 +48,7 @@ NSUInteger mode;
 		case _CIPHER_KUZNYECHIK:	{r=&kuznyechik_desc;break;}
 		case _CIPHER_LEA:		{r=&lea_desc;break;}
 		case _CIPHER_MARS:		{r=&mars_desc;break;}
+		case _CIPHER_MULTI2:		{r=&multi2_desc;break;}
 		case _CIPHER_NOEKEON:		{r=&noekeon_desc;break;}
 		case _CIPHER_PRESENT:		{r=&present_desc;break;}
 		case _CIPHER_RABBIT:		{r=&rabbit_desc;break;}
