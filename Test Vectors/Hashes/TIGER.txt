@@ -1,0 +1,280 @@
+#################################################################
+######################   TIGER - VECTORS   ######################
+#################################################################
+
+
+----------------------- TIGER 1/3 128-BIT -----------------------
+
+LEN	: 0
+MSG	: ""
+MD	: 3293ac630c13f0245f92bbb1766e1616
+
+
+LEN	: 1
+MSG	: " "
+MD	: f0aefd02e2ad9fd927a4cba375399f7d
+
+
+LEN	: 5
+MSG	: "H    "
+MD	: 546c19f49c7143d02a23dc042b923a6d
+
+
+LEN	: 16
+MSG	: "0123456789abcdef"
+MD	: b742117c9f5d4bba4ebece78555a9576
+
+
+
+----------------------- TIGER 1/3 160-BIT -----------------------
+
+LEN	: 0
+MSG	: ""
+MD	: 3293ac630c13f0245f92bbb1766e16167a4e5849
+
+
+LEN	: 1
+MSG	: " "
+MD	: f0aefd02e2ad9fd927a4cba375399f7d8bf42e5a
+
+
+LEN	: 5
+MSG	: "H    "
+MD	: 546c19f49c7143d02a23dc042b923a6ddce9835f
+
+
+LEN	: 16
+MSG	: "0123456789abcdef"
+MD	: b742117c9f5d4bba4ebece78555a9576304622ec
+
+
+
+----------------------- TIGER 1/3 192-BIT -----------------------
+
+LEN	: 0
+MSG	: ""
+MD	: 3293ac630c13f0245f92bbb1766e16167a4e58492dde73f3
+
+
+LEN	: 1
+MSG	: " "
+MD	: f0aefd02e2ad9fd927a4cba375399f7d8bf42e5a377e9fb1
+
+
+LEN	: 5
+MSG	: "H    "
+MD	: 546c19f49c7143d02a23dc042b923a6ddce9835f66564679
+
+
+LEN	: 16
+MSG	: "0123456789abcdef"
+MD	: b742117c9f5d4bba4ebece78555a9576304622ec73555a9e
+
+
+
+----------------------- TIGER 1/4 128-BIT -----------------------
+
+LEN	: 0
+MSG	: ""
+MD	: 24cc78a7f6ff3546e7984e59695ca13d
+
+
+LEN	: 1
+MSG	: " "
+MD	: 9448ef0542b5ff1596f076ed2e545c61
+
+
+LEN	: 5
+MSG	: "H    "
+MD	: 57de7e44f39b2210b3c8de53f818e2b8
+
+
+LEN	: 16
+MSG	: "0123456789abcdef"
+MD	: 450d2e6c0bee8c4a162a420e1c7fee11
+
+
+
+----------------------- TIGER 1/4 160-BIT -----------------------
+
+LEN	: 0
+MSG	: ""
+MD	: 24cc78a7f6ff3546e7984e59695ca13d804e0b68
+
+
+LEN	: 1
+MSG	: " "
+MD	: 9448ef0542b5ff1596f076ed2e545c61c7270bb1
+
+
+LEN	: 5
+MSG	: "H    "
+MD	: 57de7e44f39b2210b3c8de53f818e2b85a2a3629
+
+
+LEN	: 16
+MSG	: "0123456789abcdef"
+MD	: 450d2e6c0bee8c4a162a420e1c7fee11723e6bfa
+
+
+
+----------------------- TIGER 1/4 192-BIT -----------------------
+
+LEN	: 0
+MSG	: ""
+MD	: 24cc78a7f6ff3546e7984e59695ca13d804e0b686e255194
+
+
+LEN	: 1
+MSG	: " "
+MD	: 9448ef0542b5ff1596f076ed2e545c61c7270bb1a53a74f4
+
+
+LEN	: 5
+MSG	: "H    "
+MD	: 57de7e44f39b2210b3c8de53f818e2b85a2a3629ec405e64
+
+
+LEN	: 16
+MSG	: "0123456789abcdef"
+MD	: 450d2e6c0bee8c4a162a420e1c7fee11723e6bfa61a8ae9a
+
+
+
+----------------------- TIGER 2/3 128-BIT -----------------------
+
+LEN	: 0
+MSG	: ""
+MD	: 4441be75f6018773c206c22745374b92
+
+
+LEN	: 1
+MSG	: " "
+MD	: a9b88894d99fd2ec1d0ab539b7ded6e7
+
+
+LEN	: 5
+MSG	: "H    "
+MD	: d556e505d2a8f0e3d68e8fe541eb8a1c
+
+
+LEN	: 16
+MSG	: "0123456789abcdef"
+MD	: c786e94e467094ce486d605f5fe47d61
+
+
+
+----------------------- TIGER 2/3 160-BIT -----------------------
+
+LEN	: 0
+MSG	: ""
+MD	: 4441be75f6018773c206c22745374b924aa8313f
+
+
+LEN	: 1
+MSG	: " "
+MD	: a9b88894d99fd2ec1d0ab539b7ded6e705273c94
+
+
+LEN	: 5
+MSG	: "H    "
+MD	: d556e505d2a8f0e3d68e8fe541eb8a1cb8886812
+
+
+LEN	: 16
+MSG	: "0123456789abcdef"
+MD	: c786e94e467094ce486d605f5fe47d61093a8342
+
+
+
+----------------------- TIGER 2/3 192-BIT -----------------------
+
+LEN	: 0
+MSG	: ""
+MD	: 4441be75f6018773c206c22745374b924aa8313fef919f41
+
+
+LEN	: 1
+MSG	: " "
+MD	: a9b88894d99fd2ec1d0ab539b7ded6e705273c9427a457af
+
+
+LEN	: 5
+MSG	: "H    "
+MD	: d556e505d2a8f0e3d68e8fe541eb8a1cb8886812a64f3407
+
+
+LEN	: 16
+MSG	: "0123456789abcdef"
+MD	: c786e94e467094ce486d605f5fe47d61093a834280df3d37
+
+
+
+----------------------- TIGER 2/4 128-BIT -----------------------
+
+LEN	: 0
+MSG	: ""
+MD	: 6a7201a47aac2065913811175553489a
+
+
+LEN	: 1
+MSG	: " "
+MD	: 180e00f613b8c9f7f260d7700d80d5ca
+
+
+LEN	: 5
+MSG	: "H    "
+MD	: 0a25e2cf94bb4d3c6783e10adcc465c5
+
+
+LEN	: 16
+MSG	: "0123456789abcdef"
+MD	: 7ff73b4d5af9fb4810e3b35e2d8f1d79
+
+
+
+----------------------- TIGER 2/4 160-BIT -----------------------
+
+LEN	: 0
+MSG	: ""
+MD	: 6a7201a47aac2065913811175553489add0f8b99
+
+
+LEN	: 1
+MSG	: " "
+MD	: 180e00f613b8c9f7f260d7700d80d5cae18bc219
+
+
+LEN	: 5
+MSG	: "H    "
+MD	: 0a25e2cf94bb4d3c6783e10adcc465c52540fe5c
+
+
+LEN	: 16
+MSG	: "0123456789abcdef"
+MD	: 7ff73b4d5af9fb4810e3b35e2d8f1d79221061be
+
+
+
+----------------------- TIGER 2/4 192-BIT -----------------------
+
+LEN	: 0
+MSG	: ""
+MD	: 6a7201a47aac2065913811175553489add0f8b99e65a0955
+
+
+LEN	: 1
+MSG	: " "
+MD	: 180e00f613b8c9f7f260d7700d80d5cae18bc2199fad4b97
+
+
+LEN	: 5
+MSG	: "H    "
+MD	: 0a25e2cf94bb4d3c6783e10adcc465c52540fe5c4ef8c4f8
+
+
+LEN	: 16
+MSG	: "0123456789abcdef"
+MD	: 7ff73b4d5af9fb4810e3b35e2d8f1d79221061be9c95862d
+
+#################################################################
