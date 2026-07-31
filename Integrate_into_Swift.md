@@ -30,7 +30,7 @@ If you already have an existing bridging header file, all you need to do is add 
 ```
 
 
-### Link the Objective-C Bridging Header to your Swift project Build Settings
+### Link the Objective-C Bridging Header to Build Settings
 To link the bridging header file your have to go to the `Build Settings` of your project and link the bridging header `.h` file in the section `Swift Compiler - General` - see picture below. _(The picture show the linking if the `.h` file as a common part of the project and is located in the directory/folder `Classes` in your project)_.
 
 <picture><img src=".github/swift_prj_bh.png" alt="Link the bridging header" style="width:auto;"></picture>
