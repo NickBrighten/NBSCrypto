@@ -1,7 +1,7 @@
 # NBSCrypto
 NBSCrypto is an ultra lightweight crytopgraphy framework for iOS, iPadOS, macOS, tvOS and watchOS.
 
-NSCrypto is written in `Objective-C` and `C`.
+NSCrypto is written in `Objective-C` and `C` and is compatible to iOS 9.0 and higher, macOS 10.10 and higher, tvOS 9.0 and higher and watchOS 2.0 and higher.
 
 This repository include the whole Xcode project with all targets, ready to build.
 
