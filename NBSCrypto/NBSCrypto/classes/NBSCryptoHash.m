@@ -162,6 +162,8 @@
 	case NBSCrypto_HASH_JH_384:			{r=&jh_384_desc;break;}
 	case NBSCrypto_HASH_JH_512:			{r=&jh_512_desc;break;}
 	case NBSCrypto_HASH_JOAAT:			{r=&joaat_desc;break;}
+	case NBSCrypto_HASH_KANGAROOTWELVE_128:		{r=&kangarootwelve_128_desc;break;}
+	case NBSCrypto_HASH_KANGAROOTWELVE_256:		{r=&kangarootwelve_256_desc;break;}
 	case NBSCrypto_HASH_KECCAK_224:			{r=&keccak_224_desc;break;}
 	case NBSCrypto_HASH_KECCAK_256:			{r=&keccak_256_desc;break;}
 	case NBSCrypto_HASH_KECCAK_384:			{r=&keccak_384_desc;break;}
