@@ -442,6 +442,10 @@
 		1D8475EE2FDDB0C300E0836C /* pelican.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D8475EC2FDDB0C300E0836C /* pelican.c */; };
 		1D8475EF2FDDB0C300E0836C /* pelican.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D8475EC2FDDB0C300E0836C /* pelican.c */; };
 		1D8475F02FDDB0C300E0836C /* pelican.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D8475EC2FDDB0C300E0836C /* pelican.c */; };
+		1D983EA6301E68CB004F4985 /* kmac.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D983EA5301E68CB004F4985 /* kmac.c */; };
+		1D983EA7301E68CB004F4985 /* kmac.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D983EA5301E68CB004F4985 /* kmac.c */; };
+		1D983EA8301E68CB004F4985 /* kmac.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D983EA5301E68CB004F4985 /* kmac.c */; };
+		1D983EA9301E68CB004F4985 /* kmac.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D983EA5301E68CB004F4985 /* kmac.c */; };
 		1DB25A662FC7630900E0D9E3 /* chi.c in Sources */ = {isa = PBXBuildFile; fileRef = 1DB25A652FC7630900E0D9E3 /* chi.c */; };
 		1DB25A672FC7630900E0D9E3 /* chi.c in Sources */ = {isa = PBXBuildFile; fileRef = 1DB25A652FC7630900E0D9E3 /* chi.c */; };
 		1DB25A682FC7630900E0D9E3 /* chi.c in Sources */ = {isa = PBXBuildFile; fileRef = 1DB25A652FC7630900E0D9E3 /* chi.c */; };
@@ -585,6 +589,7 @@
 		1D5BEB652FC9E16600865E11 /* bluemidnightwish.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = bluemidnightwish.c; sourceTree = "<group>"; tabWidth = 8; };
 		1D8377742FCF5FC6008E8D31 /* blake3.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = blake3.c; sourceTree = "<group>"; tabWidth = 8; };
 		1D8475EC2FDDB0C300E0836C /* pelican.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pelican.c; sourceTree = "<group>"; tabWidth = 8; };
+		1D983EA5301E68CB004F4985 /* kmac.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = kmac.c; sourceTree = "<group>"; tabWidth = 8; };
 		1DB25A652FC7630900E0D9E3 /* chi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = chi.c; sourceTree = "<group>"; tabWidth = 8; };
 		1DB89B1A300A604000350E39 /* salsa.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = salsa.c; sourceTree = "<group>"; tabWidth = 8; };
 		1DE68D432FEAE7570035A45E /* md6.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = md6.c; sourceTree = "<group>"; tabWidth = 8; };
@@ -731,6 +736,7 @@
 			children = (
 				1D419D8A2FC06C5D003A7B83 /* f9.c */,
 				1D419D8C2FC06C5D003A7B83 /* hmac.c */,
+				1D983EA5301E68CB004F4985 /* kmac.c */,
 				1D419D892FC06C5D003A7B83 /* omac.c */,
 				1D8475EC2FDDB0C300E0836C /* pelican.c */,
 				1D419D8B2FC06C5D003A7B83 /* pmac.c */,
@@ -1144,6 +1150,7 @@
 				1D419DF62FC06C97003A7B83 /* xxhash.c in Sources */,
 				1D419D922FC06C5D003A7B83 /* f9.c in Sources */,
 				1D419D9A2FC06C5D003A7B83 /* hmac.c in Sources */,
+				1D983EA6301E68CB004F4985 /* kmac.c in Sources */,
 				1D419D8E2FC06C5D003A7B83 /* omac.c in Sources */,
 				1D8475ED2FDDB0C300E0836C /* pelican.c in Sources */,
 				1D419D962FC06C5D003A7B83 /* pmac.c in Sources */,
@@ -1257,6 +1264,7 @@
 				1D419DF72FC06C97003A7B83 /* xxhash.c in Sources */,
 				1D419D932FC06C5D003A7B83 /* f9.c in Sources */,
 				1D419D9B2FC06C5D003A7B83 /* hmac.c in Sources */,
+				1D983EA7301E68CB004F4985 /* kmac.c in Sources */,
 				1D419D8F2FC06C5D003A7B83 /* omac.c in Sources */,
 				1D8475EE2FDDB0C300E0836C /* pelican.c in Sources */,
 				1D419D972FC06C5D003A7B83 /* pmac.c in Sources */,
@@ -1370,6 +1378,7 @@
 				1D419DF82FC06C97003A7B83 /* xxhash.c in Sources */,
 				1D419D942FC06C5D003A7B83 /* f9.c in Sources */,
 				1D419D9C2FC06C5D003A7B83 /* hmac.c in Sources */,
+				1D983EA8301E68CB004F4985 /* kmac.c in Sources */,
 				1D419D902FC06C5D003A7B83 /* omac.c in Sources */,
 				1D8475EF2FDDB0C300E0836C /* pelican.c in Sources */,
 				1D419D982FC06C5D003A7B83 /* pmac.c in Sources */,
@@ -1482,6 +1491,7 @@
 				1D419E312FC06C98003A7B83 /* whirpool.c in Sources */,
 				1D419D952FC06C5D003A7B83 /* f9.c in Sources */,
 				1D419D9D2FC06C5D003A7B83 /* hmac.c in Sources */,
+				1D983EA9301E68CB004F4985 /* kmac.c in Sources */,
 				1D419D912FC06C5D003A7B83 /* omac.c in Sources */,
 				1D8475F02FDDB0C300E0836C /* pelican.c in Sources */,
 				1D419D992FC06C5D003A7B83 /* pmac.c in Sources */,
@@ -1569,7 +1579,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 260801;
+				CURRENT_PROJECT_VERSION = 260802;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -1601,7 +1611,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 260801;
+				CURRENT_PROJECT_VERSION = 260802;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -1630,7 +1640,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 260801;
+				CURRENT_PROJECT_VERSION = 260802;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -1661,7 +1671,7 @@
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = NO;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 260801;
+				CURRENT_PROJECT_VERSION = 260802;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
