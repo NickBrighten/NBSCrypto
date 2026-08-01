@@ -94,13 +94,11 @@ static inline int _rc2_setup(const unsigned char *key, int keylen, int bits, int
 
 
 #pragma mark - FUNCTIONS
-// codeql[cs/risky-crypto]
 int rc2_setup(const unsigned char *key, int keylen, int num_rounds, cipher_state *cs)
 {
     return _rc2_setup(key, keylen, keylen * 8, num_rounds, cs);
 }
 
-// codeql[cs/risky-crypto]
 int rc2_encrypt( const unsigned char *pt, unsigned char *ct, const cipher_state *cs)
 {
     const unsigned *xkey;
@@ -146,7 +144,6 @@ int rc2_encrypt( const unsigned char *pt, unsigned char *ct, const cipher_state 
     return NBSCrypto_OK;
 }
 
-// codeql[cs/risky-crypto]
 int rc2_decrypt( const unsigned char *ct, unsigned char *pt, const cipher_state *cs)
 {
     int i;
@@ -193,7 +190,6 @@ int rc2_decrypt( const unsigned char *ct, unsigned char *pt, const cipher_state 
     return NBSCrypto_OK;
 }
 
-// codeql[cs/risky-crypto]
 void rc2_done(cipher_state *cs)
 {
     zeromem(cs, sizeof(cs->rc2));
