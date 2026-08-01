@@ -5,7 +5,7 @@
 
 PT            : 0123456789abcdef	//Plaintext
 
-KEY          : 0123456789abcdef	//Plaintext
+KEY           : 0123456789abcdef	//Plaintext
 
 KEY2          : 0123456789abcdef	//Plaintext
 
