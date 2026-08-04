@@ -26,6 +26,11 @@ typedef struct {
 } hmac_state;
 
 typedef struct {
+    int xof;
+    hash_state hs;
+} kmac_state;
+
+typedef struct {
     int block_len, buflen;
     unsigned char block[MAXBLOCKSIZE], prev[MAXBLOCKSIZE], Lu[2][MAXBLOCKSIZE];
     unsigned long cipher;
@@ -67,6 +72,12 @@ int f9_done(unsigned char *out, unsigned long *outlen, f9_state *f9);
 int hmac_init(unsigned long hash, const unsigned char *key, unsigned long keylen, hmac_state *hmac);
 int hmac_process(const unsigned char *in, unsigned long inlen, hmac_state *hmac);
 int hmac_done(unsigned char *out, unsigned long *outlen, hmac_state *hmac);
+
+
+#pragma mark KMAC
+int kmac_init(int variant, const unsigned char *key, unsigned long keylen, const unsigned char *cust, unsigned long custlen, kmac_state *kmac);
+int kmac_process(const unsigned char *in, unsigned long inlen, kmac_state *kmac);
+int kmac_done(unsigned char *out, unsigned long *outlen, kmac_state *kmac);
 
 
 #pragma mark OMAC
