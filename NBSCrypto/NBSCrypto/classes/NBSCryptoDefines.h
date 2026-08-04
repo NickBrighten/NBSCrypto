@@ -1616,13 +1616,17 @@ typedef enum NBSCrypto_HASH : NSUInteger {
 ///	NBSCrypto_MAC
 ///	@discussion	MAC-Algorithms
 typedef enum NBSCrypto_MAC : NSUInteger {
-    NBSCrypto_MAC_NONE				= 0,
-    //NBSCrypto_MAC_F9				= 1,
-    NBSCrypto_MAC_HMAC				= 2,
-    //NBSCrypto_MAC_OMAC			= 3,
-    NBSCrypto_MAC_PELICAN			= 4,
-    //NBSCrypto_MAC_PMAC			= 5,
-    NBSCrypto_MAC_POLY1305			= 6,
+    NBSCrypto_MAC_NONE				=  0,
+    //NBSCrypto_MAC_F9				=  1,
+    NBSCrypto_MAC_HMAC				=  2,
+    //NBSCrypto_MAC_KMAC_128			=  3,
+    NBSCrypto_MAC_KMAC_256			=  4,
+    //NBSCrypto_MAC_KMAC_XOF128			=  5,
+    NBSCrypto_MAC_KMAC_XOF256			=  6,
+    //NBSCrypto_MAC_OMAC			=  7,
+    NBSCrypto_MAC_PELICAN			=  8,
+    //NBSCrypto_MAC_PMAC			=  9,
+    NBSCrypto_MAC_POLY1305			= 10,
 } NBSCrypto_MAC;
 
 
