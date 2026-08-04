@@ -1,5 +1,7 @@
 //
 //	pmac.c
+//	Authors / Developers		: John Black, Phillip Rogaway
+//	Last Modified (Original)	: 2002
 //
 
 #include "nbs_crypto.h"
