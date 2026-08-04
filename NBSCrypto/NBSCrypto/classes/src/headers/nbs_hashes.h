@@ -279,6 +279,14 @@ struct sha3_state{
     unsigned long long s[25], saved;
 };
 
+struct kangarootwelve_state {
+    unsigned char finished, phase;
+    unsigned short remaining;
+    unsigned long long blocks_count, customization_len;
+    struct sha3_state outer;
+    struct sha3_state inner;
+};
+
 struct shabal_state{
     size_t buffer_ptr;
     int hashbitlen;
@@ -387,6 +395,7 @@ typedef union hash_state{
     struct haval_state			haval;
     struct jh_state			jh;
     struct joaat_state			joaat;
+    struct kangarootwelve_state		kangarootwelve;
     struct kupyna256_state		kupyna256;
     struct kupyna512_state		kupyna512;
     struct lane_state			lane;
@@ -1046,12 +1055,20 @@ extern const struct hash_descriptor sha3_256_desc;
 extern const struct hash_descriptor sha3_384_desc;
 extern const struct hash_descriptor sha3_512_desc;
 
-#define keccak_224_init(a)	sha3_224_init(a)
-#define keccak_256_init(a)	sha3_256_init(a)
-#define keccak_384_init(a)	sha3_384_init(a)
-#define keccak_512_init(a)	sha3_512_init(a)
-#define keccak_process(a,b,c)	sha3_process(a,b,c)
-int keccak_done(hash_state *hs, unsigned char *out);
+int sha3_kangarootwelve_128_init(hash_state *hs);
+int sha3_kangarootwelve_256_init(hash_state *hs);
+int sha3_kangarootwelve_process(hash_state *hs, const unsigned char *in, unsigned long inlen);
+int sha3_kangarootwelve_128_done(hash_state *hs, unsigned char *out);
+int sha3_kangarootwelve_256_done(hash_state *hs, unsigned char *out);
+extern const struct hash_descriptor kangarootwelve_128_desc;
+extern const struct hash_descriptor kangarootwelve_256_desc;
+
+#define sha3_keccak_224_init(a) sha3_224_init(a)
+#define sha3_keccak_256_init(a) sha3_256_init(a)
+#define sha3_keccak_384_init(a) sha3_384_init(a)
+#define sha3_keccak_512_init(a) sha3_512_init(a)
+#define sha3_keccak_process(a,b,c) sha3_process(a,b,c)
+int sha3_keccak_done(hash_state *hs, unsigned char *out);
 extern const struct hash_descriptor keccak_224_desc;
 extern const struct hash_descriptor keccak_256_desc;
 extern const struct hash_descriptor keccak_384_desc;
@@ -1061,6 +1078,7 @@ int sha3_shake_128_init(hash_state *hs);
 int sha3_shake_256_init(hash_state *hs);
 #define sha3_shake_process(a,b,c) sha3_process(a,b,c)
 int sha3_shake_done(hash_state *hs, unsigned char *out, unsigned long outlen);
+int sha3_shake_done_ex(hash_state *hs, unsigned char *out, unsigned long outlen, unsigned char domain);
 extern const struct hash_descriptor shake_128_desc;
 extern const struct hash_descriptor shake_256_desc;
 
