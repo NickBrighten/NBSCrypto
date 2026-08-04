@@ -1,5 +1,7 @@
 //
 //	hmac.c
+//	Authors / Developers		: Mihir Bellare, Ran Canetti, Hugo Krawczyk
+//	Last Modified (Original)	: 1996
 //
 
 #include "nbs_crypto.h"

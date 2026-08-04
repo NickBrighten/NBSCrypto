@@ -11,7 +11,7 @@
 const struct hash_descriptor md2_desc =
 {
     "md2",
-    168,
+    170,
     16,
     16,
     &md2_init,

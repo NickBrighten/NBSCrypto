@@ -6,7 +6,7 @@
 
 
 #define CIPHER_TBL_SIZE	41
-#define HASH_TBL_SIZE	251
+#define HASH_TBL_SIZE	253
 
 
 

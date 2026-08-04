@@ -1,5 +1,7 @@
 //
 //	pelican.c
+//	Authors / Developers		: Joan Daemen, Vincent Rijmen
+//	Last Modified (Original)	: 2005
 //
 
 #include "nbs_crypto.h"

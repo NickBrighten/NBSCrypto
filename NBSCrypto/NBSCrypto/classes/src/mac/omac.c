@@ -1,5 +1,7 @@
 //
 //	omac.c
+//	Authors / Developers		: Tetsu Iwata, Kaoru Kurosawa
+//	Last Modified (Original)	: 2002
 //
 
 #include "nbs_crypto.h"

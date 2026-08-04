@@ -1,7 +1,12 @@
 //
 //	sha3.c
-//	Authors / Developers		: Guido Bertoni, Joan Daemen, Michaël Peeters, Gilles Van Assche
-//	Last Modified (Original)	: 2012
+//	Authors / Developers		: Guido Bertoni, Joan Daemen, Michaël Peeters, Gilles van Assche
+//	Original			: 2012
+
+//
+//	Contributors
+//	KangarooTwelve		-	Ronny Van Keer, Benoît Viguier (2016)
+//
 //
 
 #include "nbs_crypto.h"
@@ -11,7 +16,7 @@
 const struct hash_descriptor sha3_224_desc =
 {
     "sha3-224",
-    201,
+    203,
     28,
     144,
     &sha3_224_init,
@@ -23,7 +28,7 @@ const struct hash_descriptor sha3_224_desc =
 const struct hash_descriptor sha3_256_desc =
 {
     "sha3-256",
-    202,
+    204,
     32,
     136,
     &sha3_256_init,
@@ -35,7 +40,7 @@ const struct hash_descriptor sha3_256_desc =
 const struct hash_descriptor sha3_384_desc =
 {
     "sha3-384",
-    203,
+    205,
     48,
     104,
     &sha3_384_init,
@@ -47,7 +52,7 @@ const struct hash_descriptor sha3_384_desc =
 const struct hash_descriptor sha3_512_desc =
 {
     "sha3-512",
-    204,
+    206,
     64,
     72,
     &sha3_512_init,
@@ -56,82 +61,108 @@ const struct hash_descriptor sha3_512_desc =
     NULL
 };
 
+const struct hash_descriptor kangarootwelve_128_desc =
+{
+    "kangarootwelve-128",
+    150,
+    16,
+    168,
+    &sha3_kangarootwelve_128_init,
+    &sha3_kangarootwelve_process,
+    &sha3_kangarootwelve_128_done,
+    NULL
+};
+
+const struct hash_descriptor kangarootwelve_256_desc =
+{
+    "kangarootwelve-256",
+    151,
+    32,
+    136,
+    &sha3_kangarootwelve_256_init,
+    &sha3_kangarootwelve_process,
+    &sha3_kangarootwelve_256_done,
+    NULL
+};
 const struct hash_descriptor keccak_224_desc =
 {
     "keccak-224",
-    150,
+    152,
     28,
     144,
     &sha3_224_init,
     &sha3_process,
-    &keccak_done,
+    &sha3_keccak_done,
     NULL
 };
 
 const struct hash_descriptor keccak_256_desc =
 {
     "keccak-256",
-    151,
+    153,
     32,
     136,
     &sha3_256_init,
     &sha3_process,
-    &keccak_done,
+    &sha3_keccak_done,
     NULL
 };
 
 const struct hash_descriptor keccak_384_desc =
 {
     "keccak-384",
-    152,
+    154,
     48,
     104,
     &sha3_384_init,
     &sha3_process,
-    &keccak_done,
+    &sha3_keccak_done,
     NULL
 };
 
 const struct hash_descriptor keccak_512_desc =
 {
     "keccak-512",
-    153,
+    155,
     64,
     72,
     &sha3_512_init,
     &sha3_process,
-    &keccak_done,
+    &sha3_keccak_done,
     NULL
 };
 
 const struct hash_descriptor shake_128_desc =
 {
     "shake-128",
-    210,
+    212,
     16,
     168,
     &sha3_shake_128_init,
     &sha3_process,
-    &keccak_done,
+    &sha3_keccak_done,
     NULL
 };
 
 const struct hash_descriptor shake_256_desc =
 {
     "shake-256",
-    211,
+    213,
     32,
     136,
     &sha3_shake_256_init,
     &sha3_process,
-    &keccak_done,
+    &sha3_keccak_done,
     NULL
 };
+
+
 
 
 #pragma mark - DEFINES
 #define SHA3_SPONGE_WORDS 25
 #define SHA3_ROUNDS 24
+#define NBS_ARRAY_SIZE(arr) (sizeof(arr)/sizeof(arr[0]))
 
 #define STORE64L(x,y)										\
     do {(y)[7] = (unsigned char)(((x)>>56)&255); (y)[6] = (unsigned char)(((x)>>48)&255);	\
@@ -179,10 +210,60 @@ static const unsigned s_piln[24] = {
     10, 7, 11, 17, 18, 3, 5, 16, 8, 21, 24, 4, 15, 23, 19, 13, 12, 2, 20, 14, 22, 9, 6, 1
 };
 
+static const unsigned char kangaroo_twelve_filler[] = {
+    0x03, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
+};
+
+typedef void (*process_fn)(unsigned long long s[25]);
+
 
 
 
 #pragma mark - INLINE
+static inline void _keccak_f(unsigned long long s[25], int max_rounds, int rc_offset)
+{
+    int i, j, round;
+    unsigned long long t, bc[5];
+
+    for(round = 0; round < max_rounds; round++) {
+	for(i = 0; i < 5; i++) {
+	    bc[i] = s[i] ^ s[i + 5] ^ s[i + 10] ^ s[i + 15] ^ s[i + 20];
+	}
+	for(i = 0; i < 5; i++) {
+	    t = bc[(i + 4) % 5] ^ ROL64(bc[(i + 1) % 5], 1);
+	    for(j = 0; j < 25; j += 5) {
+		s[j + i] ^= t;
+	    }
+	}
+	t = s[1];
+	for(i = 0; i < 24; i++) {
+	    j = s_piln[i];
+	    bc[0] = s[j];
+	    s[j] = ROL64(t, s_rotc[i]);
+	    t = bc[0];
+	}
+	for(j = 0; j < 25; j += 5) {
+	    for(i = 0; i < 5; i++) {
+		bc[i] = s[j + i];
+	    }
+	    for(i = 0; i < 5; i++) {
+		s[j + i] ^= (~bc[(i + 1) % 5]) & bc[(i + 2) % 5];
+	    }
+	}
+	s[0] ^= s_rndc[rc_offset + round];
+    }
+}
+
+static inline void _keccakf(unsigned long long s[25])
+{
+    _keccak_f(s, 24, 0);
+}
+
+static inline void _keccak_turbo_f(unsigned long long s[25])
+{
+    _keccak_f(s, 12, 12);
+}
+
 static inline void _sha3_rnd(unsigned long long s[25])
 {
     int i, j, round;
@@ -220,12 +301,76 @@ static inline void _sha3_rnd(unsigned long long s[25])
     }
 }
 
-static inline int _sha3_shake_init(hash_state *hs, int num)
+static inline int _sha3_shake_init(struct sha3_state *sha3, int num)
 {
     if (num != 128 && num != 256) return NBSCrypto_ERROR;
-    memset(&hs->sha3, 0, sizeof(hs->sha3));
-    hs->sha3.capacity_words = (unsigned short)(2 * num / (8 * sizeof(unsigned long long)));
+    memset(sha3, 0, sizeof(*sha3));
+    sha3->capacity_words = (unsigned short)(2 * num / (8 * sizeof(unsigned long long)));
     return NBSCrypto_OK;
+}
+
+static inline int _sha3_kangarootwelve_init(hash_state *hs, int num)
+{
+    int err;
+
+    if ((err = _sha3_shake_init(&hs->kangarootwelve.outer, num)) != NBSCrypto_OK) return err;
+    if ((err = _sha3_shake_init(&hs->kangarootwelve.inner, num)) != NBSCrypto_OK) return err;
+    hs->kangarootwelve.blocks_count = 0;
+    hs->kangarootwelve.customization_len = 0;
+    hs->kangarootwelve.remaining = 8 * 1024;
+    hs->kangarootwelve.phase = 0;
+    hs->kangarootwelve.finished = 0;
+    return NBSCrypto_OK;
+}
+
+static inline int _sha3_process(struct sha3_state *sha3, const unsigned char *in, unsigned long inlen, process_fn proc_f)
+{
+    unsigned old_tail;
+    unsigned long i, tail, words;
+
+    if (inlen == 0) return NBSCrypto_OK;
+
+    old_tail = (8 - sha3->byte_index) & 7;
+
+    if(inlen < old_tail) {
+	while (inlen--) sha3->saved |= (unsigned long long) (*(in++)) << ((sha3->byte_index++) * 8);
+	return NBSCrypto_OK;
+    }
+
+    if(old_tail) {
+	inlen -= old_tail;
+	while (old_tail--) sha3->saved |= (unsigned long long) (*(in++)) << ((sha3->byte_index++) * 8);
+	sha3->s[sha3->word_index] ^= sha3->saved;
+	sha3->byte_index = 0;
+	sha3->saved = 0;
+	if(++sha3->word_index == (25 - sha3->capacity_words)) {
+	    proc_f(sha3->s);
+	    sha3->word_index = 0;
+	}
+    }
+
+    words = inlen / sizeof(unsigned long long);
+    tail = inlen - words * sizeof(unsigned long long);
+
+    for(i = 0; i < words; i++, in += sizeof(unsigned long long)) {
+	unsigned long long t;
+	LOAD64L(t, in);
+	sha3->s[sha3->word_index] ^= t;
+	if(++sha3->word_index == (25 - sha3->capacity_words)) {
+	    proc_f(sha3->s);
+	    sha3->word_index = 0;
+	}
+    }
+
+    while (tail--) {
+	sha3->saved |= (unsigned long long) (*(in++)) << ((sha3->byte_index++) * 8);
+    }
+    return NBSCrypto_OK;
+}
+
+static inline int _sha3_turbo_shake_process(struct sha3_state *sha3, const unsigned char *in, unsigned long inlen)
+{
+    return _sha3_process(sha3, in, inlen, _keccak_turbo_f);
 }
 
 static inline int _sha3_done(hash_state *hs, unsigned char *hash, unsigned long long pad)
@@ -242,6 +387,130 @@ static inline int _sha3_done(hash_state *hs, unsigned char *hash, unsigned long 
 
     memcpy(hash, hs->sha3.sb, hs->sha3.capacity_words * 4);
     return NBSCrypto_OK;
+}
+
+static inline int _sha3_shake_done(struct sha3_state *sha3, unsigned char *out, unsigned long outlen, unsigned char domain, process_fn proc_f)
+{
+    unsigned long idx;
+    unsigned i;
+
+    if (outlen == 0) return NBSCrypto_OK;
+
+    if (!sha3->xof_flag) {
+	sha3->s[sha3->word_index] ^= (sha3->saved ^ (((unsigned long long)(domain)) << (sha3->byte_index * 8)));
+	sha3->s[SHA3_SPONGE_WORDS - sha3->capacity_words - 1] ^= CONST64(0x8000000000000000);
+	proc_f(sha3->s);
+
+	for(i = 0; i < SHA3_SPONGE_WORDS; i++) {
+	    STORE64L(sha3->s[i], sha3->sb + i * 8);
+	}
+	sha3->byte_index = 0;
+	sha3->xof_flag = 1;
+    }
+
+    for (idx = 0; idx < outlen; idx++) {
+	if(sha3->byte_index >= (SHA3_SPONGE_WORDS - sha3->capacity_words) * 8) {
+	    proc_f(sha3->s);
+
+	    for(i = 0; i < SHA3_SPONGE_WORDS; i++) {
+		STORE64L(sha3->s[i], sha3->sb + i * 8);
+	    }
+	    sha3->byte_index = 0;
+	}
+	out[idx] = sha3->sb[sha3->byte_index++];
+    }
+    return NBSCrypto_OK;
+}
+
+static inline int _sha3_turbo_shake_done(struct sha3_state *sha3, unsigned char *out, unsigned long outlen)
+{
+    return _sha3_shake_done(sha3, out, outlen, 0x1f, _keccak_turbo_f);
+}
+
+static inline int _sha3_kangarootwelve_process(hash_state *hs, const unsigned char *in, unsigned long inlen)
+{
+    int err;
+    int variant;
+    int digest_len;
+    unsigned char digest_buf[64];
+    unsigned long rem;
+    unsigned long amount;
+
+    if (hs->kangarootwelve.phase == 0)
+    {
+	rem = hs->kangarootwelve.remaining;
+	amount = rem < inlen ? rem : inlen;
+	hs->kangarootwelve.remaining -= amount;
+	if ((err = _sha3_turbo_shake_process(&hs->kangarootwelve.outer, in, amount)) != NBSCrypto_OK) return err;
+	in += amount;
+	inlen -= amount;
+	if (hs->kangarootwelve.remaining == 0 && inlen != 0){
+	    hs->kangarootwelve.remaining = 8 * 1024;
+	    hs->kangarootwelve.phase = 1;
+	    hs->kangarootwelve.blocks_count += 1;
+	    if ((err = _sha3_turbo_shake_process(&hs->kangarootwelve.outer, kangaroo_twelve_filler, sizeof(kangaroo_twelve_filler))) != NBSCrypto_OK) return err;
+	}
+    }
+    if (hs->kangarootwelve.phase == 1)
+    {
+	do
+	{
+	    rem = hs->kangarootwelve.remaining;
+	    amount = rem < inlen ? rem : inlen;
+	    hs->kangarootwelve.remaining -= amount;
+	    if ((err = _sha3_turbo_shake_process(&hs->kangarootwelve.inner, in, amount)) != NBSCrypto_OK) return err;
+	    in += amount;
+	    inlen -= amount;
+	    if (hs->kangarootwelve.remaining == 0 && inlen != 0){
+		hs->kangarootwelve.remaining = 8 * 1024;
+		hs->kangarootwelve.blocks_count += 1;
+		//assert(hs->kangarootwelve.outer.capacity_words == 4 || hs->kangarootwelve.outer.capacity_words == 8);
+		variant = hs->kangarootwelve.outer.capacity_words == 4 ? 128 : 256;
+		digest_len = variant == 128 ? 32 : 64;
+		if ((err = _sha3_shake_done(&hs->kangarootwelve.inner, digest_buf, digest_len, 0x0b, _keccak_turbo_f)) != NBSCrypto_OK) return err;
+		if ((err = _sha3_shake_init(&hs->kangarootwelve.inner, variant)) != NBSCrypto_OK) return err;
+		if ((err = _sha3_turbo_shake_process(&hs->kangarootwelve.outer, digest_buf, digest_len)) != NBSCrypto_OK) return err;
+	    }
+	} while (inlen != 0);
+    }
+    return NBSCrypto_OK;
+}
+
+int _sha3_kangarootwelve_done(hash_state *hs, unsigned char *out, unsigned long outlen)
+{
+    int couner_len, digest_len, err, variant;
+    unsigned char couner_buf[sizeof(unsigned long long) + 1], digest_buf[64], domain, ffff[2];
+
+    if (hs->kangarootwelve.finished == 0){
+	hs->kangarootwelve.finished = 1;
+	couner_len = 0;
+	while (hs->kangarootwelve.customization_len != 0){
+	    couner_buf[NBS_ARRAY_SIZE(couner_buf) - 1 - 1 - couner_len] = hs->kangarootwelve.customization_len & 0xff;
+	    hs->kangarootwelve.customization_len >>= 8;
+	    ++couner_len;
+	}
+	couner_buf[NBS_ARRAY_SIZE(couner_buf) - 1] = couner_len;
+	if ((err = _sha3_kangarootwelve_process(hs, &couner_buf[NBS_ARRAY_SIZE(couner_buf) - 1 - couner_len], couner_len + 1)) != NBSCrypto_OK) return err;
+	if(hs->kangarootwelve.phase != 0){
+	    variant = hs->kangarootwelve.outer.capacity_words == 4 ? 128 : 256;
+	    digest_len = variant == 128 ? 32 : 64;
+	    if ((err = _sha3_shake_done(&hs->kangarootwelve.inner, digest_buf, digest_len, 0x0b, _keccak_turbo_f)) != NBSCrypto_OK) return err;
+	    if ((err = _sha3_turbo_shake_process(&hs->kangarootwelve.outer, digest_buf, digest_len)) != NBSCrypto_OK) return err;
+	    couner_len = 0;
+	    while (hs->kangarootwelve.blocks_count != 0){
+		couner_buf[NBS_ARRAY_SIZE(couner_buf) - 1 - 1 - couner_len] = hs->kangarootwelve.blocks_count & 0xff;
+		hs->kangarootwelve.blocks_count >>= 8;
+		++couner_len;
+	    }
+	    couner_buf[NBS_ARRAY_SIZE(couner_buf) - 1] = couner_len;
+	    if ((err = _sha3_turbo_shake_process(&hs->kangarootwelve.outer, &couner_buf[NBS_ARRAY_SIZE(couner_buf) - 1 - couner_len], couner_len + 1)) != NBSCrypto_OK) return err;
+	    ffff[0] = 0xff;
+	    ffff[1] = 0xff;
+	    if ((err = _sha3_turbo_shake_process(&hs->kangarootwelve.outer, ffff, NBS_ARRAY_SIZE(ffff))) != NBSCrypto_OK) return err;
+	}
+    }
+    domain = hs->kangarootwelve.phase == 0 ? 0x07 : 0x06;
+    return _sha3_shake_done(&hs->kangarootwelve.outer, out, outlen, domain, _keccak_turbo_f);
 }
 
 
@@ -276,61 +545,39 @@ int sha3_512_init(hash_state *hs)
     return NBSCrypto_OK;
 }
 
+int sha3_kangarootwelve_128_init(hash_state *hs)
+{
+    return _sha3_kangarootwelve_init(hs, 128);
+}
+
+int sha3_kangarootwelve_256_init(hash_state *hs)
+{
+    return _sha3_kangarootwelve_init(hs, 256);
+}
+
 int sha3_shake_128_init(hash_state *hs)
 {
-    return _sha3_shake_init(hs, 128);
+    return _sha3_shake_init(&hs->sha3, 128);
 }
 
 int sha3_shake_256_init(hash_state *hs)
 {
-    return _sha3_shake_init(hs, 256);
+    return _sha3_shake_init(&hs->sha3, 256);
 }
 
 int sha3_process(hash_state *hs, const unsigned char *in, unsigned long inlen)
 {
-    unsigned old_tail = (8 - hs->sha3.byte_index) & 7;
-    unsigned long words;
-    unsigned long tail;
-    unsigned long i;
+    return _sha3_process(&hs->sha3, in, inlen, _keccakf);
+}
 
-    if (inlen == 0) return NBSCrypto_OK;
+int sha3_kangarootwelve_process(hash_state *hs, const unsigned char *in, unsigned long inlen)
+{
+    return _sha3_kangarootwelve_process(hs, in, inlen);
+}
 
-    if(inlen < old_tail) {
-	while (inlen--) hs->sha3.saved |= (unsigned long long) (*(in++)) << ((hs->sha3.byte_index++) * 8);
-	return NBSCrypto_OK;
-    }
-
-    if(old_tail){
-	inlen -= old_tail;
-	while (old_tail--) hs->sha3.saved |= (unsigned long long) (*(in++)) << ((hs->sha3.byte_index++) * 8);
-	hs->sha3.s[hs->sha3.word_index] ^= hs->sha3.saved;
-	hs->sha3.byte_index = 0;
-	hs->sha3.saved = 0;
-
-	if(++hs->sha3.word_index == (SHA3_SPONGE_WORDS - hs->sha3.capacity_words)) {
-	    _sha3_rnd(hs->sha3.s);
-	    hs->sha3.word_index = 0;
-	}
-    }
-
-    words = inlen / sizeof(unsigned long long);
-    tail = inlen - words * sizeof(unsigned long long);
-
-    for(i = 0; i < words; i++, in += sizeof(unsigned long long)) {
-	unsigned long long t;
-	LOAD64L(t, in);
-	hs->sha3.s[hs->sha3.word_index] ^= t;
-
-	if(++hs->sha3.word_index == (SHA3_SPONGE_WORDS - hs->sha3.capacity_words)) {
-	    _sha3_rnd(hs->sha3.s);
-	    hs->sha3.word_index = 0;
-	}
-    }
-
-    while (tail--) {
-	hs->sha3.saved |= (unsigned long long) (*(in++)) << ((hs->sha3.byte_index++) * 8);
-    }
-    return NBSCrypto_OK;
+int sha3_turbo_shake_process(hash_state *hs, const unsigned char *in, unsigned long inlen)
+{
+    return _sha3_turbo_shake_process(&hs->sha3, in, inlen);
 }
 
 int sha3_done(hash_state *hs, unsigned char *out)
@@ -338,39 +585,32 @@ int sha3_done(hash_state *hs, unsigned char *out)
     return _sha3_done(hs, out, CONST64(0x06));
 }
 
-int keccak_done(hash_state *hs, unsigned char *out)
+int sha3_kangarootwelve_128_done(hash_state *hs, unsigned char *out)
+{
+    return _sha3_kangarootwelve_done(hs, out, 16);
+}
+
+int sha3_kangarootwelve_256_done(hash_state *hs, unsigned char *out)
+{
+    return _sha3_kangarootwelve_done(hs, out, 32);
+}
+
+int sha3_keccak_done(hash_state *hs, unsigned char *out)
 {
     return _sha3_done(hs, out, CONST64(0x01));
 }
 
 int sha3_shake_done(hash_state *hs, unsigned char *out, unsigned long outlen)
 {
-    unsigned long idx;
-    unsigned i;
+    return _sha3_shake_done(&hs->sha3, out, outlen, 0x1f, _keccakf);
+}
 
-    if (outlen == 0) return NBSCrypto_OK;
+int sha3_shake_done_ex(hash_state *hs, unsigned char *out, unsigned long outlen, unsigned char domain)
+{
+    return _sha3_shake_done(&hs->sha3, out, outlen, domain, _keccakf);
+}
 
-    if (!hs->sha3.xof_flag) {
-	hs->sha3.s[hs->sha3.word_index] ^= (hs->sha3.saved ^ (CONST64(0x1F) << (hs->sha3.byte_index * 8)));
-	hs->sha3.s[SHA3_SPONGE_WORDS - hs->sha3.capacity_words - 1] ^= CONST64(0x8000000000000000);
-	_sha3_rnd(hs->sha3.s);
-
-	for(i = 0; i < SHA3_SPONGE_WORDS; i++) {
-	    STORE64L(hs->sha3.s[i], hs->sha3.sb + i * 8);
-	}
-	hs->sha3.byte_index = 0;
-	hs->sha3.xof_flag = 1;
-    }
-
-    for (idx = 0; idx < outlen; idx++) {
-	if(hs->sha3.byte_index >= (SHA3_SPONGE_WORDS - hs->sha3.capacity_words) * 8) {
-	    _sha3_rnd(hs->sha3.s);
-	    for(i = 0; i < SHA3_SPONGE_WORDS; i++) {
-		STORE64L(hs->sha3.s[i], hs->sha3.sb + i * 8);
-	    }
-	    hs->sha3.byte_index = 0;
-	}
-	out[idx] = hs->sha3.sb[hs->sha3.byte_index++];
-    }
-    return NBSCrypto_OK;
+int sha3_turbo_shake_done(hash_state *hs, unsigned char *out, unsigned long outlen)
+{
+    return _sha3_turbo_shake_done(&hs->sha3, out, outlen);
 }

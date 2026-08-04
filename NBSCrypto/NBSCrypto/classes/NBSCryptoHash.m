@@ -162,6 +162,8 @@
 	case NBSCrypto_HASH_JH_384:			{r=&jh_384_desc;break;}
 	case NBSCrypto_HASH_JH_512:			{r=&jh_512_desc;break;}
 	case NBSCrypto_HASH_JOAAT:			{r=&joaat_desc;break;}
+	case NBSCrypto_HASH_KANGAROOTWELVE_128:		{r=&kangarootwelve_128_desc;break;}
+	case NBSCrypto_HASH_KANGAROOTWELVE_256:		{r=&kangarootwelve_256_desc;break;}
 	case NBSCrypto_HASH_KECCAK_224:			{r=&keccak_224_desc;break;}
 	case NBSCrypto_HASH_KECCAK_256:			{r=&keccak_256_desc;break;}
 	case NBSCrypto_HASH_KECCAK_384:			{r=&keccak_384_desc;break;}
@@ -304,6 +306,38 @@
 	    hmac_init(hash_descriptor[0].ID, (const unsigned char *)[sKEY UTF8String], sKEY.length, &s);
 	    hmac_process(d.bytes, d.length, &s);
 	    hmac_done(h, &hash_descriptor[0].hashsize, &s);
+	    break;
+	}
+	case NBSCrypto_MAC_KMAC_256:{
+	    unsigned long oL = _BIT_LENGTH_256;
+	    unsigned char out[oL];
+
+	    kmac_state s;
+	    kmac_init(2, (const unsigned char *)[_key UTF8String], _key.length, 0, 0, &s);
+	    kmac_process(d.bytes, d.length, &s);
+	    kmac_done(out, &oL, &s);
+
+	    NSMutableString *pr;
+	    pr=[NSMutableString stringWithCapacity:oL*2];
+	    for(int i=0;i<oL;i++){[pr appendFormat:@"%02x",out[i]];}
+	    return pr;
+
+	    break;
+	}
+	case NBSCrypto_MAC_KMAC_XOF256:{
+	    unsigned long oL = _BIT_LENGTH_512;
+	    unsigned char out[oL];
+
+	    kmac_state s;
+	    kmac_init(4, (const unsigned char *)[_key UTF8String], _key.length, 0, 0, &s);
+	    kmac_process(d.bytes, d.length, &s);
+	    kmac_done(out, &oL, &s);
+
+	    NSMutableString *pr;
+	    pr=[NSMutableString stringWithCapacity:oL*2];
+	    for(int i=0;i<oL;i++){[pr appendFormat:@"%02x",out[i]];}
+	    return pr;
+
 	    break;
 	}
 	case NBSCrypto_MAC_PELICAN:{

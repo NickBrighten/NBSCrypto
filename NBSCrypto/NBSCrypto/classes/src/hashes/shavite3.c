@@ -11,7 +11,7 @@
 const struct hash_descriptor shavite3_224_desc =
 {
     "shavite3-224",
-    212,
+    214,
     28,
     64,
     &shavite3_224_init,
@@ -23,7 +23,7 @@ const struct hash_descriptor shavite3_224_desc =
 const struct hash_descriptor shavite3_256_desc =
 {
     "shavite3-256",
-    213,
+    215,
     32,
     64,
     &shavite3_256_init,
@@ -35,7 +35,7 @@ const struct hash_descriptor shavite3_256_desc =
 const struct hash_descriptor shavite3_384_desc =
 {
     "shavite3-384",
-    214,
+    216,
     48,
     64,
     &shavite3_384_init,
@@ -47,7 +47,7 @@ const struct hash_descriptor shavite3_384_desc =
 const struct hash_descriptor shavite3_512_desc =
 {
     "shavite3-512",
-    215,
+    217,
     64,
     64,
     &shavite3_512_init,

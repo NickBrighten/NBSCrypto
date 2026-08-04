@@ -11,7 +11,7 @@
 const struct hash_descriptor ripemd_128_desc =
 {
     "ripemd-128",
-    190,
+    192,
     16,
     64,
     &ripemd_128_init,
@@ -23,7 +23,7 @@ const struct hash_descriptor ripemd_128_desc =
 const struct hash_descriptor ripemd_160_desc =
 {
     "ripemd-160",
-    191,
+    193,
     20,
     64,
     &ripemd_160_init,
@@ -35,7 +35,7 @@ const struct hash_descriptor ripemd_160_desc =
 const struct hash_descriptor ripemd_256_desc =
 {
     "ripemd-256",
-    192,
+    194,
     32,
     64,
     &ripemd_256_init,
@@ -47,7 +47,7 @@ const struct hash_descriptor ripemd_256_desc =
 const struct hash_descriptor ripemd_320_desc =
 {
     "ripemd-320",
-    193,
+    195,
     40,
     64,
     &ripemd_320_init,

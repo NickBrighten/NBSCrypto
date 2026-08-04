@@ -11,7 +11,7 @@
 const struct hash_descriptor meshhash2_128_desc =
 {
     "meshhash2-128",
-    178,
+    180,
     16,
     64,
     &meshhash2_128_init,
@@ -23,7 +23,7 @@ const struct hash_descriptor meshhash2_128_desc =
 const struct hash_descriptor meshhash2_160_desc =
 {
     "meshhash2-160",
-    179,
+    181,
     20,
     64,
     &meshhash2_160_init,
@@ -35,7 +35,7 @@ const struct hash_descriptor meshhash2_160_desc =
 const struct hash_descriptor meshhash2_192_desc =
 {
     "meshhash2-192",
-    180,
+    182,
     24,
     64,
     &meshhash2_192_init,
@@ -47,7 +47,7 @@ const struct hash_descriptor meshhash2_192_desc =
 const struct hash_descriptor meshhash2_224_desc =
 {
     "meshhash2-224",
-    181,
+    183,
     28,
     64,
     &meshhash2_224_init,
@@ -59,7 +59,7 @@ const struct hash_descriptor meshhash2_224_desc =
 const struct hash_descriptor meshhash2_256_desc =
 {
     "meshhash2-256",
-    182,
+    184,
     32,
     64,
     &meshhash2_256_init,
@@ -71,7 +71,7 @@ const struct hash_descriptor meshhash2_256_desc =
 const struct hash_descriptor meshhash2_384_desc =
 {
     "meshhash2-384",
-    183,
+    185,
     48,
     64,
     &meshhash2_384_init,
@@ -83,7 +83,7 @@ const struct hash_descriptor meshhash2_384_desc =
 const struct hash_descriptor meshhash2_512_desc =
 {
     "meshhash2-512",
-    184,
+    186,
     64,
     64,
     &meshhash2_512_init,
@@ -95,7 +95,7 @@ const struct hash_descriptor meshhash2_512_desc =
 const struct hash_descriptor meshhash2_1024_desc =
 {
     "meshhash2-1024",
-    185,
+    187,
     128,
     64,
     &meshhash2_1024_init,
@@ -107,7 +107,7 @@ const struct hash_descriptor meshhash2_1024_desc =
 const struct hash_descriptor meshhash2_2048_desc =
 {
     "meshhash2-2048",
-    186,
+    188,
     256,
     64,
     &meshhash2_2048_init,
