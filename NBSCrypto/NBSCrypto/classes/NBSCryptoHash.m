@@ -308,6 +308,38 @@
 	    hmac_done(h, &hash_descriptor[0].hashsize, &s);
 	    break;
 	}
+	case NBSCrypto_MAC_KMAC_256:{
+	    unsigned long oL = _BIT_LENGTH_256;
+	    unsigned char out[oL];
+
+	    kmac_state s;
+	    kmac_init(2, (const unsigned char *)[_key UTF8String], _key.length, 0, 0, &s);
+	    kmac_process(d.bytes, d.length, &s);
+	    kmac_done(out, &oL, &s);
+
+	    NSMutableString *pr;
+	    pr=[NSMutableString stringWithCapacity:oL*2];
+	    for(int i=0;i<oL;i++){[pr appendFormat:@"%02x",out[i]];}
+	    return pr;
+
+	    break;
+	}
+	case NBSCrypto_MAC_KMAC_XOF256:{
+	    unsigned long oL = _BIT_LENGTH_512;
+	    unsigned char out[oL];
+
+	    kmac_state s;
+	    kmac_init(4, (const unsigned char *)[_key UTF8String], _key.length, 0, 0, &s);
+	    kmac_process(d.bytes, d.length, &s);
+	    kmac_done(out, &oL, &s);
+
+	    NSMutableString *pr;
+	    pr=[NSMutableString stringWithCapacity:oL*2];
+	    for(int i=0;i<oL;i++){[pr appendFormat:@"%02x",out[i]];}
+	    return pr;
+
+	    break;
+	}
 	case NBSCrypto_MAC_PELICAN:{
 	    NSString *sKEY=[_key stringByAppendingString:[_HEX_PADDING objectAtIndex:0]];
 	    sKEY = [self _paddingString:sKEY withLength:_BIT_LENGTH_256];
