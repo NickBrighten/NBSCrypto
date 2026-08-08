@@ -357,7 +357,8 @@ NSLog("OUTPUT MAC: %@", MAChash);
 - __HMAC__
     - `hash`
 - __KMAC__
-    - `hash - sha3/keccak only`
+    - `128` `128-XOF` `256` `256-XOF`
+    - `variable output-length`
 - __OMAC__
     - `cipher`
 - __PELICAN__
