@@ -101,11 +101,20 @@ int kmac_init(int variant, const unsigned char *key, unsigned long keylen, const
 	case _KMAC256:{		num = 256; kmac->xof = 0; rate = 136; break;}
 	case _KMAC128_XOF:{	num = 128; kmac->xof = 1; rate = 168; break;}
 	case _KMAC256_XOF:{	num = 256; kmac->xof = 1; rate = 136; break;}
-	default:{ return NBSCrypto_ERROR;}
+	default:{		num = 128; kmac->xof = 0; rate = 168; break;}
     }
 
-    if ((err = sha3_shake_128_init(&kmac->hs)) != NBSCrypto_OK) return err;
-    if ((err = sha3_shake_256_init(&kmac->hs)) != NBSCrypto_OK) return err;
+    switch (num) {
+	case 128:{
+	    if ((err = sha3_shake_128_init(&kmac->hs)) != NBSCrypto_OK) return err;
+	    break;
+	}
+	case 256: {
+	    if ((err = sha3_shake_256_init(&kmac->hs)) != NBSCrypto_OK) return err;
+	    break;
+	}
+
+    }
 
     if ((err = _feed_bytepad_prefix(&kmac->hs, rate, &total)) != NBSCrypto_OK) return err;
     if ((err = _feed_encode_string(&kmac->hs, kmac_name, sizeof(kmac_name), &total)) != NBSCrypto_OK) return err;
@@ -127,9 +136,9 @@ int kmac_process(const unsigned char *in, unsigned long inlen, kmac_state *kmac)
 
 int kmac_done(unsigned char *out, unsigned long *outlen, kmac_state *kmac)
 {
+    int err;
     unsigned char enc[9];
     unsigned long enclen;
-    int err;
     unsigned long long L;
 
     L = kmac->xof ? 0 : (unsigned long long)(*outlen) * 8;
