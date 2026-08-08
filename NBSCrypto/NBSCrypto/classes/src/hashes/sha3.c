@@ -305,7 +305,7 @@ static inline int _sha3_shake_init(struct sha3_state *sha3, int num)
 {
     if (num != 128 && num != 256) return NBSCrypto_ERROR;
     memset(sha3, 0, sizeof(*sha3));
-    sha3->capacity_words = (unsigned short)(2 * num / (8 * sizeof(unsigned long long)));
+    sha3->capacity_words = 2 * num / (8 * sizeof(unsigned long long));
     return NBSCrypto_OK;
 }
 
@@ -464,7 +464,6 @@ static inline int _sha3_kangarootwelve_process(hash_state *hs, const unsigned ch
 	    if (hs->kangarootwelve.remaining == 0 && inlen != 0){
 		hs->kangarootwelve.remaining = 8 * 1024;
 		hs->kangarootwelve.blocks_count += 1;
-		//assert(hs->kangarootwelve.outer.capacity_words == 4 || hs->kangarootwelve.outer.capacity_words == 8);
 		variant = hs->kangarootwelve.outer.capacity_words == 4 ? 128 : 256;
 		digest_len = variant == 128 ? 32 : 64;
 		if ((err = _sha3_shake_done(&hs->kangarootwelve.inner, digest_buf, digest_len, 0x0b, _keccak_turbo_f)) != NBSCrypto_OK) return err;
