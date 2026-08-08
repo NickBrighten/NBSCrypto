@@ -10,9 +10,11 @@
 @implementation NBSCryptoHash
 
 
-@synthesize ALGORITHM	= _algorithm;
-@synthesize KEY		= _key;
-@synthesize MAC		= _mac;
+@synthesize ALGORITHM		= _algorithm;
+@synthesize MACKEY		= _key;
+@synthesize MAC			= _mac;
+@synthesize CUSTOMIZING		= _customizing;
+@synthesize OUTPUTLENGTHMAC 	= _outputLengthMAC;
 
 
 - (const struct hash_descriptor*)_getHashDescriptor
@@ -308,12 +310,44 @@
 	    hmac_done(h, &hash_descriptor[0].hashsize, &s);
 	    break;
 	}
-	case NBSCrypto_MAC_KMAC_256:{
-	    unsigned long oL = _BIT_LENGTH_256;
+	case NBSCrypto_MAC_KMAC_128:{
+	    unsigned long oL = _outputLengthMAC;
 	    unsigned char out[oL];
 
 	    kmac_state s;
-	    kmac_init(2, (const unsigned char *)[_key UTF8String], _key.length, 0, 0, &s);
+	    kmac_init(1, (const unsigned char *)[_key UTF8String], _key.length, (const unsigned char *)[_customizing UTF8String], _customizing.length, &s);
+	    kmac_process(d.bytes, d.length, &s);
+	    kmac_done(out, &oL, &s);
+
+	    NSMutableString *pr;
+	    pr=[NSMutableString stringWithCapacity:oL*2];
+	    for(int i=0;i<oL;i++){[pr appendFormat:@"%02x",out[i]];}
+	    return pr;
+
+	    break;
+	}
+	case NBSCrypto_MAC_KMAC_256:{
+	    unsigned long oL = _outputLengthMAC;
+	    unsigned char out[oL];
+
+	    kmac_state s;
+	    kmac_init(2, (const unsigned char *)[_key UTF8String], _key.length, (const unsigned char *)[_customizing UTF8String], _customizing.length, &s);
+	    kmac_process(d.bytes, d.length, &s);
+	    kmac_done(out, &oL, &s);
+
+	    NSMutableString *pr;
+	    pr=[NSMutableString stringWithCapacity:oL*2];
+	    for(int i=0;i<oL;i++){[pr appendFormat:@"%02x",out[i]];}
+	    return pr;
+
+	    break;
+	}
+	case NBSCrypto_MAC_KMAC_XOF128:{
+	    unsigned long oL = _outputLengthMAC;
+	    unsigned char out[oL];
+
+	    kmac_state s;
+	    kmac_init(3, (const unsigned char *)[_key UTF8String], _key.length, (const unsigned char *)[_customizing UTF8String], _customizing.length, &s);
 	    kmac_process(d.bytes, d.length, &s);
 	    kmac_done(out, &oL, &s);
 
@@ -325,11 +359,11 @@
 	    break;
 	}
 	case NBSCrypto_MAC_KMAC_XOF256:{
-	    unsigned long oL = _BIT_LENGTH_512;
+	    unsigned long oL = _outputLengthMAC;
 	    unsigned char out[oL];
 
 	    kmac_state s;
-	    kmac_init(4, (const unsigned char *)[_key UTF8String], _key.length, 0, 0, &s);
+	    kmac_init(4, (const unsigned char *)[_key UTF8String], _key.length, (const unsigned char *)[_customizing UTF8String], _customizing.length, &s);
 	    kmac_process(d.bytes, d.length, &s);
 	    kmac_done(out, &oL, &s);
 
@@ -344,7 +378,8 @@
 	    NSString *sKEY=[_key stringByAppendingString:[_HEX_PADDING objectAtIndex:0]];
 	    sKEY = [self _paddingString:sKEY withLength:_BIT_LENGTH_256];
 
-	    unsigned char out[_BIT_LENGTH_128];
+	    unsigned long oL = _outputLengthMAC;
+	    unsigned char out[oL];
 
 	    pelican_state s;
 	    pelican_init((const unsigned char *)[sKEY UTF8String], sKEY.length, &s);
@@ -352,8 +387,8 @@
 	    pelican_done(out, &s);
 
 	    NSMutableString *pr;
-	    pr=[NSMutableString stringWithCapacity:_BIT_LENGTH_128*2];
-	    for(int i=0;i<_BIT_LENGTH_128;i++){[pr appendFormat:@"%02x",out[i]];}
+	    pr=[NSMutableString stringWithCapacity:oL*2];
+	    for(int i=0;i<oL;i++){[pr appendFormat:@"%02x",out[i]];}
 	    return pr;
 
 	    break;
@@ -362,7 +397,8 @@
 	    NSString *sKEY=[_key stringByAppendingString:[_HEX_PADDING objectAtIndex:0]];
 	    sKEY = [self _paddingString:sKEY withLength:_BIT_LENGTH_256];
 
-	    unsigned char out[_BIT_LENGTH_128];
+	    unsigned long oL = _outputLengthMAC;
+	    unsigned char out[oL];
 
 	    poly1305_state s;
 	    poly1305_init((const unsigned char *)[sKEY UTF8String], &s);
@@ -370,8 +406,8 @@
 	    poly1305_done(out, &s);
 
 	    NSMutableString *pr;
-	    pr=[NSMutableString stringWithCapacity:_BIT_LENGTH_128*2];
-	    for(int i=0;i<_BIT_LENGTH_128;i++){[pr appendFormat:@"%02x",out[i]];}
+	    pr=[NSMutableString stringWithCapacity:oL*2];
+	    for(int i=0;i<oL;i++){[pr appendFormat:@"%02x",out[i]];}
 	    return pr;
 
 	    break;
@@ -409,10 +445,51 @@
 
 - (void)useMAC:(NBSCrypto_MAC)MAC{
     _mac = MAC;
+
+    switch (_mac) {
+	case NBSCrypto_MAC_NONE: {
+	    break;
+	}
+	case NBSCrypto_MAC_HMAC: {
+	    break;
+	}
+	case NBSCrypto_MAC_KMAC_128:{
+	    _outputLengthMAC = _BIT_LENGTH_256;
+	    break;
+	}
+	case NBSCrypto_MAC_KMAC_256:{
+	    _outputLengthMAC = _BIT_LENGTH_512;
+	    break;
+	}
+	case NBSCrypto_MAC_KMAC_XOF128: {
+	    _outputLengthMAC = _BIT_LENGTH_256;
+	    break;
+	}
+	case NBSCrypto_MAC_KMAC_XOF256: {
+	    _outputLengthMAC = _BIT_LENGTH_512;
+	    break;
+	}
+	case NBSCrypto_MAC_PELICAN: {
+	    _outputLengthMAC = _BIT_LENGTH_128;
+	    break;
+	}
+	case NBSCrypto_MAC_POLY1305: {
+	    _outputLengthMAC = _BIT_LENGTH_128;
+	    break;
+	}
+    }
 }
 
 - (void)setKeyForMAC:(NSString *)KEY{
     _key = KEY;
+}
+
+- (void)setCustomizing:(NSString *)CUSTOMIZING{
+    _customizing = CUSTOMIZING;
+}
+
+- (void)setOutputLengthMAC:(unsigned long)OUTPUTLENGTHMAC{
+    _outputLengthMAC = OUTPUTLENGTHMAC / 8;
 }
 
 - (NSString*)hashData:(NSData*)d{
@@ -441,6 +518,29 @@
     if (m) {
 	[r useMAC:m];
 	[r setKeyForMAC:k];
+    }
+    return [r hashString:s];
+}
+
++ (NSString *)hashString:(NSString *)s withAlgorithm:(NBSCrypto_HASH)a useMAC:(NBSCrypto_MAC)m setKeyForMAC:(NSString *)k setOutputLengthForMAC:(unsigned long)oLM{
+    NBSCryptoHash *r = [[self alloc] init];
+    [r setAlgorithm:a];
+    if (m) {
+	[r useMAC:m];
+	[r setKeyForMAC:k];
+	[r setOutputLengthMAC:oLM];
+    }
+    return [r hashString:s];
+}
+
++(NSString *)hashString:(NSString *)s withAlgorithm:(NBSCrypto_HASH)a useMAC:(NBSCrypto_MAC)m setKeyForMAC:(NSString *)k setCustomizing:(NSString *)c setOutputLengthForMAC:(unsigned long)oLM{
+    NBSCryptoHash *r = [[self alloc] init];
+    [r setAlgorithm:a];
+    if (m) {
+	[r useMAC:m];
+	[r setKeyForMAC:k];
+	[r setCustomizing:c];
+	[r setOutputLengthMAC:oLM];
     }
     return [r hashString:s];
 }
