@@ -279,7 +279,7 @@ cleanup:
 
 
 #pragma mark - FUNCTIONS
-int gcm_siv_encrypt_decrypt(int cipher, const unsigned char *key, unsigned long keylen, const unsigned char *nonce, unsigned long noncelen, const unsigned char *aad, unsigned long aadlen, unsigned char *in, unsigned long inlen, unsigned char *out, unsigned char *tag, unsigned long *taglen, int direction)
+int gcm_siv_crypt(int cipher, const unsigned char *key, unsigned long keylen, const unsigned char *nonce, unsigned long noncelen, const unsigned char *aad, unsigned long aadlen, unsigned char *in, unsigned long inlen, unsigned char *out, unsigned char *tag, unsigned long *taglen, int direction)
 {
     int err, ecb_started = 0, ctr_started = 0;
     unsigned char auth_key[16];
