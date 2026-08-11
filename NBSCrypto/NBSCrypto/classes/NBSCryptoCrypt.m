@@ -207,6 +207,7 @@ const unsigned char* _charFromHex(const char* str)
     if ((mode == _CIPHER_MODE_CCM) |
 	(mode == _CIPHER_MODE_EAX) |
 	(mode == _CIPHER_MODE_GCM) |
+	(mode == _CIPHER_MODE_GCM_SIV) |
 	(mode == _CIPHER_MODE_OCB3) |
 	(mode == _CIPHER_MODE_CHACHA8) |
 	(mode == _CIPHER_MODE_CHACHA12) |
@@ -264,6 +265,10 @@ const unsigned char* _charFromHex(const char* str)
 		  (mode == _CIPHER_MODE_XSALSA12) |
 		  (mode == _CIPHER_MODE_XSALSA20)){
 	    sIV = [self _paddingString:sIV withLength:_BIT_LENGTH_192];
+	///GCM / GCM-SIV
+	}else if ((mode == _CIPHER_MODE_GCM) | (mode == _CIPHER_MODE_GCM_SIV)){
+	    sIV = [self _paddingString:sIV withLength:_BIT_LENGTH_96];
+	    sAAD = [self _paddingString:sAAD withLength:_aad.length];
 	///ALL OTHERS
 	}else{
 	    sIV = [self _paddingString:sIV withLength:_iv.length];
@@ -606,7 +611,7 @@ const unsigned char* _charFromHex(const char* str)
 	case _CIPHER_MODE_GCM:{
 	    cm_GCM m;
 	    gcm_start(0, (const unsigned char *)[sKEY UTF8String], (unsigned long)sKEY.length, 0, &m);
-	    gcm_add_iv((const unsigned char *)[sIV UTF8String], (unsigned long)sIV.length, &m);
+	    gcm_add_iv((const unsigned char *)[sIV UTF8String], 12, &m);
 	    gcm_add_aad((const unsigned char *)[sAAD UTF8String], (unsigned long)sAAD.length, &m);
 
 	    if (eod) {
@@ -649,6 +654,49 @@ const unsigned char* _charFromHex(const char* str)
 		    }
 		}
 
+	    }
+
+	    break;
+	}
+#pragma mark GCM-SIV
+	case _CIPHER_MODE_GCM_SIV:{
+
+	    if (eod) {
+		unsigned long eTL=dTE.length;
+		unsigned char eT[eTL];
+		base64_decode(dTE.bytes, dTE.length, eT, &eTL);
+
+		unsigned long dTL=eTL;
+		unsigned char dT[dTL];
+
+		unsigned long taglen = cipher_descriptor[0].block_length;
+		unsigned char tag[taglen];
+		base64_decode([_tag UTF8String], _tag.length, tag, &taglen);
+
+		gcm_siv_crypt(0, (const unsigned char *)[sKEY UTF8String], (unsigned long)sKEY.length, (const unsigned char *)[sIV UTF8String], (unsigned long)sIV.length, (const unsigned char *)[sAAD UTF8String], (unsigned long)sAAD.length, eT, dTL, dT, tag, &taglen, 0);
+
+		r = [self _stringFromChar:dT withLength:dTL delHStr:false];
+	    }else{
+		unsigned long eTL=dTE.length;
+		unsigned char eT[eTL];
+
+		unsigned long taglen = cipher_descriptor[0].block_length;
+		unsigned char tag[taglen];
+
+		gcm_siv_crypt(0, (const unsigned char *)[sKEY UTF8String], (unsigned long)sKEY.length, (const unsigned char *)[sIV UTF8String], (unsigned long)sIV.length, (const unsigned char *)[sAAD UTF8String], (unsigned long)sAAD.length, (unsigned char*)dTE.bytes, eTL, eT, tag, &taglen, 1);
+
+		switch (_outputformat) {
+		    case 1:{ //BASE64
+			[self setTAG:[self _base64FromChar:tag withLength:taglen]];
+			r = [self _base64FromChar:eT withLength:eTL];
+			break;
+		    }
+		    case 2:{ //HEX
+			[self setTAG:[self _hexFromChar:tag withLength:taglen]];
+			r = [self _hexFromChar:eT withLength:eTL];
+			break;
+		    }
+		}
 	    }
 
 	    break;
