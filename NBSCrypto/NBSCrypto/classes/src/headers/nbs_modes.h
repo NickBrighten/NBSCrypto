@@ -176,6 +176,10 @@ int gcm_decrypt(unsigned char *ct, unsigned char *pt, unsigned long len, cm_GCM 
 int gcm_done(unsigned char *tag, unsigned long *taglen, cm_GCM *gcm);
 
 
+#pragma mark GCM-SIV
+int gcm_siv_crypt(int cipher, const unsigned char *key, unsigned long keylen, const unsigned char *nonce, unsigned long noncelen, const unsigned char *aad, unsigned long aadlen, unsigned char *in, unsigned long inlen, unsigned char *out, unsigned char *tag, unsigned long *taglen, int direction);
+
+
 #pragma mark LRW
 int lrw_start(unsigned long cipher, const unsigned char *iv, const unsigned char *key1, const unsigned char *key2, int keylen, int num_rounds, cm_LRW *lrw);
 int lrw_add_iv(const unsigned char *iv, unsigned long ivlen, cm_LRW *lrw);
@@ -204,6 +208,9 @@ int ofb_start(unsigned long cipher, const unsigned char *iv, const unsigned char
 int ofb_encrypt(const unsigned char *pt, unsigned char *ct, unsigned long len, cm_OFB *ofb);
 int ofb_decrypt(const unsigned char *ct, unsigned char *pt, unsigned long len, cm_OFB *ofb);
 int ofb_done(cm_OFB *ofb);
+
+
+#pragma mark SIV
 
 
 #pragma mark XTS
