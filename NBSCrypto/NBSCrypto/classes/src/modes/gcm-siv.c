@@ -293,9 +293,9 @@ int gcm_siv_encrypt_decrypt(int cipher, const unsigned char *key, unsigned long 
     unsigned long i;
 
     if ((err = is_cipher_valid(cipher)) != NBSCrypto_OK) return err;
-    if (cipher_descriptor[cipher].block_length != 16) return NBSCrypto_ERROR;
-    if (keylen != 16 && keylen != 32)                 return NBSCrypto_ERROR;
-    if (noncelen != 12)                               return NBSCrypto_ERROR;
+    if (cipher_descriptor[cipher].block_length != 16)	return NBSCrypto_ERROR;
+    if (keylen != 16 && keylen !=24 && keylen != 32)	return NBSCrypto_ERROR;
+    if (noncelen != 12)					return NBSCrypto_ERROR;
     if (*taglen < 16) {
 	*taglen = 16;
 	return NBSCrypto_ERROR;
