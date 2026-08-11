@@ -446,6 +446,14 @@
 		1D983EA7301E68CB004F4985 /* kmac.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D983EA5301E68CB004F4985 /* kmac.c */; };
 		1D983EA8301E68CB004F4985 /* kmac.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D983EA5301E68CB004F4985 /* kmac.c */; };
 		1D983EA9301E68CB004F4985 /* kmac.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D983EA5301E68CB004F4985 /* kmac.c */; };
+		1DA577D03027978000494005 /* gcm-siv.c in Sources */ = {isa = PBXBuildFile; fileRef = 1DA577CF3027978000494005 /* gcm-siv.c */; };
+		1DA577D13027978000494005 /* gcm-siv.c in Sources */ = {isa = PBXBuildFile; fileRef = 1DA577CF3027978000494005 /* gcm-siv.c */; };
+		1DA577D23027978000494005 /* gcm-siv.c in Sources */ = {isa = PBXBuildFile; fileRef = 1DA577CF3027978000494005 /* gcm-siv.c */; };
+		1DA577D33027978000494005 /* gcm-siv.c in Sources */ = {isa = PBXBuildFile; fileRef = 1DA577CF3027978000494005 /* gcm-siv.c */; };
+		1DA577D5302797BC00494005 /* siv.c in Sources */ = {isa = PBXBuildFile; fileRef = 1DA577D4302797BC00494005 /* siv.c */; };
+		1DA577D6302797BC00494005 /* siv.c in Sources */ = {isa = PBXBuildFile; fileRef = 1DA577D4302797BC00494005 /* siv.c */; };
+		1DA577D7302797BC00494005 /* siv.c in Sources */ = {isa = PBXBuildFile; fileRef = 1DA577D4302797BC00494005 /* siv.c */; };
+		1DA577D8302797BC00494005 /* siv.c in Sources */ = {isa = PBXBuildFile; fileRef = 1DA577D4302797BC00494005 /* siv.c */; };
 		1DB25A662FC7630900E0D9E3 /* chi.c in Sources */ = {isa = PBXBuildFile; fileRef = 1DB25A652FC7630900E0D9E3 /* chi.c */; };
 		1DB25A672FC7630900E0D9E3 /* chi.c in Sources */ = {isa = PBXBuildFile; fileRef = 1DB25A652FC7630900E0D9E3 /* chi.c */; };
 		1DB25A682FC7630900E0D9E3 /* chi.c in Sources */ = {isa = PBXBuildFile; fileRef = 1DB25A652FC7630900E0D9E3 /* chi.c */; };
@@ -590,6 +598,8 @@
 		1D8377742FCF5FC6008E8D31 /* blake3.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = blake3.c; sourceTree = "<group>"; tabWidth = 8; };
 		1D8475EC2FDDB0C300E0836C /* pelican.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pelican.c; sourceTree = "<group>"; tabWidth = 8; };
 		1D983EA5301E68CB004F4985 /* kmac.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = kmac.c; sourceTree = "<group>"; tabWidth = 8; };
+		1DA577CF3027978000494005 /* gcm-siv.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "gcm-siv.c"; sourceTree = "<group>"; tabWidth = 8; };
+		1DA577D4302797BC00494005 /* siv.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = siv.c; sourceTree = "<group>"; tabWidth = 8; };
 		1DB25A652FC7630900E0D9E3 /* chi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = chi.c; sourceTree = "<group>"; tabWidth = 8; };
 		1DB89B1A300A604000350E39 /* salsa.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = salsa.c; sourceTree = "<group>"; tabWidth = 8; };
 		1DE68D432FEAE7570035A45E /* md6.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = md6.c; sourceTree = "<group>"; tabWidth = 8; };
@@ -713,15 +723,18 @@
 				1D419D3C2FC06BD9003A7B83 /* eax.c */,
 				1D419D442FC06BD9003A7B83 /* ecb.c */,
 				1D419D412FC06BD9003A7B83 /* f8.c */,
+				1DA577CF3027978000494005 /* gcm-siv.c */,
 				1D419D402FC06BD9003A7B83 /* gcm.c */,
 				1D419D482FC06BD9003A7B83 /* lrw.c */,
 				1D419D472FC06BD9003A7B83 /* ocb.c */,
 				1D419D462FC06BD9003A7B83 /* ocb3.c */,
 				1D419D452FC06BD9003A7B83 /* ofb.c */,
+				1DA577D4302797BC00494005 /* siv.c */,
 				1D419D492FC06BD9003A7B83 /* xts.c */,
 			);
 			path = modes;
 			sourceTree = "<group>";
+			usesTabs = 1;
 		};
 		1D419D822FC06C2E003A7B83 /* misc */ = {
 			isa = PBXGroup;
@@ -1165,10 +1178,12 @@
 				1D419D6A2FC06BDA003A7B83 /* ecb.c in Sources */,
 				1D419D5E2FC06BD9003A7B83 /* f8.c in Sources */,
 				1D419D5A2FC06BD9003A7B83 /* gcm.c in Sources */,
+				1DA577D03027978000494005 /* gcm-siv.c in Sources */,
 				1D419D7A2FC06BDA003A7B83 /* lrw.c in Sources */,
 				1D419D762FC06BDA003A7B83 /* ocb.c in Sources */,
 				1D419D722FC06BDA003A7B83 /* ocb3.c in Sources */,
 				1D419D6E2FC06BDA003A7B83 /* ofb.c in Sources */,
+				1DA577D5302797BC00494005 /* siv.c in Sources */,
 				1D419D7E2FC06BDA003A7B83 /* xts.c in Sources */,
 				1D419D1A2FC0695B003A7B83 /* NBSCryptoBases.m in Sources */,
 				1D419D162FC0695B003A7B83 /* NBSCryptoCrypt.m in Sources */,
@@ -1270,19 +1285,21 @@
 				1D419D972FC06C5D003A7B83 /* pmac.c in Sources */,
 				1D419D9F2FC06C5D003A7B83 /* poly1305.c in Sources */,
 				1D419D852FC06C3C003A7B83 /* misc.c in Sources */,
-				1D419D572FC06BD9003A7B83 /* cfb.c in Sources */,
-				1D419D632FC06BDA003A7B83 /* ccm.c in Sources */,
 				1D419D4F2FC06BD9003A7B83 /* cbc.c in Sources */,
+				1D419D632FC06BDA003A7B83 /* ccm.c in Sources */,
+				1D419D572FC06BD9003A7B83 /* cfb.c in Sources */,
 				1D419D532FC06BD9003A7B83 /* chachapoly1305.c in Sources */,
 				1D419D672FC06BDA003A7B83 /* ctr.c in Sources */,
 				1D419D4B2FC06BD9003A7B83 /* eax.c in Sources */,
 				1D419D6B2FC06BDA003A7B83 /* ecb.c in Sources */,
 				1D419D5F2FC06BDA003A7B83 /* f8.c in Sources */,
 				1D419D5B2FC06BD9003A7B83 /* gcm.c in Sources */,
+				1DA577D13027978000494005 /* gcm-siv.c in Sources */,
 				1D419D7B2FC06BDA003A7B83 /* lrw.c in Sources */,
 				1D419D772FC06BDA003A7B83 /* ocb.c in Sources */,
 				1D419D732FC06BDA003A7B83 /* ocb3.c in Sources */,
 				1D419D6F2FC06BDA003A7B83 /* ofb.c in Sources */,
+				1DA577D6302797BC00494005 /* siv.c in Sources */,
 				1D419D7F2FC06BDA003A7B83 /* xts.c in Sources */,
 				1D419D1B2FC0695B003A7B83 /* NBSCryptoBases.m in Sources */,
 				1D419D172FC0695B003A7B83 /* NBSCryptoCrypt.m in Sources */,
@@ -1384,19 +1401,21 @@
 				1D419D982FC06C5D003A7B83 /* pmac.c in Sources */,
 				1D419DA02FC06C5D003A7B83 /* poly1305.c in Sources */,
 				1D419D862FC06C3C003A7B83 /* misc.c in Sources */,
-				1D419D582FC06BD9003A7B83 /* cfb.c in Sources */,
-				1D419D642FC06BDA003A7B83 /* ccm.c in Sources */,
 				1D419D502FC06BD9003A7B83 /* cbc.c in Sources */,
+				1D419D642FC06BDA003A7B83 /* ccm.c in Sources */,
+				1D419D582FC06BD9003A7B83 /* cfb.c in Sources */,
 				1D419D542FC06BD9003A7B83 /* chachapoly1305.c in Sources */,
 				1D419D682FC06BDA003A7B83 /* ctr.c in Sources */,
 				1D419D4C2FC06BD9003A7B83 /* eax.c in Sources */,
 				1D419D6C2FC06BDA003A7B83 /* ecb.c in Sources */,
 				1D419D602FC06BDA003A7B83 /* f8.c in Sources */,
 				1D419D5C2FC06BD9003A7B83 /* gcm.c in Sources */,
+				1DA577D23027978000494005 /* gcm-siv.c in Sources */,
 				1D419D7C2FC06BDA003A7B83 /* lrw.c in Sources */,
 				1D419D782FC06BDA003A7B83 /* ocb.c in Sources */,
 				1D419D742FC06BDA003A7B83 /* ocb3.c in Sources */,
 				1D419D702FC06BDA003A7B83 /* ofb.c in Sources */,
+				1DA577D7302797BC00494005 /* siv.c in Sources */,
 				1D419D802FC06BDA003A7B83 /* xts.c in Sources */,
 				1D419D1C2FC0695B003A7B83 /* NBSCryptoBases.m in Sources */,
 				1D419D182FC0695B003A7B83 /* NBSCryptoCrypt.m in Sources */,
@@ -1506,10 +1525,12 @@
 				1D419D6D2FC06BDA003A7B83 /* ecb.c in Sources */,
 				1D419D612FC06BDA003A7B83 /* f8.c in Sources */,
 				1D419D5D2FC06BD9003A7B83 /* gcm.c in Sources */,
+				1DA577D33027978000494005 /* gcm-siv.c in Sources */,
 				1D419D7D2FC06BDA003A7B83 /* lrw.c in Sources */,
 				1D419D792FC06BDA003A7B83 /* ocb.c in Sources */,
 				1D419D752FC06BDA003A7B83 /* ocb3.c in Sources */,
 				1D419D712FC06BDA003A7B83 /* ofb.c in Sources */,
+				1DA577D8302797BC00494005 /* siv.c in Sources */,
 				1D419D812FC06BDA003A7B83 /* xts.c in Sources */,
 				1D419D1D2FC0695B003A7B83 /* NBSCryptoBases.m in Sources */,
 				1D419D192FC0695B003A7B83 /* NBSCryptoCrypt.m in Sources */,
@@ -1579,7 +1600,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 260808;
+				CURRENT_PROJECT_VERSION = 260811;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -1611,7 +1632,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 260808;
+				CURRENT_PROJECT_VERSION = 260811;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -1640,7 +1661,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 260808;
+				CURRENT_PROJECT_VERSION = 260811;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -1671,7 +1692,7 @@
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = NO;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 260808;
+				CURRENT_PROJECT_VERSION = 260811;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
