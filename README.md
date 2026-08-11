@@ -22,27 +22,31 @@ This repository include the whole Xcode project with all targets, ready to build
 - [Supported MAC-Algorithms](#supported-mac-algorithms)
 #
 
+<br/>
+<br/>
 
-
-
-## Precompiled Builds
+# Precompiled Builds
 Precompiled Builds will be available as multiple tagets `.xcframework` for production/deployment and simulators [here](https://github.com/NickBrighten/NBSCrypto/releases).
 
 >[!NOTE]
 >An XCFramework `.xcframework` is Apple's recommended, modern format for distributing compiled binary code and frameworks. It allows developers to bundle libraries supporting multiple platforms, such as iOS, iPadOS, macOS, tvOS, visionOS and watchOS, into a single, unified package that works on both physical devices and simulators.
-##
+#
 
+<br/>
 
-## Integration
+# Integration
 It is possible to use the `.framework` or `.xcframework` in both Objective-C and Swift.
 
 To integrate the `.framework` or `.xcframework` into an Objective-C project, you can use our guide: [Integrate NBSCrypto to an Objective-C Project](https://github.com/NickBrighten/NBSCrypto/tree/main/Integrate_into_Objective-C.md) and to integrate it into a Swift project, you can use our guide: [Integrate NBSCrypto to an Swift Project](https://github.com/NickBrighten/NBSCrypto/tree/main/Integrate_into_Swift.md).
-##
+#
 
+<br/>
 
-## Test Vectors
+# Test Vectors
 Test vectors for ciphers and hashes are being gradually added and updated.
-##
+#
+
+<br/>
 
 
 
@@ -51,11 +55,15 @@ Test vectors for ciphers and hashes are being gradually added and updated.
 Feel free and collaborate with us and others to bring up this repository.\
 Please keep in mind a few important things to ensure smooth collaboration.
 
+<br/>
+
 ## Branches
 >[!CAUTION]
 >Please be aware, that all branches besides `main` can and will be force-pushed, rebased and/or removed!
 
 If you want to rely on such an unstable branch, create your own fork of this repository to make sure nothing breaks for you.
+
+<br/>
 
 ## Submitting Patches & Reviews
 >[!IMPORTANT]
@@ -64,9 +72,10 @@ If you want to rely on such an unstable branch, create your own fork of this rep
 
 We're using Pull Request reviews to make sure that the code is in line with the existing code base.\
 Please have a look [here](https://help.github.com/articles/approving-a-pull-request-with-required-reviews/) to get an idea of the approach.
-##
+#
 
-
+<br/>
+<br/>
 
 # Supported Cipher-Algorithms
 - __AES / RIJNDAEL__
@@ -203,7 +212,8 @@ Please have a look [here](https://help.github.com/articles/approving-a-pull-requ
     - MODES: `CBC` `CFB` `CTR` `EAX` `ECB` `F8` `OCB` `OFB`
 #
 
-
+<br/>
+<br/>
 
 # Syntax for Hash
 Objective-C
@@ -248,7 +258,8 @@ NSLog("OUTPUT MAC: %@", MAChash);
 ```
 #
 
-
+<br/>
+<br/>
 
 # Supported Hash-Algorithms
 - __ADLER32__
@@ -356,7 +367,8 @@ NSLog("OUTPUT MAC: %@", MAChash);
     - BIT-LENGTH: `32` `64` `128`
 #
 
-
+<br/>
+<br/>
 
 # Supported MAC-Algorithms
 - __F9__
