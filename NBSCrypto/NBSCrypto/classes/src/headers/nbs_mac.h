@@ -7,7 +7,6 @@
 
 
 #define MAXBLOCKSIZE			144
-#define NBS_ALIGN(n)
 
 
 #pragma mark - MAC STRUCTS
