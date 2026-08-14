@@ -9,8 +9,6 @@
 #define HASH_TBL_SIZE	253
 
 
-
-
 #pragma mark - Hash Functions
 struct hash_descriptor hash_descriptor[HASH_TBL_SIZE] = {
     {
@@ -159,15 +157,13 @@ void zeromem(volatile void *o, size_t ol)
     }
 }
 
-/*
- void copy_or_zeromem(const unsigned char* s, unsigned char* d, unsigned long l, int c)
- {
- unsigned long y;
- unsigned char m = 0xff;
- if (c != 0) c = 1;
- y = 0;
- m *= 1 - c;
- for (; y < l; y++) {d[y] = s[y] & m;}
- m = 0;
- }
- */
+void copy_or_zeromem(const unsigned char* s, unsigned char* d, unsigned long l, int c)
+{
+    unsigned long y;
+    unsigned char m = 0xff;
+    if (c != 0) c = 1;
+    y = 0;
+    m *= 1 - c;
+    for (; y < l; y++) {d[y] = s[y] & m;}
+    m = 0;
+}
