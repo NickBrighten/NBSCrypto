@@ -7,7 +7,6 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdarg.h>
 #include <stdbool.h>
 #include <string.h>
 #include <math.h>
@@ -26,6 +25,6 @@
 #endif
 
 #define NBS_CRYPTO_VERSION	"1.0.0"
-#define NBS_CRYPTO_BUILDNUMBER	"260814"
+#define NBS_CRYPTO_BUILDNUMBER	"260815"
 
 #endif /* nbs_crypto_h */
