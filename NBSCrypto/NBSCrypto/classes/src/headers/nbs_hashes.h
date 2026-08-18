@@ -474,6 +474,7 @@ extern const struct hash_descriptor arirang_512_desc;
 
 
 #pragma mark BLAKE2B
+int blake2b_init(hash_state *hs, unsigned long bitlen, const unsigned char *key, unsigned long keylen);
 int blake2b_160_init(hash_state *hs);
 int blake2b_256_init(hash_state *hs);
 int blake2b_384_init(hash_state *hs);
@@ -487,6 +488,7 @@ extern const struct hash_descriptor blake2b_512_desc;
 
 
 #pragma mark BLAKE2S
+int blake2s_init(hash_state *hs, unsigned long bitlen, const unsigned char *key, unsigned long keylen);
 int blake2s_128_init(hash_state *hs);
 int blake2s_160_init(hash_state *hs);
 int blake2s_224_init(hash_state *hs);
