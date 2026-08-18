@@ -242,12 +242,16 @@ static inline int _blake2b_init_param(hash_state *hs, const unsigned char *P)
     return NBSCrypto_OK;
 }
 
-static inline int _blake2b_init(hash_state *hs, unsigned long outlen, const unsigned char *key, unsigned long keylen)
+
+
+
+#pragma mark - FUNCTIONS
+int blake2b_init(hash_state *hs, unsigned long bitlen, const unsigned char *key, unsigned long keylen)
 {
     unsigned char P[BLAKE2B_PARAM_SIZE];
     int err;
 
-    if ((!outlen) || (outlen > BLAKE2B_OUTBYTES)) {
+    if ((!bitlen) || (bitlen > BLAKE2B_OUTBYTES)) {
 	return NBSCrypto_ERROR;
     }
     if ((key && !keylen) || (keylen && !key) || (keylen > BLAKE2B_KEYBYTES)) {
@@ -256,7 +260,7 @@ static inline int _blake2b_init(hash_state *hs, unsigned long outlen, const unsi
 
     memset(P, 0, sizeof(P));
 
-    P[O_DIGEST_LENGTH] = (unsigned char)outlen;
+    P[O_DIGEST_LENGTH] = (unsigned char)bitlen;
     P[O_KEY_LENGTH] = (unsigned char)keylen;
     P[O_FANOUT] = 1;
     P[O_DEPTH] = 1;
@@ -275,14 +279,10 @@ static inline int _blake2b_init(hash_state *hs, unsigned long outlen, const unsi
     return NBSCrypto_OK;
 }
 
-
-
-
-#pragma mark - FUNCTIONS
-int blake2b_160_init(hash_state *hs) { return _blake2b_init(hs, 20, NULL, 0); }
-int blake2b_256_init(hash_state *hs) { return _blake2b_init(hs, 32, NULL, 0); }
-int blake2b_384_init(hash_state *hs) { return _blake2b_init(hs, 48, NULL, 0); }
-int blake2b_512_init(hash_state *hs) { return _blake2b_init(hs, 64, NULL, 0); }
+int blake2b_160_init(hash_state *hs) { return blake2b_init(hs, 20, NULL, 0); }
+int blake2b_256_init(hash_state *hs) { return blake2b_init(hs, 32, NULL, 0); }
+int blake2b_384_init(hash_state *hs) { return blake2b_init(hs, 48, NULL, 0); }
+int blake2b_512_init(hash_state *hs) { return blake2b_init(hs, 64, NULL, 0); }
 
 int blake2b_process(hash_state *hs, const unsigned char *in, unsigned long inlen)
 {
