@@ -13,6 +13,6 @@ enum {
 
 int mem_neq(const void *a, const void *b, size_t len);
 void zeromem(volatile void *out, size_t outlen);
-void copy_or_zeromem(const unsigned char* s, unsigned char* d, unsigned long l, int c);
+void copy_or_zeromem(const unsigned char* in, unsigned char* out, unsigned long len, int coz);
 
 #endif /* nbs_misc_h */
