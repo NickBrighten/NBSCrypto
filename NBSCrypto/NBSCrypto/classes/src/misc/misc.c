@@ -157,13 +157,18 @@ void zeromem(volatile void *o, size_t ol)
     }
 }
 
-void copy_or_zeromem(const unsigned char* s, unsigned char* d, unsigned long l, int c)
+void copy_or_zeromem(const unsigned char* in, unsigned char* out, unsigned long len, int coz)
 {
     unsigned long y;
-    unsigned char m = 0xff;
-    if (c != 0) c = 1;
+    unsigned char mask = 0xff;
+
+    if (coz != 0) coz = 1;
     y = 0;
-    m *= 1 - c;
-    for (; y < l; y++) {d[y] = s[y] & m;}
-    m = 0;
+    mask *= 1 - coz;
+
+    for (; y < len; y++) {
+	out[y] = in[y] & mask;
+    }
+
+    mask = 0;
 }
