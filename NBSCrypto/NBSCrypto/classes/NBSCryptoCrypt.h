@@ -33,14 +33,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 ///	INPUTFORMAT
 ///	@discussion		setINPUTFORMAT for decryption - Format for decrypted Input and TAG
-///	@discussion		If no INPUTFORMAT is specified, NBSCryptoCrypt automatically set it to BASE64 (base64_decode).
+///	@discussion		If no INPUTFORMAT is specified, NBSCrypto automatically set it to BASE64 (base64_decode).
 ///	@discussion		NBSCrypto_CIPHER_IO is declared in NBSCryptoDefines.h
 @property (nonatomic, setter=setInputFormat:)		NBSCrypto_CIPHER_IO INPUTFORMAT;
 
 
 ///	OUTPUTFORMAT
 ///	@discussion		setOUTPUTFORMAT for encryption - Format for encrypted Output and TAG
-///	@discussion		If no OUTPUTFORMAT is specified, NBSCryptoCrypt automatically set it to BASE64 (base64_encode).
+///	@discussion		If no OUTPUTFORMAT is specified, NBSCrypto automatically set it to BASE64 (base64_encode).
 ///	@discussion		NBSCrypto_CIPHER_IO is declared in NBSCryptoDefines.h
 @property (nonatomic, setter=setOutputFormat:)		NBSCrypto_CIPHER_IO OUTPUTFORMAT;
 
@@ -55,7 +55,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 ///	KEY (Is strictly required)
 ///	@discussion		setKEY for encryption and / or decryption
-///	@discussion		If no KEY is specified, NBSCryptoCrypt automatically pads the KEY with zeros
+///	@discussion		If no KEY is specified, NBSCrypto automatically pads the KEY with zeros
 ///				to the required length.
 @property (nonatomic, setter=setKEY:)			NSString *KEY;
 
@@ -63,7 +63,7 @@ NS_ASSUME_NONNULL_BEGIN
 ///	KEY2  (Recommended) - Required for F8-MODE and XTS-MODE
 ///	@discussion		setKEY2 for encryption and / or decryption
 ///	@discussion		KEY2 Is required for F8-MODE, LRW-MODE and XTS-MODE
-///	@discussion		If no KEY2 is specified, NBSCryptoCrypt automatically pads KEY2 to the
+///	@discussion		If no KEY2 is specified, NBSCrypto automatically pads KEY2 to the
 ///				required length with zeros, or truncates/pads KEY2 according to the
 ///				required length of the KEY2 from the input of the KEY.
 ///				In this case, KEY2 is padded with zeros, or is a subsequent substring
@@ -75,37 +75,37 @@ NS_ASSUME_NONNULL_BEGIN
 ///	IV (Initialization Vector)
 ///	@discussion		setIV (Initialization Vector) for encryption and / or decryption
 ///	@discussion		IV is not required for ECB-MODE
-///	@discussion		In CCM-MODE, EAX-MODE, OCB-MODE, OCB3-MODE,
+///	@discussion		In CCM-MODE, EAX-MODE, GCM-SIV-MODE, OCB-MODE, OCB3-MODE,
 ///				CHACHA8POLY1305, CHACHA12POLY1305 and CHACHA20POLY1305; IV = NONCE
-///	@discussion		If no IV / NONCE is specified, NBSCryptoCrypt automatically pads
+///	@discussion		If no IV / NONCE is specified, NBSCrypto automatically pads
 ///				the IV / NONCE with zeros to the required length.
 @property (nonatomic, setter=setIV:)			NSString *IV;
 
 
 ///	AAD / HEADER is required for
-///				CCM-MODE, EAX-MODE, GCM-MODE, OCB3-MODE,
+///				CCM-MODE, EAX-MODE, GCM-MODE, GCM-SIV-MODE, OCB3-MODE,
 ///				CHACHA8POLY1305, CHACHA12POLY1305 and CHACHA20POLY1305
 ///	@discussion		setAAD for encryption and / or decryption
-///	@discussion		AAD / HEADER is required for CCM-MODE, EAX-MODE, GCM-MODE, OCB3-MODE
-///				CHACHA8POLY1305, CHACHA12POLY1305 and CHACHA20POLY1305
-///	@discussion		If no AAD / HEADER is specified, NBSCryptoCrypt automatically pads the
+///	@discussion		AAD / HEADER is required for CCM-MODE, EAX-MODE, GCM-MODE, GCM-SIV-MODE,
+///				OCB3-MODE, CHACHA8POLY1305, CHACHA12POLY1305 and CHACHA20POLY1305
+///	@discussion		If no AAD / HEADER is specified, NBSCrypto automatically pads the
 ///				AAD / HEADER with zeros to the required length.
 @property (nonatomic, setter=setAAD:)			NSString *AAD;
 
 
 ///	TAG is required for
-///				CCM-Mode, EAX-MODE, GCM-MODE, OCB-MODE, OCB3-MODE,
+///				CCM-Mode, EAX-MODE, GCM-MODE, GCM-SIV-MODE, OCB-MODE, OCB3-MODE,
 ///				CHACHA8POLY1305, CHACHA12POLY1305 and CHACHA20POLY1305
 ///	@discussion		setTAG or getTAG for encryption / decryption
 ///	@discussion		setTAG is required for decryption in
-///				CCM-MODE, EAX-MODE, GCM-MODE, OCB-MODE, OCB3-MODE,
+///				CCM-MODE, EAX-MODE, GCM-MODE, GCM-SIV-MODE, OCB-MODE, OCB3-MODE,
 ///				CHACHA8POLY1305, CHACHA12POLY1305 and CHACHA20POLY1305
 ///	@discussion		The getTAG command returns the required TAG for decryption in
-///				CCM-MODE, EAX-MODE, GCM-MODE, OCB-MODE, OCB3-MODE,
+///				CCM-MODE, EAX-MODE, GCM-MODE, GCM-SIV-MODE, OCB-MODE, OCB3-MODE,
 ///				CHACHA8POLY1305, CHACHA12POLY1305 and CHACHA20POLY1305 after encryption.
-///				The TAG is generated automatically after encryption (getTAG)
+///	@discussion		The TAG is generated automatically after encryption (getTAG)
 ///				and must be specified via setTAG for decryption.
-///				The TAG have to be saved for decryption.
+///	@discussion		The TAG have to be saved for decryption.
 @property (nonatomic, setter=setTAG:, getter=getTAG)	NSString *TAG;
 
 

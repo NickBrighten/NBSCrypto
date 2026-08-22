@@ -209,6 +209,7 @@ const unsigned char* _charFromHex(const char* str)
 	(mode == _CIPHER_MODE_GCM) |
 	(mode == _CIPHER_MODE_GCM_SIV) |
 	(mode == _CIPHER_MODE_OCB3) |
+	(mode == _CIPHER_MODE_SIV) |
 	(mode == _CIPHER_MODE_CHACHA8) |
 	(mode == _CIPHER_MODE_CHACHA12) |
 	(mode == _CIPHER_MODE_CHACHA20) |
@@ -874,6 +875,38 @@ const unsigned char* _charFromHex(const char* str)
 	    }
 
 	    ofb_done(&m);
+	    break;
+	}
+#pragma mark SIV
+	case _CIPHER_MODE_SIV:{
+	    if (eod) {
+		unsigned long eTL=dTE.length;
+		unsigned char eT[eTL];
+		base64_decode(dTE.bytes, dTE.length, eT, &eTL);
+
+		unsigned long dTL=eTL;
+		unsigned char dT[dTL];
+
+		siv_decrypt_memory(0, (const unsigned char *)[sKEY UTF8String], sKEY.length, 1, (const unsigned char *)[sAAD UTF8String], (unsigned long)sAAD.length, eT, eTL, dT, &dTL);
+
+		r = [self _stringFromChar:dT withLength:dTL delHStr:false];
+	    }else{
+		unsigned long eTL=dTE.length + 16;
+		unsigned char eT[eTL];
+
+		siv_encrypt_memory(0, (const unsigned char *)[sKEY UTF8String], sKEY.length, 1, (const unsigned char *)[sAAD UTF8String], (unsigned long)sAAD.length, dTE.bytes, dTE.length, eT, &eTL);
+
+		switch (_outputformat) {
+		    case 1:{ //BASE64
+			r = [self _base64FromChar:eT withLength:eTL];
+			break;
+		    }
+		    case 2:{ //HEX
+			r = [self _hexFromChar:eT withLength:eTL];
+			break;
+		    }
+		}
+	    }
 	    break;
 	}
 #pragma mark XTS
