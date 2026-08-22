@@ -25,6 +25,6 @@
 #endif
 
 #define NBS_CRYPTO_VERSION	"1.0.0"
-#define NBS_CRYPTO_BUILDNUMBER	"260815"
+#define NBS_CRYPTO_BUILDNUMBER	"260822"
 
 #endif /* nbs_crypto_h */
