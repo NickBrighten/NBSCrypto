@@ -1,3 +1,5 @@
+[![CodeQL](https://github.com/NickBrighten/NBSCrypto/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/NickBrighten/NBSCrypto/actions/workflows/github-code-scanning/codeql)
+
 # NBSCrypto
 NBSCrypto is an ultra lightweight crytopgraphy framework for iOS, iPadOS, macOS, tvOS and watchOS.
 
