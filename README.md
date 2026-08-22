@@ -83,22 +83,22 @@ Please have a look [here](https://help.github.com/articles/approving-a-pull-requ
     - MODES: `CBC` `CCM` `CFB` `CTR` `EAX` `ECB` `F8` `GCM` `GCM-SIV` `LRW` `OCB` `OCB3` `OFB` `SIV` `XTS`
 - __ANUBIS / ANUBIS-TWEAK__
     - BIT-LENGTH: `128` `160` `192` `224` `256` `288` `320`
-    - MODES: `CBC` `CCM` `CFB` `CTR` `EAX` `ECB` `F8` `GCM` `GCM-SIV` `LRW` `OCB` `OCB3` `OFB` `XTS`
+    - MODES: `CBC` `CCM` `CFB` `CTR` `EAX` `ECB` `F8` `GCM` `GCM-SIV` `LRW` `OCB` `OCB3` `OFB` `SIV` `XTS`
 - __ARIA__
     - BIT-LENGTH: `128` `192` `256`
-    - MODES: `CBC` `CCM` `CFB` `CTR` `EAX` `ECB` `F8` `GCM` `GCM-SIV` `LRW` `OCB` `OCB3` `OFB` `XTS`
+    - MODES: `CBC` `CCM` `CFB` `CTR` `EAX` `ECB` `F8` `GCM` `GCM-SIV` `LRW` `OCB` `OCB3` `OFB` `SIV` `XTS`
 - __BLOWFISH__
     - BIT-LENGTH: `128` up to `576`
     - MODES: `CBC` `CFB` `CTR` `EAX` `ECB` `F8` `OCB` `OFB`
 - __CAMELLIA__
     - BIT-LENGTH: `128` `192` `256`
-    - MODES: `CBC` `CCM` `CFB` `CTR` `EAX` `ECB` `F8` `GCM` `GCM-SIV` `LRW` `OCB` `OCB3` `OFB` `XTS`
+    - MODES: `CBC` `CCM` `CFB` `CTR` `EAX` `ECB` `F8` `GCM` `GCM-SIV` `LRW` `OCB` `OCB3` `OFB` `SIV` `XTS`
 - __CAST-5__
     - BIT-LENGTH: `128`
     - MODES: `CBC` `CFB` `CTR` `EAX` `ECB` `F8` `OCB` `OFB`
 - __CAST-6__
     - BIT-LENGTH: `128` `160` `192` `224` `256`
-    - MODES: `CBC` `CCM` `CFB` `CTR` `EAX` `ECB` `F8` `GCM` `GCM-SIV` `LRW` `OCB` `OCB3` `OFB` `XTS`
+    - MODES: `CBC` `CCM` `CFB` `CTR` `EAX` `ECB` `F8` `GCM` `GCM-SIV` `LRW` `OCB` `OCB3` `OFB` `SIV` `XTS`
 - __CHACHA8__
     - BIT-LENGTH: `128` `256`
     - MODES: `CHACHA8POLY1305`
@@ -128,19 +128,19 @@ Please have a look [here](https://help.github.com/articles/approving-a-pull-requ
     - MODES: `CBC` `CFB` `CTR` `EAX` `ECB` `F8` `OCB` `OFB`
 - __KUZNYECHIK__
     - BIT-LENGTH: `256`
-    - MODES: `CBC` `CCM` `CFB` `CTR` `EAX` `ECB` `F8` `GCM` `GCM-SIV` `LRW` `OCB` `OCB3` `OFB` `XTS`
+    - MODES: `CBC` `CCM` `CFB` `CTR` `EAX` `ECB` `F8` `GCM` `GCM-SIV` `LRW` `OCB` `OCB3` `OFB` `SIV` `XTS`
 - __LEA__
     - BIT-LENGTH: `128` `192` `256`
-    - MODES: `CBC` `CCM` `CFB` `CTR` `EAX` `ECB` `F8` `GCM` `GCM-SIV` `LRW` `OCB` `OCB3` `OFB` `XTS`
+    - MODES: `CBC` `CCM` `CFB` `CTR` `EAX` `ECB` `F8` `GCM` `GCM-SIV` `LRW` `OCB` `OCB3` `OFB` `SIV` `XTS`
 - __MARS__
     - BIT-LENGTH: `128` `160` `192` `224` `256` `288` `320` `352` `384` `416` `448`
-    - MODES: `CBC` `CCM` `CFB` `CTR` `EAX` `ECB` `F8` `GCM` `GCM-SIV` `LRW` `OCB` `OCB3` `OFB` `XTS`
+    - MODES: `CBC` `CCM` `CFB` `CTR` `EAX` `ECB` `F8` `GCM` `GCM-SIV` `LRW` `OCB` `OCB3` `OFB` `SIV` `XTS`
 - __MULTI2__
     - BIT-LENGTH: `320`
     - MODES: `CBC` `CFB` `CTR` `EAX` `ECB` `F8` `OFB`
 - __NOEKEON__
     - BIT-LENGTH: `128`
-    - MODES: `CBC` `CCM` `CFB` `CTR` `EAX` `ECB` `F8` `GCM` `GCM-SIV` `LRW` `OCB` `OCB3` `OFB` `XTS`
+    - MODES: `CBC` `CCM` `CFB` `CTR` `EAX` `ECB` `F8` `GCM` `GCM-SIV` `LRW` `OCB` `OCB3` `OFB` `SIV` `XTS`
 - __PRESENT__
     - BIT-LENGTH: `80` `128`
     - MODES: `CBC` `CFB` `CTR` `EAX` `ECB` `F8` `OCB` `OFB`
@@ -155,7 +155,7 @@ Please have a look [here](https://help.github.com/articles/approving-a-pull-requ
     - MODES: `none`
 - __RC6__
     - BIT-LENGTH: `256`
-    - MODES: `CBC` `CCM` `CFB` `CTR` `EAX` `ECB` `F8` `GCM` `GCM-SIV` `LRW` `OCB` `OCB3` `OFB` `XTS`
+    - MODES: `CBC` `CCM` `CFB` `CTR` `EAX` `ECB` `F8` `GCM` `GCM-SIV` `LRW` `OCB` `OCB3` `OFB` `SIV` `XTS`
 - __SAFER-K64 / SAFER-SK64__
     - BIT-LENGTH: `64`
     - MODES: `CBC` `CFB` `CTR` `EAX` `ECB` `F8` `OCB` `OFB`
@@ -164,7 +164,7 @@ Please have a look [here](https://help.github.com/articles/approving-a-pull-requ
     - MODES: `CBC` `CFB` `CTR` `EAX` `ECB` `F8` `OCB` `OFB`
 - __SAFER+__
     - BIT-LENGTH: `128` `192` `256`
-    - MODES: `CBC` `CCM` `CFB` `CTR` `EAX` `ECB` `F8` `GCM` `GCM-SIV` `LRW` `OCB` `OCB3` `OFB` `XTS`
+    - MODES: `CBC` `CCM` `CFB` `CTR` `EAX` `ECB` `F8` `GCM` `GCM-SIV` `LRW` `OCB` `OCB3` `OFB` `SIV` `XTS`
 - __SALSA8__
     - BIT-LENGTH: `128` `256`
     - MODES: `none`
@@ -176,16 +176,16 @@ Please have a look [here](https://help.github.com/articles/approving-a-pull-requ
     - MODES: `none`
 - __SEED__
     - BIT-LENGTH: `128`
-    - MODES: `CBC` `CCM` `CFB` `CTR` `EAX` `ECB` `F8` `GCM` `GCM-SIV` `LRW` `OCB` `OCB3` `OFB` `XTS`
+    - MODES: `CBC` `CCM` `CFB` `CTR` `EAX` `ECB` `F8` `GCM` `GCM-SIV` `LRW` `OCB` `OCB3` `OFB` `SIV` `XTS`
 - __SERPENT__
     - BIT-LENGTH: `128` `192` `256`
-    - MODES: `CBC` `CCM` `CFB` `CTR` `EAX` `ECB` `F8` `GCM` `GCM-SIV` `LRW` `OCB` `OCB3` `OFB` `XTS`
+    - MODES: `CBC` `CCM` `CFB` `CTR` `EAX` `ECB` `F8` `GCM` `GCM-SIV` `LRW` `OCB` `OCB3` `OFB` `SIV` `XTS`
 - __SKIPJACK__
     - BIT-LENGTH: `128`
     - MODES: `CBC` `CFB` `CTR` `EAX` `ECB` `F8` `OCB` `OFB`
 - __SM4__
     - BIT-LENGTH: `128`
-    - MODES: `CBC` `CCM` `CFB` `CTR` `EAX` `ECB` `F8` `GCM` `GCM-SIV` `LRW` `OCB` `OCB3` `OFB` `XTS`
+    - MODES: `CBC` `CCM` `CFB` `CTR` `EAX` `ECB` `F8` `GCM` `GCM-SIV` `LRW` `OCB` `OCB3` `OFB` `SIV` `XTS`
 - __SOBER128__
     - BIT-LENGTH: `128`
     - MODES: `none`
@@ -197,7 +197,7 @@ Please have a look [here](https://help.github.com/articles/approving-a-pull-requ
     - MODES: `CBC` `CFB` `CTR` `EAX` `ECB` `F8` `OCB` `OFB`
 - __TWOFISH__
     - BIT-LENGTH: `128` `192` `256`
-    - MODES: `CBC` `CCM` `CFB` `CTR` `EAX` `ECB` `F8` `GCM` `GCM-SIV` `LRW` `OCB` `OCB3` `OFB` `XTS`
+    - MODES: `CBC` `CCM` `CFB` `CTR` `EAX` `ECB` `F8` `GCM` `GCM-SIV` `LRW` `OCB` `OCB3` `OFB` `SIV` `XTS`
 - __XSALSA8__
     - BIT-LENGTH: `256`
     - MODES: `none`
