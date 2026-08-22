@@ -41,28 +41,28 @@ NS_ASSUME_NONNULL_BEGIN
 ///	Using MAC
 ///	@discussion		useMAC set a MAC-Algorithm (NBSCrypto_MAC) for hashing/checksum/digit/MAC
 ///	@discussion		A KEY is required for security reason
-///	@discussion		If no KEY is specified, NBSCryptoHash automatically pads the KEY with zeros
+///	@discussion		If no KEY is specified, NBSCrypto automatically pads the KEY with zeros
 ///				to the required length.
 @property (nonatomic, setter=useMAC:)			NBSCrypto_MAC MAC;
 
 
 ///	MACKEY (Required for MAC)
 ///	@discussion		setKeyForMAC for hashing/checksum/digit/MAC
-///	@discussion		If no KEY is specified, NBSCryptoHash automatically pads the KEY with zeros
+///	@discussion		If no KEY is specified, NBSCrypto automatically pads the KEY with zeros
 ///				to the required length.
 @property (nonatomic, setter=setKeyForMAC:)		NSString *MACKEY;
 
 
-///	CUSTOMIZING (Required for MAC)
+///	CUSTOMIZING (Optional for KMAC)
 ///	@discussion		setKeyForMAC for hashing/checksum/digit/MAC
-///	@discussion		If no KEY is specified, NBSCryptoHash automatically pads the KEY with zeros
+///	@discussion		If no KEY is specified, NBSCrypto automatically pads the KEY with zeros
 ///				to the required length.
 @property (nonatomic, setter=setCustomizing:)		NSString *CUSTOMIZING;
 
 
-///	outputLengthMAC (Optional for MAC)
+///	outputLengthMAC (Optional for KMAC)
 ///	@discussion		setOutputLengthMAC for hashing/checksum/digit/MAC
-///	@discussion		If no outputLengthMAC is specified, NBSCryptoHash automatically set it to DEFAULT.
+///	@discussion		If no outputLengthMAC is specified, NBSCrypto automatically set it to DEFAULT.
 @property (nonatomic, setter=setOutputLengthMAC:)	unsigned long OUTPUTLENGTHMAC;
 
 
