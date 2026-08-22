@@ -7,18 +7,6 @@
 
 
 #define MAXBLOCKSIZE			144
-
-#if defined(__GNUC__)
-    #define NBS_ALIGN_MSVC(n)
-    #define NBS_ALIGN(n) __attribute__((aligned(n)))
-#elif defined(_MSC_VER)
-    #define NBS_ALIGN_MSVC(n) __declspec(align(n))
-    #define NBS_ALIGN(n)
-#else
-    #define NBS_ALIGN_MSVC(n)
-    #define NBS_ALIGN(n)
-#endif
-
 #define CTR_COUNTER_LITTLE_ENDIAN	0x0000
 #define CTR_COUNTER_BIG_ENDIAN		0x1000
 #define CTR_RFC3686			0x2000
@@ -49,7 +37,7 @@ typedef struct{
 
 typedef struct{
     int blocklen, padlen, mode, ctrlen;
-    unsigned char ctr[MAXBLOCKSIZE], pad[MAXBLOCKSIZE] NBS_ALIGN(16);
+    unsigned char ctr[MAXBLOCKSIZE], pad[MAXBLOCKSIZE] __attribute__((aligned(16)));
     unsigned long cipher;
     cipher_state cs;
 } cm_CTR;
@@ -222,8 +210,8 @@ int ofb_done(cm_OFB *ofb);
 
 
 #pragma mark SIV
-int siv_encrypt(int cipher, const unsigned char *key, unsigned long keylen, unsigned long adnum, const unsigned char *ad[], unsigned long adlen[], const unsigned char *pt, unsigned long ptlen, unsigned char *ct, unsigned long *ctlen);
-int siv_decrypt(int  cipher, const unsigned char *key, unsigned long keylen, unsigned long adnum, const unsigned char *ad[], unsigned long adlen[], const unsigned char *ct, unsigned long ctlen, unsigned char *pt, unsigned long *ptlen);
+int siv_encrypt_memory(int cipher, const unsigned char *key, unsigned long keylen, unsigned long addnum, const unsigned char *add, unsigned long addlen, const unsigned char *pt, unsigned long ptlen, unsigned char *ct, unsigned long *ctlen);
+int siv_decrypt_memory(int cipher, const unsigned char *key, unsigned long keylen, unsigned long aadnum, const unsigned char *aad, unsigned long aadlen, const unsigned char *ct, unsigned long ctlen, unsigned char *pt, unsigned long *ptlen);
 
 
 #pragma mark XTS
