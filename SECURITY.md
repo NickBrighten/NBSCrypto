@@ -1,6 +1,15 @@
-# Security Policy
+<sup>
+<pre>
+╭╮╷╭╮ ╭─╮╭─╴╭─╮╷ ╷╭─╮╶┬╴╭─╮
+│╰┤├┴╮╰─╮│  ├┬╯╰┬╯├─╯ │ │ │
+╵ ╵╰─╯╰─╯╰─╴╵╰╴ ╵ ╵   ╵ ╰─╯
+</pre>
+</sup>
 
-## Supported Versions
+
+## Security Policy
+
+### Supported Versions
 
 We supported the following versions with security updates.
 
