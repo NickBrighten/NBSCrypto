@@ -23,7 +23,7 @@ This repository include the whole Xcode project with all targets, ready to build
 # Table of Content
 - [Precompiled Builds](#precompiled-builds)
 - [Integration](#integration)
-- [Test Vectors (KATs)](#test-vectors))
+- [Test Vectors (KATs)](#test-vectors-kats))
 - [Collaboration](#collaboration)
 - [Supported Cipher-Algorithms](#supported-cipher-algorithms)
 - [Syntax for Hash](#syntax-for-hash)
@@ -51,7 +51,7 @@ To integrate the `.framework` or `.xcframework` into an Objective-C project, you
 
 <br/>
 
-# Test Vectors - KATs
+# Test Vectors (KATs)
 A Known Answer Test (KAT) in security is a specific test method used to verify that a cryptographic algorithm works correctly.
 KATs (Test Vectors) for ciphers and hashes are being gradually added and updated here [here](https://github.com/NickBrighten/NBSCrypto/tree/main/KATs/).
 #
