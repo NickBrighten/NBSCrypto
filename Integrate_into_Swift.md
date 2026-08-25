@@ -1,14 +1,23 @@
-# Integrate `NBSCrypto` into Swift
+<sup>
+<pre>
+╭╮╷╭╮ ╭─╮╭─╴╭─╮╷ ╷╭─╮╶┬╴╭─╮
+│╰┤├┴╮╰─╮│  ├┬╯╰┬╯├─╯ │ │ │
+╵ ╵╰─╯╰─╯╰─╴╵╰╴ ╵ ╵   ╵ ╰─╯
+</pre>
+</sup>
 
 
-## Adding the `NBSCrypto` Framework
+## Integrate `NBSCrypto` into Swift
+
+
+### Adding the `NBSCrypto` Framework
 To add the `NBSCrypto.xcframework` to your Swift project click the `+` button and choose the `NBSCrypto.xcframework` from your file system or drag n drop it.
 
 <picture><img src=".github/swift_prj_fw.png" alt="Add the framework" style="width:auto;"></picture>
 #
 
 
-## Objective-C Bridging Header
+
 
 ### Create an Objective-C Bridging Header
 Add a `.h` file to your Swift project and name it `OBJC-BridgingHeader.h`.
