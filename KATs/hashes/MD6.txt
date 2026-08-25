@@ -1,0 +1,165 @@
+#################################################################
+#######################   MD6 - VECTORS   #######################
+#################################################################
+
+
+---------------------------- 128-BIT ----------------------------
+
+LEN	: 0
+MSG	: ""
+MD	: 6229a68030baa7c9e9407136f9acfa3e
+
+
+LEN	: 1
+MSG	: " "
+MD	: 15021e43c7c5f769580eec303662dc8f
+
+
+LEN	: 5
+MSG	: "H    "
+MD	: cdf45d3c3d6c8680a839b4ebbce84453
+
+
+LEN	: 16
+MSG	: "0123456789abcdef"
+MD	: cb158ef230e5e7bbaf37440123f9e73f
+
+
+
+---------------------------- 160-BIT ----------------------------
+
+LEN	: 0
+MSG	: ""
+MD	: 8f2062e4996b73b59f34262bee1e80fcaef60abc
+
+
+LEN	: 1
+MSG	: " "
+MD	: acfef6480b6d911af89c8a988c12cc4e97b628e5
+
+
+LEN	: 5
+MSG	: "H    "
+MD	: fc7dc1beffd6c6237b5efc097f239557e5d32d59
+
+
+LEN	: 16
+MSG	: "0123456789abcdef"
+MD	: 45590422c9e2574f985894c3d7bf3073a3fcbd8e
+
+
+
+---------------------------- 192-BIT ----------------------------
+
+LEN	: 0
+MSG	: ""
+MD	: 37c6e283f4b9e02ffd6988a0eb6ef7234cb37381ce9dc403
+
+
+LEN	: 1
+MSG	: " "
+MD	: be81eee1e482976c272a45148849a6efd2baeeb00aec60a1
+
+
+LEN	: 5
+MSG	: "H    "
+MD	: dc761482223aa92b6c309a4cde329b3342260b027b6bd3c7
+
+
+LEN	: 16
+MSG	: "0123456789abcdef"
+MD	: d01bd065d3a101f94fbaca6a238e222d4e3b0a25bf450de9
+
+
+
+---------------------------- 224-BIT ----------------------------
+
+LEN	: 0
+MSG	: ""
+MD	: ec48592a90d3005767cdbd818d77b8512014fec5d39dbfc7b964f37b
+
+
+LEN	: 1
+MSG	: " "
+MD	: fb48310dfaeb3ed64067ee36cd2d33a9f4ccaab50555ba3a1dd49fb2
+
+
+LEN	: 5
+MSG	: "H    "
+MD	: 36d474fc18fc64a0a703eace684162974fd33cdc0ce7db54d133ffab
+
+
+LEN	: 16
+MSG	: "0123456789abcdef"
+MD	: 7672f1dab574227ec3cccb7e656e873ab5d3d866db3964cbab5417cf
+
+
+
+---------------------------- 256-BIT ----------------------------
+
+LEN	: 0
+MSG	: ""
+MD	: 3a262fdf04040d1ce70d2d1f7b1da085a3c461a55fd2d963cbca87cec85149df
+
+
+LEN	: 1
+MSG	: " "
+MD	: 4fc54afffaef8ae32c4021083d09b796c9cdd496f0660232493bc7f0b728e0dd
+
+
+LEN	: 5
+MSG	: "H    "
+MD	: d5ba399cb600af84e8149c827fa08abd0434a909b4e77f6b2391285c573ade63
+
+
+LEN	: 16
+MSG	: "0123456789abcdef"
+MD	: fa922ab653e2c636d9383e260ae6ee50b3af114ac2d2e795657aa2528bdd660f
+
+
+
+---------------------------- 384-BIT ----------------------------
+
+LEN	: 0
+MSG	: ""
+MD	: ffcbbc3f85c8e2895f486815bdbb68e1f3cd2592ef6002e2fbf4a5633251d7e323aeb4fa61b2ec6a28c1a764ec903e17
+
+
+LEN	: 1
+MSG	: " "
+MD	: 550943fc03329e3b1f81dcc83a49b73385f4a84b8b5065ba077cb2dd5f7171ac633321fd2108620244b54b547b0800a0
+
+
+LEN	: 5
+MSG	: "H    "
+MD	: ede85f756bfba64a8ffbd388260d294861ff3b0735729c88f54dff0c0741ccde3fec055f73f76c66a142aa01960ac1a5
+
+
+LEN	: 16
+MSG	: "0123456789abcdef"
+MD	: 5b4ff6df26c6592055f4d8e794a0b57ed4b930b9fcc3d755ac48d8a30aae91c17376957b359b9c8a5fb9507eb1aae768
+
+
+
+---------------------------- 512-BIT ----------------------------
+
+LEN	: 0
+MSG	: ""
+MD	: e3bde7f708d2006335b09d95a0e8648a87f782e7a1ef17d676d84cc91fe006331749fcf14bf2a4c80ae1aeb52ed0799c8fc9420c59344d4731690e18f7a2cef3
+
+
+LEN	: 1
+MSG	: " "
+MD	: b19360d22cf37872fa9e14a452e779afe752664504d4ced60f9d1bd8bec9ebeb1d6330a46767faa230614e3ab49cba67f7f30c25c2afce1a15306582bdeb776f
+
+
+LEN	: 5
+MSG	: "H    "
+MD	: 87776d1f1a83cb12c33c8b46fb8c2a931fcd1c8143bcf47e5d08fc1c36395aef38bf255ba24e9e9bd45ea1f9cad6f2e3cdd6138256d33b9d48962348f87d7502
+
+
+LEN	: 16
+MSG	: "0123456789abcdef"
+MD	: 8df78b02848596b320285cc1639e0514ac2f6f5ae1396b6580680baf69341c50a944d2af81d6c9c86db523dd70a0dc4d8ec765c5b97da8aa1e007304bef3c295
+
+#################################################################
