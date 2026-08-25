@@ -8,7 +8,7 @@
 </pre>
 </sup>
 
-NBSCrypto is an ultra lightweight crytopgraphy framework for iOS, iPadOS, macOS, tvOS and watchOS.
+NBSCrypto is an ultra lightweight preset based cryptography framework for iOS, iPadOS, macOS, tvOS and watchOS.
 
 Includes encryption and decryption algorithms, hash algorithms, and hash-based message authentication codes (MAC).
 
