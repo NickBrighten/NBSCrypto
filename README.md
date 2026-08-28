@@ -1,11 +1,18 @@
 [![CodeQL](https://github.com/NickBrighten/NBSCrypto/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/NickBrighten/NBSCrypto/actions/workflows/github-code-scanning/codeql)
 
-# NBSCrypto
-NBSCrypto is an ultra lightweight crytopgraphy framework for iOS, iPadOS, macOS, tvOS and watchOS.
+<sup>
+<pre>
+╭╮╷╭╮ ╭─╮╭─╴╭─╮╷ ╷╭─╮╶┬╴╭─╮
+│╰┤├┴╮╰─╮│  ├┬╯╰┬╯├─╯ │ │ │
+╵ ╵╰─╯╰─╯╰─╴╵╰╴ ╵ ╵   ╵ ╰─╯
+</pre>
+</sup>
 
-Includes encryption and decryption algorithms, hash algorithms, and hash-based message authentication codes (MAC).
+NBSCrypto is an ultra lightweight preset based cryptography framework for iOS, iPadOS, macOS, tvOS and watchOS.
 
-NSCrypto is written in `Objective-C` and `C` and is compatible to iOS 9.0 and higher, macOS 10.10 and higher, tvOS 9.0 and higher and watchOS 2.0 and higher.
+NBSCrypto includes encryption and decryption algorithms and the supported cipher modes, hash algorithms, and hash-based and cipher-based message authentication codes (MAC).
+
+NSCrypto is written in `Objective-C` and `C` and is compatible to iOS 9.0 and higher, macOS 10.10 and higher, tvOS 9.0 and higher and watchOS 2.0 and higher and can be integrate into SWIFT and Objective-C.
 
 This repository include the whole Xcode project with all targets, ready to build.
 #
@@ -16,7 +23,7 @@ This repository include the whole Xcode project with all targets, ready to build
 # Table of Content
 - [Precompiled Builds](#precompiled-builds)
 - [Integration](#integration)
-- [Test Vectors (KATs)](#test-vectors))
+- [Test Vectors (KATs)](#test-vectors-kats))
 - [Collaboration](#collaboration)
 - [Supported Cipher-Algorithms](#supported-cipher-algorithms)
 - [Syntax for Hash](#syntax-for-hash)
@@ -37,14 +44,14 @@ Precompiled Builds will be available as multiple tagets `.xcframework` for produ
 <br/>
 
 # Integration
-It is possible to use the `.framework` or `.xcframework` in both Objective-C and Swift.
+It is possible to use the `.framework` or `.xcframework` in both Swift and Objective-C.
 
 To integrate the `.framework` or `.xcframework` into an Objective-C project, you can use our guide: [Integrate NBSCrypto to an Objective-C Project](https://github.com/NickBrighten/NBSCrypto/tree/main/Integrate_into_Objective-C.md) and to integrate it into a Swift project, you can use our guide: [Integrate NBSCrypto to an Swift Project](https://github.com/NickBrighten/NBSCrypto/tree/main/Integrate_into_Swift.md).
 #
 
 <br/>
 
-# Test Vectors - KATs
+# Test Vectors (KATs)
 A Known Answer Test (KAT) in security is a specific test method used to verify that a cryptographic algorithm works correctly.
 KATs (Test Vectors) for ciphers and hashes are being gradually added and updated here [here](https://github.com/NickBrighten/NBSCrypto/tree/main/KATs/).
 #
