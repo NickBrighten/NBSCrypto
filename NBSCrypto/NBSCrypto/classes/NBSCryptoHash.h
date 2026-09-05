@@ -31,39 +31,6 @@ NS_ASSUME_NONNULL_BEGIN
 @interface NBSCryptoHash : NSObject
 
 
-/// 	HASH-Algorithm (NBSCrypto_HASH) inclusive Bit-Length
-///	@discussion		Set a HASH-Algorithm (NBSCrypto_HASH) for hashing/checksum/digit/MAC
-///	@discussion		The NBSCrypto_HASH include the Bit-Length
-///	@discussion		NBSCrypto_HASH is declared in NBSCryptoDefines.h
-@property (nonatomic, setter=setAlgorithm:)		NBSCrypto_HASH ALGORITHM;
-
-
-///	Using MAC
-///	@discussion		useMAC set a MAC-Algorithm (NBSCrypto_MAC) for hashing/checksum/digit/MAC
-///	@discussion		A KEY is required for security reason
-///	@discussion		If no KEY is specified, NBSCrypto automatically pads the KEY with zeros
-///				to the required length.
-@property (nonatomic, setter=useMAC:)			NBSCrypto_MAC MAC;
-
-
-///	MACKEY (Required for MAC)
-///	@discussion		setKeyForMAC for hashing/checksum/digit/MAC
-///	@discussion		If no KEY is specified, NBSCrypto automatically pads the KEY with zeros
-///				to the required length.
-@property (nonatomic, setter=setKeyForMAC:)		NSString *MACKEY;
-
-
-///	CUSTOMIZING (Optional for KMAC)
-///	@discussion		setKeyForMAC for hashing/checksum/digit/MAC
-///	@discussion		If no KEY is specified, NBSCrypto automatically pads the KEY with zeros
-///				to the required length.
-@property (nonatomic, setter=setCustomizing:)		NSString *CUSTOMIZING;
-
-
-///	outputLengthMAC (Optional for KMAC)
-///	@discussion		setOutputLengthMAC for hashing/checksum/digit/MAC
-///	@discussion		If no outputLengthMAC is specified, NBSCrypto automatically set it to DEFAULT.
-@property (nonatomic, setter=setOutputLengthMAC:)	unsigned long OUTPUTLENGTHMAC;
 
 
 - (instancetype)init;
@@ -80,67 +47,98 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 ///	NBSCryptoHash +hashString:(NSString*)string
-///	@discussion		Hashing/checksum/digit of an NSString in conjunction with default parameters
+///	@discussion		Hashing/checksum/digit/MAC of an NSString in conjunction with default parameters
 ///	@discussion		DEFAULT-PARAMETERS:
 ///					Algorithm		: NBSCrypto_HASH_SHA3_512
-///					useMAC		: NBSCrypto_MAC_NONE
-///					setKeyForHMAC	: NULL
-///					setOutputLengthMAC	: NULL
 ///	@discussion		NBSCrypto_HASH is declared in NBSCryptoDefines.h
-///	@param string		NSString to hashing/checksum/digit
+///	@param string		NSString to Hashing/checksum/digit/MAC
 ///	@return			NSString as hexadecimal
 +(NSString*)hashString:(NSString*)string;
 
 
 ///	NBSCryptoHash +hashString:(NSString*)string withAlgorithm:(NBSCrypto_HASH)hashAlgorithm
-///	@discussion		Hashing/checksum/digit of an NSString in conjunction with setted  parameters
+///	@discussion		Hashing/checksum/digit/MAC of an NSString in conjunction with setted parameters
 ///	@discussion		NBSCrypto_HASH is declared in NBSCryptoDefines.h
-///	@param string		NSString to hashing/checksum/digit
+///	@param string		NSString to Hashing/checksum/digit/MAC
 ///	@param hashAlgorithm	The NBSCrypto_HASH include the Bit-Length
 ///	@return			NSString as hexadecimal
 +(NSString*)hashString:(NSString*)string withAlgorithm:(NBSCrypto_HASH)hashAlgorithm;
 
 
-///	NBSCryptoHash +hashString:(NSString*)string withAlgorithm:(NBSCrypto_HASH)hashAlgorithm useMAC:(NBSCrypto_MAC)useMAC setKeyForMAC:(NSString*)macKey
-///	@discussion		Hashing/checksum/digit/HMAC a NSString in conjunction with the setted parameters
-///	@discussion		NBSCrypto_HASH is declared in NBSCryptoDefines.h
-///	@discussion		If no KEY is specified, NBSCryptoHash automatically pads the KEY with zeros
-///				to the required length or use no KEY in conjunction to the used MAC-Algorithm (like KMAC)
-///	@param string		NSString to hashing/checksum/digit/MAC
-///	@param hashAlgorithm	The NBSCrypto_HASH include the Bit-Length
-///	@param useMAC		The NBSCrypto_MAC which is used
-///	@param macKey		Set the KEY for MAC
+///	NBSCryptoHash +hashStringWithCMAC:(NSString *)string andCipherAlgorithm:(NBSCrypto_MAC_CIPHER)cipherAlgorithm setKeyForMAC:(NSString *)macKey
+///	@discussion		Hashing/checksum/digit/MAC of an NSString in conjunction with setted parameters using CMAC
+///	@discussion		NBSCrypto_MAC_CIPHER is declared in NBSCryptoDefines.h
+///	@param string		NSString to Hashing/checksum/digit/MAC
+///	@param cipherAlgorithm	The NBSCrypto_MAC_CIPHER include the Bit-Length
+///	@param macKey		The KEY for CMAC
 ///	@return			NSString as hexadecimal
-+(NSString*)hashString:(NSString*)string withAlgorithm:(NBSCrypto_HASH)hashAlgorithm useMAC:(NBSCrypto_MAC)useMAC setKeyForMAC:(NSString*)macKey;
++(NSString *)hashStringWithCMAC:(NSString *)string andCipherAlgorithm:(NBSCrypto_MAC_CIPHER)cipherAlgorithm setKeyForMAC:(NSString *)macKey;
 
 
-///	NBSCryptoHash +hashString:(NSString*)string withAlgorithm:(NBSCrypto_HASH)hashAlgorithm useMAC:(NBSCrypto_MAC)useMAC setKeyForMAC:(NSString*)macKey setOutputLengthForMAC:(unsigned long)outputLengthMAC
-///	@discussion		Hashing/checksum/digit/HMAC a NSString in conjunction with the setted parameters
+///	NBSCryptoHash +hashStringWithHMAC:(NSString *)string withHashAlgorithm:(NBSCrypto_HASH)hashAlgorithm setKeyForMAC:(NSString *)macKey
+///	@discussion		Hashing/checksum/digit/MAC of an NSString in conjunction with setted parameters using HMAC
 ///	@discussion		NBSCrypto_HASH is declared in NBSCryptoDefines.h
-///	@discussion		If no KEY is specified, NBSCryptoHash automatically pads the KEY with zeros
-///				to the required length or use no KEY in conjunction to the used MAC-Algorithm (like KMAC)
-///	@param string		NSString to hashing/checksum/digit/MAC
+///	@param string		NSString to Hashing/checksum/digit/MAC
 ///	@param hashAlgorithm	The NBSCrypto_HASH include the Bit-Length
-///	@param useMAC		The NBSCrypto_MAC which is used
-///	@param macKey		Set the KEY for MAC
-///	@param outputLengthMAC	Set the given length of the output (in BIT) of a MAC-Algorithm (only required for KMAC)
+///	@param macKey		The KEY for HMAC
 ///	@return			NSString as hexadecimal
-+(NSString*)hashString:(NSString*)string withAlgorithm:(NBSCrypto_HASH)hashAlgorithm useMAC:(NBSCrypto_MAC)useMAC setKeyForMAC:(NSString*)macKey setOutputLengthForMAC:(unsigned long)outputLengthMAC;
++(NSString *)hashStringWithHMAC:(NSString *)string andHashAlgorithm:(NBSCrypto_HASH)hashAlgorithm setKeyForMAC:(NSString *)macKey;
 
 
-///	NBSCryptoHash +hashString:(NSString*)string withAlgorithm:(NBSCrypto_HASH)hashAlgorithm useMAC:(NBSCrypto_MAC)useMAC setKeyForMAC:(NSString*)macKey setCustomizing:(NSString*)customizing setOutputLengthForMAC:(unsigned long)outputLengthMAC
-///	@discussion		Hashing/checksum/digit/HMAC a NSString in conjunction with the setted parameters
+///	NBSCryptoHash +hashStringWithKMAC:(NSString *)string withKMACAlgorithm:(NBSCrypto_KMAC)KMACAlgorithm setKeyForMAC:(NSString *)macKey setCustomizing:(NSString *)customizing setOutputLength:(unsigned long)outputLength
+///	@discussion		Hashing/checksum/digit/MAC of an NSString in conjunction with setted parameters using KMAC
+///	@discussion		NBSCrypto_KMAC is declared in NBSCryptoDefines.h
+///	@param string		NSString to Hashing/checksum/digit/MAC
+///	@param KMACAlgorithm	The NBSCrypto_KMAC include the Bit-Length
+///	@param macKey		The KEY for KMAC
+///	@param customizing	The CUSTOMIZING string for KMAC
+///	@param outputLength	The OUTPUTLENGTH for KMAC
+///	@return			NSString as hexadecimal
++(NSString *)hashStringWithKMAC:(NSString *)string andKMACAlgorithm:(NBSCrypto_KMAC)KMACAlgorithm setKeyForMAC:(NSString *)macKey setCustomizing:(NSString *)customizing setOutputLength:(unsigned long)outputLength;
+
+
+///	NBSCryptoHash +hashStringWithOMAC:(NSString *)string andCipherAlgorithm:(NBSCrypto_MAC_CIPHER)cipherAlgorithm setKeyForMAC:(NSString *)macKey
+///	@discussion		Hashing/checksum/digit/MAC of an NSString in conjunction with setted parameters using OMAC
+///	@discussion		NBSCrypto_MAC_CIPHER is declared in NBSCryptoDefines.h
+///	@param string		NSString to Hashing/checksum/digit/MAC
+///	@param cipherAlgorithm	The NBSCrypto_MAC_CIPHER include the Bit-Length
+///	@param macKey		The KEY for OMAC
+///	@return			NSString as hexadecimal
++(NSString *)hashStringWithOMAC:(NSString *)string andCipherAlgorithm:(NBSCrypto_MAC_CIPHER)cipherAlgorithm setKeyForMAC:(NSString *)macKey;
+
+
+///	NBSCryptoHash +hashStringWithPELICAN:(NSString * )string withHashAlgorithm:(NBSCrypto_HASH)hashAlgorithm setKeyForMAC:(NSString *)macKey
+///	@discussion		Hashing/checksum/digit/MAC of an NSString in conjunction with setted parameters using PELICAN
 ///	@discussion		NBSCrypto_HASH is declared in NBSCryptoDefines.h
-///	@discussion		If no KEY is specified, NBSCryptoHash automatically pads the KEY with zeros
-///				to the required length or use no KEY in conjunction to the used MAC-Algorithm (like KMAC)
-///	@param string		NSString to hashing/checksum/digit/MAC
+///	@param string		NSString to Hashing/checksum/digit/MAC
 ///	@param hashAlgorithm	The NBSCrypto_HASH include the Bit-Length
-///	@param useMAC		The NBSCrypto_MAC which is used
-///	@param macKey		Set the KEY for MAC
-///	@param customizing	Set the COSTUMIZING for KMAC
-///	@param outputLengthMAC	Set the given length of the output (in BIT) of a MAC-Algorithm (only required for KMAC)
+///	@param macKey		The KEY for PELICAN
 ///	@return			NSString as hexadecimal
-+(NSString*)hashString:(NSString*)string withAlgorithm:(NBSCrypto_HASH)hashAlgorithm useMAC:(NBSCrypto_MAC)useMAC setKeyForMAC:(NSString*)macKey setCustomizing:(NSString*)customizing setOutputLengthForMAC:(unsigned long)outputLengthMAC;
++(NSString *)hashStringWithPELICAN:(NSString * )string andHashAlgorithm:(NBSCrypto_HASH)hashAlgorithm setKeyForMAC:(NSString *)macKey;
+
+
+///	NBSCryptoHash +hashStringWithPMAC:(NSString *)string andCipherAlgorithm:(NBSCrypto_MAC_CIPHER)cipherAlgorithm setKeyForMAC:(NSString *)macKey
+///	@discussion		Hashing/checksum/digit/MAC of an NSString in conjunction with setted parameters using PMAC
+///	@discussion		NBSCrypto_MAC_CIPHER is declared in NBSCryptoDefines.h
+///	@param string		NSString to Hashing/checksum/digit/MAC
+///	@param cipherAlgorithm	The NBSCrypto_MAC_CIPHER include the Bit-Length
+///	@param macKey		The KEY for PMAC
+///	@return			NSString as hexadecimal
++(NSString *)hashStringWithPMAC:(NSString *)string andCipherAlgorithm:(NBSCrypto_MAC_CIPHER)cipherAlgorithm setKeyForMAC:(NSString *)macKey;
+
+
+///	NBSCryptoHash +hashStringWithPOLY1305:(NSString * )string withHashAlgorithm:(NBSCrypto_HASH)hashAlgorithm setKeyForMAC:(NSString *)macKey
+///	@discussion		Hashing/checksum/digit/MAC of an NSString in conjunction with setted parameters using POLY1305
+///	@discussion		NBSCrypto_HASH is declared in NBSCryptoDefines.h
+///	@param string		NSString to Hashing/checksum/digit/MAC
+///	@param hashAlgorithm	The NBSCrypto_HASH include the Bit-Length
+///	@param macKey		The KEY for POLY1305
+///	@return			NSString as hexadecimal
++(NSString *)hashStringWithPOLY1305:(NSString *)string andHashAlgorithm:(NBSCrypto_HASH)hashAlgorithm setKeyForMAC:(NSString *)macKey;
+
+
+//+(NSString *)hashStringWithF9:(NSString *)string andCipherAlgorithm:(NBSCrypto_MAC_CIPHER)cipherAlgorithm setKeyForMAC:(NSString *)macKey;
+
 
 @end
 
