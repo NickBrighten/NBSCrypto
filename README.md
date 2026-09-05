@@ -26,7 +26,6 @@ This repository include the whole Xcode project with all targets, ready to build
 - [Test Vectors (KATs)](#test-vectors-kats))
 - [Collaboration](#collaboration)
 - [Supported Cipher-Algorithms](#supported-cipher-algorithms)
-- [Syntax for Hash](#syntax-for-hash)
 - [Supported Hash-Algorithms](#supported-hash-algorithms)
 - [Supported MAC-Algorithms](#supported-mac-algorithms)
 #
@@ -225,52 +224,6 @@ Please have a look [here](https://help.github.com/articles/approving-a-pull-requ
 <br/>
 <br/>
 
-# Syntax for Hash
-Objective-C
-```Objective-C
-[NBSCryptoHash hashString:@"0123456789abcdef"
-            withAlgorithm:NBSCrypto_HASH_SHA3_512];
-//return NSString
-```
-```Objective-C
-[NBSCryptoHash hashString:@"0123456789abcdef"
-            withAlgorithm:NBSCrypto_HASH_SHAKE_256
-                   useMAC:NBSCrypto_MAC_POLY1305
-             setKeyForMAC:@"0123456789abcdef0123456789abcdef"];
-//return NSString
-```
-```Objective-C
-NBSCryptoHash *hash = [[NBSCryptoHash alloc] init];
-[hash setAlgorithm:NBSCrypto_HASH_LUFFA_224];
-[hash hashString:@"0123456789abcdef"];
-//return NSString
-NSLog("OUTPUT HASH: %@", hash);
-```
-```Objective-C
-NBSCryptoHash *MAChash = [[NBSCryptoHash alloc] init];
-[MAChash setAlgorithm:NBSCrypto_HASH_GROESTL_512];
-[MAChash useMAC:NBSCrypto_MAC_HMAC];
-[MAChash setKeyForMAC:@"0123456789abcdef0123456789abcdef"];
-//return NSString
-NSLog("OUTPUT MAC: %@", MAChash);
-```
-
-Swift
-```Swift
-let hash = NBSCryptoHash.hashString("0123456789abcdef", withAlgorithm:NBSCrypto_HASH_BLUEMIDNIGHTWISH_512);
-//return NSString
-NSLog("OUTPUT HASH: %@", hash);
-```
-```Swift
-let MAChash = NBSCryptoHash.hashString("0123456789abcdef", withAlgorithm:NBSCrypto_HASH_BLUEMIDNIGHTWISH_512, use:NBSCrypto_MAC_HMAC, setKeyForMAC:"0123456789abcdef0123456789abcdef");
-//return NSString
-NSLog("OUTPUT MAC: %@", MAChash);
-```
-#
-
-<br/>
-<br/>
-
 # Supported Hash-Algorithms
 - __ADLER32__
     - BIT-LENGTH: `32`
@@ -383,12 +336,14 @@ NSLog("OUTPUT MAC: %@", MAChash);
 # Supported MAC-Algorithms
 - __F9__
     - `cipher`
+- __CMAC__
+    - `cipher`
 - __HMAC__
     - `hash`
 - __KMAC__
     - `128` `128-XOF` `256` `256-XOF`
     - `variable output-length`
-- __OMAC__
+- __OMAC1__
     - `cipher`
 - __PELICAN__
     - `hash`
