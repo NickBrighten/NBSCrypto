@@ -4517,10 +4517,6 @@ int kuznyechik_setup(const unsigned char *key, int keylen, int num_rounds, ciphe
 	return NBSCrypto_ERROR;
     }
 
-    if (num_rounds != 10 && num_rounds != 0) {
-	return NBSCrypto_ERROR;
-    }
-
     _kuznyechik_set_key(key, cs);
     return NBSCrypto_OK;
 }
