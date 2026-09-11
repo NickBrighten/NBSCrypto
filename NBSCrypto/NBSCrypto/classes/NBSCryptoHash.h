@@ -65,6 +65,26 @@ NS_ASSUME_NONNULL_BEGIN
 +(NSString*)hashString:(NSString*)string withAlgorithm:(NBSCrypto_HASH)hashAlgorithm;
 
 
+///	NBSCryptoHash +hashStringWithBLAKE2B:(NSString *)string andBLAKE2BAlgorithm:(NBSCrypto_BLAKE2BMAC)blake2bAlgorithm setKeyForMAC:(NSString *)macKey
+///	@discussion		Hashing/checksum/digit/MAC of an NSString in conjunction with setted parameters using BLAKE2B-MAC
+///	@discussion		NBSCrypto_BLAKE2BMAC is declared in NBSCryptoDefines.h
+///	@param string		NSString to Hashing/checksum/digit/MAC
+///	@param blake2bAlgorithm	The NBSCrypto_BLAKE2BMAC include the Bit-Length
+///	@param macKey		The KEY for BLAKE2B-MAC
+///	@return			NSString as hexadecimal
++(NSString *)hashStringWithBLAKE2B:(NSString *)string andBLAKE2BAlgorithm:(NBSCrypto_BLAKE2BMAC)blake2bAlgorithm setKeyForMAC:(NSString *)macKey;
+
+
+///	NBSCryptoHash +hashStringWithBLAKE2S:(NSString *)string andBLAKE2SAlgorithm:(NBSCrypto_BLAKE2SMAC)blake2sAlgorithm setKeyForMAC:(NSString *)macKey
+///	@discussion		Hashing/checksum/digit/MAC of an NSString in conjunction with setted parameters using BLAKE2S-MAC
+///	@discussion		NBSCrypto_BLAKE2SMAC is declared in NBSCryptoDefines.h
+///	@param string		NSString to Hashing/checksum/digit/MAC
+///	@param blake2sAlgorithm	The NBSCrypto_BLAKE2SMAC include the Bit-Length
+///	@param macKey		The KEY for BLAKE2S-MAC
+///	@return			NSString as hexadecimal
++(NSString *)hashStringWithBLAKE2S:(NSString *)string andBLAKE2SAlgorithm:(NBSCrypto_BLAKE2SMAC)blake2sAlgorithm setKeyForMAC:(NSString *)macKey;
+
+
 ///	NBSCryptoHash +hashStringWithCMAC:(NSString *)string andCipherAlgorithm:(NBSCrypto_MAC_CIPHER)cipherAlgorithm setKeyForMAC:(NSString *)macKey
 ///	@discussion		Hashing/checksum/digit/MAC of an NSString in conjunction with setted parameters using CMAC
 ///	@discussion		NBSCrypto_MAC_CIPHER is declared in NBSCryptoDefines.h
@@ -145,12 +165,6 @@ NS_ASSUME_NONNULL_BEGIN
 ///	@param macKey		The KEY for XCBC
 ///	@return			NSString as hexadecimal
 +(NSString *)hashStringWithXCBC:(NSString *)string andCipherAlgorithm:(NBSCrypto_MAC_CIPHER)cipherAlgorithm setKeyForMAC:(NSString *)macKey;
-
-
-
-+(NSString *)hashStringWithBLAKE2B:(NSString *)string andBLAKE2BAlgorithm:(NBSCrypto_BLAKE2BMAC)blake2bAlgorithm setKeyForMAC:(NSString *)macKey;
-
-+(NSString *)hashStringWithBLAKE2S:(NSString *)string andBLAKE2SAlgorithm:(NBSCrypto_BLAKE2SMAC)blake2sAlgorithm setKeyForMAC:(NSString *)macKey;
 
 
 
