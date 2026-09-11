@@ -23,6 +23,14 @@
 		1D0B86213002B25000F7AD70 /* sosemanuk.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D0B861F3002B25000F7AD70 /* sosemanuk.c */; };
 		1D0B86223002B25000F7AD70 /* sosemanuk.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D0B861F3002B25000F7AD70 /* sosemanuk.c */; };
 		1D0B86233002B25000F7AD70 /* sosemanuk.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D0B861F3002B25000F7AD70 /* sosemanuk.c */; };
+		1D0CC9903050653400F55621 /* xcbc.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D0CC98F3050653300F55621 /* xcbc.c */; };
+		1D0CC9913050653400F55621 /* xcbc.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D0CC98F3050653300F55621 /* xcbc.c */; };
+		1D0CC9923050653400F55621 /* xcbc.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D0CC98F3050653300F55621 /* xcbc.c */; };
+		1D0CC9933050653400F55621 /* xcbc.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D0CC98F3050653300F55621 /* xcbc.c */; };
+		1D0CC9953050862000F55621 /* blake2mac.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D0CC9943050862000F55621 /* blake2mac.c */; };
+		1D0CC9963050862000F55621 /* blake2mac.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D0CC9943050862000F55621 /* blake2mac.c */; };
+		1D0CC9973050862000F55621 /* blake2mac.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D0CC9943050862000F55621 /* blake2mac.c */; };
+		1D0CC9983050862000F55621 /* blake2mac.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D0CC9943050862000F55621 /* blake2mac.c */; };
 		1D0E78BF2FC60F91005EE298 /* simd.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D0E78BE2FC60F91005EE298 /* simd.c */; };
 		1D0E78C02FC60F91005EE298 /* simd.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D0E78BE2FC60F91005EE298 /* simd.c */; };
 		1D0E78C12FC60F91005EE298 /* simd.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D0E78BE2FC60F91005EE298 /* simd.c */; };
@@ -481,6 +489,8 @@
 		1D0B86153002B23600F7AD70 /* rabbit.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = rabbit.c; sourceTree = "<group>"; tabWidth = 8; };
 		1D0B861A3002B24400F7AD70 /* sober128.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sober128.c; sourceTree = "<group>"; tabWidth = 8; };
 		1D0B861F3002B25000F7AD70 /* sosemanuk.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sosemanuk.c; sourceTree = "<group>"; tabWidth = 8; };
+		1D0CC98F3050653300F55621 /* xcbc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = xcbc.c; sourceTree = "<group>"; tabWidth = 8; };
+		1D0CC9943050862000F55621 /* blake2mac.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = blake2mac.c; sourceTree = "<group>"; tabWidth = 8; };
 		1D0E78BE2FC60F91005EE298 /* simd.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = simd.c; sourceTree = "<group>"; tabWidth = 8; };
 		1D1BA886300C181E00D6D33D /* multi2.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = multi2.c; sourceTree = "<group>"; tabWidth = 8; };
 		1D2E69052FFD54F200E6A753 /* meshhash2.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = meshhash2.c; sourceTree = "<group>"; tabWidth = 8; };
@@ -747,6 +757,7 @@
 		1D419D882FC06C4F003A7B83 /* mac */ = {
 			isa = PBXGroup;
 			children = (
+				1D0CC9943050862000F55621 /* blake2mac.c */,
 				1D419D8A2FC06C5D003A7B83 /* f9.c */,
 				1D419D8C2FC06C5D003A7B83 /* hmac.c */,
 				1D983EA5301E68CB004F4985 /* kmac.c */,
@@ -754,6 +765,7 @@
 				1D8475EC2FDDB0C300E0836C /* pelican.c */,
 				1D419D8B2FC06C5D003A7B83 /* pmac.c */,
 				1D419D8D2FC06C5D003A7B83 /* poly1305.c */,
+				1D0CC98F3050653300F55621 /* xcbc.c */,
 			);
 			path = mac;
 			sourceTree = "<group>";
@@ -1161,6 +1173,7 @@
 				1D419DEA2FC06C97003A7B83 /* tiger.c in Sources */,
 				1D419E2E2FC06C97003A7B83 /* whirpool.c in Sources */,
 				1D419DF62FC06C97003A7B83 /* xxhash.c in Sources */,
+				1D0CC9953050862000F55621 /* blake2mac.c in Sources */,
 				1D419D922FC06C5D003A7B83 /* f9.c in Sources */,
 				1D419D9A2FC06C5D003A7B83 /* hmac.c in Sources */,
 				1D983EA6301E68CB004F4985 /* kmac.c in Sources */,
@@ -1168,6 +1181,7 @@
 				1D8475ED2FDDB0C300E0836C /* pelican.c in Sources */,
 				1D419D962FC06C5D003A7B83 /* pmac.c in Sources */,
 				1D419D9E2FC06C5D003A7B83 /* poly1305.c in Sources */,
+				1D0CC9903050653400F55621 /* xcbc.c in Sources */,
 				1D419D842FC06C3C003A7B83 /* misc.c in Sources */,
 				1D419D4E2FC06BD9003A7B83 /* cbc.c in Sources */,
 				1D419D622FC06BDA003A7B83 /* ccm.c in Sources */,
@@ -1277,6 +1291,7 @@
 				1D419DEB2FC06C97003A7B83 /* tiger.c in Sources */,
 				1D419E2F2FC06C97003A7B83 /* whirpool.c in Sources */,
 				1D419DF72FC06C97003A7B83 /* xxhash.c in Sources */,
+				1D0CC9963050862000F55621 /* blake2mac.c in Sources */,
 				1D419D932FC06C5D003A7B83 /* f9.c in Sources */,
 				1D419D9B2FC06C5D003A7B83 /* hmac.c in Sources */,
 				1D983EA7301E68CB004F4985 /* kmac.c in Sources */,
@@ -1284,6 +1299,7 @@
 				1D8475EE2FDDB0C300E0836C /* pelican.c in Sources */,
 				1D419D972FC06C5D003A7B83 /* pmac.c in Sources */,
 				1D419D9F2FC06C5D003A7B83 /* poly1305.c in Sources */,
+				1D0CC9913050653400F55621 /* xcbc.c in Sources */,
 				1D419D852FC06C3C003A7B83 /* misc.c in Sources */,
 				1D419D4F2FC06BD9003A7B83 /* cbc.c in Sources */,
 				1D419D632FC06BDA003A7B83 /* ccm.c in Sources */,
@@ -1393,6 +1409,7 @@
 				1D419DEC2FC06C97003A7B83 /* tiger.c in Sources */,
 				1D419E302FC06C98003A7B83 /* whirpool.c in Sources */,
 				1D419DF82FC06C97003A7B83 /* xxhash.c in Sources */,
+				1D0CC9973050862000F55621 /* blake2mac.c in Sources */,
 				1D419D942FC06C5D003A7B83 /* f9.c in Sources */,
 				1D419D9C2FC06C5D003A7B83 /* hmac.c in Sources */,
 				1D983EA8301E68CB004F4985 /* kmac.c in Sources */,
@@ -1400,6 +1417,7 @@
 				1D8475EF2FDDB0C300E0836C /* pelican.c in Sources */,
 				1D419D982FC06C5D003A7B83 /* pmac.c in Sources */,
 				1D419DA02FC06C5D003A7B83 /* poly1305.c in Sources */,
+				1D0CC9923050653400F55621 /* xcbc.c in Sources */,
 				1D419D862FC06C3C003A7B83 /* misc.c in Sources */,
 				1D419D502FC06BD9003A7B83 /* cbc.c in Sources */,
 				1D419D642FC06BDA003A7B83 /* ccm.c in Sources */,
@@ -1508,6 +1526,7 @@
 				1D4B76042FC5EFAD00159BB6 /* swifftx.c in Sources */,
 				1D419DED2FC06C97003A7B83 /* tiger.c in Sources */,
 				1D419E312FC06C98003A7B83 /* whirpool.c in Sources */,
+				1D0CC9983050862000F55621 /* blake2mac.c in Sources */,
 				1D419D952FC06C5D003A7B83 /* f9.c in Sources */,
 				1D419D9D2FC06C5D003A7B83 /* hmac.c in Sources */,
 				1D983EA9301E68CB004F4985 /* kmac.c in Sources */,
@@ -1515,6 +1534,7 @@
 				1D8475F02FDDB0C300E0836C /* pelican.c in Sources */,
 				1D419D992FC06C5D003A7B83 /* pmac.c in Sources */,
 				1D419DA12FC06C5D003A7B83 /* poly1305.c in Sources */,
+				1D0CC9933050653400F55621 /* xcbc.c in Sources */,
 				1D419D872FC06C3C003A7B83 /* misc.c in Sources */,
 				1D419D512FC06BD9003A7B83 /* cbc.c in Sources */,
 				1D419D652FC06BDA003A7B83 /* ccm.c in Sources */,
@@ -1600,7 +1620,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 260905;
+				CURRENT_PROJECT_VERSION = 260911;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -1632,7 +1652,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 260905;
+				CURRENT_PROJECT_VERSION = 260911;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -1661,7 +1681,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 260905;
+				CURRENT_PROJECT_VERSION = 260911;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -1692,7 +1712,7 @@
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = NO;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 260905;
+				CURRENT_PROJECT_VERSION = 260911;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
