@@ -334,6 +334,10 @@ Please have a look [here](https://help.github.com/articles/approving-a-pull-requ
 <br/>
 
 # Supported MAC-Algorithms
+- __BLAKE2B__
+    - `160` `256` `384` `512`
+- __BLAKE2S__
+    - `128` `160` `224` `256`
 - __F9__
     - `cipher`
 - __CMAC__
@@ -351,5 +355,7 @@ Please have a look [here](https://help.github.com/articles/approving-a-pull-requ
     - `cipher`
 - __POLY1305__
     - `hash`
+- __XCBC__
+    - `cipher`
 #
 

@@ -9,7 +9,7 @@
 
 
 
-#pragma mark - DEFINES
+#pragma mark DEFINES
 #define Te0(x) TE0[x]
 #define Te1(x) TE1[x]
 #define Te2(x) TE2[x]

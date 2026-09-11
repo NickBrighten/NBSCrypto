@@ -1732,18 +1732,47 @@ typedef enum NBSCrypto_HASH : NSUInteger {
 ///	@discussion	MAC-Algorithms
 typedef enum NBSCrypto_MAC : NSUInteger {
     NBSCrypto_MAC_NONE				=  0,
-    NBSCrypto_MAC_F9				=  1,
-    NBSCrypto_MAC_HMAC				=  2,
-    NBSCrypto_MAC_KMAC_128			=  3,
-    NBSCrypto_MAC_KMAC_128_XOF			=  4,
-    NBSCrypto_MAC_KMAC_256			=  5,
-    NBSCrypto_MAC_KMAC_256_XOF			=  6,
-    NBSCrypto_MAC_OMAC				=  7,
-    NBSCrypto_MAC_PELICAN			=  8,
-    NBSCrypto_MAC_PMAC				=  9,
-    NBSCrypto_MAC_POLY1305			= 10,
+    NBSCrypto_MAC_BLAKE2B_160			=  1,
+    NBSCrypto_MAC_BLAKE2B_256			=  2,
+    NBSCrypto_MAC_BLAKE2B_384			=  3,
+    NBSCrypto_MAC_BLAKE2B_512			=  4,
+    NBSCrypto_MAC_BLAKE2S_128			=  5,
+    NBSCrypto_MAC_BLAKE2S_160			=  6,
+    NBSCrypto_MAC_BLAKE2S_224			=  7,
+    NBSCrypto_MAC_BLAKE2S_256			=  8,
+    NBSCrypto_MAC_F9				=  9,
+    NBSCrypto_MAC_HMAC				= 10,
+    NBSCrypto_MAC_KMAC_128			= 11,
+    NBSCrypto_MAC_KMAC_128_XOF			= 12,
+    NBSCrypto_MAC_KMAC_256			= 13,
+    NBSCrypto_MAC_KMAC_256_XOF			= 14,
+    NBSCrypto_MAC_OMAC				= 15,
+    NBSCrypto_MAC_PELICAN			= 16,
+    NBSCrypto_MAC_PMAC				= 17,
+    NBSCrypto_MAC_POLY1305			= 18,
+    NBSCrypto_MAC_XCBC				= 19,
     NBSCrypto_MAC_CMAC				= NBSCrypto_MAC_OMAC,
 } NBSCrypto_MAC;
+
+
+///	NBSCrypto_MAC_BLAKE2B
+///	@discussion	MAC_BLAKE2B-Algorithms
+typedef enum NBSCrypto_BLAKE2BMAC : NSUInteger {
+    NBSCrypto_BLAKE2BMAC_160			= NBSCrypto_HASH_BLAKE2B_160,
+    NBSCrypto_BLAKE2BMAC_256			= NBSCrypto_HASH_BLAKE2B_256,
+    NBSCrypto_BLAKE2BMAC_384			= NBSCrypto_HASH_BLAKE2B_384,
+    NBSCrypto_BLAKE2BMAC_512			= NBSCrypto_HASH_BLAKE2B_512,
+} NBSCrypto_BLAKE2BMAC;
+
+
+///	NBSCrypto_MAC_BLAKE2S
+///	@discussion	MAC_BLAKE2S-Algorithms
+typedef enum NBSCrypto_BLAKE2SMAC : NSUInteger {
+    NBSCrypto_BLAKE2SMAC_128			= NBSCrypto_HASH_BLAKE2S_128,
+    NBSCrypto_BLAKE2SMAC_160			= NBSCrypto_HASH_BLAKE2S_160,
+    NBSCrypto_BLAKE2SMAC_224			= NBSCrypto_HASH_BLAKE2S_224,
+    NBSCrypto_BLAKE2SMAC_256			= NBSCrypto_HASH_BLAKE2S_256,
+} NBSCrypto_BLAKE2SMAC;
 
 
 ///	NBSCrypto_KMAC

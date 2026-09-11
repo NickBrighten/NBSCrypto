@@ -11,6 +11,9 @@
 
 #pragma mark - MAC STRUCTS
 
+typedef hash_state blake2bmac_state;
+typedef hash_state blake2smac_state;
+
 typedef struct {
     int block_len, buflen, keylen;
     unsigned char akey[MAXBLOCKSIZE], ACC[MAXBLOCKSIZE], IV[MAXBLOCKSIZE];
@@ -56,10 +59,29 @@ typedef struct {
     unsigned char buffer[17];
 } poly1305_state;
 
+typedef struct {
+    int buflen, blocksize;
+    unsigned char K[3][MAXBLOCKSIZE], IV[MAXBLOCKSIZE];
+    unsigned long cipher;
+    cipher_state cs;
+} xcbc_state;
+
 
 
 
 #pragma mark - MAC FUNCTIONS
+
+#pragma mark BLAKE2B
+int blake2bmac_init(const unsigned char *key, unsigned long keylen, unsigned long outlen, blake2bmac_state *b2bmac);
+int blake2bmac_process(const unsigned char *in, unsigned long inlen, blake2bmac_state *b2bmac);
+int blake2bmac_done(unsigned char *mac, unsigned long *maclen, blake2bmac_state *b2bmac);
+
+
+#pragma mark BLAKE2S
+int blake2smac_init(const unsigned char *key, unsigned long keylen, unsigned long outlen, blake2smac_state *b2smac);
+int blake2smac_process(const unsigned char *in, unsigned long inlen, blake2smac_state *b2smac);
+int blake2smac_done(unsigned char *mac, unsigned long *maclen, blake2smac_state *b2smac);
+
 
 #pragma mark F9
 int f9_init(unsigned long cipher, const unsigned char *key, unsigned long keylen, f9_state *f9);
@@ -101,6 +123,12 @@ int pmac_done(unsigned char *out, unsigned long *outlen, pmac_state *pmac);
 int poly1305_init(const unsigned char *key, poly1305_state *poly1305);
 int poly1305_process(const unsigned char *in, unsigned long inlen, poly1305_state *poly1305);
 int poly1305_done(unsigned char *out, poly1305_state *poly1305);
+
+
+#pragma mark XCBC
+int xcbc_init(unsigned long cipher, const unsigned char *key, unsigned long keylen, xcbc_state *xcbc);
+int xcbc_process(const unsigned char *in, unsigned long inlen, xcbc_state *xcbc);
+int xcbc_done(unsigned char *out, unsigned long *outlen, xcbc_state *xcbc);
 
 
 #endif /* nbs_mac_h */

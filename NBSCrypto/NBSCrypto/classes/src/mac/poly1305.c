@@ -9,7 +9,7 @@
 
 
 
-#pragma mark - DEFINES
+#pragma mark DEFINES
 #define MIN(a, b) ((a) < (b) ? (a) : (b))
 
 #define LOAD32(p) (					\

@@ -9,7 +9,7 @@
 
 
 
-#pragma mark - DEFINES
+#pragma mark DEFINES
 #define MIN(x, y) (((x)<(y))?(x):(y))
 
 
