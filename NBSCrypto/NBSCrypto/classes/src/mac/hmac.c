@@ -9,7 +9,7 @@
 
 
 
-#pragma mark - INLINE
+#pragma mark INLINE
 static inline int _hash_memory(unsigned long hash, const unsigned char *in, unsigned long inlen, unsigned char *out, unsigned long *outlen)
 {
     hash_state *hs;

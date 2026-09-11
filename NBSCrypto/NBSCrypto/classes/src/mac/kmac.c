@@ -9,7 +9,7 @@
 
 
 
-#pragma mark - DEFINES
+#pragma mark DEFINES
 #define _KMAC128       1
 #define _KMAC256       2
 #define _KMAC128_XOF   3
