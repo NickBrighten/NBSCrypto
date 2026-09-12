@@ -141,10 +141,9 @@ NS_ASSUME_NONNULL_BEGIN
 ///	@discussion		Hashing/checksum/digit/MAC of an NSString in conjunction with setted parameters using PELICAN
 ///	@discussion		NBSCrypto_HASH is declared in NBSCryptoDefines.h
 ///	@param string		NSString to Hashing/checksum/digit/MAC
-///	@param hashAlgorithm	The NBSCrypto_HASH include the Bit-Length
 ///	@param macKey		The KEY for PELICAN
 ///	@return			NSString as hexadecimal
-+(NSString *)hashStringWithPELICAN:(NSString * )string andHashAlgorithm:(NBSCrypto_HASH)hashAlgorithm setKeyForMAC:(NSString *)macKey;
++(NSString *)hashStringWithPELICAN:(NSString * )string setKeyForMAC:(NSString *)macKey;
 
 
 ///	NBSCryptoHash +hashStringWithPMAC:(NSString *)string andCipherAlgorithm:(NBSCrypto_MAC_CIPHER)cipherAlgorithm setKeyForMAC:(NSString *)macKey
