@@ -1,7 +1,7 @@
 //
 //	f9.c
 //	Authors / Developers		: 3GPP, SAGE
-//	Last Modified (Original)	: 2002
+//	Last Modified (Original)	: 2000
 //
 
 #include "nbs_crypto.h"
