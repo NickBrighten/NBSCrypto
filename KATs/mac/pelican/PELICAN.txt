@@ -7,27 +7,27 @@
 ###########################
 
 
-LEN	: 0
-MSG	: ""
-KEY : "0123456789abcdef"
-MD	: 42a0a5df72b7a6e107607590aa41c430
+LEN  :  0
+MSG  :  ""
+KEY  :  "0123456789abcdef"
+MD   :  42a0a5df72b7a6e107607590aa41c430
 ---------------------------
 
-LEN	: 1
-MSG	: " "
-KEY : "0123456789abcdef"
-MD	: 4a577c13d583c90902f0747c4d20dd28
+LEN  :  1
+MSG  :  " "
+KEY  :  "0123456789abcdef"
+MD   :  4a577c13d583c90902f0747c4d20dd28
 ---------------------------
 
-LEN	: 5
-MSG	: "H    "
-KEY : "0123456789abcdef"
-MD	: 9e1927f31a30ed85b0b56bf23e41cb73
+LEN  :  5
+MSG  :  "H    "
+KEY  :  "0123456789abcdef"
+MD   :  9e1927f31a30ed85b0b56bf23e41cb73
 ---------------------------
 
-LEN	: 16
-MSG	: "0123456789abcdef"
-KEY : "0123456789abcdef"
-MD	: 639ed14d463888310d5971afa8ab30c0
+LEN  :  16
+MSG  :  "0123456789abcdef"
+KEY  :  "0123456789abcdef"
+MD   :  639ed14d463888310d5971afa8ab30c0
 
 ###########################
