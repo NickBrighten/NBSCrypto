@@ -6,3 +6,28 @@
 ###   XCBC-MAC - KAT   ####
 ###########################
 
+
+------ AES-128-BIT --------
+
+LEN	: 0
+MSG	: ""
+KEY : "0123456789abcdef"
+MD	: 
+
+
+LEN	: 1
+MSG	: " "
+KEY : "0123456789abcdef"
+MD	: 
+
+
+LEN	: 5
+MSG	: "H    "
+KEY : "0123456789abcdef"
+MD	: 
+
+
+LEN	: 16
+MSG	: "0123456789abcdef"
+KEY : "0123456789abcdef"
+MD	: 44d0b13bf0850304ebf54859a3ae6f79
