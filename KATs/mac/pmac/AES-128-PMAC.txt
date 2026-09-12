@@ -9,27 +9,27 @@
 
 ------ AES-128-BIT --------
 
-LEN	: 0
-MSG	: ""
-KEY : "0123456789abcdef"
-MD	: 206e9ba3e9476a2e4dee7b57ea93fc93
+LEN  :  0
+MSG  :  ""
+KEY  :  "0123456789abcdef"
+MD   :  206e9ba3e9476a2e4dee7b57ea93fc93
 ---------------------------
 
-LEN	: 1
-MSG	: " "
-KEY : "0123456789abcdef"
-MD	: fb735d4aed655906d32d8d6ed02be577
+LEN  :  1
+MSG  :  " "
+KEY  :  "0123456789abcdef"
+MD   :  fb735d4aed655906d32d8d6ed02be577
 ---------------------------
 
-LEN	: 5
-MSG	: "H    "
-KEY : "0123456789abcdef"
-MD	: 79f674963dd73ba025202f11a6060019
+LEN  :  5
+MSG  :  "H    "
+KEY  :  "0123456789abcdef"
+MD   :  79f674963dd73ba025202f11a6060019
 ---------------------------
 
-LEN	: 16
-MSG	: "0123456789abcdef"
-KEY : "0123456789abcdef"
-MD	: 7b0ed9c3d2bd9cfd260bcd7d23d2219d
+LEN  :  16
+MSG  :  "0123456789abcdef"
+KEY  :  "0123456789abcdef"
+MD   :  7b0ed9c3d2bd9cfd260bcd7d23d2219d
 
 ###########################
