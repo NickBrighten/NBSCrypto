@@ -952,10 +952,9 @@ unsigned long _outputLengthMAC;
     return [r hashString:s];
 }
 
-+ (NSString *)hashStringWithPELICAN:(NSString *)s andHashAlgorithm:(NBSCrypto_HASH)a setKeyForMAC:(NSString *)k
++ (NSString *)hashStringWithPELICAN:(NSString *)s setKeyForMAC:(NSString *)k
 {
     NBSCryptoHash *r = [[self alloc] init];
-    [r setHashAlgorithm:a];
     [r useMAC:NBSCrypto_MAC_PELICAN];
     [r setKeyForMAC:k];
     return [r hashString:s];
