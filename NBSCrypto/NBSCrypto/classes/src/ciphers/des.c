@@ -30,6 +30,17 @@ const struct cipher_descriptor des3_desc = {
     &des3_done
 };
 
+const struct cipher_descriptor desx_desc =
+{
+    "desx",
+    12,
+    24, 24, 8, 16,
+    &desx_setup,
+    &desx_encrypt,
+    &desx_decrypt,
+    &desx_done
+};
+
 
 
 
@@ -38,14 +49,16 @@ const struct cipher_descriptor des3_desc = {
 #define EN0 0
 #define DE1 1
 
-#define STORE32(x, y)										\
-    do {(y)[0] = (unsigned char)(((x)>>24)&255); (y)[1] = (unsigned char)(((x)>>16)&255);	\
-	(y)[2] = (unsigned char)(((x)>>8)&255); (y)[3] = (unsigned char)((x)&255);		\
+#define STORE32(x, y)					\
+    do {(y)[0] = (unsigned char)(((x)>>24)&255);	\
+	(y)[1] = (unsigned char)(((x)>>16)&255);	\
+	(y)[2] = (unsigned char)(((x)>> 8)&255);	\
+	(y)[3] = (unsigned char)((x)&255);		\
 } while(0)
 
 #define LOAD32(x, y)										\
     do {x = ((unsigned)((y)[0] & 255)<<24) | ((unsigned)((y)[1] & 255)<<16) |			\
-	    ((unsigned)((y)[2] & 255)<<8)  | ((unsigned)((y)[3] & 255));				\
+	    ((unsigned)((y)[2] & 255)<<8)  | ((unsigned)((y)[3] & 255));			\
 } while(0)
 
 #define RORc(x, y) (((((unsigned)(x)&0xFFFFFFFF)>>(unsigned)((y)&31)) | ((unsigned)(x)<<(unsigned)((32-((y)&31))&31))) & 0xFFFFFFFF)
@@ -1355,7 +1368,6 @@ static inline void _des_func(unsigned *block, const unsigned *keys)
 
 
 #pragma mark - FUNCTIONS
-
 int des_setup(const unsigned char *key, int keylen, int num_rounds, cipher_state *cs)
 {
     if (num_rounds != 0 && num_rounds != 16) {
@@ -1381,6 +1393,7 @@ int des_encrypt(const unsigned char *pt, unsigned char *ct, const cipher_state *
     _des_func(work, cs->des.eK);
     STORE32(work[0],ct+0);
     STORE32(work[1],ct+4);
+
     return NBSCrypto_OK;
 }
 
@@ -1393,6 +1406,7 @@ int des_decrypt(const unsigned char *ct, unsigned char *pt, const cipher_state *
     _des_func(work, cs->des.dK);
     STORE32(work[0],pt+0);
     STORE32(work[1],pt+4);
+
     return NBSCrypto_OK;
 }
 
@@ -1442,6 +1456,7 @@ int des3_encrypt(const unsigned char *pt, unsigned char *ct, const cipher_state 
     _des_func(work, cs->des3.eK[2]);
     STORE32(work[0],ct+0);
     STORE32(work[1],ct+4);
+
     return NBSCrypto_OK;
 }
 
@@ -1456,10 +1471,84 @@ int des3_decrypt(const unsigned char *ct, unsigned char *pt, const cipher_state 
     _des_func(work, cs->des3.dK[2]);
     STORE32(work[0],pt+0);
     STORE32(work[1],pt+4);
+
     return NBSCrypto_OK;
 }
 
 void des3_done(cipher_state *cs)
 {
     zeromem(cs, sizeof(cs->des3));
+}
+
+
+int desx_setup(const unsigned char *key, int keylen, int num_rounds, cipher_state *cs)
+{
+    if(num_rounds != 0 && num_rounds != 16) {
+	return NBSCrypto_ERROR;
+    }
+
+    if (keylen != 24) {
+	return NBSCrypto_ERROR;
+    }
+
+    _des_key(key, EN0, cs->desx.eK);
+    _des_key(key, DE1, cs->desx.dK);
+
+    LOAD32(cs->desx.K[0][0], key +  8);
+    LOAD32(cs->desx.K[0][1], key + 12);
+    LOAD32(cs->desx.K[1][0], key + 16);
+    LOAD32(cs->desx.K[1][1], key + 20);
+
+    return NBSCrypto_OK;
+}
+
+int desx_encrypt(const unsigned char *pt, unsigned char *ct, const cipher_state *cs)
+{
+    unsigned work[2];
+
+    /*
+    LTC_ARGCHK(pt   != NULL);
+    LTC_ARGCHK(ct   != NULL);
+    LTC_ARGCHK(skey != NULL);
+     */
+
+    LOAD32(work[0], pt+0);
+    LOAD32(work[1], pt+4);
+    work[0] ^= cs->desx.K[0][0];
+    work[1] ^= cs->desx.K[0][1];
+    _des_func(work, cs->desx.eK);
+    work[0] ^= cs->desx.K[1][0];
+    work[1] ^= cs->desx.K[1][1];
+    STORE32(work[0],ct+0);
+    STORE32(work[1],ct+4);
+
+    return NBSCrypto_OK;
+}
+
+int desx_decrypt(const unsigned char *ct, unsigned char *pt, const cipher_state *skey)
+{
+    unsigned work[2];
+
+    /*
+    LTC_ARGCHK(pt   != NULL);
+    LTC_ARGCHK(ct   != NULL);
+    LTC_ARGCHK(skey != NULL);
+     */
+
+    LOAD32(work[0], ct+0);
+    LOAD32(work[1], ct+4);
+    work[0] ^= skey->desx.K[1][0];
+    work[1] ^= skey->desx.K[1][1];
+    _des_func(work, skey->desx.dK);
+    work[0] ^= skey->desx.K[0][0];
+    work[1] ^= skey->desx.K[0][1];
+    STORE32(work[0],pt+0);
+    STORE32(work[1],pt+4);
+
+    return NBSCrypto_OK;
+}
+
+void desx_done(cipher_state *cs)
+{
+    zeromem(cs, sizeof(cs->desx));
 }
