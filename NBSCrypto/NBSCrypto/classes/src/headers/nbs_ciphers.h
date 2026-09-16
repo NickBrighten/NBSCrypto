@@ -54,6 +54,9 @@ struct des_state{
 struct des3_state{
     unsigned eK[3][32], dK[3][32];
 };
+struct desx_state {
+    unsigned eK[32], dK[32], K[2][2];
+};
 
 struct idea_state{
     unsigned short int eK[52], dK[52];
@@ -184,6 +187,7 @@ typedef union cipher_state{
     struct chacha_state		chacha;
     struct des_state		des;
     struct des3_state		des3;
+    struct desx_state		desx;
     struct idea_state		idea;
     struct kasumi_state		kasumi;
     struct khazad_state		khazad;
@@ -338,6 +342,12 @@ int  des3_encrypt(const unsigned char *pt, unsigned char *ct, const cipher_state
 int  des3_decrypt(const unsigned char *ct, unsigned char *pt, const cipher_state *cs);
 void des3_done(cipher_state *cs);
 extern const struct cipher_descriptor des3_desc;
+
+int  desx_setup(const unsigned char *key, int keylen, int num_rounds, cipher_state *cs);
+int  desx_encrypt(const unsigned char *pt, unsigned char *ct, const cipher_state *cs);
+int  desx_decrypt(const unsigned char *ct, unsigned char *pt, const cipher_state *cs);
+void desx_done(cipher_state *cs);
+extern const struct cipher_descriptor desx_desc;
 
 
 #pragma mark IDEA
