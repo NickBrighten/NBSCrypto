@@ -11,7 +11,7 @@
 const struct cipher_descriptor kasumi_desc =
 {
     "kasumi",
-    13,
+    14,
     16, 16, 8, 8,
     &kasumi_setup,
     &kasumi_encrypt,
