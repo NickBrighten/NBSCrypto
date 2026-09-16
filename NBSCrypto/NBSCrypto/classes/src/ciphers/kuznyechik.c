@@ -11,7 +11,7 @@
 const struct cipher_descriptor kuznyechik_desc =
 {
     "kuznyechik",
-    14,
+    16,
     32, 32, 16, 10,
     &kuznyechik_setup,
     &kuznyechik_encrypt,

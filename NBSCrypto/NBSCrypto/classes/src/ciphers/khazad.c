@@ -11,7 +11,7 @@
 const struct cipher_descriptor khazad_desc =
 {
     "khazad",
-    14,
+    15,
     16, 16, 8, 8,
     &khazad_setup,
     &khazad_encrypt,

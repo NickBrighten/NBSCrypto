@@ -11,7 +11,7 @@
 const struct cipher_descriptor idea_desc =
 {
     "idea",
-    12,
+    13,
     16, 16, 8, 8,
     &idea_setup,
     &idea_encrypt,

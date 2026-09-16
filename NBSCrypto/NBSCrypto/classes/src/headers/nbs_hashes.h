@@ -38,8 +38,8 @@ struct blake3_state {
     unsigned long long chunk;
 };
 
-typedef struct {unsigned int DoublePipe[32];unsigned char LastPart[64 * 2];}bluemidnightwish_Data256;
-typedef struct {unsigned long long DoublePipe[32];unsigned char LastPart[128 * 2];}bluemidnightwish_Data512;
+typedef struct {unsigned int doublePipe[32];unsigned char lastPart[64 * 2];}bluemidnightwish_Data256;
+typedef struct {unsigned long long doublePipe[32];unsigned char lastPart[128 * 2];}bluemidnightwish_Data512;
 struct bluemidnightwish_state {
     int hashbitlen;
     int unprocessed_bits;

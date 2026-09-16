@@ -19,9 +19,9 @@ int ecb_start(unsigned long cipher, const unsigned char *key, int keylen, int nu
     }
 
     ecb->cipher = cipher;
-    ecb->blocklen = cipher_descriptor[cipher].block_length;
+    ecb->blocklen = cipher_descriptor[ecb->cipher].block_length;
 
-    return cipher_descriptor[cipher].setup(key, keylen, num_rounds, &ecb->cs);
+    return cipher_descriptor[ecb->cipher].setup(key, keylen, num_rounds, &ecb->cs);
 }
 
 int ecb_encrypt(const unsigned char *pt, unsigned char *ct, unsigned long len, cm_ECB *ecb)

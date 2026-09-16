@@ -42,6 +42,7 @@ NSUInteger mode;
 		case _CIPHER_CHACHA:		{r=&chacha_desc;break;}
 		case _CIPHER_DES:		{r=&des_desc;break;}
 		case _CIPHER_DES3:		{r=&des3_desc;break;}
+		case _CIPHER_DESX:		{r=&desx_desc;break;}
 		case _CIPHER_IDEA:		{r=&idea_desc;break;}
 		case _CIPHER_KASUMI:		{r=&kasumi_desc;break;}
 		case _CIPHER_KHAZAD:		{r=&khazad_desc;break;}
@@ -551,8 +552,6 @@ const unsigned char* _charFromHex(const char* str)
 		unsigned char eT[eTL];
 		NSString *sTE=[string stringByPaddingToLength:eTL withString:[_HEX_PADDING objectAtIndex:((unsigned long)eTL-(unsigned long)dTE.length)] startingAtIndex:0];
 		ecb_encrypt((const unsigned char *)[sTE UTF8String], eT, eTL, &m);
-
-		//NSLog(@"%s", eT);
 
 		switch (_outputformat) {
 		    case 1:{ //BASE64
@@ -1607,11 +1606,9 @@ const unsigned char* _charFromHex(const char* str)
     _tag = @"";
 }
 
-/*
  - (void)setInputFormat:(NBSCrypto_CIPHER_IO)INPUTFORMAT{
- _inputformat=INPUTFORMAT;
+     _inputformat=INPUTFORMAT;
  }
- */
 
 - (void)setOutputFormat:(NBSCrypto_CIPHER_IO)OUTPUTFORMAT{
     _outputformat=OUTPUTFORMAT;
