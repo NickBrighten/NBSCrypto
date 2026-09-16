@@ -320,25 +320,25 @@ static inline int _bluemidnightwish_init(hash_state *hs, int hashbitlen)
 	    hs->bluemidnightwish.hashbitlen = hashbitlen;
 	    hs->bluemidnightwish.bits_processed = 0;
 	    hs->bluemidnightwish.unprocessed_bits = 0;
-	    memcpy(hashState224(hs)->DoublePipe, i224p2,  16 * sizeof(unsigned int));
+	    memcpy(hashState224(hs)->doublePipe, i224p2,  16 * sizeof(unsigned int));
 	    return NBSCrypto_OK;
 	case 256:
 	    hs->bluemidnightwish.hashbitlen = hashbitlen;
 	    hs->bluemidnightwish.bits_processed = 0;
 	    hs->bluemidnightwish.unprocessed_bits = 0;
-	    memcpy(hashState256(hs)->DoublePipe, i256p2,  16 * sizeof(unsigned int));
+	    memcpy(hashState256(hs)->doublePipe, i256p2,  16 * sizeof(unsigned int));
 	    return NBSCrypto_OK;
 	case 384:
 	    hs->bluemidnightwish.hashbitlen = hashbitlen;
 	    hs->bluemidnightwish.bits_processed = 0;
 	    hs->bluemidnightwish.unprocessed_bits = 0;
-	    memcpy(hashState384(hs)->DoublePipe, i384p2,  16 * sizeof(unsigned long long));
+	    memcpy(hashState384(hs)->doublePipe, i384p2,  16 * sizeof(unsigned long long));
 	    return NBSCrypto_OK;
 	case 512:
 	    hs->bluemidnightwish.hashbitlen = hashbitlen;
 	    hs->bluemidnightwish.bits_processed = 0;
 	    hs->bluemidnightwish.unprocessed_bits = 0;
-	    memcpy(hashState512(hs)->DoublePipe, i512p2,  16 * sizeof(unsigned long long));
+	    memcpy(hashState512(hs)->doublePipe, i512p2,  16 * sizeof(unsigned long long));
 	    return NBSCrypto_OK;
 	default: return NBSCrypto_ERROR;
     }
@@ -367,16 +367,16 @@ int bluemidnightwish_process(hash_state *hs, const unsigned char *in, unsigned l
 		    return NBSCrypto_ERROR;
 		}else{
 		    LastBytes = (int)inlen >> 3;
-		    memcpy(hashState256(hs)->LastPart + (hs->bluemidnightwish.unprocessed_bits >> 3), in, LastBytes );
+		    memcpy(hashState256(hs)->lastPart + (hs->bluemidnightwish.unprocessed_bits >> 3), in, LastBytes );
 		    hs->bluemidnightwish.unprocessed_bits += (int)inlen;
 		    inlen = hs->bluemidnightwish.unprocessed_bits;
-		    M32 = (unsigned int *)hashState256(hs)->LastPart;
+		    M32 = (unsigned int *)hashState256(hs)->lastPart;
 		}
 	    }else{
 		M32 = (unsigned int *)in;
 	    }
 
-	    H256 = hashState256(hs)->DoublePipe;
+	    H256 = hashState256(hs)->doublePipe;
 	    while(inlen >= (64 * 8)){
 		inlen -= (64 * 8);
 		hs->bluemidnightwish.bits_processed += (64 * 8);
@@ -386,7 +386,7 @@ int bluemidnightwish_process(hash_state *hs, const unsigned char *in, unsigned l
 	    hs->bluemidnightwish.unprocessed_bits = (int)inlen;
 	    if (inlen > 0){
 		LastBytes = ((~(((- (int)inlen)>>3) & 0x01ff)) + 1) & 0x01ff;
-		memcpy(hashState256(hs)->LastPart, M32, LastBytes );
+		memcpy(hashState256(hs)->lastPart, M32, LastBytes );
 	    }
 	    return NBSCrypto_OK;
 
@@ -397,16 +397,16 @@ int bluemidnightwish_process(hash_state *hs, const unsigned char *in, unsigned l
 		    return NBSCrypto_ERROR;
 		}else{
 		    LastBytes = (int)inlen >> 3;
-		    memcpy(hashState512(hs)->LastPart + (hs->bluemidnightwish.unprocessed_bits >> 3), in, LastBytes );
+		    memcpy(hashState512(hs)->lastPart + (hs->bluemidnightwish.unprocessed_bits >> 3), in, LastBytes );
 		    hs->bluemidnightwish.unprocessed_bits += (int)inlen;
 		    inlen = hs->bluemidnightwish.unprocessed_bits;
-		    M64 = (unsigned long long *)hashState512(hs)->LastPart;
+		    M64 = (unsigned long long *)hashState512(hs)->lastPart;
 		}
 	    }else{
 		M64 = (unsigned long long *)in;
 	    }
 
-	    H512 = hashState512(hs)->DoublePipe;
+	    H512 = hashState512(hs)->doublePipe;
 	    while(inlen >= (128 * 8)){
 		inlen -= (128 * 8);
 		hs->bluemidnightwish.bits_processed += (128 * 8);
@@ -416,7 +416,7 @@ int bluemidnightwish_process(hash_state *hs, const unsigned char *in, unsigned l
 	    hs->bluemidnightwish.unprocessed_bits = (int)inlen;
 	    if (inlen > 0){
 		LastBytes = ((~(((- (int)inlen)>>3) & 0x03ff)) + 1) & 0x03ff;
-		memcpy(hashState512(hs)->LastPart, M64, LastBytes );
+		memcpy(hashState512(hs)->lastPart, M64, LastBytes );
 	    }
 	    return NBSCrypto_OK;
 
@@ -439,22 +439,22 @@ int bluemidnightwish_done(hash_state *hs, unsigned char *out)
 	case 256:
 	    LastByte = (int)hs->bluemidnightwish.unprocessed_bits >> 3;
 	    PadOnePosition = 7 - (hs->bluemidnightwish.unprocessed_bits & 0x07);
-	    hashState256(hs)->LastPart[LastByte] = (hashState256(hs)->LastPart[LastByte] & (0xff << (PadOnePosition + 1) )) \
+	    hashState256(hs)->lastPart[LastByte] = (hashState256(hs)->lastPart[LastByte] & (0xff << (PadOnePosition + 1) )) \
 	    ^ (0x01 << PadOnePosition);
-	    M64 = (unsigned long long *)hashState256(hs)->LastPart;
+	    M64 = (unsigned long long *)hashState256(hs)->lastPart;
 
 	    if(hs->bluemidnightwish.unprocessed_bits < 448){
-		memset( (hashState256(hs)->LastPart) + LastByte + 1, 0x00, 64 - LastByte - 9 );
+		memset( (hashState256(hs)->lastPart) + LastByte + 1, 0x00, 64 - LastByte - 9 );
 		databitlen = (64 * 8);
 		M64[7] = hs->bluemidnightwish.bits_processed + hs->bluemidnightwish.unprocessed_bits;
 	    }else{
-		memset( (hashState256(hs)->LastPart) + LastByte + 1, 0x00, (64 * 2) - LastByte - 9 );
+		memset( (hashState256(hs)->lastPart) + LastByte + 1, 0x00, (64 * 2) - LastByte - 9 );
 		databitlen = (64 * 16);
 		M64[15] = hs->bluemidnightwish.bits_processed + hs->bluemidnightwish.unprocessed_bits;
 	    }
 
-	    M32 = (unsigned int *)hashState256(hs)->LastPart;
-	    H256 = hashState256(hs)->DoublePipe;
+	    M32 = (unsigned int *)hashState256(hs)->lastPart;
+	    H256 = hashState256(hs)->doublePipe;
 	    while(databitlen >= (64 * 8)){
 		databitlen -= (64 * 8);
 		_compression256(M32, H256);
@@ -466,21 +466,21 @@ int bluemidnightwish_done(hash_state *hs, unsigned char *out)
 	case 512:
 	    LastByte = (int)hs->bluemidnightwish.unprocessed_bits >> 3;
 	    PadOnePosition = 7 - (hs->bluemidnightwish.unprocessed_bits & 0x07);
-	    hashState512(hs)->LastPart[LastByte] = (hashState512(hs)->LastPart[LastByte] & (0xff << (PadOnePosition + 1) )) \
+	    hashState512(hs)->lastPart[LastByte] = (hashState512(hs)->lastPart[LastByte] & (0xff << (PadOnePosition + 1) )) \
 	    ^ (0x01 << PadOnePosition);
-	    M64 = (unsigned long long *)hashState512(hs)->LastPart;
+	    M64 = (unsigned long long *)hashState512(hs)->lastPart;
 
 	    if(hs->bluemidnightwish.unprocessed_bits < 960){
-		memset( (hashState512(hs)->LastPart) + LastByte + 1, 0x00, 128 - LastByte - 9 );
+		memset( (hashState512(hs)->lastPart) + LastByte + 1, 0x00, 128 - LastByte - 9 );
 		databitlen = (128 * 8);
 		M64[15] = hs->bluemidnightwish.bits_processed + hs->bluemidnightwish.unprocessed_bits;
 	    }else{
-		memset( (hashState512(hs)->LastPart) + LastByte + 1, 0x00, (128 * 2) - LastByte - 9 );
+		memset( (hashState512(hs)->lastPart) + LastByte + 1, 0x00, (128 * 2) - LastByte - 9 );
 		databitlen = (128 * 16);
 		M64[31] = hs->bluemidnightwish.bits_processed + hs->bluemidnightwish.unprocessed_bits;
 	    }
 
-	    H512 = hashState512(hs)->DoublePipe;
+	    H512 = hashState512(hs)->doublePipe;
 	    while(databitlen >= (128 * 8)){
 		databitlen -= (128 * 8);
 		_compression512(M64, H512);
