@@ -128,6 +128,9 @@ Please have a look [here](https://help.github.com/articles/approving-a-pull-requ
 - __DES3 / DES-EDE3__
     - BIT-LENGTH: `192`
     - MODES: `CBC` `CFB` `CTR` `EAX` `ECB` `F8` `OCB` `OFB`
+- __DES-X__
+    - BIT-LENGTH: `192`
+    - MODES: `CBC` `CFB` `CTR` `EAX` `ECB` `F8` `OCB` `OFB`
 - __IDEA__
     - BIT-LENGTH: `128`
     - MODES: `CBC` `CFB` `CTR` `EAX` `ECB` `F8` `OCB` `OFB`
