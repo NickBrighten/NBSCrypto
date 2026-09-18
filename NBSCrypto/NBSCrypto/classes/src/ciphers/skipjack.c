@@ -11,7 +11,7 @@
 const struct cipher_descriptor skipjack_desc =
 {
     "skipjack",
-    35,
+    36,
     10, 10, 8, 32,
     &skipjack_setup,
     &skipjack_encrypt,

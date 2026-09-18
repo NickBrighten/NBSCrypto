@@ -11,7 +11,7 @@
 const struct cipher_descriptor sober128_desc =
 {
     "sober-128",
-    37,
+    38,
     16, 16, 16, 0,
     NULL,
     NULL,

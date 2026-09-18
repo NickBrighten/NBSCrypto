@@ -11,7 +11,7 @@
 const struct cipher_descriptor safer_k64_desc =
 {
     "safer-k64",
-    27,
+    28,
     8, 8, 8, 6,
     &safer_k64_setup,
     &safer_encrypt,
@@ -22,7 +22,7 @@ const struct cipher_descriptor safer_k64_desc =
 const struct cipher_descriptor safer_k128_desc =
 {
     "safer-k128",
-    28,
+    29,
     16, 16, 8, 10,
     &safer_k128_setup,
     &safer_encrypt,
@@ -33,7 +33,7 @@ const struct cipher_descriptor safer_k128_desc =
 const struct cipher_descriptor safer_sk64_desc =
 {
     "safer-sk64",
-    29,
+    30,
     8, 8, 8, 8,
     &safer_sk64_setup,
     &safer_encrypt,
@@ -44,7 +44,7 @@ const struct cipher_descriptor safer_sk64_desc =
 const struct cipher_descriptor safer_sk128_desc =
 {
     "safer-sk128",
-    30,
+    31,
     16, 16, 8, 10,
     &safer_sk128_setup,
     &safer_encrypt,
@@ -55,7 +55,7 @@ const struct cipher_descriptor safer_sk128_desc =
 const struct cipher_descriptor saferp_desc =
 {
     "saferp",
-    31,
+    32,
     16, 32, 16, 8,
     &saferp_setup,
     &saferp_encrypt,

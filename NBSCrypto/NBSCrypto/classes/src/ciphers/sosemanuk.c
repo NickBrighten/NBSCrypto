@@ -13,7 +13,7 @@
 const struct cipher_descriptor sosemanuk_desc =
 {
     "sosemanuk",
-    38,
+    39,
     16, 32, 16, 0,
     NULL,
     NULL,
