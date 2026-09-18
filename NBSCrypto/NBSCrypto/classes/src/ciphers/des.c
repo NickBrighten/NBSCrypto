@@ -1506,12 +1506,6 @@ int desx_encrypt(const unsigned char *pt, unsigned char *ct, const cipher_state 
 {
     unsigned work[2];
 
-    /*
-    LTC_ARGCHK(pt   != NULL);
-    LTC_ARGCHK(ct   != NULL);
-    LTC_ARGCHK(skey != NULL);
-     */
-
     LOAD32(work[0], pt+0);
     LOAD32(work[1], pt+4);
     work[0] ^= cs->desx.K[0][0];
@@ -1528,12 +1522,6 @@ int desx_encrypt(const unsigned char *pt, unsigned char *ct, const cipher_state 
 int desx_decrypt(const unsigned char *ct, unsigned char *pt, const cipher_state *skey)
 {
     unsigned work[2];
-
-    /*
-    LTC_ARGCHK(pt   != NULL);
-    LTC_ARGCHK(ct   != NULL);
-    LTC_ARGCHK(skey != NULL);
-     */
 
     LOAD32(work[0], ct+0);
     LOAD32(work[1], ct+4);
