@@ -8,9 +8,7 @@
 </pre>
 </sup>
 
-NBSCrypto is an ultra lightweight preset based cryptography framework for iOS, iPadOS, macOS, tvOS and watchOS.
-
-When compiled for production and deployment, NBSCrypto is currently under 3MB in size and consumes approximately 8MB of RAM.
+NBSCrypto is an ultra lightweight cryptography framework for iOS, iPadOS, macOS, tvOS and watchOS.
 
 NBSCrypto includes encryption and decryption algorithms and the supported cipher modes, hash algorithms, and also hash-based and cipher-based message authentication codes (MAC).
 
