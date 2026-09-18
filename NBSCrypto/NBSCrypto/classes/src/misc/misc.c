@@ -5,7 +5,7 @@
 #include "nbs_crypto.h"
 
 
-#define CIPHER_TBL_SIZE	41
+#define CIPHER_TBL_SIZE	42
 #define HASH_TBL_SIZE	253
 
 
