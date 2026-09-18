@@ -55,6 +55,7 @@ NSUInteger mode;
 		case _CIPHER_RABBIT:		{r=&rabbit_desc;break;}
 		case _CIPHER_RC2:		{r=&rc2_desc;break;}
 		case _CIPHER_RC4:		{r=&rc4_desc;break;}
+		case _CIPHER_RC5:		{r=&rc5_desc;break;}
 		case _CIPHER_RC6:		{r=&rc6_desc;break;}
 		case _CIPHER_SAFER_K64:		{r=&safer_k64_desc;break;}
 		case _CIPHER_SAFER_K128:	{r=&safer_k128_desc;break;}
@@ -189,8 +190,8 @@ const unsigned char* _charFromHex(const char* str)
     }
 
     //HANDLE sKEY
-    if( ([self _getCipherDescriptor] == &blowfish_desc) | ([self _getCipherDescriptor] == &cast5_desc) | ([self _getCipherDescriptor] == &rc2_desc) | ([self _getCipherDescriptor] == &rc4_desc) | ([self _getCipherDescriptor] == &rc6_desc) ){
-	//BLOWFISH, CAST5, RC2, RC4, RC6
+    if( ([self _getCipherDescriptor] == &blowfish_desc) | ([self _getCipherDescriptor] == &cast5_desc) | ([self _getCipherDescriptor] == &rc2_desc) | ([self _getCipherDescriptor] == &rc4_desc) | ([self _getCipherDescriptor] == &rc5_desc) | ([self _getCipherDescriptor] == &rc6_desc) ){
+	//BLOWFISH, CAST5, RC2, RC4, RC5, RC6
 	if(_key.length < cipher_descriptor[0].min_key_length){
 	    sKEY = [self _paddingString:sKEY withLength:(unsigned long)cipher_descriptor[0].min_key_length];
 	}else if(_key.length > cipher_descriptor[0].max_key_length){

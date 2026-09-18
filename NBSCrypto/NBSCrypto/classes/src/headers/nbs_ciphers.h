@@ -112,6 +112,11 @@ struct rc4_state{
     unsigned char buf[256];
 };
 
+struct rc5_state {
+    int rounds;
+    unsigned K[50];
+};
+
 struct rc6_state {
     unsigned int l[32 / 4], s[2 * 20 + 4];
 };
@@ -200,6 +205,7 @@ typedef union cipher_state{
     struct rabbit_state		rabbit;
     struct rc2_state		rc2;
     struct rc4_state		rc4;
+    struct rc5_state		rc5;
     struct rc6_state		rc6;
     struct safer_state		safer;
     struct saferp_state		saferp;
@@ -445,6 +451,14 @@ int  rc4_encrypt(const unsigned char *pt, unsigned char *ct, unsigned long len, 
 int  rc4_decrypt(const unsigned char *ct, unsigned char *pt, unsigned long len, cipher_state *cs);
 void rc4_done(cipher_state *cs);
 extern const struct cipher_descriptor rc4_desc;
+
+
+#pragma mark RC5
+int  rc5_setup(const unsigned char *key, int keylen, int num_rounds, cipher_state *skey);
+int  rc5_encrypt(const unsigned char *pt, unsigned char *ct, const cipher_state *skey);
+int  rc5_decrypt(const unsigned char *ct, unsigned char *pt, const cipher_state *skey);
+void rc5_done(cipher_state *skey);
+extern const struct cipher_descriptor rc5_desc;
 
 
 #pragma mark RC6

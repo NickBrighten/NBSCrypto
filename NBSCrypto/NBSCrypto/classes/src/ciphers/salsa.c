@@ -11,7 +11,7 @@
 const struct cipher_descriptor salsa_desc =
 {
     "salsa",
-    32,
+    33,
     16, 32, 8, 20,
     NULL,
     NULL,

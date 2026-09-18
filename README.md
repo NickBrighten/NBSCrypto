@@ -167,6 +167,9 @@ Please have a look [here](https://help.github.com/articles/approving-a-pull-requ
 - __RC4__
     - BIT-LENGTH: `2048`
     - MODES: `none`
+- __RC5__
+    - BIT-LENGTH: `1024`
+    - MODES: `CBC` `CFB` `CTR` `EAX` `ECB` `F8` `OCB` `OFB`
 - __RC6__
     - BIT-LENGTH: `256`
     - MODES: `CBC` `CCM` `CFB` `CTR` `EAX` `ECB` `F8` `GCM` `GCM-SIV` `LRW` `OCB` `OCB3` `OFB` `SIV` `XTS`
