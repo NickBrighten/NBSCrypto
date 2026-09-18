@@ -23,6 +23,8 @@ const struct cipher_descriptor rc5_desc =
 
 
 
+#pragma mark - DEFINES
+
 #define BSWAP(x)  ( ((x>>24)&0x000000FFUL) | ((x<<24)&0xFF000000UL) | ((x>>8)&0x0000FF00UL) | ((x<<8)&0x00FF0000UL) )
 #define ROL(x, y) ( (((unsigned)(x)<<(unsigned)((y)&31)) | (((unsigned)(x)&0xFFFFFFFFUL)>>(unsigned)((32-((y)&31))&31))) & 0xFFFFFFFFUL)
 #define ROLc(x, y)( (((unsigned)(x)<<(unsigned)((y)&31)) | (((unsigned)(x)&0xFFFFFFFFUL)>>(unsigned)((32-((y)&31))&31))) & 0xFFFFFFFFUL)
@@ -57,16 +59,14 @@ static const unsigned stab[50] = {
     0x87a1b6e8UL, 0x25d930a1UL, 0xc410aa5aUL, 0x62482413UL, 0x007f9dccUL
 };
 
+
+
+
+#pragma mark - FUNCTIONS
 int rc5_setup(const unsigned char *key, int keylen, int num_rounds, cipher_state *cs)
 {
     unsigned L[64], *S, A, B, i, j, v, s, t, l;
 
-    /*
-    LTC_ARGCHK(skey != NULL);
-    LTC_ARGCHK(key  != NULL);
-     */
-
-    /* test parameters */
     if (num_rounds == 0) {
 	num_rounds = rc5_desc.default_rounds;
     }
@@ -75,7 +75,6 @@ int rc5_setup(const unsigned char *key, int keylen, int num_rounds, cipher_state
 	return NBSCrypto_ERROR;
     }
 
-    /* key must be between 64 and 1024 bits */
     if (keylen < 8 || keylen > 128) {
 	return NBSCrypto_ERROR;
     }
@@ -83,7 +82,6 @@ int rc5_setup(const unsigned char *key, int keylen, int num_rounds, cipher_state
     cs->rc5.rounds = num_rounds;
     S = cs->rc5.K;
 
-    /* copy the key into the L array */
     for (A = i = j = 0; i < (unsigned)keylen; ) {
 	A = (A << 8) | ((unsigned)(key[i++] & 255));
 	if ((i & 3) == 0) {
@@ -97,11 +95,9 @@ int rc5_setup(const unsigned char *key, int keylen, int num_rounds, cipher_state
 	L[j++] = BSWAP(A);
     }
 
-    /* setup the S array */
     t = (unsigned)(2 * (num_rounds + 1));
     memcpy(S, stab, t * sizeof(*S));
 
-    /* mix buffer */
     s = 3 * MAX(t, j);
     l = j;
     for (A = B = i = j = v = 0; v < s; v++) {
@@ -116,15 +112,9 @@ int rc5_setup(const unsigned char *key, int keylen, int num_rounds, cipher_state
 
 int rc5_encrypt(const unsigned char *pt, unsigned char *ct, const cipher_state *cs)
 {
+    int r;
     unsigned A, B;
     const unsigned *K;
-    int r;
-
-    /*
-    LTC_ARGCHK(skey != NULL);
-    LTC_ARGCHK(pt   != NULL);
-    LTC_ARGCHK(ct   != NULL);
-     */
 
     if (cs->rc5.rounds < 12 || cs->rc5.rounds > 24) {
 	return NBSCrypto_ERROR;
@@ -159,15 +149,9 @@ int rc5_encrypt(const unsigned char *pt, unsigned char *ct, const cipher_state *
 
 int rc5_decrypt(const unsigned char *ct, unsigned char *pt, const cipher_state *cs)
 {
+    int r;
     unsigned A, B;
     const unsigned *K;
-    int r;
-
-    /*
-    LTC_ARGCHK(skey != NULL);
-    LTC_ARGCHK(pt   != NULL);
-    LTC_ARGCHK(ct   != NULL);
-     */
 
     if (cs->rc5.rounds < 12 || cs->rc5.rounds > 24) {
 	return NBSCrypto_ERROR;
