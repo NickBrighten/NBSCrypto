@@ -344,9 +344,11 @@ Please have a look [here](https://help.github.com/articles/approving-a-pull-requ
     - `160` `256` `384` `512`
 - __BLAKE2S__
     - `128` `160` `224` `256`
+- __CMAC__
+    - `cipher`
 - __F9__
     - `cipher`
-- __CMAC__
+- __GMAC__
     - `cipher`
 - __HMAC__
     - `hash`
