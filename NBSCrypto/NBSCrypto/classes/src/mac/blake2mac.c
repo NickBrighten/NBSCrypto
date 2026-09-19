@@ -22,14 +22,14 @@ int blake2bmac_process(const unsigned char *in, unsigned long inlen, blake2bmac_
     return blake2b_process(b2bmac, in, inlen);
 }
 
-int blake2bmac_done(unsigned char *mac, unsigned long *maclen, blake2bmac_state *b2bmac)
+int blake2bmac_done(unsigned char *out, unsigned long *outlen, blake2bmac_state *b2bmac)
 {
-    if (*maclen > b2bmac->blake2b.outlen) {
+    if (*outlen > b2bmac->blake2b.outlen) {
 	return NBSCrypto_ERROR;
     }
 
-    *maclen = b2bmac->blake2b.outlen;
-    return blake2b_done(b2bmac, mac);
+    *outlen = b2bmac->blake2b.outlen;
+    return blake2b_done(b2bmac, out);
 }
 
 int blake2smac_init(const unsigned char *key, unsigned long keylen, unsigned long outlen, blake2smac_state *b2smac)
@@ -43,12 +43,12 @@ int blake2smac_process(const unsigned char *in, unsigned long inlen, blake2smac_
     return blake2s_process(b2smac, in, inlen);
 }
 
-int blake2smac_done(unsigned char *mac, unsigned long *maclen, blake2smac_state *b2smac)
+int blake2smac_done(unsigned char *out, unsigned long *outlen, blake2smac_state *b2smac)
 {
-    if (*maclen > b2smac->blake2s.outlen) {
+    if (*outlen > b2smac->blake2s.outlen) {
 	return NBSCrypto_ERROR;
     }
 
-    *maclen = b2smac->blake2s.outlen;
-    return blake2s_done(b2smac, mac);
+    *outlen = b2smac->blake2s.outlen;
+    return blake2s_done(b2smac, out);
 }

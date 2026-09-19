@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1D05EEF0305D8CBC0060D08D /* gmac.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D05EEEF305D8CBC0060D08D /* gmac.c */; };
+		1D05EEF1305D8CBC0060D08D /* gmac.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D05EEEF305D8CBC0060D08D /* gmac.c */; };
+		1D05EEF2305D8CBC0060D08D /* gmac.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D05EEEF305D8CBC0060D08D /* gmac.c */; };
+		1D05EEF3305D8CBC0060D08D /* gmac.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D05EEEF305D8CBC0060D08D /* gmac.c */; };
 		1D0A41062FF43408001320C2 /* skein.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D0A41052FF43408001320C2 /* skein.c */; };
 		1D0A41072FF43408001320C2 /* skein.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D0A41052FF43408001320C2 /* skein.c */; };
 		1D0A41082FF43408001320C2 /* skein.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D0A41052FF43408001320C2 /* skein.c */; };
@@ -489,6 +493,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1D05EEEF305D8CBC0060D08D /* gmac.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = gmac.c; sourceTree = "<group>"; tabWidth = 8; };
 		1D0A41052FF43408001320C2 /* skein.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = skein.c; sourceTree = "<group>"; tabWidth = 8; };
 		1D0B86153002B23600F7AD70 /* rabbit.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = rabbit.c; sourceTree = "<group>"; tabWidth = 8; };
 		1D0B861A3002B24400F7AD70 /* sober128.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sober128.c; sourceTree = "<group>"; tabWidth = 8; };
@@ -764,6 +769,7 @@
 			children = (
 				1D0CC9943050862000F55621 /* blake2mac.c */,
 				1D419D8A2FC06C5D003A7B83 /* f9.c */,
+				1D05EEEF305D8CBC0060D08D /* gmac.c */,
 				1D419D8C2FC06C5D003A7B83 /* hmac.c */,
 				1D983EA5301E68CB004F4985 /* kmac.c */,
 				1D419D892FC06C5D003A7B83 /* omac.c */,
@@ -1182,6 +1188,7 @@
 				1D419DF62FC06C97003A7B83 /* xxhash.c in Sources */,
 				1D0CC9953050862000F55621 /* blake2mac.c in Sources */,
 				1D419D922FC06C5D003A7B83 /* f9.c in Sources */,
+				1D05EEF0305D8CBC0060D08D /* gmac.c in Sources */,
 				1D419D9A2FC06C5D003A7B83 /* hmac.c in Sources */,
 				1D983EA6301E68CB004F4985 /* kmac.c in Sources */,
 				1D419D8E2FC06C5D003A7B83 /* omac.c in Sources */,
@@ -1301,6 +1308,7 @@
 				1D419DF72FC06C97003A7B83 /* xxhash.c in Sources */,
 				1D0CC9963050862000F55621 /* blake2mac.c in Sources */,
 				1D419D932FC06C5D003A7B83 /* f9.c in Sources */,
+				1D05EEF1305D8CBC0060D08D /* gmac.c in Sources */,
 				1D419D9B2FC06C5D003A7B83 /* hmac.c in Sources */,
 				1D983EA7301E68CB004F4985 /* kmac.c in Sources */,
 				1D419D8F2FC06C5D003A7B83 /* omac.c in Sources */,
@@ -1420,6 +1428,7 @@
 				1D419DF82FC06C97003A7B83 /* xxhash.c in Sources */,
 				1D0CC9973050862000F55621 /* blake2mac.c in Sources */,
 				1D419D942FC06C5D003A7B83 /* f9.c in Sources */,
+				1D05EEF2305D8CBC0060D08D /* gmac.c in Sources */,
 				1D419D9C2FC06C5D003A7B83 /* hmac.c in Sources */,
 				1D983EA8301E68CB004F4985 /* kmac.c in Sources */,
 				1D419D902FC06C5D003A7B83 /* omac.c in Sources */,
@@ -1538,6 +1547,7 @@
 				1D419E312FC06C98003A7B83 /* whirpool.c in Sources */,
 				1D0CC9983050862000F55621 /* blake2mac.c in Sources */,
 				1D419D952FC06C5D003A7B83 /* f9.c in Sources */,
+				1D05EEF3305D8CBC0060D08D /* gmac.c in Sources */,
 				1D419D9D2FC06C5D003A7B83 /* hmac.c in Sources */,
 				1D983EA9301E68CB004F4985 /* kmac.c in Sources */,
 				1D419D912FC06C5D003A7B83 /* omac.c in Sources */,
@@ -1630,7 +1640,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 260918;
+				CURRENT_PROJECT_VERSION = 260919;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -1662,7 +1672,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 260918;
+				CURRENT_PROJECT_VERSION = 260919;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -1691,7 +1701,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 260918;
+				CURRENT_PROJECT_VERSION = 260919;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -1722,7 +1732,7 @@
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = NO;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 260918;
+				CURRENT_PROJECT_VERSION = 260919;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;

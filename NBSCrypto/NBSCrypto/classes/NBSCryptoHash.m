@@ -14,6 +14,7 @@ NBSCrypto_MAC _mac;
 NBSCrypto_MAC_CIPHER _cipher_algorithm;
 NBSCrypto_HASH _hash_algorithm;
 
+NSString *_iv;
 NSString *_key;
 NSString *_customizing;
 NSUInteger _bitLength;
@@ -296,6 +297,7 @@ unsigned long _outputLengthMAC;
 		case _CIPHER_CHACHA:		{r=&chacha_desc;break;}
 		case _CIPHER_DES:		{r=&des_desc;break;}
 		case _CIPHER_DES3:		{r=&des3_desc;break;}
+		case _CIPHER_DESX:		{r=&desx_desc;break;}
 		case _CIPHER_IDEA:		{r=&idea_desc;break;}
 		case _CIPHER_KASUMI:		{r=&kasumi_desc;break;}
 		case _CIPHER_KHAZAD:		{r=&khazad_desc;break;}
@@ -308,6 +310,7 @@ unsigned long _outputLengthMAC;
 		case _CIPHER_RABBIT:		{r=&rabbit_desc;break;}
 		case _CIPHER_RC2:		{r=&rc2_desc;break;}
 		case _CIPHER_RC4:		{r=&rc4_desc;break;}
+		case _CIPHER_RC5:		{r=&rc5_desc;break;}
 		case _CIPHER_RC6:		{r=&rc6_desc;break;}
 		case _CIPHER_SAFER_K64:		{r=&safer_k64_desc;break;}
 		case _CIPHER_SAFER_K128:	{r=&safer_k128_desc;break;}
@@ -416,8 +419,8 @@ unsigned long _outputLengthMAC;
 
 	    NSString *sKEY=[_key stringByAppendingString:[_HEX_PADDING objectAtIndex:0]];
 	    //HANDLE sKEY
-	    if( ([self _getCipherDescriptor] == &blowfish_desc) | ([self _getCipherDescriptor] == &cast5_desc) | ([self _getCipherDescriptor] == &rc2_desc) | ([self _getCipherDescriptor] == &rc4_desc) | ([self _getCipherDescriptor] == &rc6_desc) ){
-		//BLOWFISH, CAST5, RC2, RC4, RC6
+	    if( ([self _getCipherDescriptor] == &blowfish_desc) | ([self _getCipherDescriptor] == &cast5_desc) | ([self _getCipherDescriptor] == &rc2_desc) | ([self _getCipherDescriptor] == &rc4_desc) | ([self _getCipherDescriptor] == &rc5_desc) | ([self _getCipherDescriptor] == &rc6_desc) ){
+		//BLOWFISH, CAST5, RC2, RC4, RC5, RC6
 		if(_key.length < cipher_descriptor[0].min_key_length){
 		    sKEY = [self _paddingString:sKEY withLength:(unsigned long)cipher_descriptor[0].min_key_length];
 		}else if(_key.length > cipher_descriptor[0].max_key_length){
@@ -437,6 +440,51 @@ unsigned long _outputLengthMAC;
 	    f9_init(0, (const unsigned char *)[sKEY UTF8String], sKEY.length, &s);
 	    f9_process(d.bytes, d.length, &s);
 	    f9_done(out, &oL, &s);
+
+	    NSMutableString *pr;
+	    pr=[NSMutableString stringWithCapacity:oL*2];
+	    for(int i=0;i<oL;i++){[pr appendFormat:@"%02x",out[i]];}
+	    unregister_cipher(cD);
+	    return pr;
+
+	    break;
+	}
+#pragma mark GMAC
+	case NBSCrypto_MAC_GMAC:{
+	    const struct cipher_descriptor *cD = [self _getCipherDescriptor];
+	    register_cipher([self _getCipherDescriptor]);
+
+	    NSString *sKEY=[_key stringByAppendingString:[_HEX_PADDING objectAtIndex:0]];
+	    //HANDLE sKEY
+	    if( ([self _getCipherDescriptor] == &blowfish_desc) | ([self _getCipherDescriptor] == &cast5_desc) | ([self _getCipherDescriptor] == &rc2_desc) | ([self _getCipherDescriptor] == &rc4_desc) | ([self _getCipherDescriptor] == &rc5_desc) | ([self _getCipherDescriptor] == &rc6_desc) ){
+		//BLOWFISH, CAST5, RC2, RC4, RC5, RC6
+		if(_key.length < cipher_descriptor[0].min_key_length){
+		    sKEY = [self _paddingString:sKEY withLength:(unsigned long)cipher_descriptor[0].min_key_length];
+		}else if(_key.length > cipher_descriptor[0].max_key_length){
+		    sKEY = [self _paddingString:sKEY withLength:(unsigned long)cipher_descriptor[0].max_key_length];
+		}else{
+		    sKEY = [self _paddingString:sKEY withLength:(unsigned long)_key.length];
+		}
+	    }else{
+		//ALL OTHER CIPHERS
+		sKEY = [self _paddingString:sKEY withLength:_bitLength];
+	    }
+
+	    NSString *sIV=[_iv stringByAppendingString:[_HEX_PADDING objectAtIndex:0]];
+	    if ((_iv.length >= 1) || (_iv.length <= 12)) {
+		sIV = _iv;
+	    }else{
+		sIV = [self _paddingString:sIV withLength:12];
+	    }
+
+	    unsigned long oL = cipher_descriptor[0].block_length;
+	    unsigned char out[oL];
+
+	    gmac_state s;
+	    gmac_init(0, (const unsigned char *)[sKEY UTF8String], sKEY.length, &s);
+	    gmac_setIV((const unsigned char *)[sIV UTF8String], sIV.length, &s);
+	    gmac_process(d.bytes, d.length, &s);
+	    gmac_done(out, &oL, &s);
 
 	    NSMutableString *pr;
 	    pr=[NSMutableString stringWithCapacity:oL*2];
@@ -694,6 +742,7 @@ unsigned long _outputLengthMAC;
 	_hash_algorithm = NBSCrypto_HASH_SHA3_512;
 	_cipher_algorithm = NBSCrypto_MAC_CIPHER_AES_128;
 	_key = @"";
+	_iv = @"";
 	_mac = NBSCrypto_MAC_NONE;
     }
     return self;
@@ -706,6 +755,7 @@ unsigned long _outputLengthMAC;
     _hash_algorithm = NBSCrypto_HASH_SHA3_512;
     _cipher_algorithm = NBSCrypto_MAC_CIPHER_AES_128;
     _key = @"";
+    _iv = @"";
     _mac = NBSCrypto_MAC_NONE;
 }
 
@@ -760,6 +810,9 @@ unsigned long _outputLengthMAC;
 	    _outputLengthMAC = _BIT_LENGTH_128;
 	    break;
 	}
+	case NBSCrypto_MAC_GMAC:{
+	    break;
+	}
 	case NBSCrypto_MAC_HMAC:{
 	    break;
 	}
@@ -797,6 +850,10 @@ unsigned long _outputLengthMAC;
 	    break;
 	}
     }
+}
+
+- (void)setIVForMAC:(NSString *)IV{
+    _iv = IV;
 }
 
 - (void)setKeyForMAC:(NSString *)KEY{
@@ -899,6 +956,16 @@ unsigned long _outputLengthMAC;
     [r setCipherAlgorithm:a];
     [r useMAC:NBSCrypto_MAC_F9];
     [r setKeyForMAC:k];
+    return [r hashString:s];
+}
+
++ (NSString *)hashStringWithGMAC:(NSString *)s andCipherAlgorithm:(NBSCrypto_GMAC_CIPHER)a setKeyForMAC:(NSString *)k setIVForMAC:(NSString *)iv
+{
+    NBSCryptoHash *r = [[self alloc] init];
+    [r setCipherAlgorithm:(NBSCrypto_MAC_CIPHER)a];
+    [r useMAC:NBSCrypto_MAC_GMAC];
+    [r setKeyForMAC:k];
+    [r setIVForMAC:iv];
     return [r hashString:s];
 }
 
