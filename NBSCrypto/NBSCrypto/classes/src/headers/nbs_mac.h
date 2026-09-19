@@ -22,6 +22,15 @@ typedef struct {
 } f9_state;
 
 typedef struct {
+    size_t bufferLength;
+    unsigned int m[256][4];
+    unsigned char buffer[16], mac[16], s[16];
+    unsigned long cipher;
+    unsigned long long totalLength;
+    cipher_state cs;
+} gmac_state;
+
+typedef struct {
     unsigned char key[MAXBLOCKSIZE];
     unsigned long hash;
     hash_state hs;
@@ -74,19 +83,26 @@ typedef struct {
 #pragma mark BLAKE2B
 int blake2bmac_init(const unsigned char *key, unsigned long keylen, unsigned long outlen, blake2bmac_state *b2bmac);
 int blake2bmac_process(const unsigned char *in, unsigned long inlen, blake2bmac_state *b2bmac);
-int blake2bmac_done(unsigned char *mac, unsigned long *maclen, blake2bmac_state *b2bmac);
+int blake2bmac_done(unsigned char *out, unsigned long *outlen, blake2bmac_state *b2bmac);
 
 
 #pragma mark BLAKE2S
 int blake2smac_init(const unsigned char *key, unsigned long keylen, unsigned long outlen, blake2smac_state *b2smac);
 int blake2smac_process(const unsigned char *in, unsigned long inlen, blake2smac_state *b2smac);
-int blake2smac_done(unsigned char *mac, unsigned long *maclen, blake2smac_state *b2smac);
+int blake2smac_done(unsigned char *out, unsigned long *outlen, blake2smac_state *b2smac);
 
 
 #pragma mark F9
 int f9_init(unsigned long cipher, const unsigned char *key, unsigned long keylen, f9_state *f9);
 int f9_process(const unsigned char *in, unsigned long inlen, f9_state *f9);
 int f9_done(unsigned char *out, unsigned long *outlen, f9_state *f9);
+
+
+#pragma mark GMAC
+int gmac_init(unsigned long cipher, const unsigned char *key, unsigned long keylen, gmac_state *gmac);
+int gmac_setIV(const unsigned char *iv, unsigned long ivlen, gmac_state *gmac);
+int gmac_process(const unsigned char *in, unsigned long inlen, gmac_state *gmac);
+int gmac_done(unsigned char *out, unsigned long *outlen, gmac_state *gmac);
 
 
 #pragma mark HMAC
