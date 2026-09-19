@@ -13,13 +13,13 @@
 #define GMAC_TABLE_N 256
 #define GMAC_REVERSE_BITS(n) _reverseInt8(n)
 
-#define STORE32BE(a, p)					\
-    ((unsigned char *)(p))[0] = ((unsigned int)(a) >> 24) & 0xFFU,\
-    ((unsigned char *)(p))[1] = ((unsigned int)(a) >> 16) & 0xFFU,\
-    ((unsigned char *)(p))[2] = ((unsigned int)(a) >>  8) & 0xFFU,\
+#define STORE32BE(a, p)							\
+    ((unsigned char *)(p))[0] = ((unsigned int)(a) >> 24) & 0xFFU,	\
+    ((unsigned char *)(p))[1] = ((unsigned int)(a) >> 16) & 0xFFU,	\
+    ((unsigned char *)(p))[2] = ((unsigned int)(a) >>  8) & 0xFFU,	\
     ((unsigned char *)(p))[3] = ((unsigned int)(a) >>  0) & 0xFFU
 
-#define STORE64BE(a, p)					\
+#define STORE64BE(a, p)							\
     ((unsigned char *)(p))[0] = ((unsigned long long)(a) >> 56) & 0xFFU,\
     ((unsigned char *)(p))[1] = ((unsigned long long)(a) >> 48) & 0xFFU,\
     ((unsigned char *)(p))[2] = ((unsigned long long)(a) >> 40) & 0xFFU,\
