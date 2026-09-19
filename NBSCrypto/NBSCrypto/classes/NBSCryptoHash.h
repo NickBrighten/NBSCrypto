@@ -105,6 +105,17 @@ NS_ASSUME_NONNULL_BEGIN
 +(NSString *)hashStringWithF9:(NSString *)string andCipherAlgorithm:(NBSCrypto_MAC_CIPHER)cipherAlgorithm setKeyForMAC:(NSString *)macKey;
 
 
+///	NBSCryptoHash +hashStringWithGMAC:(NSString * )string andCipherAlgorithm:(NBSCrypto_GMAC_CIPHER)cipherAlgorithm setKeyForMAC:(NSString *)macKey setIVForMAC:(NSString *)macIV
+///	@discussion		Hashing/checksum/digit/MAC of an NSString in conjunction with setted parameters using GMAC
+///	@discussion		NBSCrypto_GMAC_CIPHER is declared in NBSCryptoDefines.h
+///	@param string		NSString to Hashing/checksum/digit/MAC
+///	@param cipherAlgorithm	The NBSCrypto_GMAC_CIPHER include the Bit-Length
+///	@param macKey		The KEY for GMAC
+///	@param macIV		The IV for GMAC
+///	@return			NSString as hexadecimal
++(NSString *)hashStringWithGMAC:(NSString *)string andCipherAlgorithm:(NBSCrypto_GMAC_CIPHER)cipherAlgorithm setKeyForMAC:(NSString *)macKey setIVForMAC:(NSString*)macIV;
+
+
 ///	NBSCryptoHash +hashStringWithHMAC:(NSString *)string withHashAlgorithm:(NBSCrypto_HASH)hashAlgorithm setKeyForMAC:(NSString *)macKey
 ///	@discussion		Hashing/checksum/digit/MAC of an NSString in conjunction with setted parameters using HMAC
 ///	@discussion		NBSCrypto_HASH is declared in NBSCryptoDefines.h
