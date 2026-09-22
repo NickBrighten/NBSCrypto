@@ -141,10 +141,6 @@ int gmac_init(unsigned long cipher, const unsigned char *key, unsigned long keyl
 	return NBSCrypto_ERROR;
     }
 
-    if (cipher_descriptor[cipher].block_length != 16) {
-	return NBSCrypto_ERROR;
-    }
-
     gmac->cipher = cipher;
 
     error = cipher_descriptor[gmac->cipher].setup(key, (int)keylen, 0, &gmac->cs);

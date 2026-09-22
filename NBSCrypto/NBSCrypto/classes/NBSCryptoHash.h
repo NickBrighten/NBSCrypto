@@ -113,7 +113,7 @@ NS_ASSUME_NONNULL_BEGIN
 ///	@param macKey		The KEY for GMAC
 ///	@param macIV		The IV for GMAC
 ///	@return			NSString as hexadecimal
-+(NSString *)hashStringWithGMAC:(NSString *)string andCipherAlgorithm:(NBSCrypto_GMAC_CIPHER)cipherAlgorithm setKeyForMAC:(NSString *)macKey setIVForMAC:(NSString*)macIV;
++(NSString *)hashStringWithGMAC:(NSString *)string andCipherAlgorithm:(NBSCrypto_MAC_CIPHER)cipherAlgorithm setKeyForMAC:(NSString *)macKey setIVForMAC:(NSString*)macIV;
 
 
 ///	NBSCryptoHash +hashStringWithHMAC:(NSString *)string withHashAlgorithm:(NBSCrypto_HASH)hashAlgorithm setKeyForMAC:(NSString *)macKey
@@ -171,10 +171,9 @@ NS_ASSUME_NONNULL_BEGIN
 ///	@discussion		Hashing/checksum/digit/MAC of an NSString in conjunction with setted parameters using POLY1305
 ///	@discussion		NBSCrypto_HASH is declared in NBSCryptoDefines.h
 ///	@param string		NSString to Hashing/checksum/digit/MAC
-///	@param hashAlgorithm	The NBSCrypto_HASH include the Bit-Length
 ///	@param macKey		The KEY for POLY1305
 ///	@return			NSString as hexadecimal
-+(NSString *)hashStringWithPOLY1305:(NSString *)string andHashAlgorithm:(NBSCrypto_HASH)hashAlgorithm setKeyForMAC:(NSString *)macKey;
++(NSString *)hashStringWithPOLY1305:(NSString *)string setKeyForMAC:(NSString *)macKey;
 
 
 ///	NBSCryptoHash +hashStringWithXCBC:(NSString * )string andCipherAlgorithm:(NBSCrypto_MAC_CIPHER)cipherAlgorithm setKeyForMAC:(NSString *)macKey

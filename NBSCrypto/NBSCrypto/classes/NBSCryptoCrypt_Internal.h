@@ -1152,7 +1152,7 @@ static const unsigned long _CIPHER_PRESETS[1020][4] = {
 };
 
 
-static const unsigned long _MAC_CIPHER_PRESETS[72][3] = {
+static const unsigned long _MAC_CIPHER_PRESETS[73][3] = {
     //AES
     {NBSCrypto_MAC_CIPHER_AES_128,		_CIPHER_AES,		_BIT_LENGTH_128},
     {NBSCrypto_MAC_CIPHER_AES_192,		_CIPHER_AES,		_BIT_LENGTH_192},
@@ -1225,6 +1225,8 @@ static const unsigned long _MAC_CIPHER_PRESETS[72][3] = {
     //PRESENT
     {NBSCrypto_MAC_CIPHER_PRESENT_80,		_CIPHER_PRESENT,	_BIT_LENGTH_80},
     {NBSCrypto_MAC_CIPHER_PRESENT_128,		_CIPHER_PRESENT,	_BIT_LENGTH_128},
+    //RC5
+    {NBSCrypto_MAC_CIPHER_RC5,			_CIPHER_RC5,		_BIT_LENGTH_256},
     //RC6
     {NBSCrypto_MAC_CIPHER_RC6,			_CIPHER_RC6,		_BIT_LENGTH_256},
     //SEED
