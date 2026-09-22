@@ -11,9 +11,9 @@
 #pragma mark DESCRIPTOR
 const struct cipher_descriptor rc5_desc =
 {
-    "rc6",
+    "rc5",
     26,
-    8, 128, 8, 12,
+    1, 128, 8, 12,
     &rc5_setup,
     &rc5_encrypt,
     &rc5_decrypt,
