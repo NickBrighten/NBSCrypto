@@ -581,8 +581,8 @@ unsigned long _outputLengthMAC;
 
 	    NSString *sKEY=[_key stringByAppendingString:[_HEX_PADDING objectAtIndex:0]];
 	    //HANDLE sKEY
-	    if( ([self _getCipherDescriptor] == &blowfish_desc) | ([self _getCipherDescriptor] == &cast5_desc) | ([self _getCipherDescriptor] == &rc2_desc) | ([self _getCipherDescriptor] == &rc4_desc) | ([self _getCipherDescriptor] == &rc6_desc) ){
-		//BLOWFISH, CAST5, RC2, RC4, RC6
+	    if( ([self _getCipherDescriptor] == &blowfish_desc) | ([self _getCipherDescriptor] == &cast5_desc) | ([self _getCipherDescriptor] == &rc2_desc) | ([self _getCipherDescriptor] == &rc4_desc) | ([self _getCipherDescriptor] == &rc5_desc) | ([self _getCipherDescriptor] == &rc6_desc) ){
+		//BLOWFISH, CAST5, RC2, RC4, RC5, RC6
 		if(_key.length < cipher_descriptor[0].min_key_length){
 		    sKEY = [self _paddingString:sKEY withLength:(unsigned long)cipher_descriptor[0].min_key_length];
 		}else if(_key.length > cipher_descriptor[0].max_key_length){
@@ -638,8 +638,8 @@ unsigned long _outputLengthMAC;
 
 	    NSString *sKEY=[_key stringByAppendingString:[_HEX_PADDING objectAtIndex:0]];
 	    //HANDLE sKEY
-	    if( ([self _getCipherDescriptor] == &blowfish_desc) | ([self _getCipherDescriptor] == &cast5_desc) | ([self _getCipherDescriptor] == &rc2_desc) | ([self _getCipherDescriptor] == &rc4_desc) | ([self _getCipherDescriptor] == &rc6_desc) ){
-		//BLOWFISH, CAST5, RC2, RC4, RC6
+	    if( ([self _getCipherDescriptor] == &blowfish_desc) | ([self _getCipherDescriptor] == &cast5_desc) | ([self _getCipherDescriptor] == &rc2_desc) | ([self _getCipherDescriptor] == &rc4_desc) | ([self _getCipherDescriptor] == &rc5_desc) | ([self _getCipherDescriptor] == &rc6_desc) ){
+		//BLOWFISH, CAST5, RC2, RC4, RC5, RC6
 		if(_key.length < cipher_descriptor[0].min_key_length){
 		    sKEY = [self _paddingString:sKEY withLength:(unsigned long)cipher_descriptor[0].min_key_length];
 		}else if(_key.length > cipher_descriptor[0].max_key_length){
@@ -695,8 +695,8 @@ unsigned long _outputLengthMAC;
 
 	    NSString *sKEY=[_key stringByAppendingString:[_HEX_PADDING objectAtIndex:0]];
 	    //HANDLE sKEY
-	    if( ([self _getCipherDescriptor] == &blowfish_desc) | ([self _getCipherDescriptor] == &cast5_desc) | ([self _getCipherDescriptor] == &rc2_desc) | ([self _getCipherDescriptor] == &rc4_desc) | ([self _getCipherDescriptor] == &rc6_desc) ){
-		//BLOWFISH, CAST5, RC2, RC4, RC6
+	    if( ([self _getCipherDescriptor] == &blowfish_desc) | ([self _getCipherDescriptor] == &cast5_desc) | ([self _getCipherDescriptor] == &rc2_desc) | ([self _getCipherDescriptor] == &rc4_desc) | ([self _getCipherDescriptor] == &rc5_desc) | ([self _getCipherDescriptor] == &rc6_desc) ){
+		//BLOWFISH, CAST5, RC2, RC4, RC5, RC6
 		if(_key.length < cipher_descriptor[0].min_key_length){
 		    sKEY = [self _paddingString:sKEY withLength:(unsigned long)cipher_descriptor[0].min_key_length];
 		}else if(_key.length > cipher_descriptor[0].max_key_length){
@@ -959,10 +959,10 @@ unsigned long _outputLengthMAC;
     return [r hashString:s];
 }
 
-+ (NSString *)hashStringWithGMAC:(NSString *)s andCipherAlgorithm:(NBSCrypto_GMAC_CIPHER)a setKeyForMAC:(NSString *)k setIVForMAC:(NSString *)iv
++ (NSString *)hashStringWithGMAC:(NSString *)s andCipherAlgorithm:(NBSCrypto_MAC_CIPHER)a setKeyForMAC:(NSString *)k setIVForMAC:(NSString *)iv
 {
     NBSCryptoHash *r = [[self alloc] init];
-    [r setCipherAlgorithm:(NBSCrypto_MAC_CIPHER)a];
+    [r setCipherAlgorithm:a];
     [r useMAC:NBSCrypto_MAC_GMAC];
     [r setKeyForMAC:k];
     [r setIVForMAC:iv];
@@ -1036,10 +1036,9 @@ unsigned long _outputLengthMAC;
     return [r hashString:s];
 }
 
-+ (NSString *)hashStringWithPOLY1305:(NSString *)s andHashAlgorithm:(NBSCrypto_HASH)a setKeyForMAC:(NSString *)k
++ (NSString *)hashStringWithPOLY1305:(NSString *)s setKeyForMAC:(NSString *)k
 {
     NBSCryptoHash *r = [[self alloc] init];
-    [r setHashAlgorithm:a];
     [r useMAC:NBSCrypto_MAC_POLY1305];
     [r setKeyForMAC:k];
     return [r hashString:s];
