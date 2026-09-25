@@ -17,7 +17,7 @@ NBSCrypto_HASH _hash_algorithm;
 NSString *_iv;
 NSString *_key;
 NSString *_customizing;
-NSUInteger _bitLength;
+NSUInteger _cipher_bitLength;
 unsigned long _outputLengthMAC;
 
 
@@ -283,7 +283,7 @@ unsigned long _outputLengthMAC;
 - (const struct cipher_descriptor*)_getCipherDescriptor{
     const struct cipher_descriptor* r = NULL;
 
-    for (int i=0; i<(sizeof(_MAC_CIPHER_PRESETS)); i++) {
+    for (int i=0; i<(sizeof(_MAC_CIPHER_PRESETS) / sizeof(_MAC_CIPHER_PRESETS[0])); i++) {
 	if (_MAC_CIPHER_PRESETS[i][0] == _cipher_algorithm) {
 	    switch (_MAC_CIPHER_PRESETS[i][1]) {
 		case _CIPHER_AES:		{r=&aes_desc;break;}
@@ -330,7 +330,7 @@ unsigned long _outputLengthMAC;
 		default:			{r=&aes_desc;break;}
 	    }
 	    unregister_cipher(r);
-	    _bitLength = _MAC_CIPHER_PRESETS[i][2];
+	    _cipher_bitLength = _MAC_CIPHER_PRESETS[i][2];
 	}
     }
     return r;
@@ -430,7 +430,7 @@ unsigned long _outputLengthMAC;
 		}
 	    }else{
 		//ALL OTHER CIPHERS
-		sKEY = [self _paddingString:sKEY withLength:_bitLength];
+		sKEY = [self _paddingString:sKEY withLength:_cipher_bitLength];
 	    }
 
 	    unsigned long oL = _outputLengthMAC;
@@ -467,7 +467,7 @@ unsigned long _outputLengthMAC;
 		}
 	    }else{
 		//ALL OTHER CIPHERS
-		sKEY = [self _paddingString:sKEY withLength:_bitLength];
+		sKEY = [self _paddingString:sKEY withLength:_cipher_bitLength];
 	    }
 
 	    NSString *sIV=[_iv stringByAppendingString:[_HEX_PADDING objectAtIndex:0]];
@@ -592,7 +592,7 @@ unsigned long _outputLengthMAC;
 		}
 	    }else{
 		//ALL OTHER CIPHERS
-		sKEY = [self _paddingString:sKEY withLength:_bitLength];
+		sKEY = [self _paddingString:sKEY withLength:_cipher_bitLength];
 	    }
 
 	    unsigned long oL = cipher_descriptor[0].block_length;
@@ -649,7 +649,7 @@ unsigned long _outputLengthMAC;
 		}
 	    }else{
 		//ALL OTHER CIPHERS
-		sKEY = [self _paddingString:sKEY withLength:_bitLength];
+		sKEY = [self _paddingString:sKEY withLength:_cipher_bitLength];
 	    }
 
 	    unsigned long oL = cipher_descriptor[0].block_length;
@@ -706,7 +706,7 @@ unsigned long _outputLengthMAC;
 		}
 	    }else{
 		//ALL OTHER CIPHERS
-		sKEY = [self _paddingString:sKEY withLength:_bitLength];
+		sKEY = [self _paddingString:sKEY withLength:_cipher_bitLength];
 	    }
 
 	    unsigned long oL = cipher_descriptor[0].block_length;
@@ -738,9 +738,9 @@ unsigned long _outputLengthMAC;
 - (instancetype)init{
     self = [super init];
     if(self){
-	_bitLength = 0;
 	_hash_algorithm = NBSCrypto_HASH_SHA3_512;
 	_cipher_algorithm = NBSCrypto_MAC_CIPHER_AES_128;
+	_cipher_bitLength = 0;
 	_key = @"";
 	_iv = @"";
 	_mac = NBSCrypto_MAC_NONE;
@@ -751,9 +751,9 @@ unsigned long _outputLengthMAC;
 - (void)dealloc{
     unregister_hash([self _getHashDescriptor]);
     unregister_cipher([self _getCipherDescriptor]);
-    _bitLength = 0;
     _hash_algorithm = NBSCrypto_HASH_SHA3_512;
     _cipher_algorithm = NBSCrypto_MAC_CIPHER_AES_128;
+    _cipher_bitLength = 0;
     _key = @"";
     _iv = @"";
     _mac = NBSCrypto_MAC_NONE;

@@ -11,8 +11,6 @@
 @implementation NBSCryptoCrypt
 
 
-NSUInteger bitLength;
-NSUInteger mode;
 
 
 @synthesize INPUTFORMAT				= _inputformat;
@@ -25,10 +23,14 @@ NSUInteger mode;
 @synthesize TAG					= _tag;
 
 
+NSUInteger _bitLength;
+NSUInteger _mode;
+
+
 - (const struct cipher_descriptor*)_getCipherDescriptor{
     const struct cipher_descriptor* r = NULL;
 
-    for (int i=0; i<(sizeof(_CIPHER_PRESETS)); i++) {
+    for (int i=0; i<(sizeof(_CIPHER_PRESETS) / sizeof(_CIPHER_PRESETS[0])); i++) {
 	if (_CIPHER_PRESETS[i][0] == _algorithm) {
 	    switch (_CIPHER_PRESETS[i][1]) {
 		case _CIPHER_AES:		{r=&aes_desc;break;}
@@ -75,8 +77,8 @@ NSUInteger mode;
 		default:			{r=&aes_desc;break;}
 	    }
 	    unregister_cipher(r);
-	    bitLength = _CIPHER_PRESETS[i][2];
-	    mode = _CIPHER_PRESETS[i][3];
+	    _bitLength = _CIPHER_PRESETS[i][2];
+	    _mode = _CIPHER_PRESETS[i][3];
 	}
     }
     return r;
@@ -179,14 +181,14 @@ const unsigned char* _charFromHex(const char* str)
     NSString *sAAD=[_aad stringByAppendingString:[_HEX_PADDING objectAtIndex:0]];
 
     //HANDLE KEY1 AND KEY2
-    NSString *sKEY1 = [self _paddingString:sKEY withLength:bitLength];
+    NSString *sKEY1 = [self _paddingString:sKEY withLength:_bitLength];
     NSString *sKEY2;
     if (_key2.length > 0) {
 	//IF KEY2 IS SET
-	sKEY2 = [self _paddingString:_key2 withLength:bitLength];
+	sKEY2 = [self _paddingString:_key2 withLength:_bitLength];
     }else{
 	//GENERATE KEY2 FROM KEY
-	sKEY2 = (sKEY.length > bitLength)?[self _paddingString:[sKEY substringWithRange:NSMakeRange(bitLength, sKEY.length-bitLength)] withLength:bitLength]:[self _paddingString:@"" withLength:bitLength];
+	sKEY2 = (sKEY.length > _bitLength)?[self _paddingString:[sKEY substringWithRange:NSMakeRange(_bitLength, sKEY.length-_bitLength)] withLength:_bitLength]:[self _paddingString:@"" withLength:_bitLength];
     }
 
     //HANDLE sKEY
@@ -201,46 +203,46 @@ const unsigned char* _charFromHex(const char* str)
 	}
     }else{
 	//ALL OTHER CIPHERS
-	sKEY = [self _paddingString:sKEY withLength:bitLength];
+	sKEY = [self _paddingString:sKEY withLength:_bitLength];
     }
 
 
     //HANDLE BLOCK-MODES AND STREAM-MODES
-    if ((mode == _CIPHER_MODE_CCM) |
-	(mode == _CIPHER_MODE_EAX) |
-	(mode == _CIPHER_MODE_GCM) |
-	(mode == _CIPHER_MODE_GCM_SIV) |
-	(mode == _CIPHER_MODE_OCB3) |
-	(mode == _CIPHER_MODE_SIV) |
-	(mode == _CIPHER_MODE_CHACHA8) |
-	(mode == _CIPHER_MODE_CHACHA12) |
-	(mode == _CIPHER_MODE_CHACHA20) |
-	(mode == _CIPHER_MODE_CHACHA8POLY1305) |
-	(mode == _CIPHER_MODE_CHACHA12POLY1305) |
-	(mode == _CIPHER_MODE_CHACHA20POLY1305) |
-	(mode == _CIPHER_MODE_RABBIT) |
-	(mode == _CIPHER_MODE_SALSA8) |
-	(mode == _CIPHER_MODE_SALSA12) |
-	(mode == _CIPHER_MODE_SALSA20) |
-	(mode == _CIPHER_MODE_SOBER128) |
-	(mode == _CIPHER_MODE_SOSEMANUK) |
-	(mode == _CIPHER_MODE_XSALSA8) |
-	(mode == _CIPHER_MODE_XSALSA12) |
-	(mode == _CIPHER_MODE_XSALSA20)) {
+    if ((_mode == _CIPHER_MODE_CCM) |
+	(_mode == _CIPHER_MODE_EAX) |
+	(_mode == _CIPHER_MODE_GCM) |
+	(_mode == _CIPHER_MODE_GCM_SIV) |
+	(_mode == _CIPHER_MODE_OCB3) |
+	(_mode == _CIPHER_MODE_SIV) |
+	(_mode == _CIPHER_MODE_CHACHA8) |
+	(_mode == _CIPHER_MODE_CHACHA12) |
+	(_mode == _CIPHER_MODE_CHACHA20) |
+	(_mode == _CIPHER_MODE_CHACHA8POLY1305) |
+	(_mode == _CIPHER_MODE_CHACHA12POLY1305) |
+	(_mode == _CIPHER_MODE_CHACHA20POLY1305) |
+	(_mode == _CIPHER_MODE_RABBIT) |
+	(_mode == _CIPHER_MODE_SALSA8) |
+	(_mode == _CIPHER_MODE_SALSA12) |
+	(_mode == _CIPHER_MODE_SALSA20) |
+	(_mode == _CIPHER_MODE_SOBER128) |
+	(_mode == _CIPHER_MODE_SOSEMANUK) |
+	(_mode == _CIPHER_MODE_XSALSA8) |
+	(_mode == _CIPHER_MODE_XSALSA12) |
+	(_mode == _CIPHER_MODE_XSALSA20)) {
 	//STREAM-MODES
 	///CHACHA
-	if ((mode == _CIPHER_MODE_CHACHA8) |
-	    (mode == _CIPHER_MODE_CHACHA12) |
-	    (mode == _CIPHER_MODE_CHACHA20)){
+	if ((_mode == _CIPHER_MODE_CHACHA8) |
+	    (_mode == _CIPHER_MODE_CHACHA12) |
+	    (_mode == _CIPHER_MODE_CHACHA20)){
 	    if (_iv.length <= _BIT_LENGTH_64) {
 		sIV = [self _paddingString:sIV withLength:_BIT_LENGTH_64];
 	    }else if (_iv.length >= _BIT_LENGTH_96){
 		sIV = [self _paddingString:sIV withLength:_BIT_LENGTH_96];
 	    }
 	///CHACHA-POLY1305
-	}else if ((mode == _CIPHER_MODE_CHACHA8POLY1305) |
-		  (mode == _CIPHER_MODE_CHACHA12POLY1305) |
-		  (mode == _CIPHER_MODE_CHACHA20POLY1305)) {
+	}else if ((_mode == _CIPHER_MODE_CHACHA8POLY1305) |
+		  (_mode == _CIPHER_MODE_CHACHA12POLY1305) |
+		  (_mode == _CIPHER_MODE_CHACHA20POLY1305)) {
 	    if (_iv.length <= _BIT_LENGTH_64) {
 		sIV = [self _paddingString:sIV withLength:_BIT_LENGTH_64];
 	    }else if (_iv.length <= _BIT_LENGTH_96){
@@ -250,26 +252,26 @@ const unsigned char* _charFromHex(const char* str)
 	    }
 	    sAAD = [self _paddingString:sAAD withLength:_aad.length];
 	///RABBIT
-	}else if (mode == _CIPHER_MODE_RABBIT){
+	}else if (_mode == _CIPHER_MODE_RABBIT){
 	    sIV = [self _paddingString:sIV withLength:_BIT_LENGTH_64];
 	///SALSA
-	}else if ((mode == _CIPHER_MODE_SALSA8) |
-		  (mode == _CIPHER_MODE_SALSA12) |
-		  (mode == _CIPHER_MODE_SALSA20)){
+	}else if ((_mode == _CIPHER_MODE_SALSA8) |
+		  (_mode == _CIPHER_MODE_SALSA12) |
+		  (_mode == _CIPHER_MODE_SALSA20)){
 	    if (_iv.length != _BIT_LENGTH_64) {
 		sIV = [self _paddingString:sIV withLength:_BIT_LENGTH_64];
 	    }
 	///SOBER128
-	}else if ((mode == _CIPHER_MODE_SOBER128)|
-		  (mode == _CIPHER_MODE_SOSEMANUK)){
+	}else if ((_mode == _CIPHER_MODE_SOBER128)|
+		  (_mode == _CIPHER_MODE_SOSEMANUK)){
 	    sIV = [self _paddingString:sIV withLength:_BIT_LENGTH_128];
 	///XSALSA
-	}else if ((mode == _CIPHER_MODE_XSALSA8) |
-		  (mode == _CIPHER_MODE_XSALSA12) |
-		  (mode == _CIPHER_MODE_XSALSA20)){
+	}else if ((_mode == _CIPHER_MODE_XSALSA8) |
+		  (_mode == _CIPHER_MODE_XSALSA12) |
+		  (_mode == _CIPHER_MODE_XSALSA20)){
 	    sIV = [self _paddingString:sIV withLength:_BIT_LENGTH_192];
 	///GCM / GCM-SIV
-	}else if ((mode == _CIPHER_MODE_GCM) | (mode == _CIPHER_MODE_GCM_SIV)){
+	}else if ((_mode == _CIPHER_MODE_GCM) | (_mode == _CIPHER_MODE_GCM_SIV)){
 	    sIV = [self _paddingString:sIV withLength:_BIT_LENGTH_96];
 	    sAAD = [self _paddingString:sAAD withLength:_aad.length];
 	///ALL OTHERS
@@ -284,7 +286,7 @@ const unsigned char* _charFromHex(const char* str)
 
     register_cipher([self _getCipherDescriptor]);
 
-    switch (mode) {
+    switch (_mode) {
 #pragma mark CBC
 	case _CIPHER_MODE_CBC:{
 	    cm_CBC m;
@@ -552,6 +554,7 @@ const unsigned char* _charFromHex(const char* str)
 		}
 		unsigned char eT[eTL];
 		NSString *sTE=[string stringByPaddingToLength:eTL withString:[_HEX_PADDING objectAtIndex:((unsigned long)eTL-(unsigned long)dTE.length)] startingAtIndex:0];
+
 		ecb_encrypt((const unsigned char *)[sTE UTF8String], eT, eTL, &m);
 
 		switch (_outputformat) {
@@ -1578,11 +1581,11 @@ const unsigned char* _charFromHex(const char* str)
 - (instancetype)init{
     self = [super init];
     if(self){
-	bitLength = 0;
-	mode = _CIPHER_MODE_ECB;
 	_inputformat = NBSCrypto_CIPHER_IO_BASE64;
 	_outputformat = NBSCrypto_CIPHER_IO_BASE64;
 	_algorithm = NBSCrypto_CIPHER_AES_128_ECB;
+	_bitLength = 0;
+	_mode = _CIPHER_MODE_ECB;
 	_key = @"";
 	_key2 = @"";
 	_iv = @"";
@@ -1595,11 +1598,11 @@ const unsigned char* _charFromHex(const char* str)
 - (void)dealloc{
     unregister_cipher([self _getCipherDescriptor]);
 
-    bitLength = 0;
-    mode = _CIPHER_MODE_ECB;
     _inputformat = NBSCrypto_CIPHER_IO_BASE64;
     _outputformat = NBSCrypto_CIPHER_IO_BASE64;
     _algorithm = NBSCrypto_CIPHER_AES_128_ECB;
+    _bitLength = 0;
+    _mode = _CIPHER_MODE_ECB;
     _key = @"";
     _key2 = @"";
     _iv = @"";
@@ -1646,7 +1649,7 @@ const unsigned char* _charFromHex(const char* str)
 - (unsigned long)getIVLengthForCipher{
     NSUInteger r;
     register_cipher([self _getCipherDescriptor]);
-    r=(mode!=_CIPHER_MODE_ECB)?cipher_descriptor[0].block_length:0;
+    r=(_mode!=_CIPHER_MODE_ECB)?cipher_descriptor[0].block_length:0;
     unregister_cipher([self _getCipherDescriptor]);
     return r;
 }
