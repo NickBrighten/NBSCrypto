@@ -345,25 +345,31 @@ Please have a look [here](https://help.github.com/articles/approving-a-pull-requ
 - __BLAKE2S__
     - `128` `160` `224` `256`
 - __CMAC__
-    - `cipher`
+    - `support for all ciphers`
+    - BIT-LENGTH: `Block-Length`
 - __F9__
-    - `cipher`
+    - `support for all ciphers`
+    - BIT-LENGTH: `Block-Length`
 - __GMAC__
-    - `cipher`
+    - `support for all ciphers`
+    - BIT-LENGTH: `Block-Length`
 - __HMAC__
     - `hash`
 - __KMAC__
     - `128` `128-XOF` `256` `256-XOF`
     - `variable output-length`
 - __OMAC1__
-    - `cipher`
+    - `support for all ciphers`
+    - BIT-LENGTH: `Block-Length`
 - __PELICAN__
-    - `hash`
+    - BIT-LENGTH: `128`
 - __PMAC__
-    - `cipher`
+    - `support for all ciphers`
+    - BIT-LENGTH: `Block-Length`
 - __POLY1305__
-    - `hash`
+
 - __XCBC__
-    - `cipher`
+    - `support for all ciphers`
+    - BIT-LENGTH: `128`
 #
 
