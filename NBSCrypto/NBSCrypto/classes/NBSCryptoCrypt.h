@@ -65,9 +65,9 @@ NS_ASSUME_NONNULL_BEGIN
 ///	@discussion		KEY2 Is required for F8-MODE, LRW-MODE and XTS-MODE
 ///	@discussion		If no KEY2 is specified, NBSCrypto automatically pads KEY2 to the
 ///				required length with zeros, or truncates/pads KEY2 according to the
-///				required length of the KEY2 from the input of the KEY.
+///				required length for the KEY2 from the input of the KEY.
 ///				In this case, KEY2 is padded with zeros, or is a subsequent substring
-///				of the input of KEY (if the length does not match the required length of KEY2,
+///				of the input of KEY (if the length doesn`t match the required length of KEY2,
 ///				it will be padded with zeros).
 @property (nonatomic, setter=setKEY2:)			NSString *KEY2;
 
@@ -105,7 +105,6 @@ NS_ASSUME_NONNULL_BEGIN
 ///				CHACHA8POLY1305, CHACHA12POLY1305 and CHACHA20POLY1305 after encryption.
 ///	@discussion		The TAG is generated automatically after encryption (getTAG)
 ///				and must be specified via setTAG for decryption.
-///	@discussion		The TAG have to be saved for decryption.
 @property (nonatomic, setter=setTAG:, getter=getTAG)	NSString *TAG;
 
 

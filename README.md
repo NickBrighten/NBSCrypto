@@ -341,29 +341,35 @@ Please have a look [here](https://help.github.com/articles/approving-a-pull-requ
 
 # Supported MAC-Algorithms
 - __BLAKE2B__
-    - `160` `256` `384` `512`
+    - BIT-LENGTH: `160` `256` `384` `512`
 - __BLAKE2S__
-    - `128` `160` `224` `256`
+    - BIT-LENGTH: `128` `160` `224` `256`
 - __CMAC__
-    - `cipher`
+    - BIT-LENGTH: `Block-Length`
+    - `support for all ciphers`
 - __F9__
-    - `cipher`
+    - BIT-LENGTH: `Block-Length`
+    - `support for all ciphers`
 - __GMAC__
-    - `cipher`
+    - BIT-LENGTH: `Block-Length`
+    - `support for all ciphers`
 - __HMAC__
     - `hash`
 - __KMAC__
-    - `128` `128-XOF` `256` `256-XOF`
+    - BIT-LENGTH: `128` `128-XOF` `256` `256-XOF`
     - `variable output-length`
 - __OMAC1__
-    - `cipher`
+    - BIT-LENGTH: `Block-Length`
+    - `support for all ciphers`
 - __PELICAN__
-    - `hash`
+    - BIT-LENGTH: `128`
 - __PMAC__
-    - `cipher`
+    - BIT-LENGTH: `Block-Length`
+    - `support for all ciphers`
 - __POLY1305__
-    - `hash`
+    - BIT-LENGTH: `128`
 - __XCBC__
-    - `cipher`
+    - BIT-LENGTH: `128`
+    - `support for all ciphers`
 #
 
