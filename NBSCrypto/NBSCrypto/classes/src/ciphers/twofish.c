@@ -11,7 +11,7 @@
 const struct cipher_descriptor twofish_desc =
 {
     "twofish",
-    41,
+    42,
     16, 32, 16, 16,
     &twofish_setup,
     &twofish_encrypt,
