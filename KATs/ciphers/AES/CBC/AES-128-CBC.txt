@@ -7,20 +7,20 @@
 ###########################
 
 
-LEN	    : 1
-MSG	    : " "
+LEN	: 1
+MSG	: " "
 KEY     : "0123456789abcdef"
 base64	: H1gsPCcioadsLHOICpSgdw==
 ---------------------------
 
-LEN	    : 5
-MSG	    : "H    "
+LEN	: 5
+MSG	: "H    "
 KEY     : "0123456789abcdef"
 base64	: pyuqPKTbO8yE11o4OGvcPg==
 ---------------------------
 
-LEN	    : 16
-MSG	    : "0123456789abcdef"
+LEN	: 16
+MSG	: "0123456789abcdef"
 KEY     : "0123456789abcdef"
 base64	: C5sV2ktEoPUVHc/EwB811b8xuRnjiS3cO1khLWp7EeY=
 
