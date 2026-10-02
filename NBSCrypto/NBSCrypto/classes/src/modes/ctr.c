@@ -52,26 +52,27 @@ int ctr_start(unsigned long cipher, const unsigned char *iv, const unsigned char
 {
     int x, err;
 
-    if ((err = is_cipher_valid(cipher)) != NBSCrypto_OK) {
+    ctr->cipher = cipher;
+
+    if ((err = is_cipher_valid(ctr->cipher)) != NBSCrypto_OK) {
 	return err;
     }
 
-    ctr->ctrlen = (ctr_mode & 255) ? (ctr_mode & 255) : cipher_descriptor[cipher].block_length;
+    ctr->ctrlen = (ctr_mode & 255) ? (ctr_mode & 255) : cipher_descriptor[ctr->cipher].block_length;
 
-    if (ctr->ctrlen > cipher_descriptor[cipher].block_length) {
+    if (ctr->ctrlen > cipher_descriptor[ctr->cipher].block_length) {
 	return NBSCrypto_ERROR;
     }
 
     if ((ctr_mode & 0x1000) == CTR_COUNTER_BIG_ENDIAN) {
-	ctr->ctrlen = cipher_descriptor[cipher].block_length - ctr->ctrlen;
+	ctr->ctrlen = cipher_descriptor[ctr->cipher].block_length - ctr->ctrlen;
     }
 
-    if ((err = cipher_descriptor[cipher].setup(key, keylen, num_rounds, &ctr->cs)) != NBSCrypto_OK) {
+    if ((err = cipher_descriptor[ctr->cipher].setup(key, keylen, num_rounds, &ctr->cs)) != NBSCrypto_OK) {
 	return err;
     }
 
-    ctr->blocklen = cipher_descriptor[cipher].block_length;
-    ctr->cipher   = cipher;
+    ctr->blocklen = cipher_descriptor[ctr->cipher].block_length;
     ctr->padlen   = 0;
     ctr->mode     = ctr_mode & 0x1000;
 

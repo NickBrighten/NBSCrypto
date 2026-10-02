@@ -188,11 +188,13 @@ int ccm_start(unsigned long cipher, const unsigned char *key, unsigned long keyl
 
     memset(ccm, 0, sizeof(cm_CCM));
 
-    if ((err = is_cipher_valid(cipher)) != NBSCrypto_OK) {
+    ccm->cipher = cipher;
+
+    if ((err = is_cipher_valid(ccm->cipher)) != NBSCrypto_OK) {
 	return err;
     }
 
-    if (cipher_descriptor[cipher].block_length != 16) {
+    if (cipher_descriptor[ccm->cipher].block_length != 16) {
 	return NBSCrypto_ERROR;
     }
 
@@ -202,11 +204,10 @@ int ccm_start(unsigned long cipher, const unsigned char *key, unsigned long keyl
 
     ccm->taglen = (int)taglen;
 
-    if ((err = cipher_descriptor[cipher].setup(key, (int)keylen, 0, &ccm->cs)) != NBSCrypto_OK) {
+    if ((err = cipher_descriptor[ccm->cipher].setup(key, (int)keylen, 0, &ccm->cs)) != NBSCrypto_OK) {
 	return err;
     }
 
-    ccm->cipher = cipher;
     ccm->ptlen = ptlen;
     ccm->L   = 0;
 

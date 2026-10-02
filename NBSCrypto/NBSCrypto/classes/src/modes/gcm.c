@@ -355,27 +355,28 @@ int gcm_start(unsigned long cipher, const unsigned char *key, unsigned long keyl
     unsigned char B[16];
     int err;
 
-    if ((err = is_cipher_valid(cipher)) != NBSCrypto_OK) {
+    gcm->cipher   = cipher;
+
+    if ((err = is_cipher_valid(gcm->cipher)) != NBSCrypto_OK) {
 	return err;
     }
 
-    if (cipher_descriptor[cipher].block_length != 16) {
+    if (cipher_descriptor[gcm->cipher].block_length != 16) {
 	return NBSCrypto_ERROR;
     }
 
-    if ((err = cipher_descriptor[cipher].setup(key, (int)keylen, num_rounds, &gcm->cs)) != NBSCrypto_OK) {
+    if ((err = cipher_descriptor[gcm->cipher].setup(key, (int)keylen, num_rounds, &gcm->cs)) != NBSCrypto_OK) {
 	return err;
     }
 
     zeromem(B, 16);
 
-    if ((err = cipher_descriptor[cipher].encrypt(B, gcm->H, &gcm->cs)) != NBSCrypto_OK) {
+    if ((err = cipher_descriptor[gcm->cipher].encrypt(B, gcm->H, &gcm->cs)) != NBSCrypto_OK) {
 	return err;
     }
 
     zeromem(gcm->buf, sizeof(gcm->buf));
     zeromem(gcm->X,   sizeof(gcm->X));
-    gcm->cipher   = cipher;
     gcm->mode     = 0;
     gcm->ivmode   = 0;
     gcm->buflen   = 0;

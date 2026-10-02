@@ -167,6 +167,10 @@ struct tea_state{
     unsigned long k[4];
 };
 
+struct trivium_state{
+    unsigned char s[36];
+};
+
 struct twofish_state{
     unsigned S[4][256], k[40];
 };
@@ -217,6 +221,7 @@ typedef union cipher_state{
     struct sober128_state	sober128;
     struct sosemanuk_state	sosemanuk;
     struct tea_state		tea;
+    struct trivium_state	trivium;
     struct twofish_state	twofish;
     struct xtea_state		xtea;
 
@@ -554,6 +559,14 @@ int  tea_encrypt(const unsigned char *pt, unsigned char *ct, const cipher_state 
 int  tea_decrypt(const unsigned char *ct, unsigned char *pt, const cipher_state *cs);
 void tea_done(cipher_state *cs);
 extern const struct cipher_descriptor tea_desc;
+
+
+#pragma mark TRIVIUM
+int  trivium_setup(const unsigned char *key, int keylen, const unsigned char *iv, int ivlen, int num_rounds, cipher_state *cs);
+int  trivium_encrypt(const unsigned char *pt, unsigned char *ct, unsigned long len, cipher_state *cs);
+int  trivium_decrypt(const unsigned char *ct, unsigned char *pt, unsigned long len, cipher_state *cs);
+void trivium_done(cipher_state *cs);
+extern const struct cipher_descriptor trivium_desc;
 
 
 #pragma mark TWOFISH

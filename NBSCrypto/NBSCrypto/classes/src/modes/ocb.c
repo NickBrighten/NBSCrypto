@@ -142,11 +142,13 @@ int ocb_start(unsigned long cipher, const unsigned char *key, unsigned long keyl
 {
     int poly, x, y, m, err;
 
-    if ((err = is_cipher_valid(cipher)) != NBSCrypto_OK) {
+    ocb->cipher = cipher;
+
+    if ((err = is_cipher_valid(ocb->cipher)) != NBSCrypto_OK) {
 	return err;
     }
 
-    ocb->block_len = cipher_descriptor[cipher].block_length;
+    ocb->block_len = cipher_descriptor[ocb->cipher].block_length;
 
     x = (int)(sizeof(polys)/sizeof(polys[0]));
     for (poly = 0; poly < x; poly++) {
@@ -162,13 +164,13 @@ int ocb_start(unsigned long cipher, const unsigned char *key, unsigned long keyl
 	return NBSCrypto_ERROR;
     }
 
-    if ((err = cipher_descriptor[cipher].setup(key, (int)keylen, 0, &ocb->cs)) != NBSCrypto_OK) {
+    if ((err = cipher_descriptor[ocb->cipher].setup(key, (int)keylen, 0, &ocb->cs)) != NBSCrypto_OK) {
 	return err;
     }
 
     zeromem(ocb->L, ocb->block_len);
 
-    if ((err = cipher_descriptor[cipher].encrypt(ocb->L, ocb->L, &ocb->cs)) != NBSCrypto_OK) {
+    if ((err = cipher_descriptor[ocb->cipher].encrypt(ocb->L, ocb->L, &ocb->cs)) != NBSCrypto_OK) {
 	return err;
     }
 
@@ -176,7 +178,7 @@ int ocb_start(unsigned long cipher, const unsigned char *key, unsigned long keyl
 	ocb->R[x] = ocb->L[x] ^ nonce[x];
     }
 
-    if ((err = cipher_descriptor[cipher].encrypt(ocb->R, ocb->R, &ocb->cs)) != NBSCrypto_OK) {
+    if ((err = cipher_descriptor[ocb->cipher].encrypt(ocb->R, ocb->R, &ocb->cs)) != NBSCrypto_OK) {
 	return err;
     }
 
@@ -213,7 +215,6 @@ int ocb_start(unsigned long cipher, const unsigned char *key, unsigned long keyl
     zeromem(ocb->checksum, ocb->block_len);
 
     ocb->block_index = 1;
-    ocb->cipher      = cipher;
 
     return NBSCrypto_OK;
 }
