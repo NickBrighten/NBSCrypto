@@ -78,23 +78,23 @@ int xts_start(unsigned long cipher, const unsigned char *key1, const unsigned ch
 {
     int err;
 
-    if ((err = is_cipher_valid(cipher)) != NBSCrypto_OK) {
+    xts->cipher = cipher;
+
+    if ((err = is_cipher_valid(xts->cipher)) != NBSCrypto_OK) {
 	return err;
     }
 
-    if (cipher_descriptor[cipher].block_length != 16) {
+    if (cipher_descriptor[xts->cipher].block_length != 16) {
 	return NBSCrypto_ERROR;
     }
 
-    if ((err = cipher_descriptor[cipher].setup(key1, keylen, num_rounds, &xts->cs1)) != NBSCrypto_OK) {
+    if ((err = cipher_descriptor[xts->cipher].setup(key1, keylen, num_rounds, &xts->cs1)) != NBSCrypto_OK) {
 	return err;
     }
 
-    if ((err = cipher_descriptor[cipher].setup(key2, keylen, num_rounds, &xts->cs2)) != NBSCrypto_OK) {
+    if ((err = cipher_descriptor[xts->cipher].setup(key2, keylen, num_rounds, &xts->cs2)) != NBSCrypto_OK) {
 	return err;
     }
-
-    xts->cipher = cipher;
 
     return NBSCrypto_OK;
 }

@@ -236,18 +236,19 @@ int lrw_start(unsigned long cipher, const unsigned char *iv, const unsigned char
 {
     int err;
 
-    if ((err = is_cipher_valid(cipher)) != NBSCrypto_OK) {
+    lrw->cipher = cipher;
+
+    if ((err = is_cipher_valid(lrw->cipher)) != NBSCrypto_OK) {
 	return err;
     }
 
-    if (cipher_descriptor[cipher].block_length != 16) {
+    if (cipher_descriptor[lrw->cipher].block_length != 16) {
 	return NBSCrypto_ERROR;
     }
 
-    if ((err = cipher_descriptor[cipher].setup(key1, keylen, num_rounds, &lrw->cs)) != NBSCrypto_OK) {
+    if ((err = cipher_descriptor[lrw->cipher].setup(key1, keylen, num_rounds, &lrw->cs)) != NBSCrypto_OK) {
 	return err;
     }
-    lrw->cipher = cipher;
 
     memcpy(lrw->tweak, key2, 16);
 

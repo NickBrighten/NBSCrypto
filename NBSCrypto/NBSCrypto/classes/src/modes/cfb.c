@@ -14,18 +14,19 @@ int cfb_start(unsigned long cipher, const unsigned char *iv, const unsigned char
 {
     int x, err;
 
-    if ((err = is_cipher_valid(cipher)) != NBSCrypto_OK) {
+    cfb->cipher = cipher;
+
+    if ((err = is_cipher_valid(cfb->cipher)) != NBSCrypto_OK) {
 	return err;
     }
 
-    cfb->cipher = cipher;
-    cfb->blocklen = cipher_descriptor[cipher].block_length;
+    cfb->blocklen = cipher_descriptor[cfb->cipher].block_length;
 
     for (x = 0; x < cfb->blocklen; x++) {
 	cfb->IV[x] = iv[x];
     }
 
-    if ((err = cipher_descriptor[cipher].setup(key, keylen, num_rounds, &cfb->cs)) != NBSCrypto_OK) {
+    if ((err = cipher_descriptor[cfb->cipher].setup(key, keylen, num_rounds, &cfb->cs)) != NBSCrypto_OK) {
 	return err;
     }
 

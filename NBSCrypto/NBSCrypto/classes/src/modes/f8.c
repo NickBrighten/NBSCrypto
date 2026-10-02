@@ -14,7 +14,7 @@
     do {						\
 	(y)[0] = (unsigned char)(((x)>>24)&255);	\
 	(y)[1] = (unsigned char)(((x)>>16)&255);	\
-	(y)[2] = (unsigned char)(((x)>>8)&255);		\
+	(y)[2] = (unsigned char)(((x)>> 8)&255);	\
 	(y)[3] = (unsigned char)((x)&255);		\
 } while(0)
 
@@ -33,7 +33,7 @@ int f8_start(unsigned long cipher, const unsigned char *iv, const unsigned char 
 
     f8->blockcnt = 0;
     f8->cipher   = cipher;
-    f8->blocklen = cipher_descriptor[cipher].block_length;
+    f8->blocklen = cipher_descriptor[f8->cipher].block_length;
     f8->padlen   = f8->blocklen;
 
     zeromem(tkey, sizeof(tkey));
@@ -50,7 +50,7 @@ int f8_start(unsigned long cipher, const unsigned char *iv, const unsigned char 
 	tkey[x] ^= 0x55;
     }
 
-    if ((err = cipher_descriptor[cipher].setup(tkey, keylen, num_rounds, &f8->cs)) != NBSCrypto_OK) {
+    if ((err = cipher_descriptor[f8->cipher].setup(tkey, keylen, num_rounds, &f8->cs)) != NBSCrypto_OK) {
 	return err;
     }
 
@@ -64,7 +64,7 @@ int f8_start(unsigned long cipher, const unsigned char *iv, const unsigned char 
 
     cipher_descriptor[f8->cipher].done(&f8->cs);
 
-    return cipher_descriptor[cipher].setup(key, keylen, num_rounds, &f8->cs);
+    return cipher_descriptor[f8->cipher].setup(key, keylen, num_rounds, &f8->cs);
 }
 
 int f8_encrypt(const unsigned char *pt, unsigned char *ct, unsigned long len, cm_F8 *f8)

@@ -259,24 +259,24 @@ int ocb3_start(unsigned long cipher, const unsigned char *key, unsigned long key
     int poly, x, y, m, err;
     unsigned char *previous, *current;
 
-
-    if ((err = is_cipher_valid(cipher)) != NBSCrypto_OK) {
-	return err;
-    }
     ocb->cipher = cipher;
 
-    if (cipher_descriptor[cipher].block_length != 16) {
+    if ((err = is_cipher_valid(ocb->cipher)) != NBSCrypto_OK) {
+	return err;
+    }
+
+    if (cipher_descriptor[ocb->cipher].block_length != 16) {
 	return NBSCrypto_ERROR;
     }
 
-    noncelen = (noncelen > cipher_descriptor[cipher].block_length) ? cipher_descriptor[cipher].block_length : noncelen;
+    noncelen = (noncelen > cipher_descriptor[ocb->cipher].block_length) ? cipher_descriptor[ocb->cipher].block_length : noncelen;
 
-    if (taglen > cipher_descriptor[cipher].block_length) {
+    if (taglen > cipher_descriptor[ocb->cipher].block_length) {
 	return NBSCrypto_ERROR;
     }
 
     ocb->tag_len = (int)taglen;
-    ocb->block_len = cipher_descriptor[cipher].block_length;
+    ocb->block_len = cipher_descriptor[ocb->cipher].block_length;
     x = (int)(sizeof(polys)/sizeof(polys[0]));
 
     for (poly = 0; poly < x; poly++) {
@@ -294,13 +294,13 @@ int ocb3_start(unsigned long cipher, const unsigned char *key, unsigned long key
 	return NBSCrypto_ERROR;
     }
 
-    if ((err = cipher_descriptor[cipher].setup(key, (int)keylen, 0, &ocb->cs)) != NBSCrypto_OK) {
+    if ((err = cipher_descriptor[ocb->cipher].setup(key, (int)keylen, 0, &ocb->cs)) != NBSCrypto_OK) {
 	return err;
     }
 
     zeromem(ocb->L_star, ocb->block_len);
 
-    if ((err = cipher_descriptor[cipher].encrypt(ocb->L_star, ocb->L_star, &ocb->cs)) != NBSCrypto_OK) {
+    if ((err = cipher_descriptor[ocb->cipher].encrypt(ocb->L_star, ocb->L_star, &ocb->cs)) != NBSCrypto_OK) {
 	return err;
     }
 

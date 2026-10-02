@@ -14,16 +14,17 @@ int cbc_start(unsigned long cipher, const unsigned char *iv, const unsigned char
 {
     int x, err;
 
-    if ((err = is_cipher_valid(cipher)) != NBSCrypto_OK) {
+    cbc->cipher = cipher;
+
+    if ((err = is_cipher_valid(cbc->cipher)) != NBSCrypto_OK) {
 	return err;
     }
 
-    if ((err = cipher_descriptor[cipher].setup(key, keylen, num_rounds, &cbc->cs)) != NBSCrypto_OK) {
+    if ((err = cipher_descriptor[cbc->cipher].setup(key, keylen, num_rounds, &cbc->cs)) != NBSCrypto_OK) {
 	return err;
     }
 
-    cbc->blocklen = cipher_descriptor[cipher].block_length;
-    cbc->cipher   = cipher;
+    cbc->blocklen = cipher_descriptor[cbc->cipher].block_length;
 
     for (x = 0; x < cbc->blocklen; x++) {
 	cbc->IV[x] = iv[x];

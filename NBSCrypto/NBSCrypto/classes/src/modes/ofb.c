@@ -14,12 +14,13 @@ int ofb_start(unsigned long cipher, const unsigned char *iv, const unsigned char
 {
     int x, err;
 
-    if ((err = is_cipher_valid(cipher)) != NBSCrypto_OK) {
+    ofb->cipher = cipher;
+
+    if ((err = is_cipher_valid(ofb->cipher)) != NBSCrypto_OK) {
 	return err;
     }
 
-    ofb->cipher = cipher;
-    ofb->blocklen = cipher_descriptor[cipher].block_length;
+    ofb->blocklen = cipher_descriptor[ofb->cipher].block_length;
 
     for (x = 0; x < ofb->blocklen; x++) {
 	ofb->IV[x] = iv[x];
@@ -27,7 +28,7 @@ int ofb_start(unsigned long cipher, const unsigned char *iv, const unsigned char
 
     ofb->padlen = ofb->blocklen;
 
-    return cipher_descriptor[cipher].setup(key, keylen, num_rounds, &ofb->cs);
+    return cipher_descriptor[ofb->cipher].setup(key, keylen, num_rounds, &ofb->cs);
 }
 
 int ofb_encrypt(const unsigned char *pt, unsigned char *ct, unsigned long len, cm_OFB *ofb)
