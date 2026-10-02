@@ -1,7 +1,7 @@
 //
 //	trivium.c
-//	Authors / Developers		: ???
-//	Last Modified (Original)	: ???
+//	Authors / Developers		: Christophe De Cannière, Bart Preneel
+//	Last Modified (Original)	: 2005
 //
 
 #include "nbs_crypto.h"
