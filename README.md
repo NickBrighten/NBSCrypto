@@ -210,6 +210,9 @@ Please have a look [here](https://help.github.com/articles/approving-a-pull-requ
 - __TEA__
     - BIT-LENGTH: `128`
     - MODES: `CBC` `CFB` `CTR` `EAX` `ECB` `F8` `OCB` `OFB`
+- __TRIVIUM__
+    - BIT-LENGTH: `80`
+    - MODES: `none`
 - __TWOFISH__
     - BIT-LENGTH: `128` `192` `256`
     - MODES: `CBC` `CCM` `CFB` `CTR` `EAX` `ECB` `F8` `GCM` `GCM-SIV` `LRW` `OCB` `OCB3` `OFB` `SIV` `XTS`
