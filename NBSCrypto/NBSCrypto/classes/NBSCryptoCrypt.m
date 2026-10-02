@@ -72,6 +72,7 @@ NSUInteger _mode;
 		case _CIPHER_SOBER128:		{r=&sober128_desc;break;}
 		case _CIPHER_SOSEMANUK:		{r=&sosemanuk_desc;break;}
 		case _CIPHER_TEA:		{r=&tea_desc;break;}
+		case _CIPHER_TRIVIUM:		{r=&trivium_desc;break;}
 		case _CIPHER_TWOFISH:		{r=&twofish_desc;break;}
 		case _CIPHER_XTEA:		{r=&xtea_desc;break;}
 		default:			{r=&aes_desc;break;}
@@ -115,7 +116,35 @@ NSUInteger _mode;
 }
 
 - (NSString*)_base64FromChar:(const unsigned char*)s withLength:(unsigned long)sl{
-    unsigned long oL=sl*2;
+    unsigned long oL;
+
+    switch (sl) {
+	case 0:{
+	    oL=2;
+	    break;
+	}
+	case 1:{
+	    oL=(sl*2)+3;
+	    break;
+	}
+	case 2:{
+	    oL=(sl*2)+2;
+	    break;
+	}
+	case 3:{
+	    oL=(sl*2);
+	    break;
+	}
+	case 4:{
+	    oL=(sl*2)+1;
+	    break;
+	}
+	default:{
+	    oL=(sl*2);
+	    break;
+	}
+    }
+
     char o[oL];
     base64_encode(s, sl, o, &oL);
     return [NSString stringWithCString:o encoding:NSUTF8StringEncoding];
@@ -167,6 +196,8 @@ const unsigned char* _charFromHex(const char* str)
     }else{
 	r=(((double)data.length/(double)blockLength)==(int)((double)data.length/(double)blockLength))?(ceil((double)data.length/((double)blockLength-1))*(double)blockLength):(ceil((double)data.length/(double)blockLength)*(double)blockLength);
     }
+
+    r = (r < blockLength) ? blockLength : r;
 
     return r;
 }
@@ -270,8 +301,12 @@ const unsigned char* _charFromHex(const char* str)
 		  (_mode == _CIPHER_MODE_XSALSA12) |
 		  (_mode == _CIPHER_MODE_XSALSA20)){
 	    sIV = [self _paddingString:sIV withLength:_BIT_LENGTH_192];
-	///GCM / GCM-SIV
-	}else if ((_mode == _CIPHER_MODE_GCM) | (_mode == _CIPHER_MODE_GCM_SIV)){
+	///GCM
+	}else if (_mode == _CIPHER_MODE_GCM){
+	    sIV = [self _paddingString:sIV withLength:_BIT_LENGTH_128];
+	    sAAD = [self _paddingString:sAAD withLength:_aad.length];
+	///GCM-SIV
+	}else if (_mode == _CIPHER_MODE_GCM_SIV){
 	    sIV = [self _paddingString:sIV withLength:_BIT_LENGTH_96];
 	    sAAD = [self _paddingString:sAAD withLength:_aad.length];
 	///ALL OTHERS
@@ -1451,6 +1486,44 @@ const unsigned char* _charFromHex(const char* str)
 	    }
 
 	    sosemanuk_done(&m);
+	    break;
+	}
+#pragma mark TRIVIUM
+	case _CIPHER_MODE_TRIVIUM:{
+	    cipher_state m;
+
+
+	    trivium_setup((const unsigned char *)[sKEY UTF8String], (int)sKEY.length, (const unsigned char *)[sIV UTF8String], (int)sIV.length, 0, &m);
+
+	    if (eod) {
+		unsigned long eTL=dTE.length;
+		unsigned char eT[eTL];
+		base64_decode(dTE.bytes, dTE.length, eT, &eTL);
+
+		unsigned long dTL=eTL;
+		unsigned char dT[dTL];
+		trivium_decrypt(eT, dT, dTL, &m);
+
+		r = [self _stringFromChar:dT withLength:dTL delHStr:false];
+	    }else{
+		unsigned long eTL=dTE.length;
+		unsigned char eT[eTL];
+		trivium_encrypt(dTE.bytes, eT, eTL, &m);
+
+		switch (_outputformat) {
+		    case 1:{ //BASE64
+			r = [self _base64FromChar:eT withLength:eTL];
+			break;
+		    }
+		    case 2:{ //HEX
+			r = [self _hexFromChar:eT withLength:eTL];
+			break;
+		    }
+		}
+
+	    }
+
+	    trivium_done(&m);
 	    break;
 	}
 #pragma mark XSALSA8
