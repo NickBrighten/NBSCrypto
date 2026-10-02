@@ -446,6 +446,10 @@
 		1D5BEB672FC9E16600865E11 /* bluemidnightwish.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D5BEB652FC9E16600865E11 /* bluemidnightwish.c */; };
 		1D5BEB682FC9E16600865E11 /* bluemidnightwish.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D5BEB652FC9E16600865E11 /* bluemidnightwish.c */; };
 		1D5BEB692FC9E16600865E11 /* bluemidnightwish.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D5BEB652FC9E16600865E11 /* bluemidnightwish.c */; };
+		1D7CAE0130680F720000EB2D /* trivium.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D7CAE0030680F720000EB2D /* trivium.c */; };
+		1D7CAE0230680F720000EB2D /* trivium.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D7CAE0030680F720000EB2D /* trivium.c */; };
+		1D7CAE0330680F720000EB2D /* trivium.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D7CAE0030680F720000EB2D /* trivium.c */; };
+		1D7CAE0430680F720000EB2D /* trivium.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D7CAE0030680F720000EB2D /* trivium.c */; };
 		1D8377752FCF5FC6008E8D31 /* blake3.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D8377742FCF5FC6008E8D31 /* blake3.c */; };
 		1D8377762FCF5FC6008E8D31 /* blake3.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D8377742FCF5FC6008E8D31 /* blake3.c */; };
 		1D8377772FCF5FC6008E8D31 /* blake3.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D8377742FCF5FC6008E8D31 /* blake3.c */; };
@@ -614,6 +618,7 @@
 		1D419ED92FC06DC9003A7B83 /* base32.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = base32.c; sourceTree = "<group>"; tabWidth = 8; };
 		1D4B76002FC5EFAD00159BB6 /* swifftx.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = swifftx.c; sourceTree = "<group>"; tabWidth = 8; };
 		1D5BEB652FC9E16600865E11 /* bluemidnightwish.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = bluemidnightwish.c; sourceTree = "<group>"; tabWidth = 8; };
+		1D7CAE0030680F720000EB2D /* trivium.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = trivium.c; sourceTree = "<group>"; tabWidth = 8; };
 		1D8377742FCF5FC6008E8D31 /* blake3.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = blake3.c; sourceTree = "<group>"; tabWidth = 8; };
 		1D8475EC2FDDB0C300E0836C /* pelican.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pelican.c; sourceTree = "<group>"; tabWidth = 8; };
 		1D983EA5301E68CB004F4985 /* kmac.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = kmac.c; sourceTree = "<group>"; tabWidth = 8; };
@@ -869,6 +874,7 @@
 				1D0B861A3002B24400F7AD70 /* sober128.c */,
 				1D0B861F3002B25000F7AD70 /* sosemanuk.c */,
 				1D419E542FC06D47003A7B83 /* tea.c */,
+				1D7CAE0030680F720000EB2D /* trivium.c */,
 				1D419E6C2FC06D48003A7B83 /* twofish.c */,
 				1D419E662FC06D48003A7B83 /* xtea.c */,
 			);
@@ -1138,6 +1144,7 @@
 				1D0B861B3002B24400F7AD70 /* sober128.c in Sources */,
 				1D0B86203002B25000F7AD70 /* sosemanuk.c in Sources */,
 				1D419E712FC06D49003A7B83 /* tea.c in Sources */,
+				1D7CAE0130680F720000EB2D /* trivium.c in Sources */,
 				1D419ED12FC06D4A003A7B83 /* twofish.c in Sources */,
 				1D419EB92FC06D49003A7B83 /* xtea.c in Sources */,
 				1D419E4A2FC06C98003A7B83 /* adler32.c in Sources */,
@@ -1258,6 +1265,7 @@
 				1D0B861C3002B24400F7AD70 /* sober128.c in Sources */,
 				1D0B86213002B25000F7AD70 /* sosemanuk.c in Sources */,
 				1D419E722FC06D49003A7B83 /* tea.c in Sources */,
+				1D7CAE0230680F720000EB2D /* trivium.c in Sources */,
 				1D419ED22FC06D4A003A7B83 /* twofish.c in Sources */,
 				1D419EBA2FC06D49003A7B83 /* xtea.c in Sources */,
 				1D419E4B2FC06C98003A7B83 /* adler32.c in Sources */,
@@ -1378,6 +1386,7 @@
 				1D0B861D3002B24400F7AD70 /* sober128.c in Sources */,
 				1D0B86223002B25000F7AD70 /* sosemanuk.c in Sources */,
 				1D419E732FC06D49003A7B83 /* tea.c in Sources */,
+				1D7CAE0330680F720000EB2D /* trivium.c in Sources */,
 				1D419ED32FC06D4A003A7B83 /* twofish.c in Sources */,
 				1D419EBB2FC06D49003A7B83 /* xtea.c in Sources */,
 				1D419E4C2FC06C98003A7B83 /* adler32.c in Sources */,
@@ -1498,6 +1507,7 @@
 				1D0B861E3002B24400F7AD70 /* sober128.c in Sources */,
 				1D0B86233002B25000F7AD70 /* sosemanuk.c in Sources */,
 				1D419E742FC06D49003A7B83 /* tea.c in Sources */,
+				1D7CAE0430680F720000EB2D /* trivium.c in Sources */,
 				1D419ED42FC06D4A003A7B83 /* twofish.c in Sources */,
 				1D419EBC2FC06D49003A7B83 /* xtea.c in Sources */,
 				1D419E4D2FC06C98003A7B83 /* adler32.c in Sources */,
@@ -1640,7 +1650,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 260926;
+				CURRENT_PROJECT_VERSION = 261002;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -1672,7 +1682,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 260926;
+				CURRENT_PROJECT_VERSION = 261002;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -1701,7 +1711,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 260926;
+				CURRENT_PROJECT_VERSION = 261002;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -1732,7 +1742,7 @@
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = NO;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 260926;
+				CURRENT_PROJECT_VERSION = 261002;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
