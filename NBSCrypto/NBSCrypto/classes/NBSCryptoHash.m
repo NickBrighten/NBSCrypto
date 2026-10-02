@@ -325,6 +325,7 @@ unsigned long _outputLengthMAC;
 		case _CIPHER_SOBER128:		{r=&sober128_desc;break;}
 		case _CIPHER_SOSEMANUK:		{r=&sosemanuk_desc;break;}
 		case _CIPHER_TEA:		{r=&tea_desc;break;}
+		case _CIPHER_TRIVIUM:		{r=&trivium_desc;break;}
 		case _CIPHER_TWOFISH:		{r=&twofish_desc;break;}
 		case _CIPHER_XTEA:		{r=&xtea_desc;break;}
 		default:			{r=&aes_desc;break;}
