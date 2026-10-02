@@ -9,10 +9,10 @@
 
 ---- BLAKE2B-160-BIT ------
 
-LEN    : 0
-MSG    : ""
-KEY    : "0123456789abcdef"
-MD     : be60ced691a9547c70345fd52a80ecd6a06c0ffa
+LEN  : 0
+MSG  : ""
+KEY  : "0123456789abcdef"
+MD   : be60ced691a9547c70345fd52a80ecd6a06c0ffa
 ---------------------------
 
 LEN	: 1
