@@ -61,7 +61,7 @@ const struct hash_descriptor simd_512_desc =
 
 #pragma mark - DEFINES
 
-#define C32(x) ((uint32_t)(x))
+#define C32(x) ((unsigned int)(x))
 #define T32(x) ((x) & C32(0xFFFFFFFF))
 #define ROTL32(x, n) T32(((x) << (n)) | ((x) >> (32 - (n))))
 #define ROTR32(x, n) ROTL32(x, (32 - (n)))
@@ -90,31 +90,31 @@ const int p8[4][8] = {
     {4,5,6,7,0,1,2,3}
 };
 
-static const uint32_t IV_224[] = {
+static const unsigned int IV_224[] = {
     0x2bcc3476, 0x64dce6a3, 0xbabf841b, 0xcf1bb3a2, 0x1389afa5, 0x8818544b, 0x83140916, 0x9525c82b,
     0x42b233fc, 0xf332c0dc, 0x597129f0, 0x7c8f6a8d, 0xfe2c7137, 0x3385203b, 0x841742af, 0xbcfe0e48
 };
 
-static const uint32_t IV_256[] = {
+static const unsigned int IV_256[] = {
     0x96301f14, 0x64f69407, 0x8450cc02, 0x42c538e3, 0x75ad94b4, 0x8b618939, 0x5a13cb35, 0x26141ded,
     0x2d83bbab, 0x0c195501, 0xcc0782ba, 0x356688a2, 0x5731b59d, 0xabff7dd4, 0xdb4cd0f5, 0x7240ec03
 };
 
-static const uint32_t IV_384[] = {
+static const unsigned int IV_384[] = {
     0x0d14da0d, 0x95c2d7d5, 0xa95b8260, 0xb4722c01, 0xe4be208b, 0x12cb4873, 0x67773662, 0x56a66d24,
     0xfba71944, 0x6e1b3ca0, 0x7d0b1a7c, 0xb506d742, 0xc417ab0b, 0xeb34f21c, 0xbab7945b, 0xd1ed927e,
     0xe65ced88, 0xb0667012, 0x916393e6, 0x4b0643ce, 0x4fbed3f1, 0x9627d2bc, 0xeb96513b, 0x9aa6c3e3,
     0xf8773176, 0x4c45a87d, 0xc3280609, 0xe6996ca4, 0x694e541f, 0x0e3dcf80, 0x042ab187, 0x71fb0b87
 };
 
-static const uint32_t IV_512[] = {
+static const unsigned int IV_512[] = {
     0xc2956828, 0x3da33320, 0x4149c566, 0xc49d9244, 0x04a3f1aa, 0x0220c98b, 0x7246bebf, 0xe51d9d96,
     0x39369835, 0xb7b6f593, 0x956d5c2e, 0x2e4e80c8, 0x1e9fc449, 0x84ca34e9, 0x17d45ec5, 0x27db1b31,
     0xd9ca7181, 0xcf8e8183, 0xe2f28feb, 0xe9aa51c5, 0xc5c2d649, 0x37c0b473, 0x07eef0a5, 0xdd23d692,
     0x4d6185f6, 0xbbdcbc6e, 0x753b2bf6, 0x7aac68ac, 0xeb672a56, 0xed8a5dcd, 0xb072020d, 0xb07cf71f
 };
 
-typedef uint32_t ( * boolean_function) (const uint32_t, const uint32_t, const uint32_t);
+typedef unsigned int ( * boolean_function) (const unsigned int, const unsigned int, const unsigned int);
 typedef int fft_t;
 
 
@@ -122,12 +122,12 @@ typedef int fft_t;
 
 #pragma mark - INLINE
 
-static inline uint32_t _IF(const uint32_t x, const uint32_t y, const uint32_t z)
+static inline unsigned int _IF(const unsigned int x, const unsigned int y, const unsigned int z)
 {
     return (x & y) | (~x & z);
 }
 
-static inline uint32_t _MAJ(const uint32_t x, const uint32_t y, const uint32_t z)
+static inline unsigned int _MAJ(const unsigned int x, const unsigned int y, const unsigned int z)
 {
     return (z & y) | ((z | y) & x);
 }
@@ -140,7 +140,7 @@ static inline void _increaseCounter(hash_state *hs, unsigned long inlen) {
     hs->simd.count += inlen;
 }
 
-static inline void _message_expansion(hash_state * const hs, uint32_t W[32][8], const unsigned char * const M, int final)
+static inline void _message_expansion(hash_state * const hs, unsigned int W[32][8], const unsigned char * const M, int final)
 {
     fft_t y[256];
 
@@ -151,7 +151,7 @@ static inline void _message_expansion(hash_state * const hs, uint32_t W[32][8], 
     int beta_i = 1;
     int j,i;
     int alpha_i = 1;
-    uint32_t Z[32][8];
+    unsigned int Z[32][8];
 
     const int fft_size = (n==4) ? 128 : 256;
     const int M_size = (n==4) ? 64 : 128;
@@ -187,19 +187,19 @@ static inline void _message_expansion(hash_state * const hs, uint32_t W[32][8], 
 
     for(i=0; i<16; i++){
 	for(j=0; j<n; j++){
-	    Z[i][j] = (((uint32_t) (y[2*i*n+2*j] * 185)) & 0xffff) | ((uint32_t) (y[2*i*n+2*j+1] * 185) << 16);
+	    Z[i][j] = (((unsigned int) (y[2*i*n+2*j] * 185)) & 0xffff) | ((unsigned int) (y[2*i*n+2*j+1] * 185) << 16);
 	}
     }
 
     for(i=0; i<8; i++){
 	for(j=0; j<n; j++){
-	    Z[i+16][j] = (((uint32_t) (y[2*i*n+2*j] * 233)) & 0xffff) | ((uint32_t) (y[2*i*n+2*j+fft_size/2] * 233) << 16);
+	    Z[i+16][j] = (((unsigned int) (y[2*i*n+2*j] * 233)) & 0xffff) | ((unsigned int) (y[2*i*n+2*j+fft_size/2] * 233) << 16);
 	}
     }
 
     for(i=0; i<8; i++){
 	for(j=0; j<n; j++){
-	    Z[i+24][j] = (((uint32_t) (y[2*i*n+2*j+1] * 233)) & 0xffff) | ((uint32_t) (y[2*i*n+2*j+fft_size/2+1] * 233) << 16);
+	    Z[i+24][j] = (((unsigned int) (y[2*i*n+2*j+1] * 233)) & 0xffff) | ((unsigned int) (y[2*i*n+2*j+fft_size/2+1] * 233) << 16);
 	}
     }
 
@@ -218,10 +218,10 @@ static inline int _simd_supported_length(int hashbitlen) {
     }
 }
 
-static inline void _simd_step(hash_state *hs, const uint32_t w[8], const int i, const int r, const int s, const boolean_function F)
+static inline void _simd_step(hash_state *hs, const unsigned int w[8], const int i, const int r, const int s, const boolean_function F)
 {
     int n = hs->simd.n_feistels;
-    uint32_t tmp[8];
+    unsigned int tmp[8];
     int j;
     const int * perm;
 
@@ -245,7 +245,7 @@ static inline void _simd_step(hash_state *hs, const uint32_t w[8], const int i, 
     }
 }
 
-static inline void _simd_round(hash_state * const hs, uint32_t w[32][8], const int i, const int r, const int s, const int t, const int u)
+static inline void _simd_round(hash_state * const hs, unsigned int w[32][8], const int i, const int r, const int s, const int t, const int u)
 {
     _simd_step(hs, w[8*i],   8*i,   r, s, _IF);
     _simd_step(hs, w[8*i+1], 8*i+1, s, t, _IF);
@@ -260,8 +260,8 @@ static inline void _simd_round(hash_state * const hs, uint32_t w[32][8], const i
 
 static inline void _simd_compress(hash_state * const hs, const unsigned char * const M, int final)
 {
-    uint32_t W[32][8];
-    uint32_t IV[4][8];
+    unsigned int W[32][8];
+    unsigned int IV[4][8];
     int i,j;
     const int n = hs->simd.n_feistels;
 
@@ -274,11 +274,11 @@ static inline void _simd_compress(hash_state * const hs, const unsigned char * c
 
     _message_expansion(hs, W,  M, final);
 
-#define PACK(i)(			\
-    (((uint32_t) M[i]))		^	\
-    (((uint32_t) M[i+1]) <<  8)	^	\
-    (((uint32_t) M[i+2]) << 16)	^	\
-    (((uint32_t) M[i+3]) << 24))
+#define PACK(i)(				\
+    (((unsigned int) M[i]))		^	\
+    (((unsigned int) M[i+1]) <<  8)	^	\
+    (((unsigned int) M[i+2]) << 16)	^	\
+    (((unsigned int) M[i+3]) << 24))
 
     for(j=0; j<n; j++){
 	hs->simd.A[j] ^= PACK(4*j);
@@ -300,7 +300,7 @@ static inline void _simd_compress(hash_state * const hs, const unsigned char * c
     _simd_step(hs, IV[3], 3, 9, 15, _IF);
 }
 
-static inline int _simd_init_iv(hash_state *hs, int hashbitlen, const uint32_t *IV)
+static inline int _simd_init_iv(hash_state *hs, int hashbitlen, const unsigned int *IV)
 {
     int n;
 
@@ -318,17 +318,17 @@ static inline int _simd_init_iv(hash_state *hs, int hashbitlen, const uint32_t *
     hs->simd.buffer = malloc(16*n + 16);
     hs->simd.buffer += ((unsigned char*)NULL - hs->simd.buffer)&15;
 
-    hs->simd.A = malloc((4*n+4)*sizeof(uint32_t));
-    hs->simd.A += ((uint32_t*)NULL - hs->simd.A)&3;
+    hs->simd.A = malloc((4*n+4)*sizeof(unsigned int));
+    hs->simd.A += ((unsigned int*)NULL - hs->simd.A)&3;
 
     hs->simd.B = hs->simd.A+n;
     hs->simd.C = hs->simd.B+n;
     hs->simd.D = hs->simd.C+n;
 
     if (IV)
-	memcpy(hs->simd.A, IV, 4*n*sizeof(uint32_t));
+	memcpy(hs->simd.A, IV, 4*n*sizeof(unsigned int));
     else
-	memset(hs->simd.A, 0, 4*n*sizeof(uint32_t));
+	memset(hs->simd.A, 0, 4*n*sizeof(unsigned int));
 
     return NBSCrypto_OK;
 }
@@ -437,7 +437,7 @@ int simd_done(hash_state *hs, unsigned char *out) {
     _simd_compress(hs, hs->simd.buffer, 1);
 
     for (i=0; i<2*hs->simd.n_feistels; i++) {
-	uint32_t x = hs->simd.A[i];
+	unsigned int x = hs->simd.A[i];
 	bs[4*i  ] = x&0xff;
 	x >>= 8;
 	bs[4*i+1] = x&0xff;
