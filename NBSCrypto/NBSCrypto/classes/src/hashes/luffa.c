@@ -66,15 +66,17 @@ const struct hash_descriptor luffa_512_desc =
     int _i = 8; while(_i--){x[_i] = BYTES_SWAP32(x[_i]);}	\
 }
 
-#define DIGEST_BIT_LEN_224 224
-#define DIGEST_BIT_LEN_256 256
-#define DIGEST_BIT_LEN_384 384
-#define DIGEST_BIT_LEN_512 512
+/*
+#define DBL_224 224
+#define DBL_256 256
+#define DBL_384 384
+#define DBL_512 512
+ */
 
-#define LIMIT_224 64
-#define LIMIT_256 64
-#define LIMIT_384 128
-#define LIMIT_512 128
+#define LIM_224  64
+#define LIM_256  64
+#define LIM_384 128
+#define LIM_512 128
 
 #define MSG_BLOCK_BIT_LEN 256
 #define MSG_BLOCK_BYTE_LEN (MSG_BLOCK_BIT_LEN >> 3)
@@ -382,29 +384,29 @@ static inline int _luffa_init(hash_state *hs, int hashbitlen)
     switch(hashbitlen) {
 
 	case 224:
-	    hs->luffa.limit = LIMIT_224/64;
-	    memset(hs->luffa.bitlen, 0, LIMIT_224/8);
+	    hs->luffa.limit = LIM_224/64;
+	    memset(hs->luffa.bitlen, 0, LIM_224/8);
 	    hs->luffa.width = WIDTH_224;
 	    memcpy(hs->luffa.chainv, IV, WIDTH_224*32);
 	    break;
 
 	case 256:
-	    hs->luffa.limit = LIMIT_256/64;
-	    memset(hs->luffa.bitlen, 0, LIMIT_256/8);
+	    hs->luffa.limit = LIM_256/64;
+	    memset(hs->luffa.bitlen, 0, LIM_256/8);
 	    hs->luffa.width = WIDTH_256;
 	    memcpy(hs->luffa.chainv, IV, WIDTH_256*32);
 	    break;
 
 	case 384:
-	    hs->luffa.limit = LIMIT_384/64;
-	    memset(hs->luffa.bitlen, 0, LIMIT_384/8);
+	    hs->luffa.limit = LIM_384/64;
+	    memset(hs->luffa.bitlen, 0, LIM_384/8);
 	    hs->luffa.width = WIDTH_384;
 	    memcpy(hs->luffa.chainv, IV, WIDTH_384*32);
 	    break;
 
 	case 512:
-	    hs->luffa.limit = LIMIT_512/64;
-	    memset(hs->luffa.bitlen, 0, LIMIT_512/8);
+	    hs->luffa.limit = LIM_512/64;
+	    memset(hs->luffa.bitlen, 0, LIM_512/8);
 	    hs->luffa.width = WIDTH_512;
 	    memcpy(hs->luffa.chainv, IV, WIDTH_512*32);
 	    break;

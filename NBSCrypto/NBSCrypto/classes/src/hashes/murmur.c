@@ -704,7 +704,7 @@ int murmur3c_done(hash_state *hs, unsigned char out[16])
 
 int murmur3f_done(hash_state *hs, unsigned char out[16])
 {
-    uint64_t h[2] = {0, 0};
+    unsigned long long h[2] = {0, 0};
     _murmur128x64_result(hs->murmur3f.h, hs->murmur3f.carry, hs->murmur3f.len, h);
 
     out[ 0] = (unsigned char)((h[0] >> 56) & 0xff);
