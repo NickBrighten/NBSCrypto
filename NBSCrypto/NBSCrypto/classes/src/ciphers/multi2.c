@@ -11,7 +11,7 @@
 const struct cipher_descriptor multi2_desc =
 {
     "multi2",
-    19,
+    20,
     40, 40, 8, 128,
     &multi2_setup,
     &multi2_encrypt,

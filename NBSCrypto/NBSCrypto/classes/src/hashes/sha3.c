@@ -16,7 +16,7 @@
 const struct hash_descriptor sha3_224_desc =
 {
     "sha3-224",
-    203,
+    204,
     28,
     144,
     &sha3_224_init,
@@ -28,7 +28,7 @@ const struct hash_descriptor sha3_224_desc =
 const struct hash_descriptor sha3_256_desc =
 {
     "sha3-256",
-    204,
+    205,
     32,
     136,
     &sha3_256_init,
@@ -40,7 +40,7 @@ const struct hash_descriptor sha3_256_desc =
 const struct hash_descriptor sha3_384_desc =
 {
     "sha3-384",
-    205,
+    206,
     48,
     104,
     &sha3_384_init,
@@ -52,7 +52,7 @@ const struct hash_descriptor sha3_384_desc =
 const struct hash_descriptor sha3_512_desc =
 {
     "sha3-512",
-    206,
+    207,
     64,
     72,
     &sha3_512_init,
@@ -135,7 +135,7 @@ const struct hash_descriptor keccak_512_desc =
 const struct hash_descriptor shake_128_desc =
 {
     "shake-128",
-    212,
+    213,
     16,
     168,
     &sha3_shake_128_init,
@@ -147,7 +147,7 @@ const struct hash_descriptor shake_128_desc =
 const struct hash_descriptor shake_256_desc =
 {
     "shake-256",
-    213,
+    214,
     32,
     136,
     &sha3_shake_256_init,

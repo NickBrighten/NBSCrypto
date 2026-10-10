@@ -5,8 +5,8 @@
 #include "nbs_crypto.h"
 
 
-#define CIPHER_TBL_SIZE	42
-#define HASH_TBL_SIZE	253
+#define CIPHER_TBL_SIZE	43
+#define HASH_TBL_SIZE	254
 
 
 #pragma mark - Hash Functions

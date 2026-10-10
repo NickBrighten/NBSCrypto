@@ -11,7 +11,7 @@
 const struct hash_descriptor murmur3a_desc =
 {
     "murmur3a",
-    189,
+    190,
     4,
     4,
     &murmur3a_init,
@@ -23,7 +23,7 @@ const struct hash_descriptor murmur3a_desc =
 const struct hash_descriptor murmur3c_desc =
 {
     "murmur3c",
-    190,
+    191,
     16,
     16,
     &murmur3c_init,
@@ -35,7 +35,7 @@ const struct hash_descriptor murmur3c_desc =
 const struct hash_descriptor murmur3f_desc =
 {
     "murmur3f",
-    191,
+    192,
     16,
     16,
     &murmur3f_init,
@@ -704,7 +704,7 @@ int murmur3c_done(hash_state *hs, unsigned char out[16])
 
 int murmur3f_done(hash_state *hs, unsigned char out[16])
 {
-    uint64_t h[2] = {0, 0};
+    unsigned long long h[2] = {0, 0};
     _murmur128x64_result(hs->murmur3f.h, hs->murmur3f.carry, hs->murmur3f.len, h);
 
     out[ 0] = (unsigned char)((h[0] >> 56) & 0xff);

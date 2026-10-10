@@ -11,7 +11,7 @@
 const struct hash_descriptor md6_128_desc =
 {
     "md6-128",
-    173,
+    174,
     16,
     64,
     &md6_128_init,
@@ -23,7 +23,7 @@ const struct hash_descriptor md6_128_desc =
 const struct hash_descriptor md6_160_desc =
 {
     "md6-160",
-    174,
+    175,
     20,
     64,
     &md6_160_init,
@@ -35,7 +35,7 @@ const struct hash_descriptor md6_160_desc =
 const struct hash_descriptor md6_192_desc =
 {
     "md6-192",
-    175,
+    176,
     24,
     64,
     &md6_192_init,
@@ -47,7 +47,7 @@ const struct hash_descriptor md6_192_desc =
 const struct hash_descriptor md6_224_desc =
 {
     "md6-224",
-    176,
+    177,
     28,
     64,
     &md6_224_init,
@@ -59,7 +59,7 @@ const struct hash_descriptor md6_224_desc =
 const struct hash_descriptor md6_256_desc =
 {
     "md6-256",
-    177,
+    178,
     32,
     64,
     &md6_256_init,
@@ -71,7 +71,7 @@ const struct hash_descriptor md6_256_desc =
 const struct hash_descriptor md6_384_desc =
 {
     "md6-384",
-    178,
+    179,
     48,
     64,
     &md6_384_init,
@@ -83,7 +83,7 @@ const struct hash_descriptor md6_384_desc =
 const struct hash_descriptor md6_512_desc =
 {
     "md6-512",
-    179,
+    180,
     64,
     64,
     &md6_512_init,
@@ -156,7 +156,7 @@ int md6_byte_order = 0;
 #define MD6_BIG_ENDIAN    (md6_byte_order == 2)
 
 
-static const uint64_t Q[15] =
+static const unsigned long long Q[15] =
 {
     0x7311c2812425cfa0ULL, 0x6432286434aac8e7ULL, 0xb60450e9ef68b7c1ULL,
     0xe8fb23908d9f06f1ULL, 0xdd2e76cba691e5bfULL, 0x0cd0d63b2c30bc41ULL,
@@ -165,12 +165,12 @@ static const uint64_t Q[15] =
     0xc878c1dd04c4b633ULL, 0x3b72066c7a1552acULL, 0x0d6f3522631effcbULL,
 };
 
-const uint64_t S0 = (uint64_t)0x0123456789abcdefULL;
-const uint64_t Smask = (uint64_t)0x7311c2812425cfa0ULL;
+const unsigned long long S0 =		(unsigned long long)0x0123456789abcdefULL;
+const unsigned long long Smask =	(unsigned long long)0x7311c2812425cfa0ULL;
 
 
-typedef uint64_t md6_control_word;
-typedef uint64_t md6_nodeID;
+typedef unsigned long long md6_control_word;
+typedef unsigned long long md6_nodeID;
 
 
 
@@ -178,17 +178,17 @@ typedef uint64_t md6_nodeID;
 #pragma mark - INLINE
 static inline void _md6_detect_byte_order(void)
 {
-    uint64_t x = 1 | (((uint64_t)2)<<(w-8));
+    unsigned long long x = 1 | (((unsigned long long)2)<<(w-8));
     unsigned char *cp = (unsigned char *)&x;
     if ( *cp == 1 )        md6_byte_order = 1;
     else if ( *cp == 2 )   md6_byte_order = 2;
     else                   md6_byte_order = 0;
 }
 
-static inline uint64_t _md6_byte_reverse(uint64_t x)
+static inline unsigned long long _md6_byte_reverse(unsigned long long x)
 {
-#define mask8  ((uint64_t)0x00ff00ff00ff00ffULL)
-#define mask16 ((uint64_t)0x0000ffff0000ffffULL)
+#define mask8  ((unsigned long long)0x00ff00ff00ff00ffULL)
+#define mask16 ((unsigned long long)0x0000ffff0000ffffULL)
 #if (w==64)
     x = (x << 32) | (x >> 32);
 #endif
@@ -202,7 +202,7 @@ static inline uint64_t _md6_byte_reverse(uint64_t x)
     return x;
 }
 
-static inline void _md6_reverse_little_endian(uint64_t *x, int count)
+static inline void _md6_reverse_little_endian(unsigned long long *x, int count)
 {
     int i;
     if (MD6_LITTLE_ENDIAN)
@@ -213,7 +213,7 @@ static inline void _md6_reverse_little_endian(uint64_t *x, int count)
 static inline void _md6_append_bits(unsigned char *dest, unsigned int destlen, unsigned char *src, unsigned int srclen)
 {
     int i, di, accumlen;
-    uint16_t accum;
+    unsigned short accum;
     int srcbytes;
 
     if (srclen == 0) return;
@@ -283,9 +283,9 @@ static inline int _md6_default_r(int d, int keylen)
     return r;
 }
 
-static inline void _md6_main_compression_loop(uint64_t *A , int r)
+static inline void _md6_main_compression_loop(unsigned long long *A , int r)
 {
-    uint64_t x, S;
+    unsigned long long x, S;
     int i,j;
 
     S = S0;
@@ -310,32 +310,32 @@ static inline void _md6_main_compression_loop(uint64_t *A , int r)
     }
 }
 
-static inline int _md6_compress(uint64_t *C, uint64_t *N, int r, uint64_t *A)
+static inline int _md6_compress(unsigned long long *C, unsigned long long *N, int r, unsigned long long *A)
 {
-    uint64_t *A_as_given = A;
+    unsigned long long *A_as_given = A;
 
     if ( N == NULL) return NBSCrypto_ERROR;
     if ( C == NULL) return NBSCrypto_ERROR;
     if ( r<0 || r > md6_max_r) return NBSCrypto_ERROR;
 
-    if ( A == NULL) A = calloc(r*c+n,sizeof(uint64_t));
+    if ( A == NULL) A = calloc(r*c+n,sizeof(unsigned long long));
     if ( A == NULL) return NBSCrypto_ERROR;
 
-    memcpy(A, N, n*sizeof(uint64_t) );
+    memcpy(A, N, n*sizeof(unsigned long long) );
 
     _md6_main_compression_loop( A, r );
 
-    memcpy(C, A+(r-1)*c+n, c*sizeof(uint64_t) );
+    memcpy(C, A+(r-1)*c+n, c*sizeof(unsigned long long) );
 
     if(A_as_given == NULL){
-	memset(A,0,(r*c+n)*sizeof(uint64_t));
+	memset(A,0,(r*c+n)*sizeof(unsigned long long));
 	free(A);
     }
 
     return NBSCrypto_OK;
 }
 
-static inline void _md6_pack(uint64_t *N, const uint64_t *Q, uint64_t *K, int ell, int i, int r, int L, int z, int p, int keylen, int d, uint64_t *B)
+static inline void _md6_pack(unsigned long long *N, const unsigned long long *Q, unsigned long long *K, int ell, int i, int r, int L, int z, int p, int keylen, int d, unsigned long long *B)
 {
     int j;
     int ni;
@@ -355,13 +355,13 @@ static inline void _md6_pack(uint64_t *N, const uint64_t *Q, uint64_t *K, int el
     memcpy((unsigned char *)&N[ni], &V, min(v*(w/8), sizeof(md6_control_word)));
     ni += v;
 
-    memcpy(N+ni,B,b*sizeof(uint64_t));
+    memcpy(N+ni,B,b*sizeof(unsigned long long));
 }
 
-static inline int _md6_standard_compress(uint64_t *C, const uint64_t *Q, uint64_t *K, int ell, int i, int r, int L, int z, int p, int keylen, int d, uint64_t *B)
+static inline int _md6_standard_compress(unsigned long long *C, const unsigned long long *Q, unsigned long long *K, int ell, int i, int r, int L, int z, int p, int keylen, int d, unsigned long long *B)
 {
-    uint64_t N[md6_n];
-    uint64_t A[5000];
+    unsigned long long N[md6_n];
+    unsigned long long A[5000];
 
     if ( C == NULL ) return NBSCrypto_ERROR;
     if ( B == NULL ) return NBSCrypto_ERROR;
@@ -378,7 +378,7 @@ static inline int _md6_standard_compress(uint64_t *C, const uint64_t *Q, uint64_
     return _md6_compress(C, N, r, A);
 }
 
-static inline int _md6_compress_block(uint64_t *C, hash_state *hs, int ell, int z)
+static inline int _md6_compress_block(unsigned long long *C, hash_state *hs, int ell, int z)
 {
     int p, err;
 
@@ -404,7 +404,7 @@ static inline int _md6_compress_block(uint64_t *C, hash_state *hs, int ell, int 
     hs->md6.bits[ell] = 0;
     hs->md6.i_for_level[ell]++;
 
-    memset(&(hs->md6.B[ell][0]), 0, b*sizeof(uint64_t));
+    memset(&(hs->md6.B[ell][0]), 0, b*sizeof(unsigned long long));
 
     return NBSCrypto_OK;
 }
@@ -412,7 +412,7 @@ static inline int _md6_compress_block(uint64_t *C, hash_state *hs, int ell, int 
 static inline int _md6_internal_process(hash_state *hs, int ell, int final)
 {
     int err, z, next_level;
-    uint64_t C[c];
+    unsigned long long C[c];
 
     if ( hs == NULL) return NBSCrypto_ERROR;
     if ( hs->md6.initialized == 0 ) return NBSCrypto_ERROR;
@@ -455,7 +455,7 @@ static inline int _md6_internal_process(hash_state *hs, int ell, int final)
     return _md6_internal_process(hs, next_level, final);
 }
 
-static inline int md6_full_init(hash_state *hs, int d, unsigned char *key, int keylen, int L, int r)
+static inline int _md6_full_init(hash_state *hs, int d, unsigned char *key, int keylen, int L, int r)
 {
     if (hs == NULL) return NBSCrypto_ERROR;
     if ( (key != NULL) && ((keylen < 0) || (keylen > k*(w/8))) )
@@ -485,10 +485,10 @@ static inline int md6_full_init(hash_state *hs, int d, unsigned char *key, int k
 
 static inline int _init_md6(hash_state *hs, int d)
 {
-    return md6_full_init(hs, d, NULL, 0, md6_default_L, _md6_default_r(d, 0));
+    return _md6_full_init(hs, d, NULL, 0, md6_default_L, _md6_default_r(d, 0));
 }
 
-static inline int _update_md6(hash_state *hs, unsigned char *data, uint64_t databitlen)
+static inline int _update_md6(hash_state *hs, unsigned char *data, unsigned long long databitlen)
 {
     unsigned int j, portion_size;
     int err;
@@ -536,7 +536,7 @@ static inline int _final_md6(hash_state *hs, unsigned char *hashval)
     err = _md6_internal_process(hs, ell, 1);
     if (err) return err;
 
-    _md6_reverse_little_endian((uint64_t*)hs->md6.hashval, c);
+    _md6_reverse_little_endian((unsigned long long *)hs->md6.hashval, c);
     if (hashval != NULL) memcpy(hashval, hs->md6.hashval, (hs->md6.d+7)/8);
 
     hs->md6.finalized = 1;
@@ -567,7 +567,7 @@ int md6_512_init(hash_state *hs){return _md6_init(hs, 512);}
 
 int md6_process(hash_state *hs, const unsigned char *in, unsigned long inlen)
 {
-    return _update_md6(hs, (unsigned char *)in, (uint64_t)inlen);
+    return _update_md6(hs, (unsigned char *)in, (unsigned long long)inlen);
 }
 
 int md6_done(hash_state *hs, unsigned char *out)

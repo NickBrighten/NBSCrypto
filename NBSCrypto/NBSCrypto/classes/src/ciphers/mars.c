@@ -11,7 +11,7 @@
 const struct cipher_descriptor mars_desc =
 {
     "mars",
-    18,
+    19,
     16, 56, 16, 16,
     &mars_setup,
     &mars_encrypt,

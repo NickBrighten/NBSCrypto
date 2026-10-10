@@ -12,7 +12,7 @@
 const struct hash_descriptor swifftx_224_desc =
 {
     "swifftx-224",
-    233,
+    234,
     28,
     64,
     &swifftx_224_init,
@@ -24,7 +24,7 @@ const struct hash_descriptor swifftx_224_desc =
 const struct hash_descriptor swifftx_256_desc =
 {
     "swifftx-256",
-    234,
+    235,
     32,
     64,
     &swifftx_256_init,
@@ -36,7 +36,7 @@ const struct hash_descriptor swifftx_256_desc =
 const struct hash_descriptor swifftx_384_desc =
 {
     "swifftx-384",
-    235,
+    236,
     48,
     64,
     &swifftx_384_init,
@@ -48,7 +48,7 @@ const struct hash_descriptor swifftx_384_desc =
 const struct hash_descriptor swifftx_512_desc =
 {
     "swifftx-512",
-    236,
+    237,
     64,
     64,
     &swifftx_512_init,
@@ -620,12 +620,12 @@ static inline void _swifftx_initialize()
     _swifftx_calc_omega_powers();
 }
 
-static inline void _swifft_compute_single(unsigned char *input, unsigned short m, unsigned char output[SWIFFTX_OUTPUT_BLOCK_SIZE], const int16_t *a)
+static inline void _swifft_compute_single(unsigned char *input, unsigned short m, unsigned char output[SWIFFTX_OUTPUT_BLOCK_SIZE], const short *a)
 {
     int i, j;
-    uint8_t carry = 0;
+    unsigned char carry = 0;
     const unsigned char *in = input;
-    int32_t result[N] = {0};
+    int result[N] = {0};
 
     for(j = 0; j < m; ++j, in += 8, a += 64){
 	int inputBits[N];
@@ -691,7 +691,7 @@ static inline void _swifftx_compute_single(unsigned char input[SWIFFTX_INPUT_BLO
     _swifft_compute_single(intermediate, (3 * EIGHTH_N) + 1 , output, As);
 
     if(doSmooth){
-	uint8_t outputBits[(N + 1) * 8];
+	unsigned char outputBits[(N + 1) * 8];
 	int i, j;
 
 	for(i = 0; i < (N + 1) * 8; ++i){

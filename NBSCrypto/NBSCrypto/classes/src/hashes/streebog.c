@@ -11,7 +11,7 @@
 const struct hash_descriptor streebog_256_desc =
 {
     "streebog-256",
-    231,
+    232,
     32,
     64,
     &streebog_256_init,
@@ -23,7 +23,7 @@ const struct hash_descriptor streebog_256_desc =
 const struct hash_descriptor streebog_512_desc =
 {
     "streebog-512",
-    232,
+    233,
     64,
     64,
     &streebog_512_init,

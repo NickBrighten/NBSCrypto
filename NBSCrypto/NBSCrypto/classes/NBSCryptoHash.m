@@ -176,6 +176,7 @@ unsigned long _outputLengthMAC;
 	case NBSCrypto_HASH_KECCAK_256:			{r=&keccak_256_desc;break;}
 	case NBSCrypto_HASH_KECCAK_384:			{r=&keccak_384_desc;break;}
 	case NBSCrypto_HASH_KECCAK_512:			{r=&keccak_512_desc;break;}
+	case NBSCrypto_HASH_KOMIHASH:			{r=&komihash_desc;break;}
 	case NBSCrypto_HASH_KUPYNA_256:			{r=&kupyna_256_desc;break;}
 	case NBSCrypto_HASH_KUPYNA_512:			{r=&kupyna_512_desc;break;}
 	case NBSCrypto_HASH_LANE_224:			{r=&lane_224_desc;break;}
@@ -303,6 +304,7 @@ unsigned long _outputLengthMAC;
 		case _CIPHER_KHAZAD:		{r=&khazad_desc;break;}
 		case _CIPHER_KUZNYECHIK:	{r=&kuznyechik_desc;break;}
 		case _CIPHER_LEA:		{r=&lea_desc;break;}
+		case _CIPHER_MAGMA:		{r=&magma_desc;break;}
 		case _CIPHER_MARS:		{r=&mars_desc;break;}
 		case _CIPHER_MULTI2:		{r=&multi2_desc;break;}
 		case _CIPHER_NOEKEON:		{r=&noekeon_desc;break;}

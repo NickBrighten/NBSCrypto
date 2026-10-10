@@ -12,7 +12,7 @@
 const struct hash_descriptor skein_224_desc =
 {
     "skein-224",
-    224,
+    225,
     28,
     128,
     &skein_224_init,
@@ -24,7 +24,7 @@ const struct hash_descriptor skein_224_desc =
 const struct hash_descriptor skein_256_desc =
 {
     "skein-256",
-    225,
+    226,
     32,
     128,
     &skein_256_init,
@@ -36,7 +36,7 @@ const struct hash_descriptor skein_256_desc =
 const struct hash_descriptor skein_384_desc =
 {
     "skein-384",
-    226,
+    227,
     48,
     128,
     &skein_384_init,
@@ -48,7 +48,7 @@ const struct hash_descriptor skein_384_desc =
 const struct hash_descriptor skein_512_desc =
 {
     "skein-512",
-    227,
+    228,
     64,
     128,
     &skein_512_init,
@@ -60,7 +60,7 @@ const struct hash_descriptor skein_512_desc =
 const struct hash_descriptor skein_1024_desc =
 {
     "skein-1024",
-    228,
+    229,
     128,
     128,
     &skein_1024_init,
