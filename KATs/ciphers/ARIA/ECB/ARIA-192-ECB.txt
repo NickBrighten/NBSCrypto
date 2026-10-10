@@ -1,0 +1,27 @@
+╭╮╷╭╮ ╭─╮╭─╴╭─╮╷ ╷╭─╮╶┬╴╭─╮
+│╰┤├┴╮╰─╮│  ├┬╯╰┬╯├─╯ │ │ │
+╵ ╵╰─╯╰─╯╰─╴╵╰╴ ╵ ╵   ╵ ╰─╯
+
+###########################
+##  ARIA-192-ECB - KAT   ##
+###########################
+
+
+LEN           : 1
+MSG           : " "
+KEY           : "0123456789abcdef"
+OUT - base64  : DlnuYvmZP0zc1GRugtsc5g==
+---------------------------
+
+LEN           : 5
+MSG           : "H    "
+KEY           : "0123456789abcdef"
+OUT - base64  : +dbcJubDB7o74h3VwPZrew==
+---------------------------
+
+LEN           : 16
+MSG           : "0123456789abcdef"
+KEY           : "0123456789abcdef"
+OUT - base64  : EaE12mTicqsGWA14DywoTKG95jb9C9lnEVJnza+XBpk=
+
+###########################

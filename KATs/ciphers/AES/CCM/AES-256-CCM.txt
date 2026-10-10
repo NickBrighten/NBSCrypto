@@ -1,0 +1,36 @@
+╭╮╷╭╮ ╭─╮╭─╴╭─╮╷ ╷╭─╮╶┬╴╭─╮
+│╰┤├┴╮╰─╮│  ├┬╯╰┬╯├─╯ │ │ │
+╵ ╵╰─╯╰─╯╰─╴╵╰╴ ╵ ╵   ╵ ╰─╯
+
+###########################
+##   AES-256-CCM - KAT   ##
+###########################
+
+
+LEN           : 1
+MSG           : " "
+KEY           : "0123456789abcdef"
+IV / NONCE    : "0123456789ab"
+AAD / HEADER  : "0123456789abcdef"
+TAG - base64  : 8ogJmv5FQxfGAne4QK77Qw==
+OUT - base64  : 1g==
+---------------------------
+
+LEN           : 5
+MSG           : "H    "
+KEY           : "0123456789abcdef"
+IV / NONCE    : "0123456789ab"
+AAD / HEADER  : "0123456789abcdef"
+TAG - base64  : +B049VcKX8tn0/iCz3H8PQ==
+OUT - base64  : vnlRM4g=
+---------------------------
+
+LEN           : 16
+MSG           : "0123456789abcdef"
+KEY           : "0123456789abcdef"
+IV / NONCE    : "0123456789ab"
+AAD / HEADER  : "0123456789abcdef"
+TAG - base64  : eR4eVW6I/TGR7ctO4nFGkQ==
+OUT - base64  : xmhDIJySEvR5yud9yDHFqA==
+
+###########################

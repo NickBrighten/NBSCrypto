@@ -1,0 +1,36 @@
+╭╮╷╭╮ ╭─╮╭─╴╭─╮╷ ╷╭─╮╶┬╴╭─╮
+│╰┤├┴╮╰─╮│  ├┬╯╰┬╯├─╯ │ │ │
+╵ ╵╰─╯╰─╯╰─╴╵╰╴ ╵ ╵   ╵ ╰─╯
+
+###########################
+##   AES-192-CCM - KAT   ##
+###########################
+
+
+LEN           : 1
+MSG           : " "
+KEY           : "0123456789abcdef"
+IV / NONCE    : "0123456789ab"
+AAD / HEADER  : "0123456789abcdef"
+TAG - base64  : sVnNAy0K5gHWPKm1BsqRgA==
+OUT - base64  : Qw==
+---------------------------
+
+LEN           : 5
+MSG           : "H    "
+KEY           : "0123456789abcdef"
+IV / NONCE    : "0123456789ab"
+AAD / HEADER  : "0123456789abcdef"
+TAG - base64  : LpJRvgORKN8iUhijje5nFg==
+OUT - base64  : KzBs5A4=
+---------------------------
+
+LEN           : 16
+MSG           : "0123456789abcdef"
+KEY           : "0123456789abcdef"
+IV / NONCE    : "0123456789ab"
+AAD / HEADER  : "0123456789abcdef"
+TAG - base64  : YUInoZUb1alIVRTsXg2j1A==
+OUT - base64  : UyF+9xpfCDDERe7Nr14ONw==
+
+###########################

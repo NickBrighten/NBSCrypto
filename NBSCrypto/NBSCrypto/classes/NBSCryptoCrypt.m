@@ -306,8 +306,8 @@ const unsigned char* _charFromHex(const char* str)
 	}else if (_mode == _CIPHER_MODE_GCM){
 	    sIV = [self _paddingString:sIV withLength:_BIT_LENGTH_128];
 	    sAAD = [self _paddingString:sAAD withLength:_aad.length];
-	///GCM-SIV
-	}else if (_mode == _CIPHER_MODE_GCM_SIV){
+	///CCM & GCM-SIV
+	}else if ((_mode == _CIPHER_MODE_CCM) | (_mode == _CIPHER_MODE_GCM_SIV)){
 	    sIV = [self _paddingString:sIV withLength:_BIT_LENGTH_96];
 	    sAAD = [self _paddingString:sAAD withLength:_aad.length];
 	///ALL OTHERS
