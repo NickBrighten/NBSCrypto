@@ -11,7 +11,7 @@
 const struct cipher_descriptor noekeon_desc =
 {
     "noekeon",
-    20,
+    21,
     16, 16, 16, 16,
     &noekeon_setup,
     &noekeon_encrypt,
