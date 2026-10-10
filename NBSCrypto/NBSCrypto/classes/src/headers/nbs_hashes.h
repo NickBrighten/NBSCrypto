@@ -148,6 +148,13 @@ struct joaat_state{
     unsigned state;
 };
 
+struct komihash_state{
+    unsigned char pb[8], Buf[786];
+    unsigned long long Seed[ 8 ];
+    size_t BufFill;
+    size_t IsHashing;
+};
+
 union kupyna256_t{uint64_t q[8];uint8_t b[64];};
 struct kupyna256_state {
     size_t pos;
@@ -396,6 +403,7 @@ typedef union hash_state{
     struct jh_state			jh;
     struct joaat_state			joaat;
     struct kangarootwelve_state		kangarootwelve;
+    struct komihash_state		komihash;
     struct kupyna256_state		kupyna256;
     struct kupyna512_state		kupyna512;
     struct lane_state			lane;
@@ -845,6 +853,13 @@ int joaat_init(hash_state *hs);
 int joaat_process(hash_state *hs, const unsigned char *in, unsigned long inlen);
 int joaat_done(hash_state *hs, unsigned char *out);
 extern const struct hash_descriptor joaat_desc;
+
+
+#pragma mark KOMIHASH
+int komihash_init(hash_state *hs);
+int komihash_process(hash_state *hs, const unsigned char *in, unsigned long inlen);
+int komihash_done(hash_state *hs, unsigned char *out);
+extern const struct hash_descriptor komihash_desc;
 
 
 #pragma mark KUPYNA
