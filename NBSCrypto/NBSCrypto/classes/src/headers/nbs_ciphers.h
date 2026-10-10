@@ -79,6 +79,10 @@ struct lea_state{
     unsigned int rk[192], round;
 };
 
+struct magma_state{
+    unsigned char k[32][32];
+};
+
 struct mars_state{
     unsigned int k[40];
 };
@@ -202,6 +206,7 @@ typedef union cipher_state{
     struct khazad_state		khazad;
     struct kuznyechik_state	kuznyechik;
     struct lea_state		lea;
+    struct magma_state		magma;
     struct mars_state		mars;
     struct multi2_state		multi2;
     struct noekeon_state	noekeon;
@@ -399,6 +404,14 @@ int  lea_encrypt(const unsigned char *pt, unsigned char *ct, const cipher_state 
 int  lea_decrypt(const unsigned char *ct, unsigned char *pt, const cipher_state *cs);
 void lea_done(cipher_state *cs);
 extern const struct cipher_descriptor lea_desc;
+
+
+#pragma mark MAGMA
+int  magma_setup(const unsigned char *key, int keylen, int num_rounds, cipher_state *cs);
+int  magma_encrypt(const unsigned char *pt, unsigned char *ct, const cipher_state *cs);
+int  magma_decrypt(const unsigned char *ct, unsigned char *pt, const cipher_state *cs);
+void magma_done(cipher_state *cs);
+extern const struct cipher_descriptor magma_desc;
 
 
 #pragma mark MARS

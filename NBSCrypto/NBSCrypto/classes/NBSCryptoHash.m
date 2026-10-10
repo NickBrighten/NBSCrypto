@@ -304,6 +304,7 @@ unsigned long _outputLengthMAC;
 		case _CIPHER_KHAZAD:		{r=&khazad_desc;break;}
 		case _CIPHER_KUZNYECHIK:	{r=&kuznyechik_desc;break;}
 		case _CIPHER_LEA:		{r=&lea_desc;break;}
+		case _CIPHER_MAGMA:		{r=&magma_desc;break;}
 		case _CIPHER_MARS:		{r=&mars_desc;break;}
 		case _CIPHER_MULTI2:		{r=&multi2_desc;break;}
 		case _CIPHER_NOEKEON:		{r=&noekeon_desc;break;}

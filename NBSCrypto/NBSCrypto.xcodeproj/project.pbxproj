@@ -482,6 +482,10 @@
 		1DB89B1C300A604000350E39 /* salsa.c in Sources */ = {isa = PBXBuildFile; fileRef = 1DB89B1A300A604000350E39 /* salsa.c */; };
 		1DB89B1D300A604000350E39 /* salsa.c in Sources */ = {isa = PBXBuildFile; fileRef = 1DB89B1A300A604000350E39 /* salsa.c */; };
 		1DB89B1E300A604000350E39 /* salsa.c in Sources */ = {isa = PBXBuildFile; fileRef = 1DB89B1A300A604000350E39 /* salsa.c */; };
+		1DBC74B3307A829D0040BB94 /* magma.c in Sources */ = {isa = PBXBuildFile; fileRef = 1DBC74B2307A829D0040BB94 /* magma.c */; };
+		1DBC74B4307A829D0040BB94 /* magma.c in Sources */ = {isa = PBXBuildFile; fileRef = 1DBC74B2307A829D0040BB94 /* magma.c */; };
+		1DBC74B5307A829D0040BB94 /* magma.c in Sources */ = {isa = PBXBuildFile; fileRef = 1DBC74B2307A829D0040BB94 /* magma.c */; };
+		1DBC74B6307A829D0040BB94 /* magma.c in Sources */ = {isa = PBXBuildFile; fileRef = 1DBC74B2307A829D0040BB94 /* magma.c */; };
 		1DE68D442FEAE7570035A45E /* md6.c in Sources */ = {isa = PBXBuildFile; fileRef = 1DE68D432FEAE7570035A45E /* md6.c */; };
 		1DE68D452FEAE7570035A45E /* md6.c in Sources */ = {isa = PBXBuildFile; fileRef = 1DE68D432FEAE7570035A45E /* md6.c */; };
 		1DE68D462FEAE7570035A45E /* md6.c in Sources */ = {isa = PBXBuildFile; fileRef = 1DE68D432FEAE7570035A45E /* md6.c */; };
@@ -631,6 +635,7 @@
 		1DA577D4302797BC00494005 /* siv.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = siv.c; sourceTree = "<group>"; tabWidth = 8; };
 		1DB25A652FC7630900E0D9E3 /* chi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = chi.c; sourceTree = "<group>"; tabWidth = 8; };
 		1DB89B1A300A604000350E39 /* salsa.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = salsa.c; sourceTree = "<group>"; tabWidth = 8; };
+		1DBC74B2307A829D0040BB94 /* magma.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = magma.c; sourceTree = "<group>"; tabWidth = 8; };
 		1DE68D432FEAE7570035A45E /* md6.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = md6.c; sourceTree = "<group>"; tabWidth = 8; };
 		1DF2D29430792BF2002370D1 /* komihash.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = komihash.h; sourceTree = "<group>"; };
 		1DF2D29530792C30002370D1 /* komihash.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = komihash.c; sourceTree = "<group>"; tabWidth = 8; };
@@ -864,6 +869,7 @@
 				1D419E612FC06D48003A7B83 /* khazad.c */,
 				1D2E690A2FFD724B00E6A753 /* kuznyechik.c */,
 				1D419E572FC06D47003A7B83 /* lea.c */,
+				1DBC74B2307A829D0040BB94 /* magma.c */,
 				1D419E5D2FC06D47003A7B83 /* mars.c */,
 				1D1BA886300C181E00D6D33D /* multi2.c */,
 				1D419E532FC06D47003A7B83 /* noekeon.c */,
@@ -1134,6 +1140,7 @@
 				1D419EA52FC06D49003A7B83 /* khazad.c in Sources */,
 				1D2E690B2FFD724B00E6A753 /* kuznyechik.c in Sources */,
 				1D419E7D2FC06D49003A7B83 /* lea.c in Sources */,
+				1DBC74B3307A829D0040BB94 /* magma.c in Sources */,
 				1D419E952FC06D49003A7B83 /* mars.c in Sources */,
 				1D1BA887300C181E00D6D33D /* multi2.c in Sources */,
 				1D419E6D2FC06D48003A7B83 /* noekeon.c in Sources */,
@@ -1256,6 +1263,7 @@
 				1D419EA62FC06D49003A7B83 /* khazad.c in Sources */,
 				1D2E690C2FFD724B00E6A753 /* kuznyechik.c in Sources */,
 				1D419E7E2FC06D49003A7B83 /* lea.c in Sources */,
+				1DBC74B4307A829D0040BB94 /* magma.c in Sources */,
 				1D419E962FC06D49003A7B83 /* mars.c in Sources */,
 				1D1BA888300C181E00D6D33D /* multi2.c in Sources */,
 				1D419E6E2FC06D49003A7B83 /* noekeon.c in Sources */,
@@ -1378,6 +1386,7 @@
 				1D419EA72FC06D49003A7B83 /* khazad.c in Sources */,
 				1D2E690D2FFD724B00E6A753 /* kuznyechik.c in Sources */,
 				1D419E7F2FC06D49003A7B83 /* lea.c in Sources */,
+				1DBC74B5307A829D0040BB94 /* magma.c in Sources */,
 				1D419E972FC06D49003A7B83 /* mars.c in Sources */,
 				1D1BA889300C181E00D6D33D /* multi2.c in Sources */,
 				1D419E6F2FC06D49003A7B83 /* noekeon.c in Sources */,
@@ -1500,6 +1509,7 @@
 				1D419EA82FC06D49003A7B83 /* khazad.c in Sources */,
 				1D2E690E2FFD724B00E6A753 /* kuznyechik.c in Sources */,
 				1D419E802FC06D49003A7B83 /* lea.c in Sources */,
+				1DBC74B6307A829D0040BB94 /* magma.c in Sources */,
 				1D419E982FC06D49003A7B83 /* mars.c in Sources */,
 				1D1BA88A300C181E00D6D33D /* multi2.c in Sources */,
 				1D419E702FC06D49003A7B83 /* noekeon.c in Sources */,
