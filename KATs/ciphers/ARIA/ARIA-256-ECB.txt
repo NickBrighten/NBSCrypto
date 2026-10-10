@@ -1,0 +1,27 @@
+╭╮╷╭╮ ╭─╮╭─╴╭─╮╷ ╷╭─╮╶┬╴╭─╮
+│╰┤├┴╮╰─╮│  ├┬╯╰┬╯├─╯ │ │ │
+╵ ╵╰─╯╰─╯╰─╴╵╰╴ ╵ ╵   ╵ ╰─╯
+
+###########################
+##  ARIA-256-ECB - KAT   ##
+###########################
+
+
+LEN           : 1
+MSG           : " "
+KEY           : "0123456789abcdef"
+OUT - base64  : xEKdIi0lsD+cH+c0D7Zf9Q==
+---------------------------
+
+LEN           : 5
+MSG           : "H    "
+KEY           : "0123456789abcdef"
+OUT - base64  : kSqzAV1dtPa9DXfubPM8ag==
+---------------------------
+
+LEN           : 16
+MSG           : "0123456789abcdef"
+KEY           : "0123456789abcdef"
+OUT - base64  : KATrHBfKlELPfnHWV7fMWI4nyuY3uczPBko2M7JFoeg=
+
+###########################
