@@ -21,8 +21,8 @@ MSG           : "H    "
 KEY           : "0123456789abcdef"
 IV / NONCE    : "0123456789ab"
 AAD / HEADER  : "0123456789abcdef"
-TAG - base64  : wBswkw8=
-OUT - base64  : pyuqPKTbO8yE11o4OGvcPg==
+TAG - base64  : ZUEGDStcuuEKnrj6DgtoVQ==
+OUT - base64  : wBswkw8=
 ---------------------------
 
 LEN           : 16
