@@ -11,7 +11,7 @@
 const struct hash_descriptor luffa_224_desc =
 {
     "luffa-224",
-    166,
+    167,
     28,
     32,
     &luffa_224_init,
@@ -23,7 +23,7 @@ const struct hash_descriptor luffa_224_desc =
 const struct hash_descriptor luffa_256_desc =
 {
     "luffa-256",
-    167,
+    168,
     32,
     32,
     &luffa_256_init,
@@ -35,7 +35,7 @@ const struct hash_descriptor luffa_256_desc =
 const struct hash_descriptor luffa_384_desc =
 {
     "luffa-384",
-    168,
+    169,
     48,
     32,
     &luffa_384_init,
@@ -47,7 +47,7 @@ const struct hash_descriptor luffa_384_desc =
 const struct hash_descriptor luffa_512_desc =
 {
     "luffa-512",
-    169,
+    170,
     64,
     32,
     &luffa_512_init,
