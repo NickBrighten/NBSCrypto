@@ -1,0 +1,27 @@
+╭╮╷╭╮ ╭─╮╭─╴╭─╮╷ ╷╭─╮╶┬╴╭─╮
+│╰┤├┴╮╰─╮│  ├┬╯╰┬╯├─╯ │ │ │
+╵ ╵╰─╯╰─╯╰─╴╵╰╴ ╵ ╵   ╵ ╰─╯
+
+###########################
+##  ARIA-128-CBC - KAT   ##
+###########################
+
+
+LEN           : 1
+MSG           : " "
+KEY           : "0123456789abcdef"
+OUT - base64  : LujkTL2CDZY43jqnWrbspg==
+---------------------------
+
+LEN           : 5
+MSG           : "H    "
+KEY           : "0123456789abcdef"
+OUT - base64  : 1VLu77fMoSyuTrJRCCGjkg==
+---------------------------
+
+LEN           : 16
+MSG           : "0123456789abcdef"
+KEY           : "0123456789abcdef"
+OUT - base64  : PsppLZJB+ffSUqDjrJJlLeyPrt3FohEb7NUFhH3KDX0=
+
+###########################
