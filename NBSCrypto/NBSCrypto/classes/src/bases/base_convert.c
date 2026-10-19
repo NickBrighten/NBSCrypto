@@ -35,26 +35,26 @@ const char _94[] = {
 // END LOCKUP TABLES
 
 
-static inline uint_fast16_t _tbV(const char* charset_, uint8_t char_)
+static inline unsigned short _tbV(const char* a, unsigned char b)
 {
-    uint_fast16_t ind_ = 0 ;
-    while ( *charset_ ) {
-	if (*charset_ == char_) {
-	    return ind_;
+    unsigned short i = 0 ;
+    while ( *a ) {
+	if (*a == b) {
+	    return i;
 	} else {
-	    ind_++;
+	    i++;
 	};
     }
     return -1;
 }
 
-char* basetobase(const char* str, uint8_t a, uint8_t b)
+char* basetobase(const char* str, unsigned char a, unsigned char b)
 {
     char* arr = malloc(sizeof(char) * 50);
     char* tmp = arr;
-    uint64_t aux = 0;
-    uint8_t len = strlen(str);
-    uint8_t lvl = 0;
+    unsigned long long aux = 0;
+    unsigned char len = strlen(str);
+    unsigned char lvl = 0;
 
     bool neg;
     (*str == '-') ? ((void)(neg = true), *str++) : (neg = false);
@@ -103,19 +103,19 @@ char* basetobase(const char* str, uint8_t a, uint8_t b)
     return res;
 }
 
-char* basetobasecustom(const char* str, uint8_t a, uint8_t b, const char* charset)
+char* basetobasecustom(const char* str, unsigned char a, unsigned char b, const char* charset)
 {
     char* arr = malloc(sizeof(char) * 50);
     char* tmp = arr;
-    uint64_t aux = 0;
-    uint8_t len = strlen(str);
-    uint8_t lvl = 0;
+    unsigned long long aux = 0;
+    unsigned char len = strlen(str);
+    unsigned char lvl = 0;
 
     bool neg;
     (*str == '-') ? ((void)(neg = true), *str++) : (neg = false);
 
 
-    uint_fast16_t ind;
+    unsigned short ind;
     while ( *str ) {
 	ind = _tbV(charset, *str++);
 	if (ind) {
