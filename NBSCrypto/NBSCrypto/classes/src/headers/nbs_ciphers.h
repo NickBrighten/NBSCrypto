@@ -307,6 +307,8 @@ extern const struct cipher_descriptor aria_desc;
 
 
 #pragma mark BLOWFISH
+int  blowfish_init_state(cipher_state *cs);
+int  blowfish_expand_key(const unsigned char *salt, unsigned long saltlen, const unsigned char *key, unsigned long keylen, cipher_state *cs);
 int  blowfish_setup(const unsigned char *key, int keylen, int num_rounds, cipher_state *cs);
 int  blowfish_encrypt(const unsigned char *pt, unsigned char *ct, const cipher_state *cs);
 int  blowfish_decrypt(const unsigned char *ct, unsigned char *pt, const cipher_state *cs);
