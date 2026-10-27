@@ -42,6 +42,18 @@ const struct cipher_descriptor blowfish_desc =
 	((unsigned)((y)[3] & 255));	\
 } while(0)
 
+#define LOAD32BE(p)(					\
+    ((unsigned)(((unsigned char *)(p))[0]) << 24) |	\
+    ((unsigned)(((unsigned char *)(p))[1]) << 16) |	\
+    ((unsigned)(((unsigned char *)(p))[2]) <<  8) |	\
+    ((unsigned)(((unsigned char *)(p))[3]) <<  0))
+
+#define STORE32BE(a, p)						\
+    ((unsigned char *)(p))[0] = ((unsigned)(a) >> 24) & 0xFFU,	\
+    ((unsigned char *)(p))[1] = ((unsigned)(a) >> 16) & 0xFFU,	\
+    ((unsigned char *)(p))[2] = ((unsigned)(a) >>  8) & 0xFFU,	\
+    ((unsigned char *)(p))[3] = ((unsigned)(a) >>  0) & 0xFFU
+
 #define NBS_BYTE(x, n) (((x) >> (8 * (n))) & 255)
 
 
@@ -215,6 +227,23 @@ static inline void _blowfish_encipher(unsigned *L, unsigned *R, const cipher_sta
     *R = l;
 }
 
+static inline void _blowfish_xor(unsigned char *data, const unsigned char *salt, unsigned long saltlen, unsigned long *saltindex)
+{
+    int i;
+    unsigned long n;
+
+    if(saltlen > 0){
+	n = *saltindex;
+	for(i = 0; i < 8; i++){
+	    data[i] ^= salt[n];
+	    if(++n >= saltlen){
+		n = 0;
+	    }
+	}
+	*saltindex = n;
+    }
+}
+
 static inline unsigned _blowfish_stream2word(const unsigned char *d, int dlen, int *cur)
 {
     unsigned int z;
@@ -232,7 +261,7 @@ static inline unsigned _blowfish_stream2word(const unsigned char *d, int dlen, i
     return ret;
 }
 
-static inline int _blowfish_expand(const unsigned char *key, int keylen, const unsigned char *data, int datalen, cipher_state *cs)
+int _blowfish_expand(const unsigned char *key, int keylen, const unsigned char *data, int datalen, cipher_state *cs)
 {
     unsigned x, y, A, B[2];
     int i;
@@ -273,7 +302,7 @@ static inline int _blowfish_expand(const unsigned char *key, int keylen, const u
     return NBSCrypto_OK;
 }
 
-static inline int _blowfish_setup_with_data(const unsigned char *key, int keylen, const unsigned char *data, int datalen, cipher_state *cs)
+int _blowfish_setup_with_data(const unsigned char *key, int keylen, const unsigned char *data, int datalen, cipher_state *cs)
 {
     memcpy(cs->blowfish.P, ORIG_P, sizeof(ORIG_P));
     memcpy(cs->blowfish.S, ORIG_S, sizeof(ORIG_S));
@@ -285,6 +314,13 @@ static inline int _blowfish_setup_with_data(const unsigned char *key, int keylen
 
 #pragma mark - FUNCTIONS
 
+int blowfish_init_state(cipher_state *cs)
+{
+    memcpy(cs->blowfish.P, ORIG_P, sizeof(ORIG_P));
+    memcpy(cs->blowfish.S, ORIG_S, sizeof(ORIG_S));
+    return NBSCrypto_OK;
+}
+
 int blowfish_setup(const unsigned char *key, int keylen, int num_rounds, cipher_state *cs)
 {
     if (keylen > 72) {keylen = 72;}
@@ -295,6 +331,73 @@ int blowfish_setup(const unsigned char *key, int keylen, int num_rounds, cipher_
     }
 
     return _blowfish_setup_with_data(key, keylen, NULL, 0, cs);
+}
+
+int blowfish_expand_key(const unsigned char *salt, unsigned long saltlen, const unsigned char *key, unsigned long keylen, cipher_state *cs)
+{
+    int i, j;
+    unsigned value;
+    unsigned char data[8];
+    unsigned long keyindex, saltindex;
+
+    if(saltlen != 0 && saltlen < 8){
+	return NBSCrypto_ERROR;
+    }
+
+    if(keylen == 0){
+	return NBSCrypto_ERROR;
+    }
+
+    keyindex = 0;
+    saltindex = 0;
+
+    for(i = 0; i < 18; i++){
+	for(value = 0, j = 0; j < 4; j++){
+	    value = (value << 8) | key[keyindex];
+	    if(++keyindex >= keylen){
+		keyindex = 0;
+	    }
+	}
+	cs->blowfish.P[i] ^= value;
+    }
+    memset(data, 0, 8);
+
+    for(i = 0; i < 18; i += 2){
+	_blowfish_xor(data, salt, saltlen, &saltindex);
+	blowfish_encrypt(data, data, cs);
+	cs->blowfish.P[i] = LOAD32BE(data);
+	cs->blowfish.P[i + 1] = LOAD32BE(data + 4);
+    }
+
+    for(i = 0; i < 256; i += 2){
+	_blowfish_xor(data, salt, saltlen, &saltindex);
+	blowfish_encrypt(data, data, cs);
+	cs->blowfish.S[0][i] = LOAD32BE(data);
+	cs->blowfish.S[0][i + 1] = LOAD32BE(data + 4);
+    }
+
+    for(i = 0; i < 256; i += 2){
+	_blowfish_xor(data, salt, saltlen, &saltindex);
+	blowfish_encrypt(data, data, cs);
+	cs->blowfish.S[1][i] = LOAD32BE(data);
+	cs->blowfish.S[1][i + 1] = LOAD32BE(data + 4);
+    }
+
+    for(i = 0; i < 256; i += 2){
+	_blowfish_xor(data, salt, saltlen, &saltindex);
+	blowfish_encrypt(data, data, cs);
+	cs->blowfish.S[2][i] = LOAD32BE(data);
+	cs->blowfish.S[2][i + 1] = LOAD32BE(data + 4);
+    }
+
+    for(i = 0; i < 256; i += 2){
+	_blowfish_xor(data, salt, saltlen, &saltindex);
+	blowfish_encrypt(data, data, cs);
+	cs->blowfish.S[3][i] = LOAD32BE(data);
+	cs->blowfish.S[3][i + 1] = LOAD32BE(data + 4);
+    }
+
+    return NBSCrypto_OK;
 }
 
 int blowfish_encrypt(const unsigned char *pt, unsigned char *ct, const cipher_state *cs)

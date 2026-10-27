@@ -3,6 +3,8 @@
 //
 
 #include "nbs_crypto.h"
+//#include <sys/time.h>
+//#include <time.h>
 
 
 #define CIPHER_TBL_SIZE	43
@@ -171,4 +173,41 @@ void copy_or_zeromem(const unsigned char* in, unsigned char* out, unsigned long 
     }
 
     mask = 0;
+}
+
+unsigned char* generateSaltOrPassword(int length, int saltOrPassword)
+{
+    const char r64[] = "./ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    int r64Size = sizeof(r64) - 1;
+
+    const char b64[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+    int b64Size = sizeof(b64) - 1;
+
+
+    unsigned char *pw = malloc((length + 1) * sizeof(unsigned char));
+    if (!pw) return NULL;
+
+    FILE *rand = fopen("/dev/urandom", "r");
+    if (!rand) {
+	free(pw);
+	return NULL;
+    }
+
+    for (int i = 0; i < length; i++) {
+	unsigned int rval;
+	if (fread(&rval, sizeof(rval), 1, rand) != 1) {
+	    fclose(rand);
+	    free(pw);
+	    return NULL;
+	}
+	if (saltOrPassword) {
+	    pw[i] = (unsigned char)r64[rval % r64Size];
+	}else{
+	    pw[i] = (unsigned char)b64[rval % b64Size];
+	}
+    }
+    pw[length] = '\0';
+
+    fclose(rand);
+    return pw;
 }

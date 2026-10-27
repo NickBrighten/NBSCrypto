@@ -16,7 +16,6 @@ NSCrypto is written in `Objective-C` and `C` and is compatible to iOS 9.0 and hi
 
 This repository include the whole Xcode project with all targets, ready to build.
 #
-
 <br/>
 <br/>
 
@@ -27,9 +26,9 @@ This repository include the whole Xcode project with all targets, ready to build
 - [Collaboration](#collaboration)
 - [Supported Cipher-Algorithms](#supported-cipher-algorithms)
 - [Supported Hash-Algorithms](#supported-hash-algorithms)
+- [Supported KDF-Algorithms](#supported-key-derivation-function-kdf)
 - [Supported MAC-Algorithms](#supported-mac-algorithms)
 #
-
 <br/>
 <br/>
 
@@ -39,7 +38,6 @@ Precompiled Builds will be available as multiple tagets `.xcframework` for produ
 >[!NOTE]
 >An XCFramework `.xcframework` is Apple's recommended, modern format for distributing compiled binary code and frameworks. It allows developers to bundle libraries supporting multiple platforms, such as iOS, iPadOS, macOS, tvOS, visionOS and watchOS, into a single, unified package that works on both physical devices and simulators.
 #
-
 <br/>
 
 # Integration
@@ -47,23 +45,17 @@ It is possible to use the `.framework` or `.xcframework` in both Swift and Objec
 
 To integrate the `.framework` or `.xcframework` into an Objective-C project, you can use our guide: [Integrate NBSCrypto to an Objective-C Project](https://github.com/NickBrighten/NBSCrypto/tree/main/Integrate_into_Objective-C.md) and to integrate it into a Swift project, you can use our guide: [Integrate NBSCrypto to an Swift Project](https://github.com/NickBrighten/NBSCrypto/tree/main/Integrate_into_Swift.md).
 #
-
 <br/>
 
 # Test Vectors (KATs)
 A Known Answer Test (KAT) in security is a specific test method used to verify that a cryptographic algorithm works correctly.
 KATs (Test Vectors) for ciphers and hashes are being gradually added and updated here [here](https://github.com/NickBrighten/NBSCrypto/tree/main/KATs/).
 #
-
 <br/>
-
-
-
 
 # Collaboration
 Feel free and collaborate with us and others to bring up this repository.\
 Please keep in mind a few important things to ensure smooth collaboration.
-
 <br/>
 
 ## Branches
@@ -71,7 +63,6 @@ Please keep in mind a few important things to ensure smooth collaboration.
 >Please be aware, that all branches besides `main` can and will be force-pushed, rebased and/or removed!
 
 If you want to rely on such an unstable branch, create your own fork of this repository to make sure nothing breaks for you.
-
 <br/>
 
 ## Submitting Patches & Reviews
@@ -82,7 +73,6 @@ If you want to rely on such an unstable branch, create your own fork of this rep
 We're using Pull Request reviews to make sure that the code is in line with the existing code base.\
 Please have a look [here](https://help.github.com/articles/approving-a-pull-request-with-required-reviews/) to get an idea of the approach.
 #
-
 <br/>
 <br/>
 
@@ -232,7 +222,6 @@ Please have a look [here](https://help.github.com/articles/approving-a-pull-requ
     - BIT-LENGTH: `128`
     - MODES: `CBC` `CFB` `CTR` `EAX` `ECB` `F8` `OCB` `OFB`
 #
-
 <br/>
 <br/>
 
@@ -343,7 +332,14 @@ Please have a look [here](https://help.github.com/articles/approving-a-pull-requ
 - __XXH__
     - BIT-LENGTH: `32` `64` `128`
 #
+<br/>
+<br/>
 
+# Supported Key Derivation Function (KDF)
+- __BCRYPT__
+    - `Encrypt all versions or variants`
+    - `Validate all version or variants`
+#
 <br/>
 <br/>
 

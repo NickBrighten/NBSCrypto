@@ -40,4 +40,8 @@ int base64url_strict_decode(const char *in, unsigned long inlen, unsigned char *
 int base64url_sane_decode(const char *in, unsigned long inlen, unsigned char *out, unsigned long *outlen);
 
 
+#pragma mark - RADIX64 FUNCTIONS
+int radix64_encode(const void *in, size_t inlen, unsigned char *output, size_t *outputLen);
+int radix64_decode(const unsigned char *in, size_t inlen, void *output, size_t *outputLen);
+
 #endif /* nbs_bases_h */

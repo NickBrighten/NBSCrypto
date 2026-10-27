@@ -481,6 +481,11 @@ extern const struct hash_descriptor arirang_384_desc;
 extern const struct hash_descriptor arirang_512_desc;
 
 
+#pragma mark BCRYPT
+int bcrypt_hash_password(int variants, int cost, const unsigned char *key, char *hash, unsigned long *hashlen);
+int bcrypt_verify_password(const unsigned char *key, const unsigned char *hash);
+
+
 #pragma mark BLAKE2B
 int blake2b_init(hash_state *hs, unsigned long bitlen, const unsigned char *key, unsigned long keylen);
 int blake2b_160_init(hash_state *hs);
