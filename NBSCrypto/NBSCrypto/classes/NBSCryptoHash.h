@@ -186,6 +186,11 @@ NS_ASSUME_NONNULL_BEGIN
 +(NSString *)hashStringWithXCBC:(NSString *)string andCipherAlgorithm:(NBSCrypto_MAC_CIPHER)cipherAlgorithm setKeyForMAC:(NSString *)macKey;
 
 
+
++(NSString *)hashPasswordWithBCRYPT:(NSString *)password setCost:(int)cost setVersion:(NBSCrypto_BCRYPT_VERSION)version;
++(BOOL)validatePasswordWithBCRYPT:(NSString*)password setHASH:(NSString*)hash;
+
+
 @end
 
 NS_ASSUME_NONNULL_END

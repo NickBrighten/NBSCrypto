@@ -1056,4 +1056,42 @@ unsigned long _outputLengthMAC;
     return [r hashString:s];
 }
 
++(NSString *)hashPasswordWithBCRYPT:(NSString *)s setCost:(int)c setVersion:(NBSCrypto_BCRYPT_VERSION)v
+{
+    NSMutableString *r;
+    NBSCryptoHash *ch = [[self alloc] init];
+
+    NSString *sKEY=[s stringByAppendingString:[_HEX_PADDING objectAtIndex:0]];
+    sKEY = [ch _paddingString:sKEY withLength:72];
+
+    unsigned long oL = 60;
+    char out[oL];
+
+    bcrypt_hash_password((int)v, c, (const unsigned char*)[sKEY UTF8String], out, &oL);
+
+    r=[NSMutableString stringWithCapacity:oL];
+    for(int i=0;i<oL;i++){[r appendFormat:@"%c",out[i]];}
+
+    ch = NULL;
+
+    return r;
+}
+
++ (BOOL)validatePasswordWithBCRYPT:(NSString*)s setHASH:(NSString*)h
+{
+    NBSCryptoHash *ch = [[self alloc] init];
+
+    NSString *sKEY=[s stringByAppendingString:[_HEX_PADDING objectAtIndex:0]];
+    sKEY = [ch _paddingString:sKEY withLength:72];
+
+
+    if (!bcrypt_verify_password((const unsigned char*)[s UTF8String], (const unsigned char*)[h UTF8String])) {
+	ch = NULL;
+	return TRUE;
+    }else{
+	ch = NULL;
+	return FALSE;
+    }
+}
+
 @end
