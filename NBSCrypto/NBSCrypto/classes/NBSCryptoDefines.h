@@ -1753,6 +1753,14 @@ typedef enum NBSCrypto_HASH : NSUInteger {
 } NBSCrypto_HASH;
 
 
+///	NBSCrypto_BCRYPT
+///	@discussion	BCRYPT-Versions
+typedef enum NBSCrypto_BCRYPT_VERSION : NSUInteger {
+    NBSCrypto_BCRYPT_VERSION_A			=  0,
+    NBSCrypto_BCRYPT_VERSION_B			=  1,
+    NBSCrypto_BCRYPT_VERSION_X			=  2,
+    NBSCrypto_BCRYPT_VERSION_Y			=  3,
+} NBSCrypto_BCRYPT_VERSION;
 
 
 ///	NBSCrypto_MAC
