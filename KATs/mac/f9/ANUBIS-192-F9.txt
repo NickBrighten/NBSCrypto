@@ -9,27 +9,27 @@
 
 ---- ANUBIS-192-BIT -------
 
-LEN	: 0
-MSG	: ""
-KEY : "0123456789abcdef"
-MD	: 0445fd3ba09c96c949d861109f3709f8
+LEN  : 0
+MSG  : ""
+KEY  : "0123456789abcdef"
+MD   : 0445fd3ba09c96c949d861109f3709f8
 ---------------------------
 
-LEN	: 1
-MSG	: " "
-KEY : "0123456789abcdef"
-MD	: f225c0688a4d6e2066a7404b6c5a8c88
+LEN  : 1
+MSG  : " "
+KEY  : "0123456789abcdef"
+MD   : f225c0688a4d6e2066a7404b6c5a8c88
 ---------------------------
 
-LEN	: 5
-MSG	: "H    "
-KEY : "0123456789abcdef"
-MD	: e3f84dc7323f0f6c08a8501e3495eade
+LEN  : 5
+MSG  : "H    "
+KEY  : "0123456789abcdef"
+MD   : e3f84dc7323f0f6c08a8501e3495eade
 ---------------------------
 
-LEN	: 16
-MSG	: "0123456789abcdef"
-KEY : "0123456789abcdef"
-MD	: b00ade8f12eadc28278bff7809973039
+LEN  : 16
+MSG  : "0123456789abcdef"
+KEY  : "0123456789abcdef"
+MD   : b00ade8f12eadc28278bff7809973039
 
 ###########################
