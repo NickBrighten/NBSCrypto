@@ -11,9 +11,10 @@ enum {
     NBSCrypto_ERROR,
 };
 
+int  splitStr(const unsigned char *txt, char delim, char ***tokens);
 int  mem_neq(const void *a, const void *b, size_t len);
 void zeromem(volatile void *out, size_t outlen);
 void copy_or_zeromem(const unsigned char* in, unsigned char* out, unsigned long len, int coz);
-unsigned char* generateSaltOrPassword(int length, int saltOrPassword);
+unsigned char* generateSaltOrPassword(int length, int outputFormat);
 
 #endif /* nbs_misc_h */
