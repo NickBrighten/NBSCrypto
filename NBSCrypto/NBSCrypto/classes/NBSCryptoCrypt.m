@@ -27,6 +27,49 @@ NSUInteger _bitLength;
 NSUInteger _mode;
 
 
+static inline int _hex_nibble(unsigned char c)
+{
+    if (c >= '0' && c <= '9') return c - '0';
+    if (c >= 'a' && c <= 'f') return c - 'a' + 10;
+    if (c >= 'A' && c <= 'F') return c - 'A' + 10;
+    return -1;
+}
+
+unsigned char *_charFromHex(const char *str)
+{
+    if (str == NULL) {
+	return NULL;
+    }
+
+    size_t len = strlen(str);
+
+    if ((len & 1U) != 0) {
+	return NULL;
+    }
+
+    size_t out_len = len / 2;
+
+    unsigned char *out = (unsigned char *)malloc(out_len + 1);
+    if (out == NULL) {
+	return NULL;
+    }
+
+    for (size_t i = 0; i < out_len; i++) {
+	int hi = _hex_nibble((unsigned char)str[i * 2]);
+	int lo = _hex_nibble((unsigned char)str[i * 2 + 1]);
+
+	if (hi < 0 || lo < 0) {
+	    free(out);
+	    return NULL;
+	}
+
+	out[i] = (unsigned char)((hi << 4) | lo);
+    }
+
+    out[out_len] = '\0';
+    return out;
+}
+
 - (const struct cipher_descriptor*)_getCipherDescriptor{
     const struct cipher_descriptor* r = NULL;
 
@@ -172,21 +215,6 @@ NSUInteger _mode;
 	i+=2;
     }
     return cr;
-}
-
-const unsigned char* _charFromHex(const char* str)
-{
-    char* cs = (char*)malloc(strlen(str));
-    int i=0;
-    while (i < (strlen(str))) {
-	char *h = (char*)malloc(2);
-	strncpy(h, str+i, 2);
-	int v=0;
-	sscanf(h, "%x", &v);
-	strcat(cs, (char*)&v);
-	i+=2;
-    }
-    return (const unsigned char*)cs;
 }
 
 - (unsigned long)_determineLengthFromData:(NSData*)data withBlockLength:(double)blockLength isBlock:(BOOL)isBlock{

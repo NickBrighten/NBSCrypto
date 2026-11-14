@@ -486,6 +486,14 @@
 		1DB25A672FC7630900E0D9E3 /* chi.c in Sources */ = {isa = PBXBuildFile; fileRef = 1DB25A652FC7630900E0D9E3 /* chi.c */; };
 		1DB25A682FC7630900E0D9E3 /* chi.c in Sources */ = {isa = PBXBuildFile; fileRef = 1DB25A652FC7630900E0D9E3 /* chi.c */; };
 		1DB25A692FC7630900E0D9E3 /* chi.c in Sources */ = {isa = PBXBuildFile; fileRef = 1DB25A652FC7630900E0D9E3 /* chi.c */; };
+		1DB66AD4309623EB00CB338B /* scrypt.c in Sources */ = {isa = PBXBuildFile; fileRef = 1DB66AD3309623EB00CB338B /* scrypt.c */; };
+		1DB66AD5309623EB00CB338B /* scrypt.c in Sources */ = {isa = PBXBuildFile; fileRef = 1DB66AD3309623EB00CB338B /* scrypt.c */; };
+		1DB66AD6309623EB00CB338B /* scrypt.c in Sources */ = {isa = PBXBuildFile; fileRef = 1DB66AD3309623EB00CB338B /* scrypt.c */; };
+		1DB66AD7309623EB00CB338B /* scrypt.c in Sources */ = {isa = PBXBuildFile; fileRef = 1DB66AD3309623EB00CB338B /* scrypt.c */; };
+		1DB66AE23096796900CB338B /* pbkdf.c in Sources */ = {isa = PBXBuildFile; fileRef = 1DB66AE13096796900CB338B /* pbkdf.c */; };
+		1DB66AE33096796900CB338B /* pbkdf.c in Sources */ = {isa = PBXBuildFile; fileRef = 1DB66AE13096796900CB338B /* pbkdf.c */; };
+		1DB66AE43096796900CB338B /* pbkdf.c in Sources */ = {isa = PBXBuildFile; fileRef = 1DB66AE13096796900CB338B /* pbkdf.c */; };
+		1DB66AE53096796900CB338B /* pbkdf.c in Sources */ = {isa = PBXBuildFile; fileRef = 1DB66AE13096796900CB338B /* pbkdf.c */; };
 		1DB89B1B300A604000350E39 /* salsa.c in Sources */ = {isa = PBXBuildFile; fileRef = 1DB89B1A300A604000350E39 /* salsa.c */; };
 		1DB89B1C300A604000350E39 /* salsa.c in Sources */ = {isa = PBXBuildFile; fileRef = 1DB89B1A300A604000350E39 /* salsa.c */; };
 		1DB89B1D300A604000350E39 /* salsa.c in Sources */ = {isa = PBXBuildFile; fileRef = 1DB89B1A300A604000350E39 /* salsa.c */; };
@@ -644,6 +652,9 @@
 		1DA577CF3027978000494005 /* gcm-siv.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "gcm-siv.c"; sourceTree = "<group>"; tabWidth = 8; };
 		1DA577D4302797BC00494005 /* siv.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = siv.c; sourceTree = "<group>"; tabWidth = 8; };
 		1DB25A652FC7630900E0D9E3 /* chi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = chi.c; sourceTree = "<group>"; tabWidth = 8; };
+		1DB66AD3309623EB00CB338B /* scrypt.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = scrypt.c; sourceTree = "<group>"; tabWidth = 8; };
+		1DB66AE13096796900CB338B /* pbkdf.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pbkdf.c; sourceTree = "<group>"; tabWidth = 8; };
+		1DB66AE63096798C00CB338B /* nbs_kdf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nbs_kdf.h; sourceTree = "<group>"; tabWidth = 8; };
 		1DB89B1A300A604000350E39 /* salsa.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = salsa.c; sourceTree = "<group>"; tabWidth = 8; };
 		1DBC74B2307A829D0040BB94 /* magma.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = magma.c; sourceTree = "<group>"; tabWidth = 8; };
 		1DE68D432FEAE7570035A45E /* md6.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = md6.c; sourceTree = "<group>"; tabWidth = 8; };
@@ -737,6 +748,7 @@
 				1D419E522FC06D34003A7B83 /* ciphers */,
 				1D419DA22FC06C81003A7B83 /* hashes */,
 				1D419D342FC06A9A003A7B83 /* headers */,
+				1DB66ADF30963B1600CB338B /* kdf */,
 				1D419D882FC06C4F003A7B83 /* mac */,
 				1D419D822FC06C2E003A7B83 /* misc */,
 				1D419D3B2FC06BC2003A7B83 /* modes */,
@@ -751,6 +763,7 @@
 				1D419D3A2FC06ABB003A7B83 /* nbs_bases.h */,
 				1D419D352FC06ABB003A7B83 /* nbs_ciphers.h */,
 				1D419D392FC06ABB003A7B83 /* nbs_hashes.h */,
+				1DB66AE63096798C00CB338B /* nbs_kdf.h */,
 				1D419D372FC06ABB003A7B83 /* nbs_mac.h */,
 				1D419D362FC06ABB003A7B83 /* nbs_misc.h */,
 				1D419D382FC06ABB003A7B83 /* nbs_modes.h */,
@@ -812,7 +825,6 @@
 			children = (
 				1D419DC42FC06C96003A7B83 /* adler32.c */,
 				1DF7F14A2FC8C26B00CA2560 /* arirang.c */,
-				1D5BB34F308126460041CE61 /* bcrypt.c */,
 				1D419DC12FC06C96003A7B83 /* blake2b.c */,
 				1D419DC52FC06C96003A7B83 /* blake2s.c */,
 				1D8377742FCF5FC6008E8D31 /* blake3.c */,
@@ -916,6 +928,16 @@
 				1D5BB354308141700041CE61 /* radix64.c */,
 			);
 			path = bases;
+			sourceTree = "<group>";
+		};
+		1DB66ADF30963B1600CB338B /* kdf */ = {
+			isa = PBXGroup;
+			children = (
+				1D5BB34F308126460041CE61 /* bcrypt.c */,
+				1DB66AE13096796900CB338B /* pbkdf.c */,
+				1DB66AD3309623EB00CB338B /* scrypt.c */,
+			);
+			path = kdf;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1177,7 +1199,6 @@
 				1D419EB92FC06D49003A7B83 /* xtea.c in Sources */,
 				1D419E4A2FC06C98003A7B83 /* adler32.c in Sources */,
 				1DF7F14B2FC8C26B00CA2560 /* arirang.c in Sources */,
-				1D5BB350308126460041CE61 /* bcrypt.c in Sources */,
 				1D419E3E2FC06C98003A7B83 /* blake2b.c in Sources */,
 				1D419E4E2FC06C98003A7B83 /* blake2s.c in Sources */,
 				1D8377752FCF5FC6008E8D31 /* blake3.c in Sources */,
@@ -1223,6 +1244,9 @@
 				1D419DEA2FC06C97003A7B83 /* tiger.c in Sources */,
 				1D419E2E2FC06C97003A7B83 /* whirpool.c in Sources */,
 				1D419DF62FC06C97003A7B83 /* xxhash.c in Sources */,
+				1D5BB350308126460041CE61 /* bcrypt.c in Sources */,
+				1DB66AE23096796900CB338B /* pbkdf.c in Sources */,
+				1DB66AD4309623EB00CB338B /* scrypt.c in Sources */,
 				1D0CC9953050862000F55621 /* blake2mac.c in Sources */,
 				1D419D922FC06C5D003A7B83 /* f9.c in Sources */,
 				1D05EEF0305D8CBC0060D08D /* gmac.c in Sources */,
@@ -1302,7 +1326,6 @@
 				1D419EBA2FC06D49003A7B83 /* xtea.c in Sources */,
 				1D419E4B2FC06C98003A7B83 /* adler32.c in Sources */,
 				1DF7F14C2FC8C26B00CA2560 /* arirang.c in Sources */,
-				1D5BB351308126460041CE61 /* bcrypt.c in Sources */,
 				1D419E3F2FC06C98003A7B83 /* blake2b.c in Sources */,
 				1D419E4F2FC06C98003A7B83 /* blake2s.c in Sources */,
 				1D8377762FCF5FC6008E8D31 /* blake3.c in Sources */,
@@ -1348,6 +1371,9 @@
 				1D419DEB2FC06C97003A7B83 /* tiger.c in Sources */,
 				1D419E2F2FC06C97003A7B83 /* whirpool.c in Sources */,
 				1D419DF72FC06C97003A7B83 /* xxhash.c in Sources */,
+				1D5BB351308126460041CE61 /* bcrypt.c in Sources */,
+				1DB66AE33096796900CB338B /* pbkdf.c in Sources */,
+				1DB66AD5309623EB00CB338B /* scrypt.c in Sources */,
 				1D0CC9963050862000F55621 /* blake2mac.c in Sources */,
 				1D419D932FC06C5D003A7B83 /* f9.c in Sources */,
 				1D05EEF1305D8CBC0060D08D /* gmac.c in Sources */,
@@ -1427,7 +1453,6 @@
 				1D419EBB2FC06D49003A7B83 /* xtea.c in Sources */,
 				1D419E4C2FC06C98003A7B83 /* adler32.c in Sources */,
 				1DF7F14D2FC8C26B00CA2560 /* arirang.c in Sources */,
-				1D5BB352308126460041CE61 /* bcrypt.c in Sources */,
 				1D419E402FC06C98003A7B83 /* blake2b.c in Sources */,
 				1D419E502FC06C98003A7B83 /* blake2s.c in Sources */,
 				1D8377772FCF5FC6008E8D31 /* blake3.c in Sources */,
@@ -1473,6 +1498,9 @@
 				1D419DEC2FC06C97003A7B83 /* tiger.c in Sources */,
 				1D419E302FC06C98003A7B83 /* whirpool.c in Sources */,
 				1D419DF82FC06C97003A7B83 /* xxhash.c in Sources */,
+				1D5BB352308126460041CE61 /* bcrypt.c in Sources */,
+				1DB66AE43096796900CB338B /* pbkdf.c in Sources */,
+				1DB66AD6309623EB00CB338B /* scrypt.c in Sources */,
 				1D0CC9973050862000F55621 /* blake2mac.c in Sources */,
 				1D419D942FC06C5D003A7B83 /* f9.c in Sources */,
 				1D05EEF2305D8CBC0060D08D /* gmac.c in Sources */,
@@ -1552,7 +1580,6 @@
 				1D419EBC2FC06D49003A7B83 /* xtea.c in Sources */,
 				1D419E4D2FC06C98003A7B83 /* adler32.c in Sources */,
 				1DF7F14E2FC8C26B00CA2560 /* arirang.c in Sources */,
-				1D5BB353308126460041CE61 /* bcrypt.c in Sources */,
 				1D419E412FC06C98003A7B83 /* blake2b.c in Sources */,
 				1D419E512FC06C98003A7B83 /* blake2s.c in Sources */,
 				1D8377782FCF5FC6008E8D31 /* blake3.c in Sources */,
@@ -1597,6 +1624,9 @@
 				1D4B76042FC5EFAD00159BB6 /* swifftx.c in Sources */,
 				1D419DED2FC06C97003A7B83 /* tiger.c in Sources */,
 				1D419E312FC06C98003A7B83 /* whirpool.c in Sources */,
+				1D5BB353308126460041CE61 /* bcrypt.c in Sources */,
+				1DB66AE53096796900CB338B /* pbkdf.c in Sources */,
+				1DB66AD7309623EB00CB338B /* scrypt.c in Sources */,
 				1D0CC9983050862000F55621 /* blake2mac.c in Sources */,
 				1D419D952FC06C5D003A7B83 /* f9.c in Sources */,
 				1D05EEF3305D8CBC0060D08D /* gmac.c in Sources */,
@@ -1692,7 +1722,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 261027;
+				CURRENT_PROJECT_VERSION = 261114;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -1724,7 +1754,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 261027;
+				CURRENT_PROJECT_VERSION = 261114;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -1753,7 +1783,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 261027;
+				CURRENT_PROJECT_VERSION = 261114;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -1784,7 +1814,7 @@
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = NO;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 261027;
+				CURRENT_PROJECT_VERSION = 261114;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;

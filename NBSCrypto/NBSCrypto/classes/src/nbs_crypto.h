@@ -17,6 +17,7 @@
     #include "nbs_bases.h"
     #include "nbs_ciphers.h"
     #include "nbs_hashes.h"
+    #include "nbs_kdf.h"
     #include "nbs_mac.h"
     #include "nbs_misc.h"
     #include "nbs_modes.h"
@@ -25,6 +26,6 @@
 #endif
 
 #define NBS_CRYPTO_VERSION	"1.0.0"
-#define NBS_CRYPTO_BUILDNUMBER	"261027"
+#define NBS_CRYPTO_BUILDNUMBER	"261114"
 
 #endif /* nbs_crypto_h */

@@ -468,6 +468,60 @@ ERR:
 int ocb3_done(unsigned char *tag, unsigned long *taglen, cm_OCB3 *ocb)
 {
     unsigned char tmp[MAXBLOCKSIZE];
+    int err;
+
+    /* Validierung der Eingabeparameter und des Ciphers */
+    if (tag == NULL || taglen == NULL || ocb == NULL) {
+	return NBSCrypto_ERROR;
+    }
+
+    if ((err = is_cipher_valid(ocb->cipher)) != NBSCrypto_OK) {
+	return err;
+    }
+
+    /* Sichere Längenprüfung ohne Integer-Overflow-Risiko */
+    if (ocb->tag_len < 0 || *taglen < (unsigned long)ocb->tag_len) {
+	*taglen = (unsigned long)ocb->tag_len;
+	return NBSCrypto_ERROR;
+    }
+
+    /* Verarbeitung der verbleibenden Associated Data (falls vorhanden) */
+    if (ocb->adata_buffer_bytes > 0) {
+	int rem = ocb->adata_buffer_bytes;
+
+	_ocb3_int_xor_blocks(ocb->aOffset_current, ocb->aOffset_current, ocb->L_star, ocb->block_len);
+	_ocb3_int_xor_blocks(tmp, ocb->adata_buffer, ocb->aOffset_current, rem);
+
+	/* Padding (0x80 gefolgt von 0x00) direkt ohne Schleifen-Verzweigung anwenden */
+	tmp[rem] = 0x80 ^ ocb->aOffset_current[rem];
+	if (rem + 1 < ocb->block_len) {
+	    memcpy(&tmp[rem + 1], &ocb->aOffset_current[rem + 1], ocb->block_len - rem - 1);
+	}
+
+	if ((err = cipher_descriptor[ocb->cipher].encrypt(tmp, tmp, &ocb->cs)) != NBSCrypto_OK) {
+	    goto CLEANUP;
+	}
+
+	_ocb3_int_xor_blocks(ocb->aSum_current, ocb->aSum_current, tmp, ocb->block_len);
+    }
+
+    /* Finales Tag berechnen und kopieren */
+    _ocb3_int_xor_blocks(tmp, ocb->tag_part, ocb->aSum_current, ocb->block_len);
+    memcpy(tag, tmp, (size_t)ocb->tag_len);
+    *taglen = (unsigned long)ocb->tag_len;
+
+    err = NBSCrypto_OK;
+
+CLEANUP:
+    /* Sensible Zwischenwerte im Stack-Speicher sicher löschen */
+    memset(tmp, 0, sizeof(tmp));
+    return err;
+}
+
+/*
+int ocb3_done(unsigned char *tag, unsigned long *taglen, cm_OCB3 *ocb)
+{
+    unsigned char tmp[MAXBLOCKSIZE];
     int err, x;
 
 
@@ -512,3 +566,4 @@ int ocb3_done(unsigned char *tag, unsigned long *taglen, cm_OCB3 *ocb)
 ERR:
     return err;
 }
+ */

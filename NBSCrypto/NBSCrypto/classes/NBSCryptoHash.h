@@ -72,7 +72,7 @@ NS_ASSUME_NONNULL_BEGIN
 ///	@param blake2bAlgorithm	The NBSCrypto_BLAKE2BMAC include the Bit-Length
 ///	@param macKey		The KEY for BLAKE2B-MAC
 ///	@return			NSString as hexadecimal
-+(NSString *)hashStringWithBLAKE2B:(NSString *)string andBLAKE2BAlgorithm:(NBSCrypto_BLAKE2BMAC)blake2bAlgorithm setKeyForMAC:(NSString *)macKey;
++(NSString *)hashStringWithBLAKE2B:(NSString*)string andBLAKE2BAlgorithm:(NBSCrypto_BLAKE2BMAC)blake2bAlgorithm setKeyForMAC:(NSString*)macKey;
 
 
 ///	NBSCryptoHash +hashStringWithBLAKE2S:(NSString *)string andBLAKE2SAlgorithm:(NBSCrypto_BLAKE2SMAC)blake2sAlgorithm setKeyForMAC:(NSString *)macKey
@@ -82,7 +82,7 @@ NS_ASSUME_NONNULL_BEGIN
 ///	@param blake2sAlgorithm	The NBSCrypto_BLAKE2SMAC include the Bit-Length
 ///	@param macKey		The KEY for BLAKE2S-MAC
 ///	@return			NSString as hexadecimal
-+(NSString *)hashStringWithBLAKE2S:(NSString *)string andBLAKE2SAlgorithm:(NBSCrypto_BLAKE2SMAC)blake2sAlgorithm setKeyForMAC:(NSString *)macKey;
++(NSString *)hashStringWithBLAKE2S:(NSString*)string andBLAKE2SAlgorithm:(NBSCrypto_BLAKE2SMAC)blake2sAlgorithm setKeyForMAC:(NSString*)macKey;
 
 
 ///	NBSCryptoHash +hashStringWithCMAC:(NSString *)string andCipherAlgorithm:(NBSCrypto_MAC_CIPHER)cipherAlgorithm setKeyForMAC:(NSString *)macKey
@@ -92,7 +92,7 @@ NS_ASSUME_NONNULL_BEGIN
 ///	@param cipherAlgorithm	The NBSCrypto_MAC_CIPHER include the Bit-Length
 ///	@param macKey		The KEY for CMAC
 ///	@return			NSString as hexadecimal
-+(NSString *)hashStringWithCMAC:(NSString *)string andCipherAlgorithm:(NBSCrypto_MAC_CIPHER)cipherAlgorithm setKeyForMAC:(NSString *)macKey;
++(NSString *)hashStringWithCMAC:(NSString*)string andCipherAlgorithm:(NBSCrypto_MAC_CIPHER)cipherAlgorithm setKeyForMAC:(NSString*)macKey;
 
 
 ///	NBSCryptoHash +hashStringWithF9:(NSString * )string andCipherAlgorithm:(NBSCrypto_MAC_CIPHER)cipherAlgorithm setKeyForMAC:(NSString *)macKey
@@ -102,7 +102,7 @@ NS_ASSUME_NONNULL_BEGIN
 ///	@param cipherAlgorithm	The NBSCrypto_MAC_CIPHER include the Bit-Length
 ///	@param macKey		The KEY for F9
 ///	@return			NSString as hexadecimal
-+(NSString *)hashStringWithF9:(NSString *)string andCipherAlgorithm:(NBSCrypto_MAC_CIPHER)cipherAlgorithm setKeyForMAC:(NSString *)macKey;
++(NSString *)hashStringWithF9:(NSString*)string andCipherAlgorithm:(NBSCrypto_MAC_CIPHER)cipherAlgorithm setKeyForMAC:(NSString*)macKey;
 
 
 ///	NBSCryptoHash +hashStringWithGMAC:(NSString * )string andCipherAlgorithm:(NBSCrypto_GMAC_CIPHER)cipherAlgorithm setKeyForMAC:(NSString *)macKey setIVForMAC:(NSString *)macIV
@@ -113,7 +113,7 @@ NS_ASSUME_NONNULL_BEGIN
 ///	@param macKey		The KEY for GMAC
 ///	@param macIV		The IV for GMAC
 ///	@return			NSString as hexadecimal
-+(NSString *)hashStringWithGMAC:(NSString *)string andCipherAlgorithm:(NBSCrypto_MAC_CIPHER)cipherAlgorithm setKeyForMAC:(NSString *)macKey setIVForMAC:(NSString*)macIV;
++(NSString *)hashStringWithGMAC:(NSString*)string andCipherAlgorithm:(NBSCrypto_MAC_CIPHER)cipherAlgorithm setKeyForMAC:(NSString*)macKey setIVForMAC:(NSString*)macIV;
 
 
 ///	NBSCryptoHash +hashStringWithHMAC:(NSString *)string withHashAlgorithm:(NBSCrypto_HASH)hashAlgorithm setKeyForMAC:(NSString *)macKey
@@ -123,7 +123,7 @@ NS_ASSUME_NONNULL_BEGIN
 ///	@param hashAlgorithm	The NBSCrypto_HASH include the Bit-Length
 ///	@param macKey		The KEY for HMAC
 ///	@return			NSString as hexadecimal
-+(NSString *)hashStringWithHMAC:(NSString *)string andHashAlgorithm:(NBSCrypto_HASH)hashAlgorithm setKeyForMAC:(NSString *)macKey;
++(NSString *)hashStringWithHMAC:(NSString*)string andHashAlgorithm:(NBSCrypto_HASH)hashAlgorithm setKeyForMAC:(NSString*)macKey;
 
 
 ///	NBSCryptoHash +hashStringWithKMAC:(NSString *)string withKMACAlgorithm:(NBSCrypto_KMAC)KMACAlgorithm setKeyForMAC:(NSString *)macKey setCustomizing:(NSString *)customizing setOutputLength:(unsigned long)outputLength
@@ -135,7 +135,7 @@ NS_ASSUME_NONNULL_BEGIN
 ///	@param customizing	The CUSTOMIZING string for KMAC
 ///	@param outputLength	The OUTPUTLENGTH for KMAC
 ///	@return			NSString as hexadecimal
-+(NSString *)hashStringWithKMAC:(NSString *)string andKMACAlgorithm:(NBSCrypto_KMAC)KMACAlgorithm setKeyForMAC:(NSString *)macKey setCustomizing:(NSString *)customizing setOutputLength:(unsigned long)outputLength;
++(NSString *)hashStringWithKMAC:(NSString*)string andKMACAlgorithm:(NBSCrypto_KMAC)KMACAlgorithm setKeyForMAC:(NSString*)macKey setCustomizing:(NSString*)customizing setOutputLength:(unsigned long)outputLength;
 
 
 ///	NBSCryptoHash +hashStringWithOMAC:(NSString *)string andCipherAlgorithm:(NBSCrypto_MAC_CIPHER)cipherAlgorithm setKeyForMAC:(NSString *)macKey
@@ -145,7 +145,7 @@ NS_ASSUME_NONNULL_BEGIN
 ///	@param cipherAlgorithm	The NBSCrypto_MAC_CIPHER include the Bit-Length
 ///	@param macKey		The KEY for OMAC
 ///	@return			NSString as hexadecimal
-+(NSString *)hashStringWithOMAC:(NSString *)string andCipherAlgorithm:(NBSCrypto_MAC_CIPHER)cipherAlgorithm setKeyForMAC:(NSString *)macKey;
++(NSString *)hashStringWithOMAC:(NSString*)string andCipherAlgorithm:(NBSCrypto_MAC_CIPHER)cipherAlgorithm setKeyForMAC:(NSString *)macKey;
 
 
 ///	NBSCryptoHash +hashStringWithPELICAN:(NSString * )string withHashAlgorithm:(NBSCrypto_HASH)hashAlgorithm setKeyForMAC:(NSString *)macKey
@@ -154,7 +154,7 @@ NS_ASSUME_NONNULL_BEGIN
 ///	@param string		NSString to Hashing/checksum/digit/MAC
 ///	@param macKey		The KEY for PELICAN
 ///	@return			NSString as hexadecimal
-+(NSString *)hashStringWithPELICAN:(NSString * )string setKeyForMAC:(NSString *)macKey;
++(NSString *)hashStringWithPELICAN:(NSString*)string setKeyForMAC:(NSString*)macKey;
 
 
 ///	NBSCryptoHash +hashStringWithPMAC:(NSString *)string andCipherAlgorithm:(NBSCrypto_MAC_CIPHER)cipherAlgorithm setKeyForMAC:(NSString *)macKey
@@ -164,7 +164,7 @@ NS_ASSUME_NONNULL_BEGIN
 ///	@param cipherAlgorithm	The NBSCrypto_MAC_CIPHER include the Bit-Length
 ///	@param macKey		The KEY for PMAC
 ///	@return			NSString as hexadecimal
-+(NSString *)hashStringWithPMAC:(NSString *)string andCipherAlgorithm:(NBSCrypto_MAC_CIPHER)cipherAlgorithm setKeyForMAC:(NSString *)macKey;
++(NSString *)hashStringWithPMAC:(NSString*)string andCipherAlgorithm:(NBSCrypto_MAC_CIPHER)cipherAlgorithm setKeyForMAC:(NSString *)macKey;
 
 
 ///	NBSCryptoHash +hashStringWithPOLY1305:(NSString * )string withHashAlgorithm:(NBSCrypto_HASH)hashAlgorithm setKeyForMAC:(NSString *)macKey
@@ -173,7 +173,7 @@ NS_ASSUME_NONNULL_BEGIN
 ///	@param string		NSString to Hashing/checksum/digit/MAC
 ///	@param macKey		The KEY for POLY1305
 ///	@return			NSString as hexadecimal
-+(NSString *)hashStringWithPOLY1305:(NSString *)string setKeyForMAC:(NSString *)macKey;
++(NSString *)hashStringWithPOLY1305:(NSString*)string setKeyForMAC:(NSString *)macKey;
 
 
 ///	NBSCryptoHash +hashStringWithXCBC:(NSString * )string andCipherAlgorithm:(NBSCrypto_MAC_CIPHER)cipherAlgorithm setKeyForMAC:(NSString *)macKey
@@ -183,13 +183,15 @@ NS_ASSUME_NONNULL_BEGIN
 ///	@param cipherAlgorithm	The NBSCrypto_MAC_CIPHER include the Bit-Length
 ///	@param macKey		The KEY for XCBC
 ///	@return			NSString as hexadecimal
-+(NSString *)hashStringWithXCBC:(NSString *)string andCipherAlgorithm:(NBSCrypto_MAC_CIPHER)cipherAlgorithm setKeyForMAC:(NSString *)macKey;
++(NSString *)hashStringWithXCBC:(NSString*)string andCipherAlgorithm:(NBSCrypto_MAC_CIPHER)cipherAlgorithm setKeyForMAC:(NSString *)macKey;
 
 
 
-+(NSString *)hashPasswordWithBCRYPT:(NSString *)password setCost:(int)cost setVersion:(NBSCrypto_BCRYPT_VERSION)version;
++(NSString *)hashPasswordWithBCRYPT:(NSString*)password setCost:(int)cost setVersion:(NBSCrypto_BCRYPT_VERSION)version;
 +(BOOL)validatePasswordWithBCRYPT:(NSString*)password setHASH:(NSString*)hash;
 
++(NSString *)hashPasswordWithSCRYPT:(NSString*)password setCost:(int)cost setOutputLength:(unsigned long)outputLength;
++(BOOL)validatePasswordWithSCRYPT:(NSString*)password setHASH:(NSString*)hash;
 
 @end
 

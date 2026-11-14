@@ -8,9 +8,9 @@
 </pre>
 </sup>
 
-NBSCrypto is an ultra lightweight cryptography framework for iOS, iPadOS, macOS, tvOS and watchOS.
+NBSCrypto is an extremely lightweight cryptography framework for iOS, iPadOS, macOS, tvOS, and watchOS.
 
-NBSCrypto includes encryption and decryption algorithms and the supported cipher modes, hash algorithms, and also hash-based and cipher-based message authentication codes (MAC).
+It includes encryption and decryption algorithms - along with their supported encryption modes - as well as hash algorithms, key derivation functions (KDFs), and both hash-based and encryption-based message authentication codes (MACs).
 
 NSCrypto is written in `Objective-C` and `C` and is compatible to iOS 9.0 and higher, macOS 10.10 and higher, tvOS 9.0 and higher and watchOS 2.0 and higher and can be integrate into SWIFT and Objective-C.
 

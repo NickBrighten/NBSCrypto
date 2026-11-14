@@ -266,11 +266,11 @@ extern struct cipher_descriptor {
     int (*accel_xts_encrypt)(const unsigned char *pt, unsigned char *ct, unsigned long blocks, unsigned char *tweak, const cipher_state *cs1, const cipher_state *cs2);
     int (*accel_xts_decrypt)(const unsigned char *ct, unsigned char *pt, unsigned long blocks, unsigned char *tweak, const cipher_state *cs1, const cipher_state *cs2);
 
-    int (*f9_memory)(const unsigned char *key, unsigned long keylen, const unsigned char *in,  unsigned long inlen, unsigned char *out, unsigned long *outlen);
+    int (*f9_memory)(const unsigned char *key, unsigned long keylen, const unsigned char *in, unsigned long inlen, unsigned char *out, unsigned long *outlen);
 
-    int (*omac_memory)(const unsigned char *key, unsigned long keylen, const unsigned char *in,  unsigned long inlen, unsigned char *out, unsigned long *outlen);
+    int (*omac_memory)(const unsigned char *key, unsigned long keylen, const unsigned char *in, unsigned long inlen, unsigned char *out, unsigned long *outlen);
 
-    int (*xcbc_memory)(const unsigned char *key, unsigned long keylen, const unsigned char *in,  unsigned long inlen, unsigned char *out, unsigned long *outlen);
+    int (*xcbc_memory)(const unsigned char *key, unsigned long keylen, const unsigned char *in, unsigned long inlen, unsigned char *out, unsigned long *outlen);
 
 } cipher_descriptor[];
 

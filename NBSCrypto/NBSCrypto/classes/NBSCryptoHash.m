@@ -346,6 +346,41 @@ unsigned long _outputLengthMAC;
     return s;
 }
 
+- (NSString*)_base64FromChar:(const unsigned char*)s withLength:(unsigned long)sl{
+    unsigned long oL;
+
+    switch (sl) {
+	case 0:{
+	    oL=2;
+	    break;
+	}
+	case 1:{
+	    oL=(sl*2)+3;
+	    break;
+	}
+	case 2:{
+	    oL=(sl*2)+2;
+	    break;
+	}
+	case 3:{
+	    oL=(sl*2);
+	    break;
+	}
+	case 4:{
+	    oL=(sl*2)+1;
+	    break;
+	}
+	default:{
+	    oL=(sl*2);
+	    break;
+	}
+    }
+
+    char o[oL];
+    base64_encode(s, sl, o, &oL);
+    return [NSString stringWithCString:o encoding:NSUTF8StringEncoding];
+}
+
 - (NSString*)_hashData:(NSData*)d{
     NSMutableString *r;
 
@@ -855,15 +890,15 @@ unsigned long _outputLengthMAC;
     }
 }
 
-- (void)setIVForMAC:(NSString *)IV{
+- (void)setIVForMAC:(NSString*)IV{
     _iv = IV;
 }
 
-- (void)setKeyForMAC:(NSString *)KEY{
+- (void)setKeyForMAC:(NSString*)KEY{
     _key = KEY;
 }
 
-- (void)setCustomizing:(NSString *)CUSTOMIZING{
+- (void)setCustomizing:(NSString*)CUSTOMIZING{
     _customizing = CUSTOMIZING;
 }
 
@@ -894,7 +929,7 @@ unsigned long _outputLengthMAC;
     return [r hashString:s];
 }
 
-+ (NSString *)hashStringWithBLAKE2B:(NSString *)s andBLAKE2BAlgorithm:(NBSCrypto_BLAKE2BMAC)m setKeyForMAC:(NSString *)k
++ (NSString*)hashStringWithBLAKE2B:(NSString*)s andBLAKE2BAlgorithm:(NBSCrypto_BLAKE2BMAC)m setKeyForMAC:(NSString*)k
 {
     NBSCryptoHash *r = [[self alloc] init];
     switch (m) {
@@ -919,7 +954,7 @@ unsigned long _outputLengthMAC;
     return [r hashString:s];
 }
 
-+ (NSString *)hashStringWithBLAKE2S:(NSString *)s andBLAKE2SAlgorithm:(NBSCrypto_BLAKE2SMAC)m setKeyForMAC:(NSString *)k
++ (NSString*)hashStringWithBLAKE2S:(NSString*)s andBLAKE2SAlgorithm:(NBSCrypto_BLAKE2SMAC)m setKeyForMAC:(NSString*)k
 {
     NBSCryptoHash *r = [[self alloc] init];
     switch (m) {
@@ -944,7 +979,7 @@ unsigned long _outputLengthMAC;
     return [r hashString:s];
 }
 
-+ (NSString *)hashStringWithCMAC:(NSString *)s andCipherAlgorithm:(NBSCrypto_MAC_CIPHER)a setKeyForMAC:(NSString *)k
++ (NSString*)hashStringWithCMAC:(NSString*)s andCipherAlgorithm:(NBSCrypto_MAC_CIPHER)a setKeyForMAC:(NSString*)k
 {
     NBSCryptoHash *r = [[self alloc] init];
     [r setCipherAlgorithm:a];
@@ -953,7 +988,7 @@ unsigned long _outputLengthMAC;
     return [r hashString:s];
 }
 
-+ (NSString *)hashStringWithF9:(NSString *)s andCipherAlgorithm:(NBSCrypto_MAC_CIPHER)a setKeyForMAC:(NSString *)k
++ (NSString*)hashStringWithF9:(NSString*)s andCipherAlgorithm:(NBSCrypto_MAC_CIPHER)a setKeyForMAC:(NSString*)k
 {
     NBSCryptoHash *r = [[self alloc] init];
     [r setCipherAlgorithm:a];
@@ -962,7 +997,7 @@ unsigned long _outputLengthMAC;
     return [r hashString:s];
 }
 
-+ (NSString *)hashStringWithGMAC:(NSString *)s andCipherAlgorithm:(NBSCrypto_MAC_CIPHER)a setKeyForMAC:(NSString *)k setIVForMAC:(NSString *)iv
++ (NSString*)hashStringWithGMAC:(NSString*)s andCipherAlgorithm:(NBSCrypto_MAC_CIPHER)a setKeyForMAC:(NSString*)k setIVForMAC:(NSString*)iv
 {
     NBSCryptoHash *r = [[self alloc] init];
     [r setCipherAlgorithm:a];
@@ -972,7 +1007,7 @@ unsigned long _outputLengthMAC;
     return [r hashString:s];
 }
 
-+(NSString *)hashStringWithHMAC:(NSString *)s andHashAlgorithm:(NBSCrypto_HASH)a setKeyForMAC:(NSString *)k
++(NSString*)hashStringWithHMAC:(NSString*)s andHashAlgorithm:(NBSCrypto_HASH)a setKeyForMAC:(NSString*)k
 {
     NBSCryptoHash *r = [[self alloc] init];
     [r setHashAlgorithm:a];
@@ -981,7 +1016,7 @@ unsigned long _outputLengthMAC;
     return [r hashString:s];
 }
 
-+(NSString *)hashStringWithKMAC:(NSString *)s andKMACAlgorithm:(NBSCrypto_KMAC)m setKeyForMAC:(NSString *)k setCustomizing:(NSString *)c setOutputLength:(unsigned long)oLM
++(NSString*)hashStringWithKMAC:(NSString*)s andKMACAlgorithm:(NBSCrypto_KMAC)m setKeyForMAC:(NSString*)k setCustomizing:(NSString*)c setOutputLength:(unsigned long)oLM
 {
     NBSCryptoHash *r = [[self alloc] init];
     //[r setAlgorithm:a];
@@ -1013,7 +1048,7 @@ unsigned long _outputLengthMAC;
     return [r hashString:s];
 }
 
-+ (NSString *)hashStringWithOMAC:(NSString *)s andCipherAlgorithm:(NBSCrypto_MAC_CIPHER)a setKeyForMAC:(NSString *)k
++ (NSString*)hashStringWithOMAC:(NSString*)s andCipherAlgorithm:(NBSCrypto_MAC_CIPHER)a setKeyForMAC:(NSString*)k
 {
     NBSCryptoHash *r = [[self alloc] init];
     [r setCipherAlgorithm:a];
@@ -1022,7 +1057,7 @@ unsigned long _outputLengthMAC;
     return [r hashString:s];
 }
 
-+ (NSString *)hashStringWithPELICAN:(NSString *)s setKeyForMAC:(NSString *)k
++ (NSString*)hashStringWithPELICAN:(NSString*)s setKeyForMAC:(NSString*)k
 {
     NBSCryptoHash *r = [[self alloc] init];
     [r useMAC:NBSCrypto_MAC_PELICAN];
@@ -1030,7 +1065,7 @@ unsigned long _outputLengthMAC;
     return [r hashString:s];
 }
 
-+ (NSString *)hashStringWithPMAC:(NSString *)s andCipherAlgorithm:(NBSCrypto_MAC_CIPHER)a setKeyForMAC:(NSString *)k
++ (NSString*)hashStringWithPMAC:(NSString*)s andCipherAlgorithm:(NBSCrypto_MAC_CIPHER)a setKeyForMAC:(NSString*)k
 {
     NBSCryptoHash *r = [[self alloc] init];
     [r setCipherAlgorithm:a];
@@ -1039,7 +1074,7 @@ unsigned long _outputLengthMAC;
     return [r hashString:s];
 }
 
-+ (NSString *)hashStringWithPOLY1305:(NSString *)s setKeyForMAC:(NSString *)k
++ (NSString*)hashStringWithPOLY1305:(NSString *)s setKeyForMAC:(NSString*)k
 {
     NBSCryptoHash *r = [[self alloc] init];
     [r useMAC:NBSCrypto_MAC_POLY1305];
@@ -1047,7 +1082,7 @@ unsigned long _outputLengthMAC;
     return [r hashString:s];
 }
 
-+ (NSString *)hashStringWithXCBC:(NSString *)s andCipherAlgorithm:(NBSCrypto_MAC_CIPHER)a setKeyForMAC:(NSString *)k
++ (NSString*)hashStringWithXCBC:(NSString*)s andCipherAlgorithm:(NBSCrypto_MAC_CIPHER)a setKeyForMAC:(NSString*)k
 {
     NBSCryptoHash *r = [[self alloc] init];
     [r setCipherAlgorithm:a];
@@ -1056,7 +1091,7 @@ unsigned long _outputLengthMAC;
     return [r hashString:s];
 }
 
-+(NSString *)hashPasswordWithBCRYPT:(NSString *)s setCost:(int)c setVersion:(NBSCrypto_BCRYPT_VERSION)v
++(NSString*)hashPasswordWithBCRYPT:(NSString*)s setCost:(int)c setVersion:(NBSCrypto_BCRYPT_VERSION)v
 {
     NSMutableString *r;
     NBSCryptoHash *ch = [[self alloc] init];
@@ -1067,7 +1102,7 @@ unsigned long _outputLengthMAC;
     unsigned long oL = 60;
     char out[oL];
 
-    bcrypt_hash_password((int)v, c, (const unsigned char*)[sKEY UTF8String], out, &oL);
+    bcrypt_hash_password((const unsigned char*)[sKEY UTF8String], (int)v, c, out, &oL);
 
     r=[NSMutableString stringWithCapacity:oL];
     for(int i=0;i<oL;i++){[r appendFormat:@"%c",out[i]];}
@@ -1085,7 +1120,49 @@ unsigned long _outputLengthMAC;
     sKEY = [ch _paddingString:sKEY withLength:72];
 
 
-    if (!bcrypt_verify_password((const unsigned char*)[s UTF8String], (const unsigned char*)[h UTF8String])) {
+    if (!bcrypt_verify_password((const unsigned char*)[sKEY UTF8String], (const unsigned char*)[h UTF8String])) {
+	ch = NULL;
+	return TRUE;
+    }else{
+	ch = NULL;
+	return FALSE;
+    }
+}
+
++ (NSString*)hashPasswordWithSCRYPT:(NSString*)s setCost:(int)c setOutputLength:(unsigned long)outputLength
+{
+    NSString *r=@"$scrypt$";
+    r = [r stringByAppendingFormat:@"n=%i,", c];
+    r = [r stringByAppendingFormat:@"r=%i,", 8];
+    r = [r stringByAppendingFormat:@"p=%i$", 1];
+
+    NBSCryptoHash *ch = [[self alloc] init];
+
+    NSString *sKEY=[s stringByAppendingString:[_HEX_PADDING objectAtIndex:0]];
+    sKEY = [ch _paddingString:sKEY withLength:32];
+
+    unsigned long oL = outputLength;
+    unsigned char out[oL];
+
+    unsigned char *salt = generateSaltOrPassword(16, 2);
+    //char salt[33] = "SodiumChloride";
+    r = [r stringByAppendingFormat:@"%@$", [ch _base64FromChar:(const unsigned char*)salt withLength:strlen((const char*)salt)]];
+
+    scrypt_hash_password((const unsigned char*)[sKEY UTF8String], (const unsigned char*)salt, c, 8, 1, out, oL);
+    r = [r stringByAppendingFormat:@"%@", [ch _base64FromChar:out withLength:oL]];
+    ch = NULL;
+
+    return r;
+}
+
++ (BOOL)validatePasswordWithSCRYPT:(NSString*)s setHASH:(NSString*)h
+{
+    NBSCryptoHash *ch = [[self alloc] init];
+
+    NSString *sKEY=[s stringByAppendingString:[_HEX_PADDING objectAtIndex:0]];
+    sKEY = [ch _paddingString:sKEY withLength:32];
+
+    if (!scrypt_verify_password((const unsigned char*)[sKEY UTF8String], (const unsigned char*)[h UTF8String])) {
 	ch = NULL;
 	return TRUE;
     }else{

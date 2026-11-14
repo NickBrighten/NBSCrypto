@@ -7,8 +7,8 @@
 
 
 #pragma mark - BASE CONVERT FUNCTIONS
-char* basetobase (const char* str, uint8_t a, uint8_t b);
-char* basetobasecustom (const char* str, uint8_t a, uint8_t b, const char* charset);
+char* basetobase (const char* str, unsigned char a, unsigned char b);
+char* basetobasecustom (const char* str, unsigned char a, unsigned char b, const char* charset);
 
 
 #pragma mark - BASE16 FUNCTIONS
@@ -41,7 +41,7 @@ int base64url_sane_decode(const char *in, unsigned long inlen, unsigned char *ou
 
 
 #pragma mark - RADIX64 FUNCTIONS
-int radix64_encode(const void *in, size_t inlen, unsigned char *output, size_t *outputLen);
-int radix64_decode(const unsigned char *in, size_t inlen, void *output, size_t *outputLen);
+int radix64_encode(const void *in, unsigned long inlen, char *out, unsigned long *outlen);
+int radix64_decode(const unsigned char *in, unsigned long inlen, void *output, unsigned long *outlen);
 
 #endif /* nbs_bases_h */
