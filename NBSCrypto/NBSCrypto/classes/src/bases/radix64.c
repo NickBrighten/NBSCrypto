@@ -29,7 +29,7 @@ static const unsigned char radix64_decode_table[128] = {
 
 
 #pragma mark - RADIX64 - Encode
-int radix64_encode(const void *in, size_t inlen, unsigned char *out, size_t *outlen)
+int radix64_encode(const void *in, unsigned long inlen, char *out, unsigned long *outlen)
 {
     size_t n;
     unsigned char a;
@@ -97,7 +97,7 @@ int radix64_encode(const void *in, size_t inlen, unsigned char *out, size_t *out
 
 
 #pragma mark - RADIX64 - Decode
-int radix64_decode(const unsigned char *in, size_t inlen, void *out, size_t *outlen)
+int radix64_decode(const unsigned char *in, unsigned long inlen, void *out, unsigned long *outlen)
 {
     int error;
     int c;
