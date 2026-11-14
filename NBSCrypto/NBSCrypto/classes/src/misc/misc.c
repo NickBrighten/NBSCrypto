@@ -3,12 +3,14 @@
 //
 
 #include "nbs_crypto.h"
-//#include <sys/time.h>
-//#include <time.h>
+
+
 
 
 #define CIPHER_TBL_SIZE	43
 #define HASH_TBL_SIZE	254
+
+
 
 
 #pragma mark - Hash Functions
@@ -128,6 +130,53 @@ int unregister_cipher(const struct cipher_descriptor *cipher)
 
 
 #pragma mark - General Functions
+int splitStr(const unsigned char *txt, char delim, char ***tokens)
+{
+    if (txt == NULL || tokens == NULL) {
+	return -1;
+    }
+
+    const char *str = (const char *)txt;
+    const unsigned char udelim = (unsigned char)delim;
+
+    int count = 1;
+    for (const char *p = str; *p != '\0'; p++) {
+	if ((unsigned char)*p == udelim) {
+	    count++;
+	}
+    }
+
+    char **arr = malloc((size_t)count * sizeof(char *));
+    if (arr == NULL) {
+	return -1;
+    }
+
+    const char *start = str;
+    for (int i = 0; i < count; i++) {
+	const char *end = (udelim != '\0') ? strchr(start, delim) : NULL;
+	size_t len = (end != NULL) ? (size_t)(end - start) : strlen(start);
+
+	arr[i] = malloc(len + 1);
+	if (arr[i] == NULL) {
+	    for (int j = 0; j < i; j++) {
+		free(arr[j]);
+	    }
+	    free(arr);
+	    return -1;
+	}
+
+	memcpy(arr[i], start, len);
+	arr[i][len] = '\0';
+
+	if (end != NULL) {
+	    start = end + 1;
+	}
+    }
+
+    *tokens = arr;
+    return count;
+}
+
 int mem_neq(const void *a, const void *b, size_t len)
 {
     unsigned char ret = 0;
@@ -159,23 +208,34 @@ void zeromem(volatile void *o, size_t ol)
     }
 }
 
-void copy_or_zeromem(const unsigned char* in, unsigned char* out, unsigned long len, int coz)
+void copy_or_zeromem(const unsigned char *in, unsigned char *out, unsigned long len, int coz)
 {
-    unsigned long y;
-    unsigned char mask = 0xff;
-
-    if (coz != 0) coz = 1;
-    y = 0;
-    mask *= 1 - coz;
-
-    for (; y < len; y++) {
-	out[y] = in[y] & mask;
+    if (in == NULL || out == NULL || len == 0) {
+	return;
     }
 
-    mask = 0;
+    volatile unsigned int v_coz = (unsigned int)coz;
+    unsigned int is_nonzero = (v_coz | -v_coz) >> (sizeof(unsigned int) * 8 - 1);
+    unsigned char mask = (unsigned char)(is_nonzero - 1U);
+
+    size_t word_mask = (size_t)0 - (size_t)(mask & 1U);
+    unsigned long i = 0;
+
+    if (sizeof(size_t) == 8) {
+	for (; i + 8 <= len; i += 8) {
+	    size_t val;
+	    __builtin_memcpy(&val, in + i, 8);
+	    val &= word_mask;
+	    __builtin_memcpy(out + i, &val, 8);
+	}
+    }
+
+    for (; i < len; i++) {
+	out[i] = in[i] & mask;
+    }
 }
 
-unsigned char* generateSaltOrPassword(int length, int saltOrPassword)
+unsigned char* generateSaltOrPassword(int length, int outputFormat)
 {
     const char r64[] = "./ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
     int r64Size = sizeof(r64) - 1;
@@ -183,9 +243,12 @@ unsigned char* generateSaltOrPassword(int length, int saltOrPassword)
     const char b64[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
     int b64Size = sizeof(b64) - 1;
 
+    const char hex[] = "0123456789abcdef";
+    int hexSize = sizeof(hex) - 1;
+
 
     unsigned char *pw = malloc((length + 1) * sizeof(unsigned char));
-    if (!pw) return NULL;
+    if(!pw){return NULL;}
 
     FILE *rand = fopen("/dev/urandom", "r");
     if (!rand) {
@@ -200,10 +263,24 @@ unsigned char* generateSaltOrPassword(int length, int saltOrPassword)
 	    free(pw);
 	    return NULL;
 	}
-	if (saltOrPassword) {
-	    pw[i] = (unsigned char)r64[rval % r64Size];
-	}else{
-	    pw[i] = (unsigned char)b64[rval % b64Size];
+	switch (outputFormat) {
+	    case 0:{
+		pw[i] = (unsigned char)r64[rval % r64Size];
+		break;
+	    }
+	    case 1:{
+		pw[i] = (unsigned char)b64[rval % b64Size];
+		break;
+	    }
+	    case 2: {
+		pw[i] = (unsigned char)hex[rval % hexSize];
+		break;
+	    }
+
+	    default:{
+		pw[i] = (unsigned char)r64[rval % r64Size];
+		break;
+	    }
 	}
     }
     pw[length] = '\0';
