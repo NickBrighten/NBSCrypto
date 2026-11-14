@@ -339,6 +339,9 @@ Please have a look [here](https://help.github.com/articles/approving-a-pull-requ
 - __BCRYPT__
     - `Encrypt all versions or variants`
     - `Validate all version or variants`
+- __SCRYPT__
+    - `Encrypt`
+    - `Validate`
 #
 <br/>
 <br/>
