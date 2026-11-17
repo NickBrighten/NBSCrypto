@@ -69,12 +69,15 @@ static inline int _bcrypt(bcrypt_variants variant, int cost, const unsigned char
 	return NBSCrypto_ERROR;
     }
 
-    cs = malloc(sizeof(cs->blowfish));
+    cs = malloc(sizeof(cipher_state));
     if(cs == NULL){
 	return NBSCrypto_ERROR;
     }
 
     length = strlen((const char*)key) + 1;
+    if (length > 72) {
+	length = 72;
+    }
 
     error = _blowfish_EKS_setup(cost, salt, 16, key, length, cs);
 
@@ -124,7 +127,12 @@ int bcrypt_hash_password(const unsigned char *key, int variants, int cost, char 
     }
 
     unsigned char *salt = generateSaltOrPassword(16, 0);
+    if (salt == NULL) {
+	return NBSCrypto_ERROR;
+    }
     error = _bcrypt(variants, cost, salt, key, out, outlen);
+
+    free(salt);
 
     return error;
 }
