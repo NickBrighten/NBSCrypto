@@ -32,10 +32,12 @@ static const struct {
 #pragma mark - INLINE
 static inline int _ocb_ntz(unsigned long x)
 {
-    int c;
+    int c = 0;
     x &= 0xFFFFFFFFUL;
-    c = 0;
-    while ((x & 1) == 0) {
+    if (x == 0) {
+	return 31;
+    }
+    while ((x & 1UL) == 0) {
 	++c;
 	x >>= 1;
     }
@@ -54,7 +56,7 @@ static inline void _ocb_shift_xor(cm_OCB *ocb, unsigned char *Z)
 
 static inline int _ocb_done(cm_OCB *ocb, const unsigned char *pt, unsigned char *ct, unsigned long len, unsigned char *tag, unsigned long *taglen, int mode)
 {
-    unsigned char *Z, *Y, *X;
+    unsigned char *Z=NULL, *Y=NULL, *X=NULL;
     int err, x;
 
     if ((err = is_cipher_valid(ocb->cipher)) != NBSCrypto_OK) {
