@@ -76,7 +76,7 @@ int pbkdf1(unsigned long hash, const unsigned char *key, unsigned long keylen, c
 ERR:
     free(hs);
 
-    return NBSCrypto_OK;
+    return err;
 }
 
 int pbkdf2(PBKDF2_TYPE type, unsigned long hash, const unsigned char *key, unsigned long keylen, const unsigned char *salt, unsigned long saltlen, int c, unsigned char *out, unsigned long outlen)
