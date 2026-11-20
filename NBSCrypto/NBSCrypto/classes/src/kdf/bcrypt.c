@@ -122,9 +122,18 @@ int bcrypt_hash_password(const unsigned char *key, int variants, int cost, char 
 {
     int error;
 
-    if(key == NULL || out == NULL){
+    if (key == NULL || out == NULL || outlen == NULL) {
 	return NBSCrypto_ERROR;
     }
+
+    if (cost < BCRYPT_MIN_COST || cost > BCRYPT_MAX_COST) {
+	return NBSCrypto_ERROR;
+    }
+
+    if (variants != bv_A && variants != bv_B && variants != bv_X && variants != bv_Y) {
+	return NBSCrypto_ERROR;
+    }
+
 
     unsigned char *salt = generateSaltOrPassword(16, 0);
     if (salt == NULL) {
@@ -132,6 +141,9 @@ int bcrypt_hash_password(const unsigned char *key, int variants, int cost, char 
     }
     error = _bcrypt(variants, cost, salt, key, out, outlen);
 
+    for (volatile size_t i = 0; i < 16; i++) {
+	salt[i] = 0;
+    }
     free(salt);
 
     return error;
@@ -139,11 +151,11 @@ int bcrypt_hash_password(const unsigned char *key, int variants, int cost, char 
 
 int bcrypt_verify_password(const unsigned char *key, const unsigned char *hash)
 {
-    int cost, error, i, v;
+    int cost, error, i, ret = NBSCrypto_ERROR, v;
     unsigned long n = 0;
     unsigned char salt[16] = {0};
     volatile unsigned char mask = 0;
-    char temp[BCRYPT_HASH_STRING_LEN + 1];
+    char temp[BCRYPT_HASH_STRING_LEN + 1] = {0};
 
     if (key == NULL || hash == NULL) {
 	return NBSCrypto_ERROR;
@@ -176,17 +188,26 @@ int bcrypt_verify_password(const unsigned char *key, const unsigned char *hash)
 
     error = radix64_decode(hash + 7, 22, salt, &n);
     if (error || n != 16) {
-	return error ? error : NBSCrypto_ERROR;
+	ret = error ? error : NBSCrypto_ERROR;
+	goto cleanup;
     }
 
+    n = 0;
     error = _bcrypt(v, cost, salt, key, temp, &n);
     if (error) {
-	return error;
+	ret = error ? error : NBSCrypto_ERROR;
+	goto cleanup;
     }
 
     for (i = 0; i < BCRYPT_HASH_STRING_LEN; i++) {
 	mask |= (unsigned char)temp[i] ^ hash[i];
     }
 
-    return (mask == 0) ? NBSCrypto_OK : NBSCrypto_ERROR;
+    ret = (mask == 0) ? NBSCrypto_OK : NBSCrypto_ERROR;
+
+cleanup:
+    for (volatile size_t j = 0; j < sizeof(temp); j++) temp[j] = 0;
+    for (volatile size_t j = 0; j < sizeof(salt); j++) salt[j] = 0;
+
+    return ret;
 }
