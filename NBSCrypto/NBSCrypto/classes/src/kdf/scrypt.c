@@ -228,7 +228,7 @@ int scrypt_verify_password(const unsigned char *key, const unsigned char *hash)
 {
     int error=NBSCrypto_ERROR, dc1=0, n=0, r=0, p=0;
     char **dt1=NULL;
-    char salt[256], *temphash=NULL;
+    char salt[256] = {0}, *temphash=NULL;
 
     if(key == NULL || hash == NULL){
 	return NBSCrypto_ERROR;
@@ -264,7 +264,7 @@ int scrypt_verify_password(const unsigned char *key, const unsigned char *hash)
 	}
     }
 
-    if (n <= 0 || r <= 0 || p <= 0) {
+    if (n <= 1 || (n & (n - 1)) != 0 || r <= 0 || r > 64 || p <= 0 || p > 64) {
 	free(dt1);
 	return NBSCrypto_ERROR;
     }
@@ -286,7 +286,10 @@ int scrypt_verify_password(const unsigned char *key, const unsigned char *hash)
     else if	(len> 32){outlen= 32;}
 
     unsigned char out[outlen];
-    scrypt_hash_password(key, (const unsigned char*)salt, n, r, p, out, outlen);
+    if (scrypt_hash_password(key, (const unsigned char*)salt, n, r, p, out, outlen) != NBSCrypto_OK) {
+	free(dt1);
+	return NBSCrypto_ERROR;
+    }
 
     unsigned long b64len = (outlen * 2) + 4;
     char b64[b64len];
