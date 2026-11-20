@@ -1019,7 +1019,6 @@ unsigned long _outputLengthMAC;
 +(NSString*)hashStringWithKMAC:(NSString*)s andKMACAlgorithm:(NBSCrypto_KMAC)m setKeyForMAC:(NSString*)k setCustomizing:(NSString*)c setOutputLength:(unsigned long)oLM
 {
     NBSCryptoHash *r = [[self alloc] init];
-    //[r setAlgorithm:a];
     switch (m) {
 	case NBSCrypto_KMAC_128:{
 	    [r useMAC:NBSCrypto_MAC_KMAC_128];
@@ -1145,7 +1144,6 @@ unsigned long _outputLengthMAC;
     unsigned char out[oL];
 
     unsigned char *salt = generateSaltOrPassword(16, 2);
-    //char salt[33] = "SodiumChloride";
     r = [r stringByAppendingFormat:@"%@$", [ch _base64FromChar:(const unsigned char*)salt withLength:strlen((const char*)salt)]];
 
     scrypt_hash_password((const unsigned char*)[sKEY UTF8String], (const unsigned char*)salt, c, 8, 1, out, oL);
