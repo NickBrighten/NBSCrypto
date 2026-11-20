@@ -247,6 +247,7 @@ int xts_decrypt(const unsigned char *ct, unsigned char *pt, unsigned long len, u
 
 int xts_done(cm_XTS *xts)
 {
+    if (xts == NULL || is_cipher_valid(xts->cipher) != NBSCrypto_OK){ return NBSCrypto_ERROR;}
     cipher_descriptor[xts->cipher].done(&xts->cs1);
     cipher_descriptor[xts->cipher].done(&xts->cs2);
 
