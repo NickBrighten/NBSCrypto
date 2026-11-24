@@ -1753,6 +1753,15 @@ typedef enum NBSCrypto_HASH : NSUInteger {
 } NBSCrypto_HASH;
 
 
+///	NBSCrypto_ARGON2
+///	@discussion	ARGON2-TYPE
+typedef enum NBSCrypto_ARGON2_TYPE : NSUInteger {
+    NBSCrypto_ARGON2_TYPE_D			=  0,
+    NBSCrypto_ARGON2_TYPE_I			=  1,
+    NBSCrypto_ARGON2_TYPE_ID			=  2,
+} NBSCrypto_ARGON2_TYPE;
+
+
 ///	NBSCrypto_BCRYPT
 ///	@discussion	BCRYPT-Versions
 typedef enum NBSCrypto_BCRYPT_VERSION : NSUInteger {
