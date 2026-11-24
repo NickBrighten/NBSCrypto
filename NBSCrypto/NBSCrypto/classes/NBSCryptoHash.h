@@ -193,6 +193,10 @@ NS_ASSUME_NONNULL_BEGIN
 +(NSString *)hashPasswordWithSCRYPT:(NSString*)password setCost:(int)cost setOutputLength:(unsigned long)outputLength;
 +(BOOL)validatePasswordWithSCRYPT:(NSString*)password setHASH:(NSString*)hash;
 
+
++(NSString *)hashPasswordWithARGON2:(NSString*)password setARGON2Type:(NBSCrypto_ARGON2_TYPE)type setCost:(int)cost  setIterations:(int)iterations setParallelismFactor:(int)parallelismFactor setOutputLength:(unsigned long)outputLength;
++(BOOL)validatePasswordWithARGON2:(NSString*)password setHASH:(NSString*)hash;
+
 @end
 
 NS_ASSUME_NONNULL_END
