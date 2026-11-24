@@ -1090,6 +1090,60 @@ unsigned long _outputLengthMAC;
     return [r hashString:s];
 }
 
++ (NSString *)hashPasswordWithARGON2:(NSString *)s setARGON2Type:(NBSCrypto_ARGON2_TYPE)t setCost:(int)c setIterations:(int)i setParallelismFactor:(int)p setOutputLength:(unsigned long)oLM
+{
+    NSString *r=@"";
+    NBSCryptoHash *ch = [[self alloc] init];
+
+    NSString *sKEY=[s stringByAppendingString:[_HEX_PADDING objectAtIndex:0]];
+    sKEY = [ch _paddingString:sKEY withLength:oLM];
+
+    char *key = (char*)[sKEY UTF8String];
+    char *salt = (char*)generateSaltOrPassword(16, 2);
+
+
+    if(i >= 20){i = 20;}
+    if(oLM >= 128){oLM = 128;}
+
+    unsigned int hashoutlen = (unsigned int)oLM;
+    unsigned int lanes = 1;
+    argon2_type type = (int)t;
+    unsigned int version = ARGON2_VERSION_NUMBER;
+    size_t keylen = 0, saltlen = 0, encodedlen;
+
+    unsigned char *hashout = NULL;
+    char *encoded = NULL;
+
+
+    if(key){	keylen	= strlen(key);}
+    if(salt){	saltlen	= strlen(salt);}
+
+    encodedlen = argon2_encodedlen((unsigned int)i, (unsigned int)c, lanes, (unsigned int)saltlen, hashoutlen, type);
+    encoded = malloc(encodedlen + 1);
+    argon2_hash_password((unsigned int)i, (unsigned int)c, (unsigned int)p, key, keylen, salt, saltlen, hashout, hashoutlen, encoded, encodedlen, type, version);
+
+    r = [r stringByAppendingFormat:@"%s", encoded];
+
+    free(encoded);
+    return r;
+}
+
++ (BOOL)validatePasswordWithARGON2:(NSString *)s setHASH:(NSString *)h
+{
+    NBSCryptoHash *ch = [[self alloc] init];
+
+    NSString *sKEY=[s stringByAppendingString:[_HEX_PADDING objectAtIndex:0]];
+    sKEY = [ch _paddingString:sKEY withLength:32];
+
+    if (!argon2_verify_password((const unsigned char*)[sKEY UTF8String], (const unsigned char*)[h UTF8String])) {
+	ch = NULL;
+	return TRUE;
+    }else{
+	ch = NULL;
+	return FALSE;
+    }
+}
+
 +(NSString*)hashPasswordWithBCRYPT:(NSString*)s setCost:(int)c setVersion:(NBSCrypto_BCRYPT_VERSION)v
 {
     NSMutableString *r;
@@ -1173,55 +1227,5 @@ unsigned long _outputLengthMAC;
     }
 }
 
-
-+ (NSString *)hashPasswordWithARGON2:(NSString *)s setARGON2Type:(NBSCrypto_ARGON2_TYPE)t setCost:(int)c setIterations:(int)i setParallelismFactor:(int)p setOutputLength:(unsigned long)oLM
-{
-    NSString *r=@"";
-    NBSCryptoHash *ch = [[self alloc] init];
-
-    NSString *sKEY=[s stringByAppendingString:[_HEX_PADDING objectAtIndex:0]];
-    sKEY = [ch _paddingString:sKEY withLength:oLM];
-
-    char *key = (char*)[sKEY UTF8String];
-    char *salt = "0123456789abcdef";
-
-    unsigned int hashoutlen = (unsigned int)oLM;
-    unsigned int lanes = 1;
-    argon2_type type = (int)t;
-    unsigned int version = ARGON2_VERSION_NUMBER;
-    size_t keylen = 0, saltlen = 0, encodedlen;
-
-    unsigned char *hashout = NULL;
-    char *encoded = NULL;
-
-
-    if(key){	keylen	= strlen(key);}
-    if(salt){	saltlen	= strlen(salt);}
-
-    encodedlen = argon2_encodedlen((unsigned int)i, (unsigned int)c, lanes, (unsigned int)saltlen, hashoutlen, type);
-    encoded = malloc(encodedlen + 1);
-    argon2_hash_password((unsigned int)i, (unsigned int)c, (unsigned int)p, key, keylen, salt, saltlen, hashout, hashoutlen, encoded, encodedlen, type, version);
-
-    r = [r stringByAppendingFormat:@"%s", encoded];
-
-    free(encoded);
-    return r;
-}
-
-+ (BOOL)validatePasswordWithARGON2:(NSString *)s setHASH:(NSString *)h
-{
-    NBSCryptoHash *ch = [[self alloc] init];
-
-    NSString *sKEY=[s stringByAppendingString:[_HEX_PADDING objectAtIndex:0]];
-    sKEY = [ch _paddingString:sKEY withLength:32];
-
-    if (!argon2_verify_password((const unsigned char*)[sKEY UTF8String], (const unsigned char*)[h UTF8String])) {
-	ch = NULL;
-	return TRUE;
-    }else{
-	ch = NULL;
-	return FALSE;
-    }
-}
 
 @end
