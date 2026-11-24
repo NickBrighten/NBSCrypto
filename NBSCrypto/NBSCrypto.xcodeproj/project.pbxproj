@@ -466,6 +466,10 @@
 		1D8475EE2FDDB0C300E0836C /* pelican.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D8475EC2FDDB0C300E0836C /* pelican.c */; };
 		1D8475EF2FDDB0C300E0836C /* pelican.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D8475EC2FDDB0C300E0836C /* pelican.c */; };
 		1D8475F02FDDB0C300E0836C /* pelican.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D8475EC2FDDB0C300E0836C /* pelican.c */; };
+		1D95879230B1F12C008E5284 /* argon2.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D95879130B1F12C008E5284 /* argon2.c */; };
+		1D95879330B1F12C008E5284 /* argon2.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D95879130B1F12C008E5284 /* argon2.c */; };
+		1D95879430B1F12C008E5284 /* argon2.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D95879130B1F12C008E5284 /* argon2.c */; };
+		1D95879530B1F12C008E5284 /* argon2.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D95879130B1F12C008E5284 /* argon2.c */; };
 		1D983EA6301E68CB004F4985 /* kmac.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D983EA5301E68CB004F4985 /* kmac.c */; };
 		1D983EA7301E68CB004F4985 /* kmac.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D983EA5301E68CB004F4985 /* kmac.c */; };
 		1D983EA8301E68CB004F4985 /* kmac.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D983EA5301E68CB004F4985 /* kmac.c */; };
@@ -647,6 +651,7 @@
 		1D7CAE0030680F720000EB2D /* trivium.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = trivium.c; sourceTree = "<group>"; tabWidth = 8; };
 		1D8377742FCF5FC6008E8D31 /* blake3.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = blake3.c; sourceTree = "<group>"; tabWidth = 8; };
 		1D8475EC2FDDB0C300E0836C /* pelican.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pelican.c; sourceTree = "<group>"; tabWidth = 8; };
+		1D95879130B1F12C008E5284 /* argon2.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = argon2.c; sourceTree = "<group>"; tabWidth = 8; };
 		1D983EA5301E68CB004F4985 /* kmac.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = kmac.c; sourceTree = "<group>"; tabWidth = 8; };
 		1DA346B3305AFE5E00AD5A03 /* rc5.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = rc5.c; sourceTree = "<group>"; tabWidth = 8; };
 		1DA577CF3027978000494005 /* gcm-siv.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "gcm-siv.c"; sourceTree = "<group>"; tabWidth = 8; };
@@ -933,6 +938,7 @@
 		1DB66ADF30963B1600CB338B /* kdf */ = {
 			isa = PBXGroup;
 			children = (
+				1D95879130B1F12C008E5284 /* argon2.c */,
 				1D5BB34F308126460041CE61 /* bcrypt.c */,
 				1DB66AE13096796900CB338B /* pbkdf.c */,
 				1DB66AD3309623EB00CB338B /* scrypt.c */,
@@ -1244,6 +1250,7 @@
 				1D419DEA2FC06C97003A7B83 /* tiger.c in Sources */,
 				1D419E2E2FC06C97003A7B83 /* whirpool.c in Sources */,
 				1D419DF62FC06C97003A7B83 /* xxhash.c in Sources */,
+				1D95879230B1F12C008E5284 /* argon2.c in Sources */,
 				1D5BB350308126460041CE61 /* bcrypt.c in Sources */,
 				1DB66AE23096796900CB338B /* pbkdf.c in Sources */,
 				1DB66AD4309623EB00CB338B /* scrypt.c in Sources */,
@@ -1371,6 +1378,7 @@
 				1D419DEB2FC06C97003A7B83 /* tiger.c in Sources */,
 				1D419E2F2FC06C97003A7B83 /* whirpool.c in Sources */,
 				1D419DF72FC06C97003A7B83 /* xxhash.c in Sources */,
+				1D95879330B1F12C008E5284 /* argon2.c in Sources */,
 				1D5BB351308126460041CE61 /* bcrypt.c in Sources */,
 				1DB66AE33096796900CB338B /* pbkdf.c in Sources */,
 				1DB66AD5309623EB00CB338B /* scrypt.c in Sources */,
@@ -1498,6 +1506,7 @@
 				1D419DEC2FC06C97003A7B83 /* tiger.c in Sources */,
 				1D419E302FC06C98003A7B83 /* whirpool.c in Sources */,
 				1D419DF82FC06C97003A7B83 /* xxhash.c in Sources */,
+				1D95879430B1F12C008E5284 /* argon2.c in Sources */,
 				1D5BB352308126460041CE61 /* bcrypt.c in Sources */,
 				1DB66AE43096796900CB338B /* pbkdf.c in Sources */,
 				1DB66AD6309623EB00CB338B /* scrypt.c in Sources */,
@@ -1624,6 +1633,7 @@
 				1D4B76042FC5EFAD00159BB6 /* swifftx.c in Sources */,
 				1D419DED2FC06C97003A7B83 /* tiger.c in Sources */,
 				1D419E312FC06C98003A7B83 /* whirpool.c in Sources */,
+				1D95879530B1F12C008E5284 /* argon2.c in Sources */,
 				1D5BB353308126460041CE61 /* bcrypt.c in Sources */,
 				1DB66AE53096796900CB338B /* pbkdf.c in Sources */,
 				1DB66AD7309623EB00CB338B /* scrypt.c in Sources */,
@@ -1722,7 +1732,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 261120;
+				CURRENT_PROJECT_VERSION = 261124;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -1754,7 +1764,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 261120;
+				CURRENT_PROJECT_VERSION = 261124;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -1783,7 +1793,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 261120;
+				CURRENT_PROJECT_VERSION = 261124;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -1814,7 +1824,7 @@
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = NO;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 261120;
+				CURRENT_PROJECT_VERSION = 261124;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
