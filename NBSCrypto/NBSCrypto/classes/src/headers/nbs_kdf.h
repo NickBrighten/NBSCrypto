@@ -10,6 +10,24 @@
 
 #pragma mark - KDF -
 
+#pragma mark ARGON2
+typedef enum Argon2_type {
+    Argon2_d	= 0,
+    Argon2_i	= 1,
+    Argon2_id	= 2
+} argon2_type;
+
+typedef enum Argon2_version {
+    ARGON2_VERSION_10 = 0x10,
+    ARGON2_VERSION_13 = 0x13,
+    ARGON2_VERSION_NUMBER = ARGON2_VERSION_13
+} argon2_version;
+
+int argon2_hash_password(const uint32_t t_cost, const uint32_t m_cost, const uint32_t parallelism, const void *pwd, const size_t pwdlen, const void *salt, const size_t saltlen, void *hash, const size_t hashlen, char *encoded, const size_t encodedlen, argon2_type type, const uint32_t version);
+int argon2_verify_password(const unsigned char *key, const unsigned char *hash);
+size_t argon2_encodedlen(uint32_t t_cost, uint32_t m_cost, uint32_t parallelism, uint32_t saltlen, uint32_t hashlen, argon2_type type);
+
+
 #pragma mark BCRYPT
 int bcrypt_hash_password(const unsigned char *key, int variants, int cost, char *out, unsigned long *outlen);
 int bcrypt_verify_password(const unsigned char *key, const unsigned char *hash);
