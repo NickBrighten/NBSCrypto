@@ -26,7 +26,7 @@
 #endif
 
 #define NBSCRYPTO_VERSION	"1.0.0"
-#define NBSCRYPTO_BUILDNUMBER	"261124"
+#define NBSCRYPTO_BUILDNUMBER	"261125"
 #define NBSCRYPTO_COPYRIGHT	"© 2026. Nick Brighten, NB-Systems."
 
 #endif /* nbs_crypto_h */
