@@ -17,12 +17,12 @@
 		<key>NBSCrypto - tvOS.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>3</integer>
+			<integer>4</integer>
 		</dict>
 		<key>NBSCrypto - watchOS.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>4</integer>
+			<integer>3</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
@@ -33,6 +33,11 @@
 			<true/>
 		</dict>
 		<key>1D419CE02FC066EF003A7B83</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>1D419CF82FC06829003A7B83</key>
 		<dict>
 			<key>primary</key>
 			<true/>

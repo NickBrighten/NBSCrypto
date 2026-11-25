@@ -1090,92 +1090,11 @@ unsigned long _outputLengthMAC;
     return [r hashString:s];
 }
 
-+(NSString*)hashPasswordWithBCRYPT:(NSString*)s setCost:(int)c setVersion:(NBSCrypto_BCRYPT_VERSION)v
-{
-    NSMutableString *r;
-    NBSCryptoHash *ch = [[self alloc] init];
-
-    NSString *sKEY=[s stringByAppendingString:[_HEX_PADDING objectAtIndex:0]];
-    sKEY = [ch _paddingString:sKEY withLength:72];
-
-    unsigned long oL = 60;
-    char out[oL];
-
-    bcrypt_hash_password((const unsigned char*)[sKEY UTF8String], (int)v, c, out, &oL);
-
-    r=[NSMutableString stringWithCapacity:oL];
-    for(int i=0;i<oL;i++){[r appendFormat:@"%c",out[i]];}
-
-    ch = NULL;
-
-    return r;
-}
-
-+ (BOOL)validatePasswordWithBCRYPT:(NSString*)s setHASH:(NSString*)h
-{
-    NBSCryptoHash *ch = [[self alloc] init];
-
-    NSString *sKEY=[s stringByAppendingString:[_HEX_PADDING objectAtIndex:0]];
-    sKEY = [ch _paddingString:sKEY withLength:72];
-
-
-    if (!bcrypt_verify_password((const unsigned char*)[sKEY UTF8String], (const unsigned char*)[h UTF8String])) {
-	ch = NULL;
-	return TRUE;
-    }else{
-	ch = NULL;
-	return FALSE;
-    }
-}
-
-+ (NSString*)hashPasswordWithSCRYPT:(NSString*)s setCost:(int)c setOutputLength:(unsigned long)outputLength
-{
-    NSString *r=@"$scrypt$";
-    r = [r stringByAppendingFormat:@"n=%i,", c];
-    r = [r stringByAppendingFormat:@"r=%i,", 8];
-    r = [r stringByAppendingFormat:@"p=%i$", 1];
-
-    NBSCryptoHash *ch = [[self alloc] init];
-
-    NSString *sKEY=[s stringByAppendingString:[_HEX_PADDING objectAtIndex:0]];
-    sKEY = [ch _paddingString:sKEY withLength:32];
-
-    if (outputLength > 64) {
-	outputLength = 64;
-    }
-
-    unsigned long oL = outputLength;
-    unsigned char out[oL];
-
-    unsigned char *salt = generateSaltOrPassword(16, 2);
-    r = [r stringByAppendingFormat:@"%@$", [ch _base64FromChar:(const unsigned char*)salt withLength:strlen((const char*)salt)]];
-
-    scrypt_hash_password((const unsigned char*)[sKEY UTF8String], (const unsigned char*)salt, c, 8, 1, out, oL);
-    r = [r stringByAppendingFormat:@"%@", [ch _base64FromChar:out withLength:oL]];
-    ch = NULL;
-
-    return r;
-}
-
-+ (BOOL)validatePasswordWithSCRYPT:(NSString*)s setHASH:(NSString*)h
-{
-    NBSCryptoHash *ch = [[self alloc] init];
-
-    NSString *sKEY=[s stringByAppendingString:[_HEX_PADDING objectAtIndex:0]];
-    sKEY = [ch _paddingString:sKEY withLength:32];
-
-    if (!scrypt_verify_password((const unsigned char*)[sKEY UTF8String], (const unsigned char*)[h UTF8String])) {
-	ch = NULL;
-	return TRUE;
-    }else{
-	ch = NULL;
-	return FALSE;
-    }
-}
-
-
 + (NSString *)hashPasswordWithARGON2:(NSString *)s setARGON2Type:(NBSCrypto_ARGON2_TYPE)t setCost:(int)c setIterations:(int)i setParallelismFactor:(int)p setOutputLength:(unsigned long)oLM
 {
+    if(i >= 20){i = 20;}
+    if(oLM >= 128){oLM = 128;}
+
     NSString *r=@"";
     NBSCryptoHash *ch = [[self alloc] init];
 
@@ -1183,7 +1102,9 @@ unsigned long _outputLengthMAC;
     sKEY = [ch _paddingString:sKEY withLength:oLM];
 
     char *key = (char*)[sKEY UTF8String];
-    char *salt = "0123456789abcdef";
+    char *salt = (char*)generateSaltOrPassword(16, 2);
+
+
 
     unsigned int hashoutlen = (unsigned int)oLM;
     unsigned int lanes = 1;
@@ -1223,5 +1144,89 @@ unsigned long _outputLengthMAC;
 	return FALSE;
     }
 }
+
++(NSString*)hashPasswordWithBCRYPT:(NSString*)s setCost:(int)c setVersion:(NBSCrypto_BCRYPT_VERSION)v
+{
+    NSMutableString *r;
+    NBSCryptoHash *ch = [[self alloc] init];
+
+    NSString *sKEY=[s stringByAppendingString:[_HEX_PADDING objectAtIndex:0]];
+    sKEY = [ch _paddingString:sKEY withLength:72];
+
+    unsigned long oL = 60;
+    char out[oL];
+
+    bcrypt_hash_password((const unsigned char*)[sKEY UTF8String], (int)v, c, out, &oL);
+
+    r=[NSMutableString stringWithCapacity:oL];
+    for(int i=0;i<oL;i++){[r appendFormat:@"%c",out[i]];}
+
+    ch = NULL;
+
+    return r;
+}
+
++ (BOOL)validatePasswordWithBCRYPT:(NSString*)s setHASH:(NSString*)h
+{
+    NBSCryptoHash *ch = [[self alloc] init];
+
+    NSString *sKEY=[s stringByAppendingString:[_HEX_PADDING objectAtIndex:0]];
+    sKEY = [ch _paddingString:sKEY withLength:72];
+
+
+    if (!bcrypt_verify_password((const unsigned char*)[sKEY UTF8String], (const unsigned char*)[h UTF8String])) {
+	ch = NULL;
+	return TRUE;
+    }else{
+	ch = NULL;
+	return FALSE;
+    }
+}
+
++ (NSString*)hashPasswordWithSCRYPT:(NSString*)s setCost:(int)c setParallelismFactor:(int)p setBlockSize:(int)r setOutputLength:(unsigned long)outputLength
+{
+    NSString *result=@"$scrypt$";
+    result = [result stringByAppendingFormat:@"ln=%i,", c];
+    result = [result stringByAppendingFormat:@"r=%i,", r];
+    result = [result stringByAppendingFormat:@"p=%i$", p];
+
+    NBSCryptoHash *ch = [[self alloc] init];
+
+    NSString *sKEY=[s stringByAppendingString:[_HEX_PADDING objectAtIndex:0]];
+    sKEY = [ch _paddingString:sKEY withLength:32];
+
+    if (outputLength > 64) {
+	outputLength = 64;
+    }
+
+    unsigned long oL = outputLength;
+    unsigned char out[oL];
+
+    unsigned char *salt = generateSaltOrPassword(16, 2);
+    result = [result stringByAppendingFormat:@"%@$", [ch _base64FromChar:(const unsigned char*)salt withLength:strlen((const char*)salt)]];
+
+    scrypt_hash_password((const unsigned char*)[sKEY UTF8String], (const unsigned char*)salt, 1<<c, 8, 1, out, oL);
+    result = [result stringByAppendingFormat:@"%@", [ch _base64FromChar:out withLength:oL]];
+    ch = NULL;
+
+    return result;
+}
+
++ (BOOL)validatePasswordWithSCRYPT:(NSString*)s setHASH:(NSString*)h
+{
+    NBSCryptoHash *ch = [[self alloc] init];
+
+    NSString *sKEY=[s stringByAppendingString:[_HEX_PADDING objectAtIndex:0]];
+    sKEY = [ch _paddingString:sKEY withLength:32];
+
+    if (!scrypt_verify_password((const unsigned char*)[sKEY UTF8String], (const unsigned char*)[h UTF8String])) {
+	ch = NULL;
+	return TRUE;
+    }else{
+	ch = NULL;
+	return FALSE;
+    }
+}
+
 
 @end
