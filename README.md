@@ -337,8 +337,8 @@ Please have a look [here](https://help.github.com/articles/approving-a-pull-requ
 
 # Supported Key Derivation Function (KDF)
 - __ARGON2__
-    - `Encrypt` `Version 10` `Version 13` `argon2d` `argon2i` `argon2id`
-    - `Validate` `Version 10` `Version 13` `argon2d` `argon2i` `argon2id`
+    - `Encrypt all versions or variants`
+    - `Validate all version or variants`
 - __BCRYPT__
     - `Encrypt all versions or variants`
     - `Validate all version or variants`
