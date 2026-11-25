@@ -193,7 +193,7 @@ NS_ASSUME_NONNULL_BEGIN
 +(NSString *)hashPasswordWithBCRYPT:(NSString*)password setCost:(int)cost setVersion:(NBSCrypto_BCRYPT_VERSION)version;
 +(BOOL)validatePasswordWithBCRYPT:(NSString*)password setHASH:(NSString*)hash;
 
-+(NSString *)hashPasswordWithSCRYPT:(NSString*)password setCost:(int)cost setOutputLength:(unsigned long)outputLength;
++(NSString *)hashPasswordWithSCRYPT:(NSString*)password setCost:(int)cost setParallelismFactor:(int)parallelismFactor setBlockSize:(int)blocksize setOutputLength:(unsigned long)outputLength;
 +(BOOL)validatePasswordWithSCRYPT:(NSString*)password setHASH:(NSString*)hash;
 
 
