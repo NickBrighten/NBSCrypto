@@ -43,7 +43,7 @@ Precompiled Builds will be available as multiple tagets `.xcframework` for produ
 # Integration
 It is possible to use the `.framework` or `.xcframework` in both Swift and Objective-C.
 
-To integrate the `.framework` or `.xcframework` into an Objective-C project, you can use our guide: [Integrate NBSCrypto to an Objective-C Project](https://github.com/NickBrighten/NBSCrypto/tree/main/Integrate_into_Objective-C.md) and to integrate it into a Swift project, you can use our guide: [Integrate NBSCrypto to an Swift Project](https://github.com/NickBrighten/NBSCrypto/tree/main/Integrate_into_Swift.md).
+To integrate the `.framework` or `.xcframework` into an Objective-C project, you can use our guide: [Integrate NBSCrypto to an Objective-C Project](/Integrate_into_Objective-C.md) and to integrate it into a Swift project, you can use our guide: [Integrate NBSCrypto to an Swift Project](/Integrate_into_Swift.md).
 #
 <br/>
 
