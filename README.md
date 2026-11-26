@@ -49,7 +49,7 @@ To integrate the `.framework` or `.xcframework` into an Objective-C project, you
 
 # Test Vectors (KATs)
 A Known Answer Test (KAT) in security is a specific test method used to verify that a cryptographic algorithm works correctly.
-KATs (Test Vectors) for ciphers and hashes are being gradually added and updated here [here](https://github.com/NickBrighten/NBSCrypto/tree/main/KATs/).
+KATs (Test Vectors) for ciphers and hashes are being gradually added and updated here [here](/KATs/).
 #
 <br/>
 
