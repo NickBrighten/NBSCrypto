@@ -7,7 +7,7 @@
 ###########################
 
 
---- ANUBIS-TWEAK-160-BIT ---
+--- ANUBIS-TWEAK-160-BIT --
 
 LEN  : 0
 MSG  : ""
