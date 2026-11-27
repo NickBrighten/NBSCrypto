@@ -43,13 +43,13 @@ Precompiled Builds will be available as multiple tagets `.xcframework` for produ
 # Integration
 It is possible to use the `.framework` or `.xcframework` in both Swift and Objective-C.
 
-To integrate the `.framework` or `.xcframework` into an Objective-C project, you can use our guide: [Integrate NBSCrypto to an Objective-C Project](https://github.com/NickBrighten/NBSCrypto/tree/main/Integrate_into_Objective-C.md) and to integrate it into a Swift project, you can use our guide: [Integrate NBSCrypto to an Swift Project](https://github.com/NickBrighten/NBSCrypto/tree/main/Integrate_into_Swift.md).
+To integrate the `.framework` or `.xcframework` into an Objective-C project, you can use our guide: [Integrate NBSCrypto to an Objective-C Project](/Integrate_into_Objective-C.md) and to integrate it into a Swift project, you can use our guide: [Integrate NBSCrypto to an Swift Project](/Integrate_into_Swift.md).
 #
 <br/>
 
 # Test Vectors (KATs)
 A Known Answer Test (KAT) in security is a specific test method used to verify that a cryptographic algorithm works correctly.
-KATs (Test Vectors) for ciphers and hashes are being gradually added and updated here [here](https://github.com/NickBrighten/NBSCrypto/tree/main/KATs/).
+KATs (Test Vectors) for ciphers and hashes are being gradually added and updated here [here](/KATs/).
 #
 <br/>
 
@@ -337,11 +337,11 @@ Please have a look [here](https://help.github.com/articles/approving-a-pull-requ
 
 # Supported Key Derivation Function (KDF)
 - __ARGON2__
-    - `Encrypt all versions or variants`
-    - `Validate all version or variants`
+    - `Encrypt all versions and/or variants`
+    - `Validate all versions and/or variants`
 - __BCRYPT__
-    - `Encrypt all versions or variants`
-    - `Validate all version or variants`
+    - `Encrypt all versions and/or variants`
+    - `Validate all versions and/or variants`
 - __SCRYPT__
     - `Encrypt`
     - `Validate`
