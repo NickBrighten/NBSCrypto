@@ -19,15 +19,19 @@
 int xcbc_init(unsigned long cipher, const unsigned char *key, unsigned long keylen, xcbc_state *xcbc)
 {
     int x, y, err;
+    int skey_init = 0;
     unsigned long k1;
-    //cm_ECB *skey;
-    cipher_state skey;
+    cipher_state cs;
 
-    xcbc->cipher = cipher;
 
-    if ((err = is_cipher_valid(xcbc->cipher)) != NBSCrypto_OK) {
+    if (key == NULL || xcbc == NULL) {
+	return NBSCrypto_ERROR;
+    }
+
+    if ((err = is_cipher_valid(cipher)) != NBSCrypto_OK) {
 	return err;
     }
+    xcbc->cipher = cipher;
 
     if (keylen & XCBC_PURE) {
 	keylen &= ~XCBC_PURE;
@@ -36,46 +40,70 @@ int xcbc_init(unsigned long cipher, const unsigned char *key, unsigned long keyl
 	    return NBSCrypto_ERROR;
 	}
 
-	k1 = keylen - 2*cipher_descriptor[xcbc->cipher].block_length;
+	k1 = keylen - 2 * cipher_descriptor[xcbc->cipher].block_length;
+	if (k1 > sizeof(xcbc->K[0]) || k1 > (unsigned long)INT_MAX) {
+	    return NBSCrypto_ERROR;
+	}
 	memcpy(xcbc->K[0], key, k1);
 	memcpy(xcbc->K[1], key+k1, cipher_descriptor[xcbc->cipher].block_length);
 	memcpy(xcbc->K[2], key+k1 + cipher_descriptor[xcbc->cipher].block_length, cipher_descriptor[xcbc->cipher].block_length);
     } else {
 	k1 = cipher_descriptor[xcbc->cipher].block_length;
 
-	if ((err = cipher_descriptor[xcbc->cipher].setup(key, (int)keylen, 0, &skey)) != NBSCrypto_OK) {
+	if (keylen > (unsigned long)INT_MAX) {
+	    return NBSCrypto_ERROR;
+	}
+
+	if ((err = cipher_descriptor[xcbc->cipher].setup(key, (int)keylen, 0, &cs)) != NBSCrypto_OK) {
 	    goto done;
 	}
+
+	skey_init = 1;
 
 	for (y = 0; y < 3; y++) {
 	    for (x = 0; x < cipher_descriptor[xcbc->cipher].block_length; x++) {
 		xcbc->K[y][x] = y + 1;
 	    }
-	    cipher_descriptor[xcbc->cipher].encrypt(xcbc->K[y], xcbc->K[y], &skey);
+	    cipher_descriptor[xcbc->cipher].encrypt(xcbc->K[y], xcbc->K[y], &cs);
 	}
     }
 
-    err = cipher_descriptor[xcbc->cipher].setup(xcbc->K[0], (int)k1, 0, &xcbc->cs);
+    if ((err = cipher_descriptor[xcbc->cipher].setup(xcbc->K[0], (int)k1, 0, &xcbc->cs)) != NBSCrypto_OK) {
+	zeromem(xcbc, sizeof(*xcbc));
+	goto done;
+    }
 
     zeromem(xcbc->IV, cipher_descriptor[xcbc->cipher].block_length);
     xcbc->blocksize = cipher_descriptor[xcbc->cipher].block_length;
     xcbc->buflen    = 0;
+
 done:
-    cipher_descriptor[xcbc->cipher].done(&skey);
+    if(skey_init){
+	cipher_descriptor[xcbc->cipher].done(&cs);
+    }
     return err;
 }
 
 int xcbc_process(const unsigned char *in, unsigned long inlen, xcbc_state *xcbc)
 {
+    int err;
 
-    if ((xcbc->blocksize < 0) || (xcbc->buflen > xcbc->blocksize) || (xcbc->buflen < 0)) {
+    if (xcbc == NULL || (in == NULL && inlen > 0)) {
+	return NBSCrypto_ERROR;
+    }
+
+    if ((err = is_cipher_valid(xcbc->cipher)) != NBSCrypto_OK) {
+	return err;
+    }
+
+    if ((xcbc->blocksize <= 0) || (xcbc->blocksize > (int)sizeof(xcbc->IV)) ||
+	(xcbc->buflen > xcbc->blocksize) || (xcbc->buflen < 0)) {
 	return NBSCrypto_ERROR;
     }
 
     while (inlen) {
 	if (xcbc->buflen == xcbc->blocksize) {
 	    cipher_descriptor[xcbc->cipher].encrypt(xcbc->IV, xcbc->IV, &xcbc->cs);
-	    //ecb_encrypt_block(xcbc->IV, xcbc->IV, &xcbc->key);
 	    xcbc->buflen = 0;
 	}
 	xcbc->IV[xcbc->buflen++] ^= *in++;
@@ -86,9 +114,22 @@ int xcbc_process(const unsigned char *in, unsigned long inlen, xcbc_state *xcbc)
 
 int xcbc_done(unsigned char *out, unsigned long *outlen, xcbc_state *xcbc)
 {
-    int x;
+    int x, err;
 
-    if ((xcbc->blocksize < 0) || (xcbc->buflen > xcbc->blocksize) || (xcbc->buflen < 0)) {
+    if (out == NULL || outlen == NULL || xcbc == NULL) {
+	return NBSCrypto_ERROR;
+    }
+
+    if ((err = is_cipher_valid(xcbc->cipher)) != NBSCrypto_OK) {
+	return err;
+    }
+
+    if ((xcbc->blocksize <= 0) || (xcbc->blocksize > (int)sizeof(xcbc->IV)) ||
+	(xcbc->buflen > xcbc->blocksize) || (xcbc->buflen < 0)) {
+	return NBSCrypto_ERROR;
+    }
+
+    if (*outlen == 0) {
 	return NBSCrypto_ERROR;
     }
 

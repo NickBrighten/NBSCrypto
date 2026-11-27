@@ -5,11 +5,11 @@
 //
 
 #include "nbs_crypto.h"
-#include <limits.h>
-#include <pthread.h>
 
 
 
+
+#pragma mark - DEFINES
 #define ARGON2_MIN_LANES UINT32_C(1)
 #define ARGON2_MAX_LANES UINT32_C(0xFFFFFF)
 #define ARGON2_MIN_THREADS UINT32_C(1)
@@ -104,17 +104,17 @@ typedef struct __argon2_blake2b_state {
 } argon2_blake2b_state;
 
 typedef struct __argon2_blake2b_param {
-    uint8_t digest_length;                   /* 1 */
-    uint8_t key_length;                      /* 2 */
-    uint8_t fanout;                          /* 3 */
-    uint8_t depth;                           /* 4 */
-    uint32_t leaf_length;                    /* 8 */
-    uint64_t node_offset;                    /* 16 */
-    uint8_t node_depth;                      /* 17 */
-    uint8_t inner_length;                    /* 18 */
-    uint8_t reserved[14];                    /* 32 */
-    uint8_t salt[BLAKE2B_SALTBYTES];         /* 48 */
-    uint8_t personal[BLAKE2B_PERSONALBYTES]; /* 64 */
+    uint8_t digest_length;
+    uint8_t key_length;
+    uint8_t fanout;
+    uint8_t depth;
+    uint32_t leaf_length;
+    uint64_t node_offset;
+    uint8_t node_depth;
+    uint8_t inner_length;
+    uint8_t reserved[14];
+    uint8_t salt[BLAKE2B_SALTBYTES];
+    uint8_t personal[BLAKE2B_PERSONALBYTES];
 } argon2_blake2b_param;
 
 
@@ -190,6 +190,7 @@ const char *argon2_type2string(argon2_type type, int uppercase) {
 
 
 
+#pragma mark - INLINE
 //Blake2b
 static inline uint64_t fBlaMka(uint64_t x, uint64_t y)
 {
@@ -197,18 +198,6 @@ static inline uint64_t fBlaMka(uint64_t x, uint64_t y)
     const uint64_t xy = (x & m) * (y & m);
     return x + y + 2 * xy;
 }
-
-/*
-static inline uint32_t load32(const void *src)
-{
-    const uint8_t *p = (const uint8_t *)src;
-    uint32_t w = *p++;
-    w |= (uint32_t)(*p++) << 8;
-    w |= (uint32_t)(*p++) << 16;
-    w |= (uint32_t)(*p++) << 24;
-    return w;
-}
- */
 
 static inline void store32(void *dst, uint32_t w)
 {
@@ -256,54 +245,11 @@ static inline void store64(void *dst, uint64_t w)
     *p++ = (uint8_t)w;
 }
 
-/*
-static inline uint64_t load48(const void *src)
-{
-    const uint8_t *p = (const uint8_t *)src;
-    uint64_t w = *p++;
-    w |= (uint64_t)(*p++) << 8;
-    w |= (uint64_t)(*p++) << 16;
-    w |= (uint64_t)(*p++) << 24;
-    w |= (uint64_t)(*p++) << 32;
-    w |= (uint64_t)(*p++) << 40;
-    return w;
-}
- */
-
-/*
-static inline void store48(void *dst, uint64_t w)
-{
-    uint8_t *p = (uint8_t *)dst;
-    *p++ = (uint8_t)w;
-    w >>= 8;
-    *p++ = (uint8_t)w;
-    w >>= 8;
-    *p++ = (uint8_t)w;
-    w >>= 8;
-    *p++ = (uint8_t)w;
-    w >>= 8;
-    *p++ = (uint8_t)w;
-    w >>= 8;
-    *p++ = (uint8_t)w;
-}
- */
-
-/*
-static inline uint32_t rotr32(const uint32_t w, const unsigned c)
-{
-    return (w >> c) | (w << (32 - c));
-}
-*/
-
 static inline uint64_t rotr64(const uint64_t w, const unsigned c)
 {
     return (w >> c) | (w << (64 - c));
 }
 
-
-
-
-//ARGON2 THREADS
 static inline int argon2_thread_create(argon2_thread_handle_t *handle, argon2_thread_func_t func, void *args)
 {
     if (NULL == handle || func == NULL) {
@@ -322,11 +268,6 @@ static inline void argon2_thread_exit(void)
     pthread_exit(NULL);
 }
 
-
-
-
-
-/***************Instance and Position constructors**********/
 static inline void init_block_value(block *b, uint8_t in)
 {
     memset(b->v, in, sizeof(b->v));
@@ -477,35 +418,29 @@ static inline void fill_segment(const argon2_instance_t *instance, argon2_positi
     starting_index = 0;
 
     if ((0 == position.pass) && (0 == position.slice)) {
-	starting_index = 2; /* we have already generated the first two blocks */
+	starting_index = 2;
 
-	/* Don't forget to generate the first block of addresses: */
 	if (data_independent_addressing) {
 	    next_addresses(&address_block, &input_block, &zero_block);
 	}
     }
 
-    /* Offset of the current block */
     curr_offset = position.lane * instance->lane_length +
     position.slice * instance->segment_length + starting_index;
 
     if (0 == curr_offset % instance->lane_length) {
-	/* Last block in this lane */
 	prev_offset = curr_offset + instance->lane_length - 1;
     } else {
-	/* Previous block */
 	prev_offset = curr_offset - 1;
     }
 
     for (i = starting_index; i < instance->segment_length;
 	 ++i, ++curr_offset, ++prev_offset) {
-	/*1.1 Rotating prev_offset if needed */
+
 	if (curr_offset % instance->lane_length == 1) {
 	    prev_offset = curr_offset - 1;
 	}
 
-	/* 1.2 Computing the index of the reference block */
-	/* 1.2.1 Taking pseudo-random value from the previous block */
 	if (data_independent_addressing) {
 	    if (i % ARGON2_ADDRESSES_IN_BLOCK == 0) {
 		next_addresses(&address_block, &input_block, &zero_block);
@@ -515,26 +450,19 @@ static inline void fill_segment(const argon2_instance_t *instance, argon2_positi
 	    pseudo_rand = instance->memory[prev_offset].v[0];
 	}
 
-	/* 1.2.2 Computing the lane of the reference block */
 	ref_lane = ((pseudo_rand >> 32)) % instance->lanes;
 
 	if ((position.pass == 0) && (position.slice == 0)) {
-	    /* Can not reference other lanes yet */
 	    ref_lane = position.lane;
 	}
 
-	/* 1.2.3 Computing the number of possible reference block within the
-	 * lane.
-	 */
 	position.index = i;
 	ref_index = index_alpha(instance, &position, pseudo_rand & 0xFFFFFFFF, ref_lane == position.lane);
 
-	/* 2 Creating a new block */
 	ref_block =
 	instance->memory + instance->lane_length * ref_lane + ref_index;
 	curr_block = instance->memory + curr_offset;
 	if (ARGON2_VERSION_10 == instance->version) {
-	    /* version 1.2.1 and earlier: overwrite, not XOR */
 	    fill_block(instance->memory + prev_offset, ref_block, curr_block, 0);
 	} else {
 	    if(0 == position.pass) {
@@ -548,7 +476,6 @@ static inline void fill_segment(const argon2_instance_t *instance, argon2_positi
     }
 }
 
-/***************Memory functions*****************/
 static inline int allocate_memory(const argon2_context *context, uint8_t **memory, size_t num, size_t size)
 {
     size_t memory_size = num*size;
@@ -556,12 +483,10 @@ static inline int allocate_memory(const argon2_context *context, uint8_t **memor
 	return NBSCrypto_ERROR;
     }
 
-    /* 1. Check for multiplication overflow */
     if (size != 0 && memory_size / size != num) {
 	return NBSCrypto_ERROR;
     }
 
-    /* 2. Try to allocate with appropriate allocator */
     if (context->allocate_cbk) {
 	(context->allocate_cbk)(memory, memory_size);
     } else {
@@ -1497,7 +1422,6 @@ do {						\
     int validation_result;
     const char* type_string;
 
-    /* We should start with the argon2_type we are using */
     type_string = argon2_type2string(type, 0);
     if (!type_string) {
 	return NBSCrypto_ERROR;
@@ -1506,7 +1430,6 @@ do {						\
     CC("$");
     CC(type_string);
 
-    /* Reading the version number if the default is suppressed */
     ctx->version = ARGON2_VERSION_10;
     CC_opt("$v=", DECIMAL_U32(ctx->version));
 
@@ -1523,7 +1446,6 @@ do {						\
     CC("$");
     BIN(ctx->out, maxoutlen, ctx->outlen);
 
-    /* The rest of the fields get the default values */
     ctx->secret = NULL;
     ctx->secretlen = 0;
     ctx->ad = NULL;
@@ -1532,13 +1454,11 @@ do {						\
     ctx->free_cbk = NULL;
     ctx->flags = ARGON2_DEFAULT_FLAGS;
 
-    /* On return, must have valid context */
     validation_result = validate_inputs(ctx);
     if (validation_result != NBSCrypto_OK) {
 	return validation_result;
     }
 
-    /* Can't have any additional characters */
     if (*str == 0) {
 	return NBSCrypto_OK;
     } else {
@@ -1785,6 +1705,8 @@ static inline size_t numlen(uint32_t num)
 
 
 
+
+#pragma mark - FUNCTIONS
 
 int argon2_hash_password(const uint32_t t_cost, const uint32_t m_cost, const uint32_t parallelism, const void *pwd, const size_t pwdlen, const void *salt, const size_t saltlen, void *hash, const size_t hashlen, char *encoded, const size_t encodedlen, argon2_type type, const uint32_t version)
 {
